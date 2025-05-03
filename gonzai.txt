@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandala Multiverso Gonzai - Enlaces</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* --- FONDO CON IMAGEN --- */
+            /* --- IMPORTANTE: Reemplaza la URL de placehold.co con la URL pública de tu imagen --- */
+            background-image: url('https://placehold.co/1200x800/0a192f/e0e0e0?text=Pega+aqu%C3%AD+la+URL+de+tu+imagen'); /* <-- REEMPLAZA ESTA URL */
+            /* --- MODIFICACIÓN: Cambiado a 'contain' para ver imagen completa --- */
+            background-size: contain; /* Asegura que toda la imagen sea visible */
+            background-position: center center; /* Centrar la imagen */
+            background-repeat: no-repeat; /* No repetir la imagen */
+            background-attachment: fixed; /* Fijar el fondo */
+            /* --- FIN MODIFICACIÓN --- */
+            /* Añadir un color de fondo base por si la imagen no carga o hay espacios */
+            background-color: #090a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mandala-container {
+            position: relative;
+            width: 95vw;
+            height: 95vh;
+            max-width: 1000px;
+            max-height: 1000px;
+        }
+
+        /* Estilo base para nodos interactivos */
+        .interactive-node {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 10px;
+            line-height: 1.1;
+            padding: 5px;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5), 0 0 5px rgba(0, 0, 0, 0.3);
+            color: #111827;
+            overflow: hidden;
+            white-space: normal;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Background y tamaño aplicados dinámicamente con JS */
+        }
+
+        .interactive-node:hover {
+            transform: scale(1.18);
+            filter: brightness(1.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 8px rgba(0, 0, 0, 0.2);
+            z-index: 11;
+        }
+
+        /* Nodo central mantiene su estilo base aquí */
+        .node-center {
+             width: 90px; height: 90px; font-size: 12px; z-index: 12;
+             background: radial-gradient(circle, #fff59d 40%, #ffca28 100%); /* Color central fijo */
+             box-shadow: 0 0 30px #fffde7, 0 0 10px rgba(0, 0, 0, 0.4); /* Sombra central más intensa */
+             border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        /* Clases de tipo solo para referencia */
+        .node-root {}
+        .node-trunk {}
+        .node-branch {}
+        .node-leaf {}
+        .node-sphere {}
+        .node-flower {}
+
+    </style>
+</head>
+<body>
+    <div id="mandala-container" class="mandala-container">
+        </div>
+
+    <script>
+        // --- Configuración del Mandala GONZAI ---
+        const mandalaData = [
+             // Nodo Central - ENLACE ACTUALIZADO
+             { id: 'multiverso_gonzai', type: 'node-center', label: 'Multiverso Gonzai', details: '...', link: 'https://www.notion.so/MULTIVERSO-GONZAI-1e6bda05a1ad80498e26fab689cd4a26?pvs=4#1e6bda05a1ad8002854cd10894b439af' },
+            // Nodos para la espiral (Reemplaza '#' con tus URLs)
+            { id: 'nexus_gonzai', type: 'node-trunk', label: 'Nexus Gonzai', details: '...', link: '#' },
+            { id: 'principios', type: 'node-root', label: 'Principios Gonzai', details: '...', link: '#' },
+            { id: 'obras', type: 'node-branch', label: 'Obras Literarias', details: '...', link: '#' },
+            { id: 'vision_maestra', type: 'node-root', label: 'Visión Maestra', details: '...', link: '#' },
+            // Nodo RP360 - ENLACE ACTUALIZADO
+            { id: 'rp360', type: 'node-branch', label: 'RP360 Ecosistema', details: '...', link: 'https://github.com/ricaspalabras360/RP360.git' },
+            { id: 'planificacion', type: 'node-branch', label: 'Planificación V9', details: '...', link: '#' },
+             { id: 'red_luminica', type: 'node-branch', label: 'Red Lumínica', details: '...', link: '#' },
+            { id: 'plan_evolutivo', type: 'node-root', label: 'Plan Evolutivo', details: '...', link: '#' },
+            { id: 'visuales_archivos', type: 'node-branch', label: 'Visuales y Archivos', details: '...', link: '#' },
+            { id: 'iz_lapiz', type: 'node-leaf', label: 'Iz, el Lápiz Feliz', details: '...', link: '#' },
+            { id: 'estrategia_com', type: 'node-leaf', label: 'Estrategia Com.', details: '...', link: '#' },
+            { id: 'productos_alma', type: 'node-leaf', label: 'Productos con Alma', details: '...', link: '#' },
+            { id: 'comunidad_semilla', type: 'node-sphere', label: 'Comunidad Semilla', details: '...', link: '#' },
+            { id: 'mapas_mentales', type: 'node-sphere', label: 'Mapas Mentales', details: '...', link: '#' },
+            { id: 'hijos_sol', type: 'node-flower', label: 'Hijos del Sol', details: '...', link: '#' },
+            { id: 'el_apagon', type: 'node-leaf', label: 'El Apagón', details: '...', link: '#' },
+            { id: 'calendario_evolutivo', type: 'node-leaf', label: 'Calendario Evolutivo', details: '...', link: '#' },
+            { id: 'estrategia_rp360', type: 'node-leaf', label: 'Estrategia Comercial', details: '...', link: '#' },
+            { id: 'acciones_red', type: 'node-sphere', label: 'Acciones en Red', details: '...', link: '#' },
+            { id: 'imagenes_canalizadas', type: 'node-sphere', label: 'Imágenes Canalizadas', details: '...', link: '#' },
+            { id: 'app_gonzai', type: 'node-flower', label: 'App Gonzai', details: '...', link: '#' },
+            // Añade más nodos si es necesario, cada uno con su 'link'
+        ];
+
+        // Paleta de colores (sin cambios respecto a V3)
+        const colorPalette = [
+            'radial-gradient(circle, #ffcc80 40%, #ffa726 100%)', 'radial-gradient(circle, #ff8a65 40%, #ff7043 100%)', 'radial-gradient(circle, #e57373 40%, #ef5350 100%)', 'radial-gradient(circle, #f06292 40%, #ec407a 100%)', 'radial-gradient(circle, #ba68c8 40%, #ab47bc 100%)', 'radial-gradient(circle, #9575cd 40%, #7e57c2 100%)', 'radial-gradient(circle, #7986cb 40%, #5c6bc0 100%)', 'radial-gradient(circle, #64b5f6 40%, #42a5f5 100%)', 'radial-gradient(circle, #4fc3f7 40%, #29b6f6 100%)', 'radial-gradient(circle, #4dd0e1 40%, #26c6da 100%)', 'radial-gradient(circle, #4db6ac 40%, #26a69a 100%)', 'radial-gradient(circle, #80cbc4 40%, #4db6ac 100%)', 'radial-gradient(circle, #a5d6a7 40%, #81c784 100%)', 'radial-gradient(circle, #81c784 40%, #4caf50 100%)', 'radial-gradient(circle, #c5e1a5 40%, #aed581 100%)',
+        ];
+
+        // --- Lógica JavaScript ---
+        const mandalaContainer = document.getElementById('mandala-container');
+
+        // Función para crear y posicionar nodos interactivos en espiral
+        function renderMandalaNodes() {
+            const containerRect = mandalaContainer.getBoundingClientRect();
+            const centerX = containerRect.width / 2;
+            const centerY = containerRect.height / 2;
+
+            const a = 70; // Distancia inicial desde el centro
+            const b = 18; // Factor de separación entre vueltas
+            const angleIncrement = Math.PI / 5.5; // Ángulo entre nodos
+
+            let currentAngle = 0;
+            let colorIndex = 0;
+
+            const spiralNodesData = mandalaData.filter(node => node.type !== 'node-center');
+            const centerNodeData = mandalaData.find(node => node.type === 'node-center');
+            const totalSpiralNodes = spiralNodesData.length;
+
+            // Crear nodo central
+            if (centerNodeData) {
+                createNodeElement(centerNodeData, centerX, centerY);
+            }
+
+            // Crear nodos de la espiral
+            spiralNodesData.forEach((nodeData, index) => {
+                const nodeEl = document.createElement('div');
+                nodeEl.id = `node-${nodeData.id}`;
+                nodeEl.className = `interactive-node ${nodeData.type}`; // Clase de tipo para referencia
+
+                const radius = a + b * currentAngle;
+                const nodeX = centerX + radius * Math.cos(currentAngle);
+                const nodeY = centerY + radius * Math.sin(currentAngle);
+
+                // Calcular tamaño dinámico
+                const baseSize = 55; // Tamaño mínimo
+                const maxSize = 85; // Tamaño máximo
+                const dynamicSize = baseSize + (maxSize - baseSize) * (index / (totalSpiralNodes - 1));
+                const offset = dynamicSize / 2;
+
+                // Aplicar tamaño y posición
+                nodeEl.style.width = `${dynamicSize}px`;
+                nodeEl.style.height = `${dynamicSize}px`;
+                nodeEl.style.left = `${nodeX - offset}px`;
+                nodeEl.style.top = `${nodeY - offset}px`;
+                // Ajustar tamaño de fuente relativo al tamaño del nodo
+                nodeEl.style.fontSize = `${Math.max(8, Math.min(11, dynamicSize / 6.5))}px`;
+
+                // Aplicar color de la paleta
+                nodeEl.style.background = colorPalette[colorIndex % colorPalette.length];
+                colorIndex++; // Siguiente color
+
+                nodeEl.innerHTML = `<span>${nodeData.label}</span>`;
+
+                // Evento de clic abre enlace externo
+                nodeEl.addEventListener('click', () => {
+                    if (nodeData.link && nodeData.link !== '#') {
+                        window.open(nodeData.link, '_blank'); // Abre en nueva pestaña
+                    } else {
+                        console.warn(`Nodo ${nodeData.id} no tiene un enlace válido.`);
+                    }
+                });
+
+                mandalaContainer.appendChild(nodeEl);
+                currentAngle += angleIncrement; // Incrementar ángulo para el siguiente nodo
+            });
+        }
+
+        // Función auxiliar para crear el nodo central
+         function createNodeElement(nodeData, x, y) {
+             const nodeEl = document.createElement('div');
+             nodeEl.id = `node-${nodeData.id}`;
+             nodeEl.className = `interactive-node ${nodeData.type}`; // Usa clase node-center para estilo fijo
+             let nodeSize = 90; // Tamaño fijo para el centro
+             const offset = nodeSize / 2;
+             nodeEl.style.left = `${x - offset}px`;
+             nodeEl.style.top = `${y - offset}px`;
+             nodeEl.innerHTML = `<span>${nodeData.label}</span>`;
+
+             // Evento de clic abre enlace externo (también para el central)
+             nodeEl.addEventListener('click', () => {
+                 if (nodeData.link && nodeData.link !== '#') {
+                     window.open(nodeData.link, '_blank');
+                 } else {
+                      console.warn(`Nodo ${nodeData.id} no tiene un enlace válido.`);
+                 }
+             });
+
+             mandalaContainer.appendChild(nodeEl);
+         }
+
+        // Renderizar los nodos interactivos al cargar la página
+        window.addEventListener('load', renderMandalaNodes);
+
+        // Re-renderizar si la ventana cambia de tamaño
+         let resizeTimer;
+         window.addEventListener('resize', () => {
+             clearTimeout(resizeTimer);
+             resizeTimer = setTimeout(() => {
+                 mandalaContainer.innerHTML = ''; // Limpiar antes de redibujar
+                 renderMandalaNodes();
+             }, 250); // Esperar un poco antes de redibujar
+         });
+
+    </script>
+
+</body>
+</html>
