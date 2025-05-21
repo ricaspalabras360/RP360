@@ -63,24 +63,26 @@
             margin-right: auto;
         }
 
-        /* Video Container Styles */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #e2e8f0; /* Lighter fallback background for video */
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-md */
-        }
-        .video-wrapper video { /* Target video directly */
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Video Container Styles - ADJUSTED */
+        .video-container-parent { /* New class to center the video wrapper */
+            display: flex;
+            justify-content: center;
             width: 100%;
-            height: 100%;
-            border: 0; 
+        }
+        .video-wrapper {
+            width: 100%; /* Full width on mobile */
+            max-width: 24rem; /* max-w-md for desktop, simulating phone width. Adjust as needed (e.g., sm, lg) */
+            background: #1f2937; /* Darker background for video, e.g., gray-800 */
+            border-radius: 0.75rem; /* rounded-xl for a more modern look */
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-xl */
+            overflow: hidden; /* To ensure video corners are also rounded */
+        }
+        .video-wrapper video { 
+            display: block; /* Remove extra space below video */
+            width: 100%;   /* Video will fill its wrapper */
+            height: auto;  /* Maintain aspect ratio */
+            max-height: 80vh; /* Prevent it from becoming too tall on desktop */
+            border-radius: 0.75rem; /* Match wrapper's rounding */
         }
       
     </style>
@@ -164,17 +166,15 @@
                 </div>
             </div>
 
-            <div class="mt-12 mb-10 max-w-3xl mx-auto">
-                <h3 class="text-2xl font-semibold text-gray-700 mb-6">Nuestros Objetos que Inspiran en Movimiento</h3>
-                <div class="video-wrapper">
-                    <!-- 
-                        Asegúrate de que 'videoRP360.mp4' esté en la raíz de tu repositorio de GitHub,
-                        o si lo pones en una carpeta 'videos', cambia el src a 'videos/videoRP360.mp4'
-                    -->
-                    <video controls poster="https://placehold.co/640x360/e2e8f0/4a5567?text=Video+Ricas+Palabras">
-                        <source src="videoRP360.mp4" type="video/mp4">
-                        Tu navegador no soporta la etiqueta de video.
-                    </video>
+            <div class="mt-12 mb-10 video-container-parent">
+                <div class="w-full max-w-lg mx-auto"> {/* Centering and max-width for the title */}
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-6">Nuestros Objetos que Inspiran en Movimiento</h3>
+                    <div class="video-wrapper">
+                        <video controls poster="https://placehold.co/640x360/10b981/FFFFFF?text=Ricas+Palabras+360%0AConectando+Crecimiento%0Ay+Transformaci%C3%B3n">
+                            <source src="videoRP360.mp4" type="video/mp4">
+                            Tu navegador no soporta la etiqueta de video.
+                        </video>
+                    </div>
                 </div>
             </div>
 
@@ -268,11 +268,6 @@
                 });
             });
         }
-
-        // --- Carousel Functionality REMOVED ---
-        // --- Video Player Functionality (if needed, e.g., custom controls) would go here ---
-        // For basic HTML5 video with 'controls' attribute, no extra JS is strictly necessary for playback.
-
     </script>
 
 </body>
