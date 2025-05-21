@@ -63,21 +63,22 @@
             margin-right: auto;
         }
 
-        /* Video Container Styles - ADJUSTED for mobile-first video */
+        /* Video Container Styles - ADJUSTED */
         .video-section-container { /* Parent to center the video and its title */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Centers title and video-wrapper horizontally */
             width: 100%;
         }
         .video-wrapper {
             width: 100%; 
-            /* On larger screens, constrain to a typical phone aspect ratio width, e.g., max-w-sm or max-w-md */
-            /* For a 9:16 video, if height is 500px, width would be approx 281px. */
-            /* Let's try max-width: 20rem; (320px) for a phone-like width on desktop */
-            max-width: 22rem; /* Tailwind: max-w-sm is 24rem, max-w-xs is 20rem. Adjust as needed */
-            margin-left: auto;
-            margin-right: auto;
+            /* On larger screens, constrain to a typical phone aspect ratio width.
+               Tailwind: max-w-xs (20rem=320px), max-w-sm (24rem=384px) 
+               Adjust this value to best fit your video's aspect ratio on desktop.
+            */
+            max-width: 22rem; /* Approx. 352px */
+            /* margin-left: auto; /* Not needed if parent is flex centering */
+            /* margin-right: auto; /* Not needed if parent is flex centering */
             background: #111827; /* bg-gray-900 - Dark background for video player */
             border-radius: 0.75rem; /* rounded-xl */
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1); /* shadow-xl */
@@ -87,7 +88,7 @@
             display: block; 
             width: 100%;   
             height: auto;  /* Maintain aspect ratio of the video file itself */
-            max-height: 70vh; /* Prevent it from becoming excessively tall */
+            /* max-height: 70vh; /* Optional: Prevent it from becoming excessively tall if aspect ratio is very vertical */
             border-radius: 0.75rem; /* Match wrapper's rounding */
         }
       
@@ -143,7 +144,7 @@
         <div class="container mx-auto px-6 text-center max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">¿Qué es Ricas Palabras?</h2>
             <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                Es una invitación a conectar con palabras que inspiran, materializadas en objetos y experiencias que elevan tu bienestar y fomentan la reflexión.
+                Es una invitación a conectar con frases que inspiran, transformadas en objetos con propósito y experiencias que despiertan bienestar, conciencia y evolución..
             </p>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 px-4">
                 <div class="keyword-card bg-red-200"> 
@@ -173,9 +174,9 @@
             </div>
 
             <div class="mt-12 mb-10 video-section-container">
-                <h3 class="text-2xl font-semibold text-gray-700 mb-6 text-center w-full">Nuestros Objetos que Inspiran en Movimiento</h3>
+                <h3 class="text-2xl font-semibold text-gray-700 mb-6 w-full">Nuestros Objetos que Inspiran en Movimiento</h3>
                 <div class="video-wrapper">
-                    <video controls poster="https://placehold.co/320x568/10b981/FFFFFF?text=Ricas+Palabras+360%0AConectando+Crecimiento%0Ay+Transformaci%C3%B3n&font=inter&fontsize=18">
+                    <video controls poster="https://placehold.co/320x568/059669/FFFFFF?text=Ricas+Palabras+360%0AConectando+Crecimiento%0Ay+Transformaci%C3%B3n&font=inter&fontsize=16">
                         <source src="videoRP360.mp4" type="video/mp4">
                         Tu navegador no soporta la etiqueta de video.
                     </video>
