@@ -8,11 +8,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden; 
         }
+
+        /* EJEMPLO DE CÓMO AÑADIR FUENTES LOCALES (si tienes los archivos .woff2, .woff, .ttf):
+        Necesitarás crear una carpeta 'fonts' en tu proyecto y colocar los archivos de fuente allí.
+        Luego, descomenta y adapta estas reglas:
+
+        @font-face {
+            font-family: 'CastellarCustom'; /* Dale un nombre para usar en CSS */
+            src: url('fonts/castellar.woff2') format('woff2'), 
+                 url('fonts/castellar.woff') format('woff'); /* Añade más formatos si los tienes */
+            font-weight: normal;
+            font-style: normal;
+        }
+        */
+
         /* Simple scroll behavior */
         html {
             scroll-behavior: smooth;
@@ -25,6 +41,43 @@
             background-clip: text;
             text-fill-color: transparent;
         }
+
+        /* Styling for the 8 keyword cards */
+        .keyword-card {
+            /* background-color: #f3f4f6; /* bg-gray-100 - Reemplazado por colores individuales */
+            padding: 1rem; /* p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px; /* Ensure cards have some height */
+            aspect-ratio: 3 / 2; /* Maintain aspect ratio */
+            transition: transform 0.2s ease-in-out;
+        }
+        .keyword-card:hover {
+            transform: translateY(-3px); /* Slight lift on hover */
+        }
+        .keyword-text {
+            font-size: 1.25rem; /* text-xl, puedes ajustarlo */
+            font-weight: 600; /* font-semibold */
+            color: #374151; /* text-gray-700 */
+            /* Aquí aplicarías tu fuente personalizada una vez configurada, ej: */
+            /* font-family: 'CastellarCustom', 'Times New Roman', serif; */
+        }
+        /* Placeholder para cuando tengamos las fuentes específicas */
+        .font-castellar { /* font-family: 'CastellarCustom', 'Times New Roman', serif; */ }
+        .font-pacific-condensed { /* font-family: 'PacificCondensedCustom', 'Arial Narrow', sans-serif; */ }
+        .font-skyer { /* font-family: 'SkyerCustom', 'Impact', sans-serif; */ }
+
+
+        .hero-image-container img {
+            max-width: 100%; /* Ensure hero image is responsive */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 500px; /* Optional: constrain max height */
+            object-fit: contain; /* Show the whole image, might leave space */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -35,132 +88,108 @@
                 Ricas <span class="gradient-text">Palabras 360</span>
             </div>
             <div class="hidden md:flex space-x-6">
-                <a href="#ecosistema" class="text-gray-600 hover:text-blue-500 transition duration-300">Ecosistema</a>
-                <a href="#impacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Impacto</a>
-                <a href="#fundador" class="text-gray-600 hover:text-blue-500 transition duration-300">Fundador</a>
+                <a href="#que-es" class="text-gray-600 hover:text-blue-500 transition duration-300">Qué es</a>
                 <a href="#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
             </div>
             <div class="md:hidden">
-                <button class="text-gray-600 focus:outline-none">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40">
+             <a href="#que-es" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Qué es</a>
+             <a href="#contacto" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Contacto</a>
+        </div>
     </header>
 
     <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 py-20 md:py-32">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 leading-tight">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
                 Ricas Palabras 360
             </h1>
-            <p class="text-xl md:text-2xl text-gray-600 mb-8">
+            <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
+                "Cada objeto es un mensaje. Cada palabra, una puerta."
+            </p>
+            <p class="text-lg text-gray-600 mb-10">
                 Integrando sabiduría, tecnología y conexión humana para la transformación.
             </p>
-            <a href="#contacto" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
-                Únete al Movimiento
+            <a href="#que-es" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
+                Descubre Más
             </a>
-            <div class="mt-12">
-                <img src="https://placehold.co/600x400/a7f3d0/333333?text=Imagen+Inspiradora+(Arbol)" alt="[Imagen de Concepto Ricas Palabras 360]" class="mx-auto rounded-lg shadow-xl" onerror="this.src='https://placehold.co/600x400/cccccc/333333?text=Imagen+no+disponible'; this.onerror=null;">
+            <div class="mt-12 hero-image-container">
+                <img src="imagenes/ricaspalabras_collage_hero.jpg" alt="Collage de productos Ricas Palabras 360" class="mx-auto rounded-lg shadow-xl" onerror="this.src='https://placehold.co/700x450/cccccc/333333?text=Imagen+Principal+no+disponible'; this.onerror=null;">
             </div>
         </div>
     </section>
 
-    <section id="corazon" class="py-16 md:py-24 bg-white">
+    <section id="que-es" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">¿Qué es Ricas Palabras?</h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                Es una invitación a conectar con palabras que inspiran, materializadas en objetos y experiencias que elevan tu bienestar y fomentan la reflexión.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 px-4">
+                <div class="keyword-card bg-red-200"> {/* Pastel Red */}
+                    <p class="keyword-text font-castellar">AMOR</p> 
+                </div>
+                <div class="keyword-card bg-yellow-200"> {/* Pastel Yellow */}
+                    <p class="keyword-text">ALEGRIA</p>
+                </div>
+                <div class="keyword-card bg-green-200"> {/* Pastel Green */}
+                    <p class="keyword-text">ENERGIA</p>
+                </div>
+                <div class="keyword-card bg-blue-200"> {/* Pastel Blue */}
+                    <p class="keyword-text">PAZ</p>
+                </div>
+                <div class="keyword-card bg-pink-200"> {/* Pastel Pink */}
+                    <p class="keyword-text">FELICIDAD</p>
+                </div>
+                <div class="keyword-card bg-orange-200"> {/* Pastel Orange */}
+                    <p class="keyword-text">FUERZA</p>
+                </div>
+                 <div class="keyword-card bg-teal-200"> {/* Pastel Teal */}
+                    <p class="keyword-text">GRATITUD</p>
+                </div>
+                 <div class="keyword-card bg-purple-200"> {/* Pastel Purple */}
+                    <p class="keyword-text font-pacific-condensed">ESPERANZA</p> 
+                </div>
+            </div>
+            <a href="#contacto" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
+                Ver colección completa
+            </a>
+        </div>
+    </section>
+
+    <section id="corazon-proyecto" class="py-16 md:py-24 bg-gray-100">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">El Corazón de Ricas Palabras</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">El Corazón de Ricas Palabras</h2>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-                Somos un ecosistema vivo donde las palabras se convierten en poderosos catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras para potenciar tu crecimiento personal y colectivo.
+                Somos un ecosistema vivo donde las palabras se convierten en catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras (narrativa, juegos, escritura, conciencia y comunidad) para potenciar tu crecimiento personal y colectivo, generando una nueva cultura del lenguaje y la evolución.
             </p>
             <div class="bg-sky-50 border border-sky-200 rounded-lg p-6 max-w-2xl mx-auto shadow-sm">
                 <h3 class="text-xl font-semibold mb-2 text-sky-800">Nuestra Propuesta Única de Valor</h3>
                 <p class="text-gray-700">
-                    Integramos productos físicos conscientes, contenido digital transformador y experiencias vivenciales profundas, creando un camino 360° hacia el autoconocimiento y la acción positiva.
+                    Integramos productos físicos y editoriales conscientes, contenido digital transformador y experiencias vivenciales profundas, creando un camino 360° hacia el autoconocimiento y la acción positiva.
                 </p>
+                 <p class="text-sm text-gray-500 mt-4">Estado actual: Proyecto validado, en fase de crecimiento.</p>
             </div>
         </div>
     </section>
 
-    <section id="ecosistema" class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Nuestro Ecosistema 360°</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center hover:shadow-lg transition duration-300">
-                    <img src="https://placehold.co/100x100/dcfce7/166534?text=Fisico" alt="[Icono de Productos Físicos]" class="mx-auto mb-4 rounded-full" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=Icono'; this.onerror=null;">
-                    <h3 class="text-xl font-semibold mb-2">Productos Físicos Conscientes</h3>
-                    <p class="text-gray-600">Eco-escritura, bienestar, hogar, juegos, estilo de vida y más. Objetos con alma para tu día a día.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center hover:shadow-lg transition duration-300">
-                     <img src="https://placehold.co/100x100/cffafe/0e7490?text=Digital" alt="[Icono de Contenido Digital]" class="mx-auto mb-4 rounded-full" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=Icono'; this.onerror=null;">
-                    <h3 class="text-xl font-semibold mb-2">Contenidos Digitales Transformadores</h3>
-                    <p class="text-gray-600">Inspiración diaria, e-books, cursos online, comunidad interactiva. Conocimiento para tu evolución.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center hover:shadow-lg transition duration-300">
-                     <img src="https://placehold.co/100x100/ede9fe/5b21b6?text=Experiencia" alt="[Icono de Experiencias Vivenciales]" class="mx-auto mb-4 rounded-full" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=Icono'; this.onerror=null;">
-                    <h3 class="text-xl font-semibold mb-2">Experiencias Vivenciales Únicas</h3>
-                    <p class="text-gray-600">Retiros, talleres, prácticas integradas, conexión con la naturaleza y la comunidad. Vive la transformación.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="impacto" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12">Nuestro Impacto Transformador</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                     <img src="https://placehold.co/80x80/ecfccb/4d7c0f?text=Crecimiento" alt="[Icono de Crecimiento Integral]" class="mx-auto mb-3" onerror="this.src='https://placehold.co/80x80/cccccc/333333?text=Icono'; this.onerror=null;">
-                    <h4 class="font-semibold text-lg mb-1">Crecimiento Integral</h4>
-                    <p class="text-gray-600 text-sm">Impactamos mente, emoción y espíritu.</p>
-                </div>
-                 <div class="text-center">
-                     <img src="https://placehold.co/80x80/e0f2fe/075985?text=Conexion" alt="[Icono de Conexión Global]" class="mx-auto mb-3" onerror="this.src='https://placehold.co/80x80/cccccc/333333?text=Icono'; this.onerror=null;">
-                    <h4 class="font-semibold text-lg mb-1">Conexión Global</h4>
-                    <p class="text-gray-600 text-sm">Unimos culturas y comunidades.</p>
-                </div>
-                 <div class="text-center">
-                     <img src="https://placehold.co/80x80/fef3c7/b45309?text=Emprendimiento" alt="[Icono de Expansión Emprendedora]" class="mx-auto mb-3" onerror="this.src='https://placehold.co/80x80/cccccc/333333?text=Icono'; this.onerror=null;">
-                    <h4 class="font-semibold text-lg mb-1">Expansión Emprendedora</h4>
-                    <p class="text-gray-600 text-sm">Impulsamos el emprendimiento consciente.</p>
-                </div>
-                 <div class="text-center">
-                     <img src="https://placehold.co/80x80/fce7f3/be185d?text=Transformacion" alt="[Icono de Proyecto Transformador]" class="mx-auto mb-3" onerror="this.src='https://placehold.co/80x80/cccccc/333333?text=Icono'; this.onerror=null;">
-                    <h4 class="font-semibold text-lg mb-1">Proyecto Transformador</h4>
-                    <p class="text-gray-600 text-sm">Integramos lo interno y externo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="fundador" class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/3 text-center">
-                <img src="gonza.jpg" alt="[Foto de Gonzalo Aliaga Virasoro, Fundador]" class="rounded-full shadow-lg mx-auto border-4 border-white w-64 h-64 md:w-80 md:h-80 object-cover" onerror="this.src='https://placehold.co/300x300/cccccc/333333?text=Foto+no+cargada'; this.onerror=null;">
-            </div>
-            <div class="md:w-2/3">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Detrás de Ricas Palabras</h2>
-                <p class="text-lg text-gray-700 mb-4 italic">
-                    "Mi nombre es Gonzalo... Fundé Ricas Palabras como una respuesta luminosa a un tiempo oscuro... No vengo a venderte un producto. Vengo a compartir una visión: que las palabras pueden ser semillas, y que juntos podemos transformar nuestra realidad desde adentro hacia afuera."
-                </p>
-                 <p class="text-gray-600 mb-4">
-                    Hoy, mi misión es construir un futuro más consciente, donde estar vivos no sea solo respirar, sino despertar y evolucionar. Estoy convocando a quienes sientan esta vibración, para que co-creemos un Nuevo Tiempo Planetario.
-                </p>
-                <p class="font-semibold text-gray-800">- Gonzalo Aliaga Virasoro, Fundador</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="cta" class="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-emerald-600 text-white">
+    <section id="cta-principal" class="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-emerald-600 text-white">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Sé Parte de la Evolución</h2>
             <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-                Buscamos socios, colaboradores e inversores visionarios que resuenen con nuestra misión. Tu apoyo es fundamental para acelerar nuestro impacto.
+                Buscamos socios, colaboradores, inversores y co-creadores visionarios que resuenen con nuestra misión de generar una nueva cultura del lenguaje, el tiempo y la evolución. Tu apoyo es fundamental para acelerar nuestro impacto.
             </p>
             <div class="space-y-4 md:space-y-0 md:space-x-4">
                  <a href="mailto:ricaspalabras360@gmail.com?subject=Colaboración/Inversión Ricas Palabras 360" class="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
                     Contactar para Colaborar/Invertir
                 </a>
                  <a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="border-2 border-white hover:bg-white hover:text-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
-                    Visita Nuestra Web
+                    Visita Nuestra Web Principal
                 </a>
             </div>
         </div>
@@ -176,10 +205,8 @@
                 <div>
                     <h5 class="font-semibold mb-3 text-white">Enlaces Rápidos</h5>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#corazon" class="hover:text-white transition duration-300">Propósito</a></li>
-                        <li><a href="#ecosistema" class="hover:text-white transition duration-300">Ecosistema</a></li>
-                        <li><a href="#impacto" class="hover:text-white transition duration-300">Impacto</a></li>
-                         <li><a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Web Principal</a></li>
+                        <li><a href="#que-es" class="hover:text-white transition duration-300">Qué es</a></li>
+                        <li><a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Web Principal</a></li>
                     </ul>
                 </div>
                 <div>
@@ -209,25 +236,17 @@
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Basic Mobile Menu Toggle (Example)
-        // You might need a more robust solution
-        const menuButton = document.querySelector('.md\\:hidden button');
-        // Corrected selector for mobile menu if it's immediately after the button's div parent
-        const navMenu = document.querySelector('header nav > div:nth-child(2)'); // Select the div containing the desktop links
-
-        if (menuButton && navMenu) {
-             // Simple toggle logic - For a real implementation, you'd likely add/remove classes
-             // to handle visibility, positioning, and maybe transitions.
-            menuButton.addEventListener('click', () => {
-                 // Example: Toggle a 'hidden' class if that's how you manage visibility
-                 navMenu.classList.toggle('hidden');
-                 // You might also need to adjust styles for mobile display, e.g., make it block, position absolute, etc.
-                 // navMenu.classList.toggle('absolute');
-                 // navMenu.classList.toggle('top-16'); // Adjust based on header height
-                 // navMenu.classList.toggle('left-0');
-                 // navMenu.classList.toggle('right-0');
-                 // navMenu.classList.toggle('bg-white');
-                 // navMenu.classList.toggle('shadow-md');
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
             });
         }
     </script>
