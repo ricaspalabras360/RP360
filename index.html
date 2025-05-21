@@ -63,23 +63,17 @@
             margin-right: auto;
         }
 
-        /* Video Container Styles - ADJUSTED */
-        .video-section-container { /* Parent to center the video and its title */
+        /* Video Container Styles */
+        .video-section-container { 
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centers title and video-wrapper horizontally */
+            align-items: center; 
             width: 100%;
         }
         .video-wrapper {
             width: 100%; 
-            /* On larger screens, constrain to a typical phone aspect ratio width.
-               Tailwind: max-w-xs (20rem=320px), max-w-sm (24rem=384px) 
-               Adjust this value to best fit your video's aspect ratio on desktop.
-            */
-            max-width: 22rem; /* Approx. 352px */
-            /* margin-left: auto; /* Not needed if parent is flex centering */
-            /* margin-right: auto; /* Not needed if parent is flex centering */
-            background: #111827; /* bg-gray-900 - Dark background for video player */
+            max-width: 22rem; /* Approx. 352px - Adjust for phone-like width on desktop */
+            background: #111827; /* bg-gray-900 */
             border-radius: 0.75rem; /* rounded-xl */
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1); /* shadow-xl */
             overflow: hidden; 
@@ -87,9 +81,8 @@
         .video-wrapper video { 
             display: block; 
             width: 100%;   
-            height: auto;  /* Maintain aspect ratio of the video file itself */
-            /* max-height: 70vh; /* Optional: Prevent it from becoming excessively tall if aspect ratio is very vertical */
-            border-radius: 0.75rem; /* Match wrapper's rounding */
+            height: auto;  
+            border-radius: 0.75rem; 
         }
       
     </style>
@@ -176,7 +169,7 @@
             <div class="mt-12 mb-10 video-section-container">
                 <h3 class="text-2xl font-semibold text-gray-700 mb-6 w-full">Nuestros Objetos que Inspiran en Movimiento</h3>
                 <div class="video-wrapper">
-                    <video controls poster="https://placehold.co/320x568/059669/FFFFFF?text=Ricas+Palabras+360%0AConectando+Crecimiento%0Ay+Transformaci%C3%B3n&font=inter&fontsize=16">
+                    <video controls poster="https://placehold.co/320x568/059669/FFFFFF?text=Ricas+Palabras+360%0AInspirando+Transformaci%C3%B3n&font=inter&fontsize=20">
                         <source src="videoRP360.mp4" type="video/mp4">
                         Tu navegador no soporta la etiqueta de video.
                     </video>
