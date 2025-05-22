@@ -51,22 +51,25 @@
             color: #374151; /* text-gray-700 */
         }
         
-        .hero-main-image-container img { /* Renamed for clarity */
+        .hero-main-image-container img { 
             display: block;
             width: 100%; 
-            max-width: 700px; /* Max width for the hero image */
+            max-width: 700px; 
             height: auto; 
             object-fit: cover; 
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-xl */
+            border-radius: 0.5rem; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); 
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-logo-image { /* Style for the new logo image */
-            max-width: 350px; /* Adjust as needed */
+        .hero-logo-image { /* Style for the new logo image in Hero */
+            max-width: 400px; /* Adjust as needed */
             height: auto;
-            margin-bottom: 1.5rem; /* mb-6 */
+            margin-bottom: 2rem; /* mb-8, increased spacing */
+            display: block; /* Ensure it's a block for mx-auto to work */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Video Container Styles */
@@ -118,7 +121,8 @@
 
     <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 py-20 md:py-32">
         <div class="container mx-auto px-6 text-center">
-            <img src="portada.jpg" alt="Logo Ricas Palabras 360" class="hero-logo-image mx-auto" onerror="this.src='https://placehold.co/350x150/cccccc/333333?text=Logo+RP360+no+disponible'; this.onerror=null;">
+          
+                      <img src="portada.jpg" alt="Logo Ricas Palabras 360" class="hero-logo-image" onerror="this.src='https://placehold.co/400x200/cccccc/333333?text=Ricas+Palabras+360+Logo'; this.onerror=null;">
             
             <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
                 "Cada objeto es un mensaje. Cada palabra, una puerta."
