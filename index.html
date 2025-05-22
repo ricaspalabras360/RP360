@@ -51,7 +51,7 @@
             color: #374151; /* text-gray-700 */
         }
         
-        .hero-image-container img {
+        .hero-main-image-container img { /* Renamed for clarity */
             display: block;
             width: 100%; 
             max-width: 700px; /* Max width for the hero image */
@@ -63,6 +63,12 @@
             margin-right: auto;
         }
 
+        .hero-logo-image { /* Style for the new logo image */
+            max-width: 350px; /* Adjust as needed */
+            height: auto;
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+
         /* Video Container Styles */
         .video-section-container { 
             display: flex;
@@ -72,10 +78,10 @@
         }
         .video-wrapper {
             width: 100%; 
-            max-width: 22rem; /* Approx. 352px - Adjust for phone-like width on desktop */
-            background: #111827; /* bg-gray-900 */
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1); /* shadow-xl */
+            max-width: 22rem; 
+            background: #111827; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1); 
             overflow: hidden; 
         }
         .video-wrapper video { 
@@ -112,9 +118,8 @@
 
     <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 py-20 md:py-32">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-                Ricas Palabras 360
-            </h1>
+            <img src="imagenes/rp_logo_hero.jpg" alt="Logo Ricas Palabras 360" class="hero-logo-image mx-auto" onerror="this.src='https://placehold.co/350x150/cccccc/333333?text=Logo+RP360+no+disponible'; this.onerror=null;">
+            
             <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
                 "Cada objeto es un mensaje. Cada palabra, una puerta."
             </p>
@@ -122,7 +127,7 @@
                 Integrando sabiduría, tecnología y conexión humana para la transformación.
             </p>
             
-            <div class="hero-image-container mt-8">
+            <div class="hero-main-image-container mt-8">
                 <img src="VIDA360.jpg" alt="Vela Ricas Palabras con mensaje Vida" onerror="this.src='https://placehold.co/700x450/cccccc/333333?text=Imagen+Principal+no+disponible'; this.onerror=null;">
             </div>
             <div class="mt-10">
@@ -133,11 +138,11 @@
         </div>
     </section>
 
-    <section id="que-es" class="pt-8 md:pt-12 pb-16 md:pb-24 bg-white">
+    <section id="que-es" class="pt-8 md:pt-12 pb-16 md:pb-24 bg-white"> 
         <div class="container mx-auto px-6 text-center max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">¿Qué es Ricas Palabras?</h2>
             <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                Es una invitación a conectar con frases que inspiran, transformadas en objetos con propósito y experiencias que despiertan bienestar, conciencia y evolución.
+                Es una invitación a conectar con palabras que inspiran, materializadas en objetos y experiencias que elevan tu bienestar y fomentan la reflexión.
             </p>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 px-4">
                 <div class="keyword-card bg-red-200"> 
@@ -165,7 +170,7 @@
                     <p class="keyword-text">ESPERANZA</p> 
                 </div>
             </div>
-
+            
             <div class="mb-12"> 
                 <a href="#contacto" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
                     Descubrir Palabras
@@ -176,12 +181,6 @@
                 <h3 class="text-2xl font-semibold text-gray-700 mb-2 w-full">Nuestros Objetos que Inspiran en Movimiento</h3>
                 <p class="text-md text-gray-600 mb-4">Ricas Palabras 360 - Conectando Crecimiento y Transformación</p>
                 <div class="video-wrapper">
-                    <!-- 
-                        IMPORTANT: 
-                        1. Upload your new poster image (the DALL-E one) to your "imagenes" folder in GitHub.
-                        2. Rename it to something simple like "video_portada_multiverso.jpg".
-                        3. Ensure the path in 'poster' below matches this new filename and location.
-                    -->
                     <video controls poster="imagenes/video_portada_multiverso.jpg">
                         <source src="videoRP360.mp4" type="video/mp4">
                         Tu navegador no soporta la etiqueta de video.
