@@ -63,30 +63,16 @@
             margin-right: auto;
         }
 
-        .hero-logo-image { /* Style for the new logo image in Hero */
-            width: 100%; /* Takes full width of its container */
-            max-width: 650px; /* Increased max-width for larger impact on desktop */
-            height: auto;   /* Maintain aspect ratio */
-            margin-bottom: 1.5rem; /* mb-6, adjusted spacing */
+        /* The hero-logo-image styles are now applied directly via Tailwind classes on the image itself */
+        /* Removed custom CSS for .hero-logo-image as it's now handled inline for full width */
+        /* .hero-logo-image { 
+            width: 100%; 
+            height: auto;   
+            margin-bottom: 1.5rem; 
             display: block; 
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 0.5rem; /* Optional: if you want rounded corners */
-        }
-        /* Media query for smaller screens to adjust logo size if needed */
-        @media (max-width: 768px) { /* md breakpoint */
-            .hero-logo-image {
-                max-width: 500px; /* Slightly smaller max-width on tablets */
-            }
-        }
-          @media (max-width: 640px) { /* sm breakpoint */
-            .hero-logo-image {
-                width: 90%; /* More width on smaller screens */
-                max-width: 380px; /* Cap max width on small screens if it gets too big */
-            }
-        }
-
-
+            border-radius: 0.5rem; 
+        } */
+      
         /* Video Container Styles */
         .video-section-container { 
             display: flex;
@@ -134,14 +120,10 @@
         </div>
     </header>
 
-    <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 pt-6 md:pt-10 pb-10 md:pb-16"> <div class="container mx-auto px-6 text-center">
-            <!-- 
-                IMPORTANTE: 
-                Asegúrate de que tu imagen "portada.jpg" esté en la raíz de tu proyecto en GitHub
-                o, si está en una carpeta "imagenes", cambia el src a "imagenes/portada.jpg"
-            -->
-            <img src="portada.jpg" alt="Logo Ricas Palabras 360" class="hero-logo-image" onerror="this.src='https://placehold.co/650x350/cccccc/333333?text=Ricas+Palabras+360+Logo'; this.onerror=null;">
-            
+    <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 pt-6 md:pt-10 pb-10 md:pb-16">
+        <img src="portada.jpg" alt="Logo Ricas Palabras 360" class="w-full h-auto object-cover rounded-lg shadow-xl mb-6" onerror="this.src='https://placehold.co/1200x400/cccccc/333333?text=Ricas+Palabras+360+Logo'; this.onerror=null;">
+        
+        <div class="container mx-auto px-6 text-center">
             <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
                 "Cada objeto es un mensaje. Cada palabra, una puerta."
             </p>
