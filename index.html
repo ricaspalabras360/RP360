@@ -64,13 +64,22 @@
         }
 
         .hero-logo-image { /* Style for the new logo image in Hero */
-            max-width: 400px; /* Adjust as needed */
+            max-width: 100%; /* Responsive on small screens */
+            width: 550px; /* Increased default width for larger screens */
             height: auto;
-            margin-bottom: 2rem; /* mb-8, increased spacing */
-            display: block; /* Ensure it's a block for mx-auto to work */
+            margin-bottom: 1.5rem; /* mb-6, adjusted spacing */
+            display: block; 
             margin-left: auto;
             margin-right: auto;
+            border-radius: 0.5rem; 
         }
+        @media (max-width: 640px) { /* sm breakpoint or adjust as needed */
+            .hero-logo-image {
+                width: 90%; /* More width on smaller screens */
+                max-width: 350px; /* Cap max width on small screens if it gets too big */
+            }
+        }
+
 
         /* Video Container Styles */
         .video-section-container { 
@@ -119,10 +128,9 @@
         </div>
     </header>
 
-    <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 py-20 md:py-32">
+    <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 pt-10 md:pt-16 pb-20 md:pb-32">
         <div class="container mx-auto px-6 text-center">
-          
-                      <img src="portada.jpg" alt="Logo Ricas Palabras 360" class="hero-logo-image" onerror="this.src='https://placehold.co/400x200/cccccc/333333?text=Ricas+Palabras+360+Logo'; this.onerror=null;">
+            <img src="portada.jpg" alt="Logo Ricas Palabras 360" class="hero-logo-image" onerror="this.src='https://placehold.co/550x300/cccccc/333333?text=Ricas+Palabras+360+Logo'; this.onerror=null;">
             
             <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
                 "Cada objeto es un mensaje. Cada palabra, una puerta."
@@ -146,7 +154,7 @@
         <div class="container mx-auto px-6 text-center max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">¿Qué es Ricas Palabras?</h2>
             <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                Es una invitación a conectar con palabras que inspiran, materializadas en objetos y experiencias que elevan tu bienestar y fomentan la reflexión.
+                Es una invitación a conectar con frases que inspiran, transformadas en objetos con propósito y experiencias que despiertan bienestar, conciencia y evolución.
             </p>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 px-4">
                 <div class="keyword-card bg-red-200"> 
