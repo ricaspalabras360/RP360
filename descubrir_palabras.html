@@ -196,23 +196,23 @@
 
             // Define los radios para las diferentes capas de palabras
             // Ajustados para dejar más espacio y evitar superposiciones
+            // Se han incrementado los radios para mayor separación
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.20, // Primera capa
-                Math.min(containerWidth, containerHeight) * 0.35, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.50 // Tercera capa
+                Math.min(containerWidth, containerHeight) * 0.28, // Primera capa
+                Math.min(containerWidth, containerHeight) * 0.45, // Segunda capa
+                Math.min(containerWidth, containerHeight) * 0.62 // Tercera capa
             ];
 
             // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
-            // Distribuimos las palabras para que quepan bien en cada capa
             const wordsPerLayer = [16, 17, 16]; // Suma 49
 
             let currentWordIndex = 0;
+            const placedCards = []; // Para almacenar la posición y tamaño de las tarjetas
 
+            // --- Initial Placement ---
             radii.forEach((radius, layerIndex) => {
                 const numWordsInLayer = wordsPerLayer[layerIndex];
-                // Calcula el paso de ángulo, dejando un pequeño espacio extra entre palabras
-                const angleStep = (2 * Math.PI) / numWordsInLayer; 
-                
+                const angleStep = (2 * Math.PI) / numWordsInLayer;
                 // Offset inicial para rotar las capas y evitar superposiciones directas
                 // y crear un patrón más disperso
                 const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 1.5))) + (Math.random() * 0.1); 
@@ -224,8 +224,8 @@
                     const angle = (i * angleStep) + initialAngleOffset;
                     
                     // Ajuste de posición para que el centro de la tarjeta esté en el punto del círculo
-                    const x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
-                    const y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
+                    let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
+                    let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
 
                     const colorClass = colors[currentWordIndex % colors.length]; // Cicla a través de los colores
                     const wordCard = document.createElement('div');
@@ -235,13 +235,67 @@
                     wordCard.style.position = 'absolute';
                     wordCard.style.left = `${x}px`;
                     wordCard.style.top = `${y}px`;
-                    
-                    // Rotación fija a 0 grados para que el texto sea siempre legible (horizontal)
-                    wordCard.style.transform = `rotate(0deg)`; 
+                    wordCard.style.transform = `rotate(0deg)`; // Rotación fija a 0 grados para que el texto sea siempre legible (horizontal)
 
                     radialWordsContainer.appendChild(wordCard);
+                    placedCards.push({
+                        element: wordCard,
+                        x: x,
+                        y: y,
+                        width: CARD_WIDTH,
+                        height: CARD_HEIGHT,
+                        // Usamos el radio para una detección de colisiones más precisa para formas ovaladas
+                        effectiveRadiusX: CARD_WIDTH / 2,
+                        effectiveRadiusY: CARD_HEIGHT / 2
+                    });
                     currentWordIndex++;
                 }
+            });
+
+            // --- Collision Resolution (Iterative Push) ---
+            const maxIterations = 150; // Aumentar iteraciones para mejor resolución
+            const repulsionStrength = 0.8; // Fuerza de repulsión
+            const minDistanceFactor = 1.1; // Factor para asegurar una separación mínima (10% de espacio extra)
+
+            for (let iter = 0; iter < maxIterations; iter++) {
+                let hasOverlaps = false;
+                for (let i = 0; i < placedCards.length; i++) {
+                    const cardA = placedCards[i];
+                    for (let j = i + 1; j < placedCards.length; j++) {
+                        const cardB = placedCards[j];
+
+                        // Calcular distancia entre los centros de las tarjetas
+                        const dx = (cardA.x + cardA.width / 2) - (cardB.x + cardB.width / 2);
+                        const dy = (cardA.y + cardA.height / 2) - (cardB.y + cardB.height / 2);
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        // Calcular la distancia mínima requerida para evitar colisión
+                        // Suma de los radios efectivos (promedio para ovalados) con un factor de separación
+                        const requiredDistance = (Math.max(cardA.effectiveRadiusX, cardA.effectiveRadiusY) + Math.max(cardB.effectiveRadiusX, cardB.effectiveRadiusY)) * minDistanceFactor;
+
+                        if (distance < requiredDistance) {
+                            hasOverlaps = true;
+                            const overlap = requiredDistance - distance;
+                            if (overlap > 0) {
+                                const angle = Math.atan2(dy, dx);
+                                const moveX = (overlap / 2) * Math.cos(angle) * repulsionStrength;
+                                const moveY = (overlap / 2) * Math.sin(angle) * repulsionStrength;
+
+                                cardA.x += moveX;
+                                cardA.y += moveY;
+                                cardB.x -= moveX;
+                                cardB.y -= moveY;
+                            }
+                        }
+                    }
+                }
+                if (!hasOverlaps && iter > 0) break; // Si no hay solapamientos y no es la primera iteración, salimos
+            }
+
+            // --- Apply final positions to elements ---
+            placedCards.forEach(card => {
+                card.element.style.left = `${card.x}px`;
+                card.element.style.top = `${card.y}px`;
             });
         }
 
