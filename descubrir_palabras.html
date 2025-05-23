@@ -195,23 +195,27 @@
             const centerY = containerHeight / 2;
 
             // Define los radios para las diferentes capas de palabras
+            // Ajustados para dejar más espacio y evitar superposiciones
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.25, // Primera capa
-                Math.min(containerWidth, containerHeight) * 0.40, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.55 // Tercera capa
+                Math.min(containerWidth, containerHeight) * 0.20, // Primera capa
+                Math.min(containerWidth, containerHeight) * 0.35, // Segunda capa
+                Math.min(containerWidth, containerHeight) * 0.50 // Tercera capa
             ];
 
             // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
+            // Distribuimos las palabras para que quepan bien en cada capa
             const wordsPerLayer = [16, 17, 16]; // Suma 49
 
             let currentWordIndex = 0;
 
             radii.forEach((radius, layerIndex) => {
                 const numWordsInLayer = wordsPerLayer[layerIndex];
-                const angleStep = (2 * Math.PI) / numWordsInLayer;
+                // Calcula el paso de ángulo, dejando un pequeño espacio extra entre palabras
+                const angleStep = (2 * Math.PI) / numWordsInLayer; 
+                
                 // Offset inicial para rotar las capas y evitar superposiciones directas
-                // Ajustado para que las palabras no se superpongan tanto al inicio
-                const initialAngleOffset = layerIndex * (Math.PI / (numWordsInLayer * 1.5)); 
+                // y crear un patrón más disperso
+                const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 1.5))) + (Math.random() * 0.1); 
 
                 for (let i = 0; i < numWordsInLayer; i++) {
                     if (currentWordIndex >= otherWords.length) break; // Asegura no exceder el número de palabras
@@ -232,23 +236,8 @@
                     wordCard.style.left = `${x}px`;
                     wordCard.style.top = `${y}px`;
                     
-                    // Calcula el ángulo para que la palabra apunte al centro
-                    // El ángulo es desde el centro de la palabra hacia el centro del contenedor
-                    const cardCenterX = x + CARD_WIDTH / 2;
-                    const cardCenterY = y + CARD_HEIGHT / 2;
-                    const angleToCenterRad = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
-                    const angleToCenterDeg = angleToCenterRad * (180 / Math.PI);
-
-                    // Ajusta la rotación para que el texto sea legible (horizontal)
-                    // Si el ángulo es de -90 a 90 (derecha), rotación 0.
-                    // Si el ángulo es de 90 a 270 (izquierda), rotación 180.
-                    let finalRotationDeg;
-                    if (angleToCenterDeg > -90 && angleToCenterDeg <= 90) {
-                        finalRotationDeg = 0; // Lado derecho, no rotar
-                    } else {
-                        finalRotationDeg = 180; // Lado izquierdo, rotar 180 grados
-                    }
-                    wordCard.style.transform = `rotate(${finalRotationDeg}deg)`;
+                    // Rotación fija a 0 grados para que el texto sea siempre legible (horizontal)
+                    wordCard.style.transform = `rotate(0deg)`; 
 
                     radialWordsContainer.appendChild(wordCard);
                     currentWordIndex++;
