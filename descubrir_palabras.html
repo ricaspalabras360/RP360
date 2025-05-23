@@ -132,8 +132,7 @@
             }
 
             .main-word-area {
-                /* Para móvil, queremos que el flujo sea normal, no un área de posicionamiento absoluto */
-                position: static;
+                position: static; /* Anula el posicionamiento absoluto */
                 padding-bottom: 0; /* Eliminar el padding que crea la relación de aspecto */
                 max-width: 100%; /* Ocupar todo el ancho disponible */
                 height: auto; /* Permitir que la altura se ajuste al contenido */
@@ -142,35 +141,32 @@
             }
 
             .central-vida-button {
-                /* Para móvil, el botón VIDA se comporta como un elemento normal */
-                position: static;
-                transform: none; /* Eliminar la transformación de centrado absoluto */
-                margin-bottom: 1.5rem; /* Espacio debajo del botón VIDA */
-                width: 80%; /* Hacerlo más ancho para que sea fácil de tocar */
-                padding: 1rem 1.5rem; /* Ajustar padding */
-                font-size: 1.3rem; /* Ajustar tamaño de fuente */
+                position: static !important; /* ¡Añadido !important! */
+                transform: none !important; /* ¡Añadido !important! */
+                margin-bottom: 1.5rem; 
+                width: 80%; 
+                padding: 1rem 1.5rem; 
+                font-size: 1.3rem; 
             }
 
             .radial-words-container {
-                /* Para móvil, este contenedor debe fluir normalmente */
                 position: static;
                 display: flex;
-                flex-direction: column; /* Apila los elementos verticalmente */
-                align-items: center; /* Centra los botones en la columna */
-                gap: 0.75rem; /* Espacio entre los botones apilados */
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.75rem; 
                 width: 100%;
-                height: auto; /* Altura automática */
+                height: auto; 
             }
 
             .keyword-card {
-                /* Para móvil, las tarjetas deben fluir normalmente */
                 position: static !important; /* ¡Importante! Anula el posicionamiento absoluto de JavaScript */
                 transform: none !important; /* ¡Importante! Elimina cualquier rotación o transformación de JavaScript */
-                width: 80%; /* Ocupa un buen porcentaje del ancho en móvil */
-                max-width: 250px; /* Limita el ancho máximo para no ser demasiado grande */
-                margin: 0.25rem auto; /* Centra y da margen */
-                padding: 0.7rem 1rem; /* Ajustar padding */
-                font-size: 0.9rem; /* Ajustar tamaño de fuente */
+                width: 80%; 
+                max-width: 250px; 
+                margin: 0.25rem auto; 
+                padding: 0.7rem 1rem; 
+                font-size: 0.9rem; 
             }
         }
     </style>
