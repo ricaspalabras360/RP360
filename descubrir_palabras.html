@@ -47,43 +47,49 @@
             margin-top: 2rem; /* Ajusta el margen superior del árbol */
             position: relative;
             z-index: 1;
+            width: 100%;
+            max-width: 700px; /* Ancho máximo para el contenedor del árbol */
         }
-        .word-grid {
+        .tree-canopy {
             display: flex;
             flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
             justify-content: center; /* Centra los elementos horizontalmente */
             align-items: center; /* Centra los elementos verticalmente */
             gap: 0.75rem; /* Espacio entre las "hojas" */
             width: 100%;
-            max-width: 600px; /* Ancho máximo para la "copa" del árbol */
-            height: auto; /* Altura automática para mantener la proporción */
-            aspect-ratio: 1 / 1; /* Mantiene la forma circular */
-            margin: 0 auto; /* Centra la cuadrícula */
-            padding: 2rem; /* Espacio alrededor de las hojas */
-            border-radius: 50%; /* Forma perfectamente circular para la copa */
+            max-width: 650px; /* Ancho máximo para la "copa" del árbol */
+            margin: 0 auto; /* Centra la copa */
+            padding: 3rem 2rem; /* Más padding para la forma orgánica */
+            /* Forma orgánica, tipo nube para la copa */
+            border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%;
             background: linear-gradient(to bottom, #a7f3d0, #6ee7b7); /* Gradiente de verde para la copa */
             box-shadow: inset 0 0 20px rgba(0,0,0,0.2); /* Sombra interna para profundidad */
-            position: relative; /* Para el posicionamiento de las hojas si es necesario */
+            position: relative;
             z-index: 2; /* Asegura que las hojas estén encima del tronco */
             overflow: hidden; /* Oculta cualquier contenido que se salga del círculo */
         }
         @media (max-width: 768px) { /* Ajustes para pantallas más pequeñas */
-            .word-grid {
-                max-width: 80%; /* Ajusta el ancho máximo en pantallas pequeñas */
-                padding: 1rem;
+            .tree-canopy {
+                max-width: 90%; /* Ajusta el ancho máximo en pantallas pequeñas */
+                padding: 1.5rem 0.8rem;
             }
             .keyword-card {
-                width: 100px; /* Hojas más pequeñas en móvil */
-                min-height: 40px;
-                padding: 0.5rem 0.7rem;
+                width: 90px; /* Hojas más pequeñas en móvil */
+                min-height: 35px;
+                padding: 0.4rem 0.6rem;
             }
             .keyword-text {
-                font-size: 0.75rem; /* Fuente más pequeña en móvil */
+                font-size: 0.7rem; /* Fuente más pequeña en móvil */
             }
             .tree-trunk {
-                width: 70px;
-                height: 200px;
-                margin-top: -40px;
+                width: 60px;
+                height: 150px;
+                margin-top: -30px;
+            }
+            .tree-roots {
+                max-width: 90%;
+                padding: 1rem 0.8rem;
+                margin-top: -20px;
             }
         }
         .keyword-card {
@@ -111,7 +117,7 @@
             line-height: 1.1; /* Espaciado entre líneas para mejor lectura */
         }
         .tree-trunk {
-            width: 100px; /* Ancho del tronco */
+            width: 120px; /* Ancho del tronco */
             height: 250px; /* Alto del tronco */
             background-color: #8b4513; /* Color marrón del tronco */
             border-radius: 40% 40% 0 0; /* Forma redondeada en la parte superior */
@@ -119,6 +125,23 @@
             position: relative;
             z-index: 1; /* Debajo de la copa, encima del fondo de la página */
             box-shadow: inset 0 0 15px rgba(0,0,0,0.3); /* Sombra para dar volumen */
+        }
+        .tree-roots {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 550px; /* Ancho para las raíces */
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            background-color: #d4b499; /* Color terroso para las raíces */
+            border-radius: 30% 30% 60% 60% / 40% 40% 70% 70%; /* Forma de raíz */
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+            margin-top: -30px; /* Superposición con el tronco */
+            position: relative;
+            z-index: 0; /* Debajo del tronco */
         }
         .back-button {
             background-color: #4299e1; /* Blue-500 */
@@ -141,9 +164,11 @@
         <h1 class="page-title">Vos elegís a que te conectas!</h1>
         
         <div class="tree-container">
-            <div class="word-grid" id="wordGrid">
+            <div class="tree-canopy" id="treeCanopy">
                 </div>
             <div class="tree-trunk"></div>
+            <div class="tree-roots" id="treeRoots">
+                </div>
         </div>
 
         <a href="index.html" class="back-button">Volver a la Página Principal</a>
@@ -166,7 +191,7 @@
             'bg-sky-300', 'bg-blue-300'
         ];
 
-        const words = [
+        const allWords = [
             "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
             "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
             "DESPERTAR", "DISFRUTAR", "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO",
@@ -177,13 +202,28 @@
             "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "VOLUNTAD"
         ].sort(); // Asegura el orden alfabético
 
-        const wordGrid = document.getElementById('wordGrid');
-        words.forEach((word, index) => {
+        const rootWordsList = ["AMISTAD", "CONFIANZA", "CULTIVAR", "FAMILIA", "PRINCIPIOS", "VOLUNTAD"];
+        
+        const canopyWords = allWords.filter(word => !rootWordsList.includes(word));
+        const rootWords = allWords.filter(word => rootWordsList.includes(word));
+
+        const treeCanopyDiv = document.getElementById('treeCanopy');
+        const treeRootsDiv = document.getElementById('treeRoots');
+
+        canopyWords.forEach((word, index) => {
             const colorClass = colors[index % colors.length]; // Cicla a través de los colores
             const wordCard = document.createElement('div');
             wordCard.className = `keyword-card ${colorClass}`;
             wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
-            wordGrid.appendChild(wordCard);
+            treeCanopyDiv.appendChild(wordCard);
+        });
+
+        rootWords.forEach((word, index) => {
+            const colorClass = colors[(canopyWords.length + index) % colors.length]; // Continúa el ciclo de colores
+            const wordCard = document.createElement('div');
+            wordCard.className = `keyword-card ${colorClass}`;
+            wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+            treeRootsDiv.appendChild(wordCard);
         });
     </script>
 </body>
