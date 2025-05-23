@@ -198,9 +198,9 @@
             // Ajustados para dejar más espacio y evitar superposiciones
             // Se han incrementado los radios para mayor separación
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.20, // Primera capa (más cerca del centro)
-                Math.min(containerWidth, containerHeight) * 0.35, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.50 // Tercera capa (más lejos del centro)
+                Math.min(containerWidth, containerHeight) * 0.22, // Primera capa (más cerca del centro)
+                Math.min(containerWidth, containerHeight) * 0.38, // Segunda capa
+                Math.min(containerWidth, containerHeight) * 0.54 // Tercera capa (más lejos del centro)
             ];
 
             // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
@@ -213,9 +213,8 @@
             radii.forEach((radius, layerIndex) => {
                 const numWordsInLayer = wordsPerLayer[layerIndex];
                 const angleStep = (2 * Math.PI) / numWordsInLayer;
-                // Offset inicial para rotar las capas y evitar superposiciones directas
-                // y crear un patrón más disperso
-                const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 1.5))) + (Math.random() * 0.1); 
+                // Offset inicial determinista para rotar las capas y crear un patrón entrelazado
+                const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2))); 
 
                 for (let i = 0; i < numWordsInLayer; i++) {
                     if (currentWordIndex >= otherWords.length) break; // Asegura no exceder el número de palabras
@@ -254,7 +253,7 @@
 
             // --- Collision Resolution (Iterative Push) ---
             const maxIterations = 300; // Aumentar iteraciones para mejor resolución y empaquetamiento
-            const repulsionStrength = 1.2; // Fuerza de repulsión aumentada para empujar más fuerte
+            const repulsionStrength = 1.0; // Fuerza de repulsión ajustada
             const minDistanceFactor = 1.05; // Factor para asegurar una separación mínima (5% de espacio extra)
 
             for (let iter = 0; iter < maxIterations; iter++) {
