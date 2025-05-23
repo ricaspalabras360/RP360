@@ -187,6 +187,10 @@
         const CARD_WIDTH = 130;
         const CARD_HEIGHT = 50;
 
+        // Dimensiones aproximadas del botón central VIDA para evitar su área
+        const VIDA_BUTTON_WIDTH = 180; // Aprox. 1.5rem * 2 + 2.5rem * 2 * 16px (base tailwind)
+        const VIDA_BUTTON_HEIGHT = 80; // Aprox. 1.5rem * 2 * 16px (base tailwind)
+
         function placeWords() {
             radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
             const containerWidth = radialWordsContainer.clientWidth;
@@ -196,11 +200,11 @@
             const centerY = containerHeight / 2;
 
             // Define los radios para las diferentes capas de palabras
-            // Ajustados para que las palabras estén más compactas
+            // Ajustados para que las palabras estén más compactas y con más espacio inicial
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.18, // Primera capa
-                Math.min(containerWidth, containerHeight) * 0.32, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.46 // Tercera capa
+                Math.min(containerWidth, containerHeight) * 0.25, // Primera capa, más lejos del centro de VIDA
+                Math.min(containerWidth, containerHeight) * 0.40, // Segunda capa
+                Math.min(containerWidth, containerHeight) * 0.55 // Tercera capa
             ];
 
             // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
@@ -252,9 +256,9 @@
             });
 
             // --- Collision Resolution (Iterative Push) ---
-            const maxIterations = 500; // Aumentar iteraciones para mejor resolución y empaquetamiento
-            const repulsionStrength = 1.1; // Fuerza de repulsión ajustada para empujar más
-            const minDistanceFactor = 1.1; // Factor para asegurar una separación mínima (10% de espacio extra)
+            const maxIterations = 600; // Aumentar iteraciones para mejor resolución y empaquetamiento
+            const repulsionStrength = 1.3; // Fuerza de repulsión ajustada para empujar más
+            const minDistanceFactor = 1.15; // Factor para asegurar una separación mínima (15% de espacio extra)
 
             for (let iter = 0; iter < maxIterations; iter++) {
                 let hasOverlaps = false;
@@ -296,13 +300,38 @@
                     const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
 
                     // Si la tarjeta está fuera del radio máximo permitido, empújala hacia adentro
-                    const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.55; // Ajustado para mantener la compacidad
+                    const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; // Ajustado para mantener la compacidad
                     if (distFromCenter > maxAllowedRadius) {
                         hasOverlaps = true; // Indicar que hubo movimiento
                         const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
                         const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; // Fuerza para empujar hacia el centro
                         card.x += pushStrength * Math.cos(angleToCenter);
                         card.y += pushStrength * Math.sin(angleToCenter);
+                    }
+
+                    // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
+                    const vidaButtonRadiusX = VIDA_BUTTON_WIDTH / 2;
+                    const vidaButtonRadiusY = VIDA_BUTTON_HEIGHT / 2;
+                    const cardRadiusX = card.width / 2;
+                    const cardRadiusY = card.height / 2;
+
+                    const dx_vida = (cardCenterX) - centerX;
+                    const dy_vida = (cardCenterY) - centerY;
+                    const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
+
+                    // Distancia mínima requerida para evitar colisión con el botón VIDA
+                    const requiredVidaDistance = Math.max(vidaButtonRadiusX, vidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10; // 10px de margen extra
+
+                    if (distance_vida < requiredVidaDistance) {
+                        hasOverlaps = true;
+                        const overlap_vida = requiredVidaDistance - distance_vida;
+                        if (overlap_vida > 0) {
+                            const angle_vida = Math.atan2(dy_vida, dx_vida);
+                            const moveX_vida = overlap_vida * Math.cos(angle_vida) * repulsionStrength;
+                            const moveY_vida = overlap_vida * Math.sin(angle_vida) * repulsionStrength;
+                            card.x += moveX_vida;
+                            card.y += moveY_vida;
+                        }
                     }
                 }
 
