@@ -40,38 +40,58 @@
             color: #1a202c; /* gray-900 */
             margin-bottom: 2rem;
         }
-        .word-container { /* Nuevo contenedor para las palabras */
-            display: flex;
-            flex-wrap: wrap; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 1.5rem; /* Espacio entre las "hojas" */
+        .main-word-area {
+            position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
-            max-width: 800px; /* Ancho máximo del óvalo */
-            height: 600px; /* Alto del óvalo */
-            margin: 0 auto; /* Centra el contenedor */
-            padding: 3rem; /* Relleno para empujar las palabras hacia adentro */
-            border-radius: 50%; /* Hace el contenedor circular */
-            background-color: #e2e8f0; /* Un fondo muy sutil para la "forma" */
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.05); /* Sombra interior sutil */
-            position: relative;
-            z-index: 1;
-            overflow: hidden; /* Oculta cualquier contenido que se salga del círculo */
+            max-width: 800px; /* Ancho máximo para el área de palabras */
+            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
+            margin-bottom: 2rem;
+            display: flex; /* Usamos flex para centrar el botón VIDA */
+            justify-content: center;
+            align-items: center;
+        }
+        .central-vida-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centra el botón VIDA con precisión */
+            z-index: 10; /* Asegura que esté por encima de las otras palabras */
+            background-color: #FFD700; /* Color dorado para VIDA */
+            color: #374151;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 1.5rem 2.5rem;
+            border-radius: 9999px; /* Botón circular */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            white-space: nowrap; /* Evita que la palabra se rompa en varias líneas */
+        }
+        .central-vida-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .radial-words-container {
+            position: absolute; /* Ocupa todo el espacio del main-word-area */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
         @media (max-width: 768px) { /* Ajustes para pantallas más pequeñas */
-            .word-container {
-                max-width: 90%; 
-                height: 500px; /* Ajusta la altura para pantallas más pequeñas */
-                padding: 1.5rem;
-                gap: 1rem;
+            .main-word-area {
+                max-width: 90%;
+            }
+            .central-vida-button {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
             }
             .keyword-card {
-                width: 100px; 
+                width: 100px;
                 min-height: 40px;
                 padding: 0.5rem 0.7rem;
             }
             .keyword-text {
-                font-size: 0.8rem; 
+                font-size: 0.8rem;
             }
         }
         .keyword-card {
@@ -118,8 +138,13 @@
     <div class="page-container">
         <h1 class="page-title">Vos elegís a que te conectas!</h1>
         
-        <div class="word-container" id="wordContainer">
+        <div class="main-word-area">
+            <div class="central-vida-button">
+                <span class="keyword-text">VIDA</span>
             </div>
+            <div class="radial-words-container" id="radialWordsContainer">
+                </div>
+        </div>
 
         <a href="index.html" class="back-button">Volver a la Página Principal</a>
     </div>
@@ -152,14 +177,55 @@
             "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "VOLUNTAD"
         ].sort(); // Asegura el orden alfabético
 
-        const wordContainer = document.getElementById('wordContainer');
-        allWords.forEach((word, index) => {
-            const colorClass = colors[index % colors.length]; // Cicla a través de los colores
-            const wordCard = document.createElement('div');
-            wordCard.className = `keyword-card ${colorClass}`;
-            wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
-            wordContainer.appendChild(wordCard);
-        });
+        const vidaWord = "VIDA";
+        const otherWords = allWords.filter(word => word !== vidaWord);
+
+        const radialWordsContainer = document.getElementById('radialWordsContainer');
+
+        // Dimensiones fijas de keyword-card para cálculos
+        const CARD_WIDTH = 130;
+        const CARD_HEIGHT = 50;
+
+        function placeWords() {
+            radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
+            const containerWidth = radialWordsContainer.clientWidth;
+            const containerHeight = radialWordsContainer.clientHeight;
+
+            const centerX = containerWidth / 2;
+            const centerY = containerHeight / 2;
+
+            // Rango de radios para distribuir las palabras
+            const minRadius = Math.min(containerWidth, containerHeight) * 0.15; 
+            const maxRadius = Math.min(containerWidth, containerHeight) * 0.45; 
+
+            otherWords.forEach((word, index) => {
+                // Distribuye las palabras en un rango de radios y ángulos aleatorios
+                const currentRadius = minRadius + (Math.random() * (maxRadius - minRadius)); 
+                const angle = Math.random() * 2 * Math.PI; // Ángulo aleatorio en radianes
+                
+                const x = centerX + currentRadius * Math.cos(angle) - (CARD_WIDTH / 2);
+                const y = centerY + currentRadius * Math.sin(angle) - (CARD_HEIGHT / 2);
+
+                const colorClass = colors[index % colors.length]; // Cicla a través de los colores
+                const wordCard = document.createElement('div');
+                wordCard.className = `keyword-card ${colorClass}`;
+                wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+                
+                wordCard.style.position = 'absolute';
+                wordCard.style.left = `${x}px`;
+                wordCard.style.top = `${y}px`;
+                
+                // Rotación aleatoria para un efecto más orgánico
+                const randomRotation = Math.random() * 40 - 20; // -20 a +20 grados
+                wordCard.style.transform = `rotate(${randomRotation}deg)`;
+
+                radialWordsContainer.appendChild(wordCard);
+            });
+        }
+
+        // Llama a placeWords al cargar la página y al redimensionar la ventana
+        window.addEventListener('load', placeWords);
+        window.addEventListener('resize', placeWords);
     </script>
 </body>
 </html>
