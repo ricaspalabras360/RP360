@@ -77,23 +77,7 @@
             top: 0;
             left: 0;
         }
-        @media (max-width: 768px) { /* Ajustes para pantallas más pequeñas */
-            .main-word-area {
-                max-width: 90%;
-            }
-            .central-vida-button {
-                font-size: 1.2rem;
-                padding: 1rem 2rem;
-            }
-            .keyword-card {
-                width: 100px;
-                min-height: 40px;
-                padding: 0.5rem 0.7rem;
-            }
-            .keyword-text {
-                font-size: 0.8rem;
-            }
-        }
+        
         .keyword-card {
             padding: 0.8rem 1.2rem; 
             border-radius: 9999px; /* rounded-full para forma de hoja/ovalada */
@@ -132,6 +116,62 @@
         }
         .back-button:hover {
             background-color: #3182ce; /* Blue-600 */
+        }
+
+        /* **************************************** */
+        /* MEDIA QUERIES PARA OPTIMIZACIÓN MÓVIL */
+        /* **************************************** */
+        @media (max-width: 768px) { /* Ajustes para pantallas más pequeñas (móvil y tablets pequeñas) */
+            .page-container {
+                padding: 1rem; /* Ajustar padding general para móvil */
+            }
+
+            .page-title {
+                font-size: 2rem; /* Título más pequeño en móvil */
+                margin-bottom: 1.5rem;
+            }
+
+            .main-word-area {
+                /* Para móvil, queremos que el flujo sea normal, no un área de posicionamiento absoluto */
+                position: static;
+                padding-bottom: 0; /* Eliminar el padding que crea la relación de aspecto */
+                max-width: 100%; /* Ocupar todo el ancho disponible */
+                height: auto; /* Permitir que la altura se ajuste al contenido */
+                flex-direction: column; /* Asegura que los elementos se apilen (si display flex) */
+                align-items: center; /* Centra los elementos apilados (si display flex) */
+            }
+
+            .central-vida-button {
+                /* Para móvil, el botón VIDA se comporta como un elemento normal */
+                position: static;
+                transform: none; /* Eliminar la transformación de centrado absoluto */
+                margin-bottom: 1.5rem; /* Espacio debajo del botón VIDA */
+                width: 80%; /* Hacerlo más ancho para que sea fácil de tocar */
+                padding: 1rem 1.5rem; /* Ajustar padding */
+                font-size: 1.3rem; /* Ajustar tamaño de fuente */
+            }
+
+            .radial-words-container {
+                /* Para móvil, este contenedor debe fluir normalmente */
+                position: static;
+                display: flex;
+                flex-direction: column; /* Apila los elementos verticalmente */
+                align-items: center; /* Centra los botones en la columna */
+                gap: 0.75rem; /* Espacio entre los botones apilados */
+                width: 100%;
+                height: auto; /* Altura automática */
+            }
+
+            .keyword-card {
+                /* Para móvil, las tarjetas deben fluir normalmente */
+                position: static !important; /* ¡Importante! Anula el posicionamiento absoluto de JavaScript */
+                transform: none !important; /* ¡Importante! Elimina cualquier rotación o transformación de JavaScript */
+                width: 80%; /* Ocupa un buen porcentaje del ancho en móvil */
+                max-width: 250px; /* Limita el ancho máximo para no ser demasiado grande */
+                margin: 0.25rem auto; /* Centra y da margen */
+                padding: 0.7rem 1rem; /* Ajustar padding */
+                font-size: 0.9rem; /* Ajustar tamaño de fuente */
+            }
         }
     </style>
 </head>
@@ -188,161 +228,178 @@
         const CARD_HEIGHT = 50;
 
         // Dimensiones aproximadas del botón central VIDA para evitar su área
-        const VIDA_BUTTON_WIDTH = 180; // Aprox. 1.5rem * 2 + 2.5rem * 2 * 16px (base tailwind)
-        const VIDA_BUTTON_HEIGHT = 80; // Aprox. 1.5rem * 2 * 16px (base tailwind)
+        // Se puede ajustar ligeramente para dar más o menos espacio
+        const VIDA_BUTTON_WIDTH = 180; 
+        const VIDA_BUTTON_HEIGHT = 80; 
 
         function placeWords() {
-            radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
-            const containerWidth = radialWordsContainer.clientWidth;
-            const containerHeight = radialWordsContainer.clientHeight;
+            // Solo ejecutar el algoritmo de posicionamiento radial en pantallas grandes
+            if (window.innerWidth > 768) { 
+                radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
+                const containerWidth = radialWordsContainer.clientWidth;
+                const containerHeight = radialWordsContainer.clientHeight;
 
-            const centerX = containerWidth / 2;
-            const centerY = containerHeight / 2;
+                const centerX = containerWidth / 2;
+                const centerY = containerHeight / 2;
 
-            // Define los radios para las diferentes capas de palabras
-            // Ajustados para que las palabras estén más compactas y con más espacio inicial
-            const radii = [
-                Math.min(containerWidth, containerHeight) * 0.25, // Primera capa, más lejos del centro de VIDA
-                Math.min(containerWidth, containerHeight) * 0.40, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.55 // Tercera capa
-            ];
+                // Define los radios para las diferentes capas de palabras
+                // Ajustados para que las palabras estén más compactas y con más espacio inicial
+                const radii = [
+                    Math.min(containerWidth, containerHeight) * 0.25, // Primera capa, más lejos del centro de VIDA
+                    Math.min(containerWidth, containerHeight) * 0.40, // Segunda capa
+                    Math.min(containerWidth, containerHeight) * 0.55 // Tercera capa
+                ];
 
-            // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
-            const wordsPerLayer = [16, 17, 16]; // Suma 49
+                // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
+                const wordsPerLayer = [16, 17, 16]; // Suma 49
 
-            let currentWordIndex = 0;
-            const placedCards = []; // Para almacenar la posición y tamaño de las tarjetas
+                let currentWordIndex = 0;
+                const placedCards = []; // Para almacenar la posición y tamaño de las tarjetas
 
-            // --- Initial Placement ---
-            radii.forEach((radius, layerIndex) => {
-                const numWordsInLayer = wordsPerLayer[layerIndex];
-                const angleStep = (2 * Math.PI) / numWordsInLayer;
-                // Offset inicial determinista para rotar las capas y crear un patrón entrelazado
-                const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2))); 
+                // --- Initial Placement ---
+                radii.forEach((radius, layerIndex) => {
+                    const numWordsInLayer = wordsPerLayer[layerIndex];
+                    const angleStep = (2 * Math.PI) / numWordsInLayer;
+                    // Offset inicial determinista para rotar las capas y crear un patrón entrelazado
+                    const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2))); 
 
-                for (let i = 0; i < numWordsInLayer; i++) {
-                    if (currentWordIndex >= otherWords.length) break; // Asegura no exceder el número de palabras
+                    for (let i = 0; i < numWordsInLayer; i++) {
+                        if (currentWordIndex >= otherWords.length) break; // Asegura no exceder el número de palabras
 
-                    const word = otherWords[currentWordIndex];
-                    const angle = (i * angleStep) + initialAngleOffset;
-                    
-                    // Ajuste de posición para que el centro de la tarjeta esté en el punto del círculo
-                    let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
-                    let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
+                        const word = otherWords[currentWordIndex];
+                        const angle = (i * angleStep) + initialAngleOffset;
+                        
+                        // Ajuste de posición para que el centro de la tarjeta esté en el punto del círculo
+                        let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
+                        let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
 
-                    const colorClass = colors[currentWordIndex % colors.length]; // Cicla a través de los colores
-                    const wordCard = document.createElement('div');
-                    wordCard.className = `keyword-card ${colorClass}`;
-                    wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
-                    
-                    wordCard.style.position = 'absolute';
-                    wordCard.style.left = `${x}px`;
-                    wordCard.style.top = `${y}px`;
-                    wordCard.style.transform = `rotate(0deg)`; // Rotación fija a 0 grados para que el texto sea siempre legible (horizontal)
+                        const colorClass = colors[currentWordIndex % colors.length]; // Cicla a través de los colores
+                        const wordCard = document.createElement('div');
+                        wordCard.className = `keyword-card ${colorClass}`;
+                        wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+                        
+                        wordCard.style.position = 'absolute';
+                        wordCard.style.left = `${x}px`;
+                        wordCard.style.top = `${y}px`;
+                        wordCard.style.transform = `rotate(0deg)`; // Rotación fija a 0 grados para que el texto sea siempre legible (horizontal)
 
-                    radialWordsContainer.appendChild(wordCard);
-                    placedCards.push({
-                        element: wordCard,
-                        x: x,
-                        y: y,
-                        width: CARD_WIDTH,
-                        height: CARD_HEIGHT,
-                        // Usamos el radio para una detección de colisiones más precisa para formas ovaladas
-                        effectiveRadiusX: CARD_WIDTH / 2,
-                        effectiveRadiusY: CARD_HEIGHT / 2
-                    });
-                    currentWordIndex++;
-                }
-            });
+                        radialWordsContainer.appendChild(wordCard);
+                        placedCards.push({
+                            element: wordCard,
+                            x: x,
+                            y: y,
+                            width: CARD_WIDTH,
+                            height: CARD_HEIGHT,
+                            // Usamos el radio para una detección de colisiones más precisa para formas ovaladas
+                            effectiveRadiusX: CARD_WIDTH / 2,
+                            effectiveRadiusY: CARD_HEIGHT / 2
+                        });
+                        currentWordIndex++;
+                    }
+                });
 
-            // --- Collision Resolution (Iterative Push) ---
-            const maxIterations = 600; // Aumentar iteraciones para mejor resolución y empaquetamiento
-            const repulsionStrength = 1.3; // Fuerza de repulsión ajustada para empujar más
-            const minDistanceFactor = 1.15; // Factor para asegurar una separación mínima (15% de espacio extra)
+                // --- Collision Resolution (Iterative Push) ---
+                const maxIterations = 600; // Aumentar iteraciones para mejor resolución y empaquetamiento
+                const repulsionStrength = 1.3; // Fuerza de repulsión ajustada para empujar más
+                const minDistanceFactor = 1.15; // Factor para asegurar una separación mínima (15% de espacio extra)
 
-            for (let iter = 0; iter < maxIterations; iter++) {
-                let hasOverlaps = false;
-                for (let i = 0; i < placedCards.length; i++) {
-                    const cardA = placedCards[i];
-                    for (let j = i + 1; j < placedCards.length; j++) {
-                        const cardB = placedCards[j];
+                for (let iter = 0; iter < maxIterations; iter++) {
+                    let hasOverlaps = false;
+                    for (let i = 0; i < placedCards.length; i++) {
+                        const cardA = placedCards[i];
+                        for (let j = i + 1; j < placedCards.length; j++) {
+                            const cardB = placedCards[j];
 
-                        // Calcular distancia entre los centros de las tarjetas
-                        const dx = (cardA.x + cardA.width / 2) - (cardB.x + cardB.width / 2);
-                        const dy = (cardA.y + cardA.height / 2) - (cardB.y + cardB.height / 2);
-                        const distance = Math.sqrt(dx * dx + dy * dy);
+                            // Calcular distancia entre los centros de las tarjetas
+                            const dx = (cardA.x + cardA.width / 2) - (cardB.x + cardB.width / 2);
+                            const dy = (cardA.y + cardA.height / 2) - (cardB.y + cardB.height / 2);
+                            const distance = Math.sqrt(dx * dx + dy * dy);
 
-                        // Calcular la distancia mínima requerida para evitar colisión
-                        // Suma de los radios efectivos (promedio para ovalados) con un factor de separación
-                        const requiredDistance = (Math.max(cardA.effectiveRadiusX, cardA.effectiveRadiusY) + Math.max(cardB.effectiveRadiusX, cardB.effectiveRadiusY)) * minDistanceFactor;
+                            // Calcular la distancia mínima requerida para evitar colisión
+                            // Suma de los radios efectivos (promedio para ovalados) con un factor de separación
+                            const requiredDistance = (Math.max(cardA.effectiveRadiusX, cardA.effectiveRadiusY) + Math.max(cardB.effectiveRadiusX, cardB.effectiveRadiusY)) * minDistanceFactor;
 
-                        if (distance < requiredDistance) {
-                            hasOverlaps = true;
-                            const overlap = requiredDistance - distance;
-                            if (overlap > 0) {
-                                const angle = Math.atan2(dy, dx);
-                                const moveX = (overlap / 2) * Math.cos(angle) * repulsionStrength;
-                                const moveY = (overlap / 2) * Math.sin(angle) * repulsionStrength;
+                            if (distance < requiredDistance) {
+                                hasOverlaps = true;
+                                const overlap = requiredDistance - distance;
+                                if (overlap > 0) {
+                                    const angle = Math.atan2(dy, dx);
+                                    const moveX = (overlap / 2) * Math.cos(angle) * repulsionStrength;
+                                    const moveY = (overlap / 2) * Math.sin(angle) * repulsionStrength;
 
-                                cardA.x += moveX;
-                                cardA.y += moveY;
-                                cardB.x -= moveX;
-                                cardB.y -= moveY;
+                                    cardA.x += moveX;
+                                    cardA.y += moveY;
+                                    cardB.x -= moveX;
+                                    cardB.y -= moveY;
+                                }
                             }
                         }
                     }
-                }
-                // Empujar las tarjetas hacia el centro si se alejan demasiado
-                for (let i = 0; i < placedCards.length; i++) {
-                    const card = placedCards[i];
-                    const cardCenterX = card.x + card.width / 2;
-                    const cardCenterY = card.y + card.height / 2;
-                    const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
+                    // Empujar las tarjetas hacia el centro si se alejan demasiado
+                    for (let i = 0; i < placedCards.length; i++) {
+                        const card = placedCards[i];
+                        const cardCenterX = card.x + card.width / 2;
+                        const cardCenterY = card.y + card.height / 2;
+                        const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
 
-                    // Si la tarjeta está fuera del radio máximo permitido, empújala hacia adentro
-                    const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; // Ajustado para mantener la compacidad
-                    if (distFromCenter > maxAllowedRadius) {
-                        hasOverlaps = true; // Indicar que hubo movimiento
-                        const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
-                        const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; // Fuerza para empujar hacia el centro
-                        card.x += pushStrength * Math.cos(angleToCenter);
-                        card.y += pushStrength * Math.sin(angleToCenter);
-                    }
+                        // Si la tarjeta está fuera del radio máximo permitido, empújala hacia adentro
+                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; // Ajustado para mantener la compacidad
+                        if (distFromCenter > maxAllowedRadius) {
+                            hasOverlaps = true; // Indicar que hubo movimiento
+                            const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
+                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; // Fuerza para empujar hacia el centro
+                            card.x += pushStrength * Math.cos(angleToCenter);
+                            card.y += pushStrength * Math.sin(angleToCenter);
+                        }
 
-                    // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
-                    const vidaButtonRadiusX = VIDA_BUTTON_WIDTH / 2;
-                    const vidaButtonRadiusY = VIDA_BUTTON_HEIGHT / 2;
-                    const cardRadiusX = card.width / 2;
-                    const cardRadiusY = card.height / 2;
+                        // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
+                        // Esto crea una "zona de exclusión" alrededor del botón VIDA
+                        const vidaButtonCenterTolerance = 15; // Un poco más de tolerancia al centro del botón VIDA
+                        const effectiveVidaButtonRadiusX = (VIDA_BUTTON_WIDTH / 2) + vidaButtonCenterTolerance;
+                        const effectiveVidaButtonRadiusY = (VIDA_BUTTON_HEIGHT / 2) + vidaButtonCenterTolerance;
+                        
+                        const cardRadiusX = card.width / 2;
+                        const cardRadiusY = card.height / 2;
 
-                    const dx_vida = (cardCenterX) - centerX;
-                    const dy_vida = (cardCenterY) - centerY;
-                    const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
+                        const dx_vida = (cardCenterX) - centerX;
+                        const dy_vida = (cardCenterY) - centerY;
+                        const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
 
-                    // Distancia mínima requerida para evitar colisión con el botón VIDA
-                    const requiredVidaDistance = Math.max(vidaButtonRadiusX, vidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10; // 10px de margen extra
+                        // Distancia mínima requerida para evitar colisión con el botón VIDA
+                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10; // 10px de margen extra
 
-                    if (distance_vida < requiredVidaDistance) {
-                        hasOverlaps = true;
-                        const overlap_vida = requiredVidaDistance - distance_vida;
-                        if (overlap_vida > 0) {
-                            const angle_vida = Math.atan2(dy_vida, dx_vida);
-                            const moveX_vida = overlap_vida * Math.cos(angle_vida) * repulsionStrength;
-                            const moveY_vida = overlap_vida * Math.sin(angle_vida) * repulsionStrength;
-                            card.x += moveX_vida;
-                            card.y += moveY_vida;
+                        if (distance_vida < requiredVidaDistance) {
+                            hasOverlaps = true;
+                            const overlap_vida = requiredVidaDistance - distance_vida;
+                            if (overlap_vida > 0) {
+                                const angle_vida = Math.atan2(dy_vida, dx_vida);
+                                const moveX_vida = overlap_vida * Math.cos(angle_vida) * repulsionStrength;
+                                const moveY_vida = overlap_vida * Math.sin(angle_vida) * repulsionStrength;
+                                card.x += moveX_vida;
+                                card.y += moveY_vida;
+                            }
                         }
                     }
+
+                    if (!hasOverlaps && iter > 0) break; // Si no hay solapamientos y no es la primera iteración, salimos
                 }
 
-                if (!hasOverlaps && iter > 0) break; // Si no hay solapamientos y no es la primera iteración, salimos
+                // --- Apply final positions to elements ---
+                placedCards.forEach(card => {
+                    card.element.style.left = `${card.x}px`;
+                    card.element.style.top = `${card.y}px`;
+                });
+            } else {
+                // Para móvil, asegurar que los elementos se apilen y no tengan estilos de posicionamiento absoluto
+                radialWordsContainer.innerHTML = ''; // Limpia cualquier posicionamiento previo
+                otherWords.forEach((word, index) => {
+                    const colorClass = colors[index % colors.length];
+                    const wordCard = document.createElement('div');
+                    wordCard.className = `keyword-card ${colorClass}`; // Las media queries CSS se encargarán del resto
+                    wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+                    radialWordsContainer.appendChild(wordCard);
+                });
             }
-
-            // --- Apply final positions to elements ---
-            placedCards.forEach(card => {
-                card.element.style.left = `${card.x}px`;
-                card.element.style.top = `${card.y}px`;
-            });
         }
 
         // Llama a placeWords al cargar la página y al redimensionar la ventana
