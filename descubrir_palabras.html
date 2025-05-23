@@ -41,11 +41,21 @@
         }
         .word-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Adjusted width to 160px */
+            grid-template-columns: repeat(4, minmax(160px, 1fr)); /* Fixed 4 columns */
             gap: 1rem; /* Space between cards */
             justify-items: center; /* Center items in their grid cells */
             width: 100%;
             margin-bottom: 2rem;
+        }
+        @media (max-width: 768px) { /* Adjust for smaller screens */
+            .word-grid {
+                grid-template-columns: repeat(2, minmax(140px, 1fr)); /* 2 columns on small screens */
+            }
+        }
+        @media (max-width: 480px) { /* Adjust for very small screens */
+            .word-grid {
+                grid-template-columns: repeat(1, minmax(120px, 1fr)); /* 1 column on very small screens */
+            }
         }
         .keyword-card {
             padding: 1rem; /* p-4 */
@@ -91,55 +101,67 @@
         
         <div class="word-grid">
             <div class="keyword-card bg-red-200"><span class="keyword-text">ACCIONAR</span></div>
-            <div class="keyword-card bg-orange-200"><span class="keyword-text">ACTITUD</span></div>
-            <div class="keyword-card bg-amber-200"><span class="keyword-text">ACTIVAR</span></div>
-            <div class="keyword-card bg-yellow-200"><span class="keyword-text">AMISTAD</span></div>
-            <div class="keyword-card bg-lime-200"><span class="keyword-text">AMOR</span></div>
-            <div class="keyword-card bg-green-200"><span class="keyword-text">APRENDER</span></div>
-            <div class="keyword-card bg-emerald-200"><span class="keyword-text">ARMONIA</span></div>
-            <div class="keyword-card bg-teal-200"><span class="keyword-text">CONCIENCIA</span></div>
-            <div class="keyword-card bg-cyan-200"><span class="keyword-text">CONECTAR</span></div>
-            <div class="keyword-card bg-sky-200"><span class="keyword-text">CONFIANZA</span></div>
-            <div class="keyword-card bg-blue-200"><span class="keyword-text">CORAZÓN</span></div>
-            <div class="keyword-card bg-indigo-200"><span class="keyword-text">CREAR</span></div>
-            <div class="keyword-card bg-violet-200"><span class="keyword-text">CRECER</span></div>
-            <div class="keyword-card bg-purple-200"><span class="keyword-text">CULTIVAR</span></div>
-            <div class="keyword-card bg-fuchsia-200"><span class="keyword-text">DESPERTAR</span></div>
-            <div class="keyword-card bg-pink-200"><span class="keyword-text">DISFRUTAR</span></div>
-            <div class="keyword-card bg-rose-200"><span class="keyword-text">ENERGIA</span></div>
-            <div class="keyword-card bg-gray-200"><span class="keyword-text">EQUILIBRIO</span></div>
-            <div class="keyword-card bg-zinc-200"><span class="keyword-text">ESPERANZA</span></div>
-            <div class="keyword-card bg-stone-200"><span class="keyword-text">ETERNO</span></div>
-            <div class="keyword-card bg-red-200"><span class="keyword-text">EVOLUCION</span></div>
-            <div class="keyword-card bg-orange-200"><span class="keyword-text">EVOLUCIONAR</span></div>
-            <div class="keyword-card bg-amber-200"><span class="keyword-text">FAMILIA</span></div>
-            <div class="keyword-card bg-yellow-200"><span class="keyword-text">FELICIDAD</span></div>
-            <div class="keyword-card bg-lime-200"><span class="keyword-text">FELIZ</span></div>
-            <div class="keyword-card bg-green-200"><span class="keyword-text">FUERZA</span></div>
+            <div class="keyword-card bg-red-200"><span class="keyword-text">ACTITUD</span></div>
+            <div class="keyword-card bg-red-200"><span class="keyword-text">ACTIVAR</span></div>
+            <div class="keyword-card bg-red-200"><span class="keyword-text">AMISTAD</span></div>
+
+            <div class="keyword-card bg-orange-200"><span class="keyword-text">AMOR</span></div>
+            <div class="keyword-card bg-orange-200"><span class="keyword-text">APRENDER</span></div>
+            <div class="keyword-card bg-orange-200"><span class="keyword-text">ARMONIA</span></div>
+            <div class="keyword-card bg-orange-200"><span class="keyword-text">CONCIENCIA</span></div>
+
+            <div class="keyword-card bg-amber-200"><span class="keyword-text">CONECTAR</span></div>
+            <div class="keyword-card bg-amber-200"><span class="keyword-text">CONFIANZA</span></div>
+            <div class="keyword-card bg-amber-200"><span class="keyword-text">CORAZÓN</span></div>
+            <div class="keyword-card bg-amber-200"><span class="keyword-text">CREAR</span></div>
+
+            <div class="keyword-card bg-yellow-200"><span class="keyword-text">CRECER</span></div>
+            <div class="keyword-card bg-yellow-200"><span class="keyword-text">CULTIVAR</span></div>
+            <div class="keyword-card bg-yellow-200"><span class="keyword-text">DESPERTAR</span></div>
+            <div class="keyword-card bg-yellow-200"><span class="keyword-text">DISFRUTAR</span></div>
+
+            <div class="keyword-card bg-lime-200"><span class="keyword-text">ENERGIA</span></div>
+            <div class="keyword-card bg-lime-200"><span class="keyword-text">EQUILIBRIO</span></div>
+            <div class="keyword-card bg-lime-200"><span class="keyword-text">ESPERANZA</span></div>
+            <div class="keyword-card bg-lime-200"><span class="keyword-text">ETERNO</span></div>
+
+            <div class="keyword-card bg-green-200"><span class="keyword-text">EVOLUCION</span></div>
+            <div class="keyword-card bg-green-200"><span class="keyword-text">EVOLUCIONAR</span></div>
+            <div class="keyword-card bg-green-200"><span class="keyword-text">FAMILIA</span></div>
+            <div class="keyword-card bg-green-200"><span class="keyword-text">FELICIDAD</span></div>
+
+            <div class="keyword-card bg-emerald-200"><span class="keyword-text">FELIZ</span></div>
+            <div class="keyword-card bg-emerald-200"><span class="keyword-text">FUERZA</span></div>
             <div class="keyword-card bg-emerald-200"><span class="keyword-text">GRACIAS</span></div>
-            <div class="keyword-card bg-teal-200"><span class="keyword-text">GRATITUD</span></div>
-            <div class="keyword-card bg-cyan-200"><span class="keyword-text">INTELIGENCIA</span></div>
-            <div class="keyword-card bg-sky-200"><span class="keyword-text">LIBERTAD</span></div>
-            <div class="keyword-card bg-blue-200"><span class="keyword-text">MAMÁ</span></div>
-            <div class="keyword-card bg-indigo-200"><span class="keyword-text">MEDITAR</span></div>
-            <div class="keyword-card bg-violet-200"><span class="keyword-text">PAPÁ</span></div>
-            <div class="keyword-card bg-purple-200"><span class="keyword-text">PAZ</span></div>
-            <div class="keyword-card bg-fuchsia-200"><span class="keyword-text">PAZCIENCIA</span></div>
-            <div class="keyword-card bg-pink-200"><span class="keyword-text">PLENITUD</span></div>
-            <div class="keyword-card bg-rose-200"><span class="keyword-text">POSITIVO</span></div>
-            <div class="keyword-card bg-gray-200"><span class="keyword-text">PRINCIPIOS</span></div>
-            <div class="keyword-card bg-zinc-200"><span class="keyword-text">PROSPERIDAD</span></div>
-            <div class="keyword-card bg-stone-200"><span class="keyword-text">PURIFICAR</span></div>
-            <div class="keyword-card bg-red-200"><span class="keyword-text">REIR</span></div>
-            <div class="keyword-card bg-orange-200"><span class="keyword-text">RESILIENCIA</span></div>
-            <div class="keyword-card bg-amber-200"><span class="keyword-text">SALUD</span></div>
-            <div class="keyword-card bg-yellow-200"><span class="keyword-text">SEMBRAR</span></div>
-            <div class="keyword-card bg-lime-200"><span class="keyword-text">TIEMPO</span></div>
-            <div class="keyword-card bg-green-200"><span class="keyword-text">UNIÓN</span></div>
-            <div class="keyword-card bg-emerald-200"><span class="keyword-text">UNIVERSO</span></div>
-            <div class="keyword-card bg-teal-200"><span class="keyword-text">VALENTIA</span></div>
-            <div class="keyword-card bg-cyan-200"><span class="keyword-text">VIDA</span></div>
-            <div class="keyword-card bg-sky-200"><span class="keyword-text">VOLUNTAD</span></div>
+            <div class="keyword-card bg-emerald-200"><span class="keyword-text">GRATITUD</span></div>
+
+            <div class="keyword-card bg-teal-200"><span class="keyword-text">INTELIGENCIA</span></div>
+            <div class="keyword-card bg-teal-200"><span class="keyword-text">LIBERTAD</span></div>
+            <div class="keyword-card bg-teal-200"><span class="keyword-text">MAMÁ</span></div>
+            <div class="keyword-card bg-teal-200"><span class="keyword-text">MEDITAR</span></div>
+
+            <div class="keyword-card bg-cyan-200"><span class="keyword-text">PAPÁ</span></div>
+            <div class="keyword-card bg-cyan-200"><span class="keyword-text">PAZ</span></div>
+            <div class="keyword-card bg-cyan-200"><span class="keyword-text">PAZCIENCIA</span></div>
+            <div class="keyword-card bg-cyan-200"><span class="keyword-text">PLENITUD</span></div>
+
+            <div class="keyword-card bg-sky-200"><span class="keyword-text">POSITIVO</span></div>
+            <div class="keyword-card bg-sky-200"><span class="keyword-text">PRINCIPIOS</span></div>
+            <div class="keyword-card bg-sky-200"><span class="keyword-text">PROSPERIDAD</span></div>
+            <div class="keyword-card bg-sky-200"><span class="keyword-text">PURIFICAR</span></div>
+
+            <div class="keyword-card bg-blue-200"><span class="keyword-text">REIR</span></div>
+            <div class="keyword-card bg-blue-200"><span class="keyword-text">RESILIENCIA</span></div>
+            <div class="keyword-card bg-blue-200"><span class="keyword-text">SALUD</span></div>
+            <div class="keyword-card bg-blue-200"><span class="keyword-text">SEMBRAR</span></div>
+
+            <div class="keyword-card bg-indigo-200"><span class="keyword-text">TIEMPO</span></div>
+            <div class="keyword-card bg-indigo-200"><span class="keyword-text">UNIÓN</span></div>
+            <div class="keyword-card bg-indigo-200"><span class="keyword-text">UNIVERSO</span></div>
+            <div class="keyword-card bg-indigo-200"><span class="keyword-text">VALENTIA</span></div>
+
+            <div class="keyword-card bg-violet-200"><span class="keyword-text">VIDA</span></div>
+            <div class="keyword-card bg-violet-200"><span class="keyword-text">VOLUNTAD</span></div>
         </div>
 
         <a href="index.html" class="back-button">Volver a la Página Principal</a>
