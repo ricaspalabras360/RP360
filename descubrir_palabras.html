@@ -198,9 +198,9 @@
             // Ajustados para dejar más espacio y evitar superposiciones
             // Se han incrementado los radios para mayor separación
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.22, // Primera capa
-                Math.min(containerWidth, containerHeight) * 0.38, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.54 // Tercera capa
+                Math.min(containerWidth, containerHeight) * 0.20, // Primera capa (más cerca del centro)
+                Math.min(containerWidth, containerHeight) * 0.35, // Segunda capa
+                Math.min(containerWidth, containerHeight) * 0.50 // Tercera capa (más lejos del centro)
             ];
 
             // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
@@ -253,9 +253,9 @@
             });
 
             // --- Collision Resolution (Iterative Push) ---
-            const maxIterations = 200; // Aumentar iteraciones para mejor resolución
-            const repulsionStrength = 1.0; // Fuerza de repulsión aumentada
-            const minDistanceFactor = 1.1; // Factor para asegurar una separación mínima (10% de espacio extra)
+            const maxIterations = 300; // Aumentar iteraciones para mejor resolución y empaquetamiento
+            const repulsionStrength = 1.2; // Fuerza de repulsión aumentada para empujar más fuerte
+            const minDistanceFactor = 1.05; // Factor para asegurar una separación mínima (5% de espacio extra)
 
             for (let iter = 0; iter < maxIterations; iter++) {
                 let hasOverlaps = false;
