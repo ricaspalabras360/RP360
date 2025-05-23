@@ -198,9 +198,9 @@
             // Ajustados para dejar más espacio y evitar superposiciones
             // Se han incrementado los radios para mayor separación
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.28, // Primera capa
-                Math.min(containerWidth, containerHeight) * 0.45, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.62 // Tercera capa
+                Math.min(containerWidth, containerHeight) * 0.22, // Primera capa
+                Math.min(containerWidth, containerHeight) * 0.38, // Segunda capa
+                Math.min(containerWidth, containerHeight) * 0.54 // Tercera capa
             ];
 
             // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
@@ -253,8 +253,8 @@
             });
 
             // --- Collision Resolution (Iterative Push) ---
-            const maxIterations = 150; // Aumentar iteraciones para mejor resolución
-            const repulsionStrength = 0.8; // Fuerza de repulsión
+            const maxIterations = 200; // Aumentar iteraciones para mejor resolución
+            const repulsionStrength = 1.0; // Fuerza de repulsión aumentada
             const minDistanceFactor = 1.1; // Factor para asegurar una separación mínima (10% de espacio extra)
 
             for (let iter = 0; iter < maxIterations; iter++) {
@@ -289,6 +289,24 @@
                         }
                     }
                 }
+                // También empujar las tarjetas hacia el centro si se alejan demasiado
+                for (let i = 0; i < placedCards.length; i++) {
+                    const card = placedCards[i];
+                    const cardCenterX = card.x + card.width / 2;
+                    const cardCenterY = card.y + card.height / 2;
+                    const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
+
+                    // Si la tarjeta está fuera del radio máximo permitido, empújala hacia adentro
+                    const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.7; // Un poco más grande que el último radio de capa
+                    if (distFromCenter > maxAllowedRadius) {
+                        hasOverlaps = true; // Considerar esto como un "solapamiento" con el borde
+                        const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
+                        const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; // Fuerza para empujar hacia el centro
+                        card.x += pushStrength * Math.cos(angleToCenter);
+                        card.y += pushStrength * Math.sin(angleToCenter);
+                    }
+                }
+
                 if (!hasOverlaps && iter > 0) break; // Si no hay solapamientos y no es la primera iteración, salimos
             }
 
