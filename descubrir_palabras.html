@@ -239,9 +239,16 @@
                     const angleToCenterRad = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
                     const angleToCenterDeg = angleToCenterRad * (180 / Math.PI);
 
-                    // Ajusta la rotación para que el texto sea legible y apunte correctamente
-                    // Puede ser necesario un ajuste de +90 o -90 grados dependiendo de la orientación inicial del elemento
-                    wordCard.style.transform = `rotate(${angleToCenterDeg + 90}deg)`; // +90 para que el "arriba" de la tarjeta apunte al centro
+                    // Ajusta la rotación para que el texto sea legible (horizontal)
+                    // Si el ángulo es de -90 a 90 (derecha), rotación 0.
+                    // Si el ángulo es de 90 a 270 (izquierda), rotación 180.
+                    let finalRotationDeg;
+                    if (angleToCenterDeg > -90 && angleToCenterDeg <= 90) {
+                        finalRotationDeg = 0; // Lado derecho, no rotar
+                    } else {
+                        finalRotationDeg = 180; // Lado izquierdo, rotar 180 grados
+                    }
+                    wordCard.style.transform = `rotate(${finalRotationDeg}deg)`;
 
                     radialWordsContainer.appendChild(wordCard);
                     currentWordIndex++;
