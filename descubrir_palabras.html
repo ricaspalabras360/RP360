@@ -117,6 +117,7 @@
             color: #374151; 
             word-break: break-word; 
             line-height: 1.1; 
+            white-space: nowrap; /* ¡Importante! Evita que el texto se corte en varias líneas */
         }
         .back-button {
             background-color: #4299e1; /* Blue-500 */
@@ -195,12 +196,11 @@
             const centerY = containerHeight / 2;
 
             // Define los radios para las diferentes capas de palabras
-            // Ajustados para dejar más espacio y evitar superposiciones
-            // Se han incrementado los radios para mayor separación
+            // Ajustados para que las palabras estén más compactas
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.22, // Primera capa (más cerca del centro)
-                Math.min(containerWidth, containerHeight) * 0.38, // Segunda capa
-                Math.min(containerWidth, containerHeight) * 0.54 // Tercera capa (más lejos del centro)
+                Math.min(containerWidth, containerHeight) * 0.18, // Primera capa
+                Math.min(containerWidth, containerHeight) * 0.32, // Segunda capa
+                Math.min(containerWidth, containerHeight) * 0.46 // Tercera capa
             ];
 
             // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
@@ -252,9 +252,9 @@
             });
 
             // --- Collision Resolution (Iterative Push) ---
-            const maxIterations = 300; // Aumentar iteraciones para mejor resolución y empaquetamiento
-            const repulsionStrength = 1.0; // Fuerza de repulsión ajustada
-            const minDistanceFactor = 1.05; // Factor para asegurar una separación mínima (5% de espacio extra)
+            const maxIterations = 500; // Aumentar iteraciones para mejor resolución y empaquetamiento
+            const repulsionStrength = 1.1; // Fuerza de repulsión ajustada para empujar más
+            const minDistanceFactor = 1.1; // Factor para asegurar una separación mínima (10% de espacio extra)
 
             for (let iter = 0; iter < maxIterations; iter++) {
                 let hasOverlaps = false;
@@ -288,7 +288,7 @@
                         }
                     }
                 }
-                // También empujar las tarjetas hacia el centro si se alejan demasiado
+                // Empujar las tarjetas hacia el centro si se alejan demasiado
                 for (let i = 0; i < placedCards.length; i++) {
                     const card = placedCards[i];
                     const cardCenterX = card.x + card.width / 2;
@@ -296,9 +296,9 @@
                     const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
 
                     // Si la tarjeta está fuera del radio máximo permitido, empújala hacia adentro
-                    const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.7; // Un poco más grande que el último radio de capa
+                    const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.55; // Ajustado para mantener la compacidad
                     if (distFromCenter > maxAllowedRadius) {
-                        hasOverlaps = true; // Considerar esto como un "solapamiento" con el borde
+                        hasOverlaps = true; // Indicar que hubo movimiento
                         const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
                         const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; // Fuerza para empujar hacia el centro
                         card.x += pushStrength * Math.cos(angleToCenter);
