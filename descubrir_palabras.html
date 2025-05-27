@@ -307,8 +307,10 @@
 
             radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
 
-            // Solo ejecutar el algoritmo de posicionamiento radial en pantallas grandes
-            if (window.innerWidth > 768) { 
+            // Determine if it's mobile view based on current width
+            const currentIsMobileView = window.innerWidth <= 768; 
+
+            if (!currentIsMobileView) { // Desktop logic
                 const containerWidth = radialWordsContainer.clientWidth;
                 const containerHeight = radialWordsContainer.clientHeight;
 
@@ -372,7 +374,7 @@
                         let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
                         let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
                         
-                        wordCard.style.position = 'absolute';
+                        wordCard.style.position = 'absolute'; // Set position for desktop
                         wordCard.style.left = `${x}px`;
                         wordCard.style.top = `${y}px`;
                         wordCard.style.transform = `rotate(0deg)`; 
@@ -476,7 +478,7 @@
                     card.element.style.top = `${card.y}px`;
                 });
             } else {
-                // Para móvil, asegurar que los elementos se apilen y no tengan estilos de posicionamiento absoluto
+                // Mobile logic: simply append elements, let CSS handle layout
                 wordsToDisplay.forEach((word, index) => {
                     const colorClass = colors[index % colors.length];
                     const wordCard = document.createElement('div');
@@ -489,6 +491,12 @@
                         const clickedWord = event.currentTarget.dataset.word;
                         window.location.href = `vida.html?word=${clickedWord}`;
                     });
+
+                    // *** IMPORTANTE: Eliminar estilos inline de posicionamiento para móvil ***
+                    wordCard.style.position = ''; 
+                    wordCard.style.left = ''; 
+                    wordCard.style.top = ''; 
+                    wordCard.style.transform = ''; 
 
                     radialWordsContainer.appendChild(wordCard);
                 });
