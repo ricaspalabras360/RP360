@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -62,7 +62,7 @@
         .search-input:focus {
             border-color: #4299e1; /* border-blue-500 */
         }
-        .random-word-button {
+        .random-word-button, .search-button { /* Estilos para ambos botones */
             background-color: #6d28d9; /* Indigo-700 */
             color: white;
             font-weight: 600;
@@ -72,7 +72,7 @@
             transition: background-color 0.3s ease;
             white-space: nowrap; /* Evita que el texto se rompa */
         }
-        .random-word-button:hover {
+        .random-word-button:hover, .search-button:hover {
             background-color: #5b21b6; /* Indigo-800 */
         }
         .main-word-area {
@@ -152,6 +152,11 @@
         .back-button:hover {
             background-color: #3182ce; /* Blue-600 */
         }
+        .search-message {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #ef4444; /* red-500 */
+        }
 
         /* **************************************** */
         /* MEDIA QUERIES PARA OPTIMIZACIÓN MÓVIL */
@@ -229,11 +234,13 @@
         
         <div class="search-controls">
             <input type="text" id="wordSearchInput" class="search-input" placeholder="Buscar palabra...">
+            <button id="searchButton" class="search-button">Buscar</button>
             <button id="randomWordButton" class="random-word-button">Mi Palabra del Día</button>
+            <div id="searchMessage" class="search-message hidden"></div>
         </div>
 
         <div class="main-word-area">
-            <div class="central-vida-button">
+            <div class="central-vida-button" data-word="VIDA">
                 <span class="keyword-text">VIDA</span>
             </div>
             <div class="radial-words-container" id="radialWordsContainer">
@@ -276,7 +283,10 @@
 
         const radialWordsContainer = document.getElementById('radialWordsContainer');
         const wordSearchInput = document.getElementById('wordSearchInput');
-        const randomWordButton = document.getElementById('randomWordButton'); // Nuevo botón
+        const randomWordButton = document.getElementById('randomWordButton');
+        const searchButton = document.getElementById('searchButton');
+        const searchMessage = document.getElementById('searchMessage');
+        const centralVidaButton = document.querySelector('.central-vida-button');
 
         // Dimensiones fijas de keyword-card para cálculos
         const CARD_WIDTH = 130;
@@ -313,7 +323,7 @@
                 ];
 
                 // Ajusta la distribución de palabras por capa dinámicamente si hay menos palabras
-                let wordsPerLayerAdjusted = [...wordsPerLayer]; // Copia el array original
+                let wordsPerLayerAdjusted = [...wordsPerLayer]; 
                 let totalWordsInPresetLayers = wordsPerLayer.reduce((a, b) => a + b, 0);
 
                 if (wordsToDisplay.length < totalWordsInPresetLayers) {
@@ -325,13 +335,12 @@
                         remainingWords -= wordsInThisLayer;
                         if (remainingWords <= 0) {
                             for (let j = i + 1; j < wordsPerLayer.length; j++) {
-                                wordsPerLayerAdjusted.push(0); // Llenar con 0 si no hay más palabras
+                                wordsPerLayerAdjusted.push(0); 
                             }
                             break;
                         }
                     }
                 }
-
 
                 let currentWordIndex = 0;
                 const placedCards = []; 
@@ -348,15 +357,20 @@
                         if (currentWordIndex >= wordsToDisplay.length) break; 
 
                         const word = wordsToDisplay[currentWordIndex];
-                        const angle = (i * angleStep) + initialAngleOffset;
-                        
-                        let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
-                        let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
-
                         const colorClass = colors[currentWordIndex % colors.length]; 
                         const wordCard = document.createElement('div');
                         wordCard.className = `keyword-card ${colorClass}`;
                         wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+                        wordCard.dataset.word = word; // Almacena la palabra en un atributo de datos
+                        
+                        // Añadir event listener para cada tarjeta
+                        wordCard.addEventListener('click', (event) => {
+                            const clickedWord = event.currentTarget.dataset.word;
+                            window.location.href = `vida.html?word=${clickedWord}`;
+                        });
+
+                        let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
+                        let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
                         
                         wordCard.style.position = 'absolute';
                         wordCard.style.left = `${x}px`;
@@ -468,6 +482,14 @@
                     const wordCard = document.createElement('div');
                     wordCard.className = `keyword-card ${colorClass}`; 
                     wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+                    wordCard.dataset.word = word; // Almacena la palabra en un atributo de datos
+                    
+                    // Añadir event listener para cada tarjeta en móvil también
+                    wordCard.addEventListener('click', (event) => {
+                        const clickedWord = event.currentTarget.dataset.word;
+                        window.location.href = `vida.html?word=${clickedWord}`;
+                    });
+
                     radialWordsContainer.appendChild(wordCard);
                 });
             }
@@ -476,12 +498,31 @@
         // Event listener para el input de búsqueda
         wordSearchInput.addEventListener('input', placeWords);
 
+        // Event listener para el botón "Buscar"
+        searchButton.addEventListener('click', () => {
+            const searchTerm = wordSearchInput.value.toUpperCase().trim();
+            if (searchTerm && allWords.includes(searchTerm)) {
+                window.location.href = `vida.html?word=${searchTerm}`;
+            } else {
+                searchMessage.textContent = `"${searchTerm}" no encontrada.`;
+                searchMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    searchMessage.classList.add('hidden');
+                }, 3000); // Ocultar mensaje después de 3 segundos
+            }
+        });
+
         // Event listener para el botón "Mi Palabra del Día"
         randomWordButton.addEventListener('click', () => {
-            const randomIndex = Math.floor(Math.random() * otherWords.length);
-            const randomWord = otherWords[randomIndex];
-            wordSearchInput.value = randomWord; // Pone la palabra aleatoria en el buscador
-            placeWords(); // Llama a placeWords para mostrar solo esa palabra
+            const randomIndex = Math.floor(Math.random() * allWords.length); // Elegir de todas las palabras, incluyendo VIDA
+            const randomWord = allWords[randomIndex];
+            window.location.href = `vida.html?word=${randomWord}`; // Redirigir directamente
+        });
+
+        // Event listener para el botón central VIDA
+        centralVidaButton.addEventListener('click', (event) => {
+            const word = event.currentTarget.dataset.word;
+            window.location.href = `vida.html?word=${word}`;
         });
 
         // Llama a placeWords al cargar la página y al redimensionar la ventana
