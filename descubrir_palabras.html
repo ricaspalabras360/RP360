@@ -305,12 +305,11 @@
                 ? otherWords.filter(word => word.includes(searchTerm))
                 : otherWords;
 
-            radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
-
             // Determine if it's mobile view based on current width
             const currentIsMobileView = window.innerWidth <= 768; 
 
             if (!currentIsMobileView) { // Desktop logic
+                radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes SOLO para desktop
                 const containerWidth = radialWordsContainer.clientWidth;
                 const containerHeight = radialWordsContainer.clientHeight;
 
@@ -479,6 +478,7 @@
                 });
             } else {
                 // Mobile logic: simply append elements, let CSS handle layout
+                radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes SOLO para móvil
                 wordsToDisplay.forEach((word, index) => {
                     const colorClass = colors[index % colors.length];
                     const wordCard = document.createElement('div');
