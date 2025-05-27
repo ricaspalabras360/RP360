@@ -305,13 +305,41 @@
                 ? otherWords.filter(word => word.includes(searchTerm))
                 : otherWords;
 
+            // Create word elements (common for both desktop and mobile)
+            const wordElements = [];
+            wordsToDisplay.forEach((word, index) => {
+                const colorClass = colors[index % colors.length];
+                const wordCard = document.createElement('div');
+                wordCard.className = `keyword-card ${colorClass}`; 
+                wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+                wordCard.dataset.word = word; // Store word in data attribute
+                
+                // Add event listener for each card
+                wordCard.addEventListener('click', (event) => {
+                    const clickedWord = event.currentTarget.dataset.word;
+                    window.location.href = `vida.html?word=${clickedWord}`;
+                });
+                wordElements.push(wordCard);
+            });
+
+            radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
+
             // Determine if it's mobile view based on current width
             const currentIsMobileView = window.innerWidth <= 768; 
 
             if (!currentIsMobileView) { // Desktop logic
-                radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes SOLO para desktop
+                // Append elements first so their parent's dimensions are available
+                wordElements.forEach(card => radialWordsContainer.appendChild(card));
+
                 const containerWidth = radialWordsContainer.clientWidth;
                 const containerHeight = radialWordsContainer.clientHeight;
+
+                // If container dimensions are zero, it means layout hasn't happened yet.
+                // Re-schedule the placement if dimensions are not ready
+                if (containerWidth === 0 || containerHeight === 0) {
+                    requestAnimationFrame(placeWords);
+                    return; // Exit current execution
+                }
 
                 const centerX = containerWidth / 2;
                 const centerY = containerHeight / 2;
@@ -323,7 +351,7 @@
                     Math.min(containerWidth, containerHeight) * 0.55 
                 ];
 
-                // Ajusta la distribución de palabras por capa dinámicamente si hay menos palabras
+                // Adjust distribution of words per layer dynamically if fewer words
                 let wordsPerLayerAdjusted = [...wordsPerLayer]; 
                 let totalWordsInPresetLayers = wordsPerLayer.reduce((a, b) => a + b, 0);
 
@@ -357,19 +385,9 @@
                     for (let i = 0; i < numWordsInLayer; i++) {
                         if (currentWordIndex >= wordsToDisplay.length) break; 
 
-                        const word = wordsToDisplay[currentWordIndex];
-                        const colorClass = colors[currentWordIndex % colors.length]; 
-                        const wordCard = document.createElement('div');
-                        wordCard.className = `keyword-card ${colorClass}`;
-                        wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
-                        wordCard.dataset.word = word; // Almacena la palabra en un atributo de datos
+                        const wordCard = wordElements[currentWordIndex]; // Use already created element
+                        const angle = (i * angleStep) + initialAngleOffset;
                         
-                        // Añadir event listener para cada tarjeta
-                        wordCard.addEventListener('click', (event) => {
-                            const clickedWord = event.currentTarget.dataset.word;
-                            window.location.href = `vida.html?word=${clickedWord}`;
-                        });
-
                         let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
                         let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
                         
@@ -378,7 +396,6 @@
                         wordCard.style.top = `${y}px`;
                         wordCard.style.transform = `rotate(0deg)`; 
 
-                        radialWordsContainer.appendChild(wordCard);
                         placedCards.push({
                             element: wordCard,
                             x: x,
@@ -478,27 +495,13 @@
                 });
             } else {
                 // Mobile logic: simply append elements, let CSS handle layout
-                radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes SOLO para móvil
-                wordsToDisplay.forEach((word, index) => {
-                    const colorClass = colors[index % colors.length];
-                    const wordCard = document.createElement('div');
-                    wordCard.className = `keyword-card ${colorClass}`; 
-                    wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
-                    wordCard.dataset.word = word; // Almacena la palabra en un atributo de datos
-                    
-                    // Añadir event listener para cada tarjeta en móvil también
-                    wordCard.addEventListener('click', (event) => {
-                        const clickedWord = event.currentTarget.dataset.word;
-                        window.location.href = `vida.html?word=${clickedWord}`;
-                    });
-
+                wordElements.forEach((wordCard) => {
+                    radialWordsContainer.appendChild(wordCard); // Append for mobile
                     // *** IMPORTANTE: Eliminar estilos inline de posicionamiento para móvil ***
                     wordCard.style.position = ''; 
                     wordCard.style.left = ''; 
                     wordCard.style.top = ''; 
                     wordCard.style.transform = ''; 
-
-                    radialWordsContainer.appendChild(wordCard);
                 });
             }
         }
