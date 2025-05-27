@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -39,6 +39,41 @@
             font-weight: 700; /* font-bold */
             color: #1a202c; /* gray-900 */
             margin-bottom: 2rem;
+        }
+        .search-controls {
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column; /* Apilar en móvil */
+            gap: 1rem; /* Espacio entre elementos */
+            align-items: center;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #cbd5e0; /* border-gray-300 */
+            border-radius: 0.5rem; /* rounded-lg */
+            font-size: 1rem;
+            color: #4a5568; /* text-gray-700 */
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .search-input:focus {
+            border-color: #4299e1; /* border-blue-500 */
+        }
+        .random-word-button {
+            background-color: #6d28d9; /* Indigo-700 */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Evita que el texto se rompa */
+        }
+        .random-word-button:hover {
+            background-color: #5b21b6; /* Indigo-800 */
         }
         .main-word-area {
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
@@ -130,6 +165,23 @@
                 font-size: 2rem; /* Título más pequeño en móvil */
                 margin-bottom: 1.5rem;
             }
+            .search-controls {
+                margin-bottom: 1.5rem;
+                max-width: 90%;
+            }
+            /* Para que el buscador y el botón se pongan uno al lado del otro en pantallas medianas si hay espacio */
+            @media (min-width: 480px) and (max-width: 768px) {
+                .search-controls {
+                    flex-direction: row;
+                    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+                    justify-content: center;
+                    gap: 0.75rem;
+                }
+                .search-input {
+                    flex-grow: 1; /* Permite que el input ocupe el espacio disponible */
+                }
+            }
+
 
             .main-word-area {
                 position: static; /* Anula el posicionamiento absoluto */
@@ -141,8 +193,8 @@
             }
 
             .central-vida-button {
-                position: static !important; /* ¡Añadido !important! */
-                transform: none !important; /* ¡Añadido !important! */
+                position: static !important; 
+                transform: none !important; 
                 margin-bottom: 1.5rem; 
                 width: 80%; 
                 padding: 1rem 1.5rem; 
@@ -160,8 +212,8 @@
             }
 
             .keyword-card {
-                position: static !important; /* ¡Importante! Anula el posicionamiento absoluto de JavaScript */
-                transform: none !important; /* ¡Importante! Elimina cualquier rotación o transformación de JavaScript */
+                position: static !important; 
+                transform: none !important; 
                 width: 80%; 
                 max-width: 250px; 
                 margin: 0.25rem auto; 
@@ -175,6 +227,11 @@
     <div class="page-container">
         <h1 class="page-title">Vos elegís a que te conectas!</h1>
         
+        <div class="search-controls">
+            <input type="text" id="wordSearchInput" class="search-input" placeholder="Buscar palabra...">
+            <button id="randomWordButton" class="random-word-button">Mi Palabra del Día</button>
+        </div>
+
         <div class="main-word-area">
             <div class="central-vida-button">
                 <span class="keyword-text">VIDA</span>
@@ -218,20 +275,30 @@
         const otherWords = allWords.filter(word => word !== vidaWord);
 
         const radialWordsContainer = document.getElementById('radialWordsContainer');
+        const wordSearchInput = document.getElementById('wordSearchInput');
+        const randomWordButton = document.getElementById('randomWordButton'); // Nuevo botón
 
         // Dimensiones fijas de keyword-card para cálculos
         const CARD_WIDTH = 130;
         const CARD_HEIGHT = 50;
 
         // Dimensiones aproximadas del botón central VIDA para evitar su área
-        // Se puede ajustar ligeramente para dar más o menos espacio
         const VIDA_BUTTON_WIDTH = 180; 
         const VIDA_BUTTON_HEIGHT = 80; 
 
+        // Definir la distribución de palabras por capa para pantallas grandes
+        const wordsPerLayer = [16, 17, 16]; // Suma 49
+
         function placeWords() {
+            const searchTerm = wordSearchInput.value.toUpperCase();
+            const wordsToDisplay = searchTerm 
+                ? otherWords.filter(word => word.includes(searchTerm))
+                : otherWords;
+
+            radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
+
             // Solo ejecutar el algoritmo de posicionamiento radial en pantallas grandes
             if (window.innerWidth > 768) { 
-                radialWordsContainer.innerHTML = ''; // Limpia las palabras existentes
                 const containerWidth = radialWordsContainer.clientWidth;
                 const containerHeight = radialWordsContainer.clientHeight;
 
@@ -239,37 +306,54 @@
                 const centerY = containerHeight / 2;
 
                 // Define los radios para las diferentes capas de palabras
-                // Ajustados para que las palabras estén más compactas y con más espacio inicial
                 const radii = [
-                    Math.min(containerWidth, containerHeight) * 0.25, // Primera capa, más lejos del centro de VIDA
-                    Math.min(containerWidth, containerHeight) * 0.40, // Segunda capa
-                    Math.min(containerWidth, containerHeight) * 0.55 // Tercera capa
+                    Math.min(containerWidth, containerHeight) * 0.25, 
+                    Math.min(containerWidth, containerHeight) * 0.40, 
+                    Math.min(containerWidth, containerHeight) * 0.55 
                 ];
 
-                // Define cuántas palabras irán en cada capa (ajustado para 49 palabras)
-                const wordsPerLayer = [16, 17, 16]; // Suma 49
+                // Ajusta la distribución de palabras por capa dinámicamente si hay menos palabras
+                let wordsPerLayerAdjusted = [...wordsPerLayer]; // Copia el array original
+                let totalWordsInPresetLayers = wordsPerLayer.reduce((a, b) => a + b, 0);
+
+                if (wordsToDisplay.length < totalWordsInPresetLayers) {
+                    wordsPerLayerAdjusted = [];
+                    let remainingWords = wordsToDisplay.length;
+                    for (let i = 0; i < wordsPerLayer.length; i++) {
+                        const wordsInThisLayer = Math.min(remainingWords, wordsPerLayer[i]);
+                        wordsPerLayerAdjusted.push(wordsInThisLayer);
+                        remainingWords -= wordsInThisLayer;
+                        if (remainingWords <= 0) {
+                            for (let j = i + 1; j < wordsPerLayer.length; j++) {
+                                wordsPerLayerAdjusted.push(0); // Llenar con 0 si no hay más palabras
+                            }
+                            break;
+                        }
+                    }
+                }
+
 
                 let currentWordIndex = 0;
-                const placedCards = []; // Para almacenar la posición y tamaño de las tarjetas
+                const placedCards = []; 
 
                 // --- Initial Placement ---
                 radii.forEach((radius, layerIndex) => {
-                    const numWordsInLayer = wordsPerLayer[layerIndex];
+                    const numWordsInLayer = wordsPerLayerAdjusted[layerIndex];
+                    if (numWordsInLayer === 0) return;
+
                     const angleStep = (2 * Math.PI) / numWordsInLayer;
-                    // Offset inicial determinista para rotar las capas y crear un patrón entrelazado
                     const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2))); 
 
                     for (let i = 0; i < numWordsInLayer; i++) {
-                        if (currentWordIndex >= otherWords.length) break; // Asegura no exceder el número de palabras
+                        if (currentWordIndex >= wordsToDisplay.length) break; 
 
-                        const word = otherWords[currentWordIndex];
+                        const word = wordsToDisplay[currentWordIndex];
                         const angle = (i * angleStep) + initialAngleOffset;
                         
-                        // Ajuste de posición para que el centro de la tarjeta esté en el punto del círculo
                         let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
                         let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
 
-                        const colorClass = colors[currentWordIndex % colors.length]; // Cicla a través de los colores
+                        const colorClass = colors[currentWordIndex % colors.length]; 
                         const wordCard = document.createElement('div');
                         wordCard.className = `keyword-card ${colorClass}`;
                         wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
@@ -277,7 +361,7 @@
                         wordCard.style.position = 'absolute';
                         wordCard.style.left = `${x}px`;
                         wordCard.style.top = `${y}px`;
-                        wordCard.style.transform = `rotate(0deg)`; // Rotación fija a 0 grados para que el texto sea siempre legible (horizontal)
+                        wordCard.style.transform = `rotate(0deg)`; 
 
                         radialWordsContainer.appendChild(wordCard);
                         placedCards.push({
@@ -286,7 +370,6 @@
                             y: y,
                             width: CARD_WIDTH,
                             height: CARD_HEIGHT,
-                            // Usamos el radio para una detección de colisiones más precisa para formas ovaladas
                             effectiveRadiusX: CARD_WIDTH / 2,
                             effectiveRadiusY: CARD_HEIGHT / 2
                         });
@@ -295,9 +378,9 @@
                 });
 
                 // --- Collision Resolution (Iterative Push) ---
-                const maxIterations = 600; // Aumentar iteraciones para mejor resolución y empaquetamiento
-                const repulsionStrength = 1.3; // Fuerza de repulsión ajustada para empujar más
-                const minDistanceFactor = 1.15; // Factor para asegurar una separación mínima (15% de espacio extra)
+                const maxIterations = 600; 
+                const repulsionStrength = 1.3; 
+                const minDistanceFactor = 1.15; 
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
@@ -306,13 +389,10 @@
                         for (let j = i + 1; j < placedCards.length; j++) {
                             const cardB = placedCards[j];
 
-                            // Calcular distancia entre los centros de las tarjetas
                             const dx = (cardA.x + cardA.width / 2) - (cardB.x + cardB.width / 2);
                             const dy = (cardA.y + cardA.height / 2) - (cardB.y + cardB.height / 2);
                             const distance = Math.sqrt(dx * dx + dy * dy);
 
-                            // Calcular la distancia mínima requerida para evitar colisión
-                            // Suma de los radios efectivos (promedio para ovalados) con un factor de separación
                             const requiredDistance = (Math.max(cardA.effectiveRadiusX, cardA.effectiveRadiusY) + Math.max(cardB.effectiveRadiusX, cardB.effectiveRadiusY)) * minDistanceFactor;
 
                             if (distance < requiredDistance) {
@@ -338,19 +418,17 @@
                         const cardCenterY = card.y + card.height / 2;
                         const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
 
-                        // Si la tarjeta está fuera del radio máximo permitido, empújala hacia adentro
-                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; // Ajustado para mantener la compacidad
+                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; 
                         if (distFromCenter > maxAllowedRadius) {
-                            hasOverlaps = true; // Indicar que hubo movimiento
+                            hasOverlaps = true; 
                             const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
-                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; // Fuerza para empujar hacia el centro
+                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; 
                             card.x += pushStrength * Math.cos(angleToCenter);
                             card.y += pushStrength * Math.sin(angleToCenter);
                         }
 
                         // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
-                        // Esto crea una "zona de exclusión" alrededor del botón VIDA
-                        const vidaButtonCenterTolerance = 15; // Un poco más de tolerancia al centro del botón VIDA
+                        const vidaButtonCenterTolerance = 15; 
                         const effectiveVidaButtonRadiusX = (VIDA_BUTTON_WIDTH / 2) + vidaButtonCenterTolerance;
                         const effectiveVidaButtonRadiusY = (VIDA_BUTTON_HEIGHT / 2) + vidaButtonCenterTolerance;
                         
@@ -361,8 +439,7 @@
                         const dy_vida = (cardCenterY) - centerY;
                         const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
 
-                        // Distancia mínima requerida para evitar colisión con el botón VIDA
-                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10; // 10px de margen extra
+                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10; 
 
                         if (distance_vida < requiredVidaDistance) {
                             hasOverlaps = true;
@@ -377,26 +454,35 @@
                         }
                     }
 
-                    if (!hasOverlaps && iter > 0) break; // Si no hay solapamientos y no es la primera iteración, salimos
+                    if (!hasOverlaps && iter > 0) break; 
                 }
 
-                // --- Apply final positions to elements ---
                 placedCards.forEach(card => {
                     card.element.style.left = `${card.x}px`;
                     card.element.style.top = `${card.y}px`;
                 });
             } else {
                 // Para móvil, asegurar que los elementos se apilen y no tengan estilos de posicionamiento absoluto
-                radialWordsContainer.innerHTML = ''; // Limpia cualquier posicionamiento previo
-                otherWords.forEach((word, index) => {
+                wordsToDisplay.forEach((word, index) => {
                     const colorClass = colors[index % colors.length];
                     const wordCard = document.createElement('div');
-                    wordCard.className = `keyword-card ${colorClass}`; // Las media queries CSS se encargarán del resto
+                    wordCard.className = `keyword-card ${colorClass}`; 
                     wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
                     radialWordsContainer.appendChild(wordCard);
                 });
             }
         }
+
+        // Event listener para el input de búsqueda
+        wordSearchInput.addEventListener('input', placeWords);
+
+        // Event listener para el botón "Mi Palabra del Día"
+        randomWordButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * otherWords.length);
+            const randomWord = otherWords[randomIndex];
+            wordSearchInput.value = randomWord; // Pone la palabra aleatoria en el buscador
+            placeWords(); // Llama a placeWords para mostrar solo esa palabra
+        });
 
         // Llama a placeWords al cargar la página y al redimensionar la ventana
         window.addEventListener('load', placeWords);
