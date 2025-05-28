@@ -13,85 +13,144 @@
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8; /* Light blue-gray background */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             min-height: 100vh;
             margin: 0;
-            padding: 1rem;
+            padding: 0;
             box-sizing: border-box;
+            overflow-x: hidden;
         }
-        .card-container {
+        .header {
             background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem 1.5rem;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
         }
-        .card-image {
-            border-radius: 0.75rem;
-            margin-bottom: 1.5rem;
-            max-width: 100%;
-            height: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .card-title {
-            font-size: 2.5rem; /* text-4xl */
+        .header-title {
+            font-size: 1.5rem; /* text-2xl */
             font-weight: 700; /* font-bold */
             color: #1a202c; /* gray-900 */
-            margin-bottom: 1rem;
-        }
-        .card-text {
-            font-size: 1.125rem; /* text-lg */
-            color: #4a5568; /* gray-700 */
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        .card-question {
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            color: #2b6cb0; /* blue-700 */
-            margin-top: 1.5rem;
         }
         .back-button {
             background-color: #4299e1; /* Blue-500 */
             color: white;
             font-weight: 600;
-            padding: 0.75rem 2rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            margin-top: 2rem;
-            display: inline-block;
         }
         .back-button:hover {
             background-color: #3182ce; /* Blue-600 */
         }
-        .discover-button { /* New style for the "Descubrir Palabras" button */
-            background-color: #10b981; /* Emerald-500 */
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            margin-top: 1rem; /* Smaller margin to be closer to the back button */
-            display: inline-block;
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            text-align: center;
         }
-        .discover-button:hover {
-            background-color: #059669; /* Emerald-600 */
+        .card-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+            max-height: 500px; /* Limit height for larger screens */
+            object-fit: contain; /* Ensure the image fits within boundaries */
+        }
+        .card-title {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 800; /* font-extrabold */
+            color: #d69e2e; /* yellow-700 for VIDA */
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-description {
+            font-size: 1.125rem; /* text-lg */
+            color: #4a5568; /* gray-700 */
+            line-height: 1.8;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            background-color: #f6ad55; /* Orange-400 */
+            color: #2d3748; /* gray-800 */
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button:hover {
+            background-color: #ed8936; /* Orange-500 */
+            transform: translateY(-2px);
+        }
+        .footer {
+            background-color: #2d3748; /* gray-800 */
+            color: #a0aec0; /* gray-400 */
+            padding: 1.5rem 1rem;
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .header-title {
+                margin-bottom: 1rem;
+                font-size: 1.25rem;
+            }
+            .main-content {
+                padding: 1.5rem 0.5rem;
+            }
+            .card-title {
+                font-size: 2.25rem;
+            }
+            .card-description {
+                font-size: 1rem;
+            }
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card-container">
-        <img src="VIDA.png" alt="Carta VIDA con un corazón y un sol" class="card-image" onerror="this.src='https://placehold.co/400x600/cccccc/333333?text=Imagen+VIDA+no+disponible'; this.onerror=null;">
-        
+    <header class="header">
+        <div class="header-title">Ricas Palabras 360</div>
         <a href="index.html" class="back-button">Volver a la Página Principal</a>
-        <a href="index.html#que-es" class="discover-button">Descubrir Palabras</a> </div>
+    </header>
+
+    <main class="main-content">
+        <img src="VIDA.jpg" alt="Carta de VIDA de Ricas Palabras" class="card-image" onerror="this.src='https://placehold.co/400x600/d69e2e/ffffff?text=Carta+VIDA'; this.onerror=null;">
+        
+        <h1 class="card-title">VIDA</h1>
+        
+        <p class="card-description">
+            La vida es el regalo más preciado, un viaje constante de aprendizaje, crecimiento y transformación. Es la oportunidad de experimentar, de sentir, de conectar y de dejar una huella única en el mundo. Esta carta te invita a celebrar cada momento, a abrazar los desafíos como oportunidades y a vivir con plena conciencia, reconociendo la magia en lo cotidiano. La vida es un lienzo en blanco esperando tus colores, tus palabras y tus acciones. ¡Despierta, explora y vive con pasión!
+        </p>
+
+        <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="cta-button">
+            Descubrí más productos con VIDA
+        </a>
+    </main>
+
+    <footer class="footer">
+        &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
