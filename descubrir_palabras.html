@@ -329,7 +329,8 @@
                 ? otherWords.filter(word => word.includes(searchTerm))
                 : otherWords;
 
-            // Create word elements (common for both desktop and mobile)
+            radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
+
             const wordElements = [];
             wordsToDisplay.forEach((word, index) => {
                 const colorClass = colors[index % colors.length];
@@ -350,15 +351,13 @@
                 wordElements.push(wordCard);
             });
 
-            radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
+            // Always append elements, regardless of view
+            wordElements.forEach(card => radialWordsContainer.appendChild(card));
 
             // Determine if it's mobile view based on current width
             const currentIsMobileView = window.innerWidth <= 768;
 
-            if (!currentIsMobileView) { // Desktop logic
-                // Append elements first so their parent's dimensions are available
-                wordElements.forEach(card => radialWordsContainer.appendChild(card));
-
+            if (!currentIsMobileView) { // Desktop logic for positioning
                 const containerWidth = radialWordsContainer.clientWidth;
                 const containerHeight = radialWordsContainer.clientHeight;
 
@@ -460,4 +459,124 @@
                                 const overlap = requiredDistance - distance;
                                 if (overlap > 0) {
                                     const angle = Math.atan2(dy, dx);
-                                    const moveX = (overlap / 2
+                                    const moveX = (overlap / 2) * Math.cos(angle) * repulsionStrength;
+                                    const moveY = (overlap / 2) * Math.sin(angle) * repulsionStrength;
+
+                                    cardA.x += moveX;
+                                    cardA.y += moveY;
+                                    cardB.x -= moveX;
+                                    cardB.y -= moveY;
+                                }
+                            }
+                        }
+                    }
+                    // Empujar las tarjetas hacia el centro si se alejan demasiado
+                    for (let i = 0; i < placedCards.length; i++) {
+                        const card = placedCards[i];
+                        const cardCenterX = card.x + card.width / 2;
+                        const cardCenterY = card.y + card.height / 2;
+                        const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
+
+                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65;
+                        if (distFromCenter > maxAllowedRadius) {
+                            hasOverlaps = true;
+                            const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
+                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1;
+                            card.x += pushStrength * Math.cos(angleToCenter);
+                            card.y += pushStrength * Math.sin(angleToCenter);
+                        }
+
+                        // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
+                        const vidaButtonCenterTolerance = 15;
+                        const effectiveVidaButtonRadiusX = (VIDA_BUTTON_WIDTH / 2) + vidaButtonCenterTolerance;
+                        const effectiveVidaButtonRadiusY = (VIDA_BUTTON_HEIGHT / 2) + vidaButtonCenterTolerance;
+
+                        const cardRadiusX = card.width / 2;
+                        const cardRadiusY = card.height / 2;
+
+                        const dx_vida = (cardCenterX) - centerX;
+                        const dy_vida = (cardCenterY) - centerY;
+                        const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
+
+                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10;
+
+                        if (distance_vida < requiredVidaDistance) {
+                            hasOverlaps = true;
+                            const overlap_vida = requiredVidaDistance - distance_vida;
+                            if (overlap_vida > 0) {
+                                const angle_vida = Math.atan2(dy_vida, dx_vida);
+                                const moveX_vida = overlap_vida * Math.cos(angle_vida) * repulsionStrength;
+                                const moveY_vida = overlap_vida * Math.sin(angle_vida) * repulsionStrength;
+                                card.x += moveX_vida;
+                                card.y += moveY_vida;
+                            }
+                        }
+                    }
+
+                    if (!hasOverlaps && iter > 0) break;
+                }
+
+                placedCards.forEach(card => {
+                    card.element.style.left = `${card.x}px`;
+                    card.element.style.top = `${card.y}px`;
+                });
+            } else {
+                // Mobile logic: No need to set position:static or transform:none explicitly here
+                // as they are handled by the CSS media query for .keyword-card and .central-vida-button
+                // when the screen width is <= 768px.
+            }
+        }
+
+        // Event listener para el input de búsqueda
+        wordSearchInput.addEventListener('input', placeWords);
+
+        // Event listener para el botón "Buscar"
+        searchButton.addEventListener('click', () => {
+            const searchTerm = wordSearchInput.value.toUpperCase().trim();
+            if (!searchTerm) {
+                displaySearchMessage("Por favor, introduce una palabra.", true); // Es un error si no hay palabra
+                return;
+            }
+
+            if (wordPageMap[searchTerm]) {
+                // Si la palabra tiene una página dedicada, redirigir
+                window.location.href = wordPageMap[searchTerm];
+            } else if (allWords.includes(searchTerm)) {
+                // Si la palabra existe en la lista general pero no tiene página aún
+                displaySearchMessage(`¡Tu palabra "${searchTerm}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras y cargando nuevas definiciones e inspiraciones cada día. ¡Vuelve pronto para descubrirla!`);
+            } else {
+                // Si la palabra no está en la lista general
+                displaySearchMessage(`"${searchTerm}" no encontrada en nuestra colección.`, true);
+            }
+        });
+
+        // Event listener para el botón "Mi Palabra del Día"
+        randomWordButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * allWords.length); // Elegir de todas las palabras
+            const randomWord = allWords[randomIndex];
+            if (wordPageMap[randomWord]) {
+                // Si la palabra aleatoria tiene una página dedicada, redirigir
+                window.location.href = wordPageMap[randomWord];
+            } else {
+                // Si no tiene página, mostrar el mensaje de "en camino"
+                displaySearchMessage(`¡Tu Palabra del Día es "${randomWord}"! Estamos expandiendo nuestro universo de Ricas Palabras y pronto estará disponible su definición. ¡Vuelve pronto!`);
+            }
+        });
+
+        // Event listener para el botón central VIDA
+        centralVidaButton.addEventListener('click', (event) => {
+            const word = event.currentTarget.dataset.word; // Debería ser "VIDA"
+            if (wordPageMap[word]) {
+                window.location.href = wordPageMap[word];
+            } else {
+                // Esto no debería ocurrir para VIDA, pero como fallback
+                displaySearchMessage(`¡La palabra "${word}" está en camino!`, true);
+            }
+        });
+
+        // Llama a placeWords al cargar la página y al redimensionar la ventana
+        window.addEventListener('load', placeWords);
+        window.addEventListener('resize', placeWords);
+    </script>
+</body>
+</html>
