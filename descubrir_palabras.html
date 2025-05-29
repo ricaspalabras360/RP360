@@ -13,7 +13,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8; /* Light blue-gray background */
             display: flex;
-            flex-direction: column; /* Changed to column to accommodate header/footer if needed, and modal */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -22,7 +22,7 @@
             box-sizing: border-box;
             overflow-x: hidden;
         }
-        .card-container {
+        .page-container { /* Renamed from card-container for clarity as it's the main page wrapper */
             background-color: #ffffff;
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -33,6 +33,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        .page-title {
+            font-size: 2.5rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1a202c; /* gray-900 */
+            margin-bottom: 2rem;
         }
         .word-group {
             margin-bottom: 3rem; /* Increased for more separation between groups */
@@ -144,8 +150,12 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .card-container {
+            .page-container {
                 padding: 1.5rem;
+            }
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
             }
             .group-title {
                 font-size: 1.5rem;
@@ -164,7 +174,9 @@
     </style>
 </head>
 <body>
-    <div class="card-container">
+    <div class="page-container">
+        <h1 class="page-title">Vos elegís a qué te conectas!</h1>
+
         <div class="word-group">
             <h2 class="group-title">GRATITUD</h2>
             <div class="word-list">
