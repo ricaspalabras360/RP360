@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descubrir Palabras - Ricas Palabras 360</title>
+    <title>Vos elegís a que te conectas! - Ricas Palabras 360</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,23 +11,23 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background-color: #f0f4f8; /* Fondo azul-gris claro */
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Permite que el contenido se apile verticalmente */
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             padding: 1rem;
             box-sizing: border-box;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Evita el scroll horizontal */
         }
-        .page-container { /* Renamed from card-container for clarity as it's the main page wrapper */
+        .page-container {
             background-color: #ffffff;
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-            max-width: 800px;
+            max-width: 1200px;
             width: 100%;
             text-align: center;
             display: flex;
@@ -40,44 +40,103 @@
             color: #1a202c; /* gray-900 */
             margin-bottom: 2rem;
         }
-        .word-group {
-            margin-bottom: 3rem; /* Increased for more separation between groups */
-            width: 100%; /* Ensure groups take full width for consistent centering */
-        }
-        .group-title {
-            font-size: 1.75rem; /* 28px */
-            font-weight: 700; /* font-bold */
-            color: #1a202c; /* gray-900 */
-            margin-bottom: 1.5rem; /* Increased from 1rem */
-            padding: 0.75rem 1rem; /* Increased padding */
-            border-bottom: 1px solid #e2e8f0; /* Subtle separator */
-            background-color: #e2e8f0; /* Light background for title */
-            border-radius: 0.5rem; /* Rounded corners for title */
-            display: inline-block; /* To apply padding and background correctly */
-            min-width: 200px; /* Ensure a minimum width for titles */
-        }
-        .word-list {
+        .search-controls {
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 400px;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column; /* Apilar en móvil */
+            gap: 1rem; /* Espacio entre elementos */
+            align-items: center;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #cbd5e0; /* border-gray-300 */
+            border-radius: 0.5rem; /* rounded-lg */
+            font-size: 1rem;
+            color: #4a5568; /* text-gray-700 */
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .search-input:focus {
+            border-color: #4299e1; /* border-blue-500 */
+        }
+        .random-word-button, .search-button { /* Estilos para ambos botones */
+            background-color: #6d28d9; /* Indigo-700 */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Evita que el texto se rompa */
+        }
+        .random-word-button:hover, .search-button:hover {
+            background-color: #5b21b6; /* Indigo-800 */
+        }
+        .main-word-area {
+            position: relative; /* Para posicionar los elementos hijos de forma absoluta */
+            width: 100%;
+            max-width: 800px; /* Ancho máximo para el área de palabras */
+            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
+            margin-bottom: 2rem;
+            display: flex; /* Usamos flex para centrar el botón VIDA */
             justify-content: center;
-            gap: 0.75rem; /* Space between word items */
+            align-items: center;
         }
-        .word-item {
-            font-size: 1.25rem; /* 20px */
-            color: #4a5568; /* gray-700 */
-            margin: 0.5rem 0.5rem; /* Adjusted margin */
-            padding: 0.75rem 1.25rem; /* Increased padding */
-            border-radius: 0.5rem; /* Rounded corners */
-            background-color: #edf2f7; /* Light gray */
-            text-decoration: none; /* Remove underline from links */
-            cursor: pointer; /* Indicate clickable */
-            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        .central-vida-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centra el botón VIDA con precisión */
+            z-index: 10; /* Asegura que esté por encima de las otras palabras */
+            background-color: #FFD700; /* Color dorado para VIDA */
+            color: #374151;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 1.5rem 2.5rem;
+            border-radius: 9999px; /* Botón circular */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            white-space: nowrap; /* Evita que la palabra se rompa en varias líneas */
         }
-        .word-item:hover {
-            background-color: #dbe4ee; /* Slightly darker on hover */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+        .central-vida-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .radial-words-container {
+            position: absolute; /* Ocupa todo el espacio del main-word-area */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .keyword-card {
+            padding: 0.8rem 1.2rem;
+            border-radius: 9999px; /* rounded-full para forma de hoja/ovalada */
+            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            width: 130px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .keyword-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .keyword-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #374151;
+            word-break: break-word;
+            line-height: 1.1;
+            white-space: nowrap; /* ¡Importante! Evita que el texto se corte en varias líneas */
         }
         .back-button {
             background-color: #4299e1; /* Blue-500 */
@@ -92,6 +151,16 @@
         }
         .back-button:hover {
             background-color: #3182ce; /* Blue-600 */
+        }
+        .search-message {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #ef4444; /* Default red for error, will be overwritten by JS for info */
+            font-weight: 600;
+            text-align: center;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Modal Styles */
@@ -148,135 +217,92 @@
             background-color: #3182ce;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
+        /* **************************************** */
+        /* MEDIA QUERIES PARA OPTIMIZACIÓN MÓVIL */
+        /* **************************************** */
+        @media (max-width: 768px) { /* Ajustes para pantallas más pequeñas (móvil y tablets pequeñas) */
             .page-container {
-                padding: 1.5rem;
+                padding: 1rem; /* Ajustar padding general para móvil */
             }
+
             .page-title {
-                font-size: 2rem;
+                font-size: 2rem; /* Título más pequeño en móvil */
                 margin-bottom: 1.5rem;
             }
-            .group-title {
-                font-size: 1.5rem;
-                padding: 0.6rem 0.8rem;
-                min-width: unset; /* Remove min-width on small screens */
+            .search-controls {
+                margin-bottom: 1.5rem;
+                max-width: 90%;
             }
-            .word-item {
-                font-size: 1rem;
-                padding: 0.6rem 1rem;
-                margin: 0.4rem 0.4rem;
+            /* Para que el buscador y el botón se pongan uno al lado del otro en pantallas medianas si hay espacio */
+            @media (min-width: 480px) and (max-width: 768px) {
+                .search-controls {
+                    flex-direction: row;
+                    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+                    justify-content: center;
+                    gap: 0.75rem;
+                }
+                .search-input {
+                    flex-grow: 1; /* Permite que el input ocupe el espacio disponible */
+                }
             }
-            .word-group {
-                margin-bottom: 2rem;
+
+
+            .main-word-area {
+                position: static; /* Anula el posicionamiento absoluto */
+                padding-bottom: 0; /* Eliminar el padding que crea la relación de aspecto */
+                max-width: 100%; /* Ocupar todo el ancho disponible */
+                height: auto; /* Permitir que la altura se ajuste al contenido */
+                flex-direction: column; /* Asegura que los elementos se apilen (si display flex) */
+                align-items: center; /* Centra los elementos apilados (si display flex) */
+            }
+
+            .central-vida-button {
+                position: static !important;
+                transform: none !important;
+                margin-bottom: 1.5rem;
+                width: 80%;
+                padding: 1rem 1.5rem;
+                font-size: 1.3rem;
+            }
+
+            .radial-words-container {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                width: 100%;
+                height: auto;
+            }
+
+            .keyword-card {
+                position: static !important;
+                transform: none !important;
+                width: 80%;
+                max-width: 250px;
+                margin: 0.25rem auto;
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="page-container">
-        <h1 class="page-title">Vos elegís a qué te conectas!</h1>
+        <h1 class="page-title">Vos elegís a que te conectas!</h1>
 
-        <div class="word-group">
-            <h2 class="group-title">GRATITUD</h2>
-            <div class="word-list">
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Armonia</a>
-            </div>
+        <div class="search-controls">
+            <input type="text" id="wordSearchInput" class="search-input" placeholder="Buscar palabra...">
+            <button id="searchButton" class="search-button">Buscar</button>
+            <button id="randomWordButton" class="random-word-button">Mi Palabra del Día</button>
+            <div id="searchMessage" class="search-message hidden"></div>
         </div>
 
-         <div class="word-group">
-            <h2 class="group-title">ESPERANZA ACTIVAR</h2>
-            <div class="word-list">
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">crecer</a>
+        <div class="main-word-area">
+            <div class="central-vida-button" data-word="VIDA">
+                <span class="keyword-text">VIDA</span>
             </div>
-        </div>
-
-        <div class="word-group">
-            <h2 class="group-title">EVOLUCION</h2>
-            <div class="word-list">
-                 <a href="evolucionar.html" class="word-item">EVOLUCIONAR</a>
-            </div>
-        </div>
-
-         <div class="word-group">
-            <h2 class="group-title">Papá</h2>
-            <div class="word-list">
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Reir</a>
-            </div>
-        </div>
-
-         <div class="word-group">
-            <h2 class="group-title">ETERNO</h2>
-            <div class="word-list">
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">TIEMPO</a>
-            </div>
-        </div>
-
-        <div class="word-group">
-            <h2 class="group-title">ACTITUD</h2>
-            <div class="word-list">
-                <a href="amor.html" class="word-item">AMOR</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">POSITIVO</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">DESPERTAR</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">VALENTIA</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">CONFIANZA</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Prosperidad</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">PRINCIPIOS</a>
-                <a href="vida.html" class="word-item">VIDA</a>
-                <a href="evolucionar.html" class="word-item">EVOLUCIONAR</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">CONECTAR</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">APRENDER</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">CREAR</a>
-            </div>
-        </div>
-
-        <div class="word-group">
-            <h2 class="group-title">ENERGIA</h2>
-            <div class="word-list">
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">FUERZA</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">SALUD</a>
-            </div>
-        </div>
-
-         <div class="word-group">
-            <h2 class="group-title">Cultivar</h2>
-            <div class="word-list">
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Mamá</a>
-            </div>
-        </div>
-
-        <div class="word-group">
-            <h2 class="group-title">CONCIENCIA</h2>
-            <div class="word-list">
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">ACCIONAR</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">voluntad</a>
-            </div>
-        </div>
-
-          <div class="word-group">
-            <h2 class="group-title">UNIVERSO Disfrutar</h2>
-            <div class="word-list">
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Corazón</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">PAZCIENCIA</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">equilibrio</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">MEDITAR</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Feliz</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Libertad</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">PLENITUD</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">PURIFICAR</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">SEMBRAR</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Felicidad</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">INTELIGENCIA</a>
-                 <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">PAZ</a>
-            </div>
-        </div>
-
-        <div class="word-group">
-            <h2 class="group-title">GRACIAS</h2>
-            <div class="word-list">
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Familia</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">amistad</a>
-                <a href="#" class="word-item" onclick="showMessage('¡Próximamente! Esta palabra está en construcción.'); return false;">Resiliencia</a>
+            <div class="radial-words-container" id="radialWordsContainer">
             </div>
         </div>
 
@@ -291,6 +317,326 @@
     </div>
 
     <script>
+        const colors = [
+            'bg-red-200', 'bg-purple-200', 'bg-pink-200', 'bg-indigo-200',
+            'bg-orange-200', 'bg-violet-200', 'bg-fuchsia-200', 'bg-rose-200',
+            'bg-amber-200', 'bg-gray-200', 'bg-zinc-200', 'bg-stone-200',
+            'bg-yellow-200', 'bg-red-100', 'bg-purple-100', 'bg-pink-100',
+            'bg-lime-200', 'bg-indigo-100', 'bg-orange-100', 'bg-violet-100',
+            'bg-green-200', 'bg-fuchsia-100', 'bg-rose-100', 'bg-amber-100',
+            'bg-emerald-200', 'bg-gray-100', 'bg-zinc-100', 'bg-stone-100',
+            'bg-teal-200', 'bg-yellow-100', 'bg-lime-100', 'bg-green-100',
+            'bg-cyan-200', 'bg-emerald-100', 'bg-teal-100', 'bg-cyan-100',
+            'bg-sky-200', 'bg-sky-100', 'bg-blue-100', 'bg-indigo-100',
+            'bg-red-300', 'bg-orange-300', 'bg-yellow-300', 'bg-lime-300',
+            'bg-green-300', 'bg-emerald-300', 'bg-teal-300', 'bg-cyan-300',
+            'bg-sky-300', 'bg-blue-300'
+        ];
+
+        const allWords = [
+            "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
+            "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
+            "DESPERTAR", "DISFRUTAR", "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO",
+            "EVOLUCION", "EVOLUCIONAR", "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA",
+            "GRACIAS", "GRATITUD", "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR",
+            "PAPÁ", "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS",
+            "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR",
+            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "VOLUNTAD"
+        ].sort(); // Asegura el orden alfabético
+
+        // Mapeo de palabras a sus archivos HTML dedicados
+        const wordPageMap = {
+            "VIDA": "vida.html",
+            "AMOR": "amor.html",
+            "EVOLUCIONAR": "evolucionar.html", // ¡Añadido EVOLUCIONAR aquí!
+            // Cuando crees más páginas (ej. paz.html, gratitud.html), agrégalas aquí:
+            // "PAZ": "paz.html",
+            // "GRATITUD": "gratitud.html",
+        };
+
+        const vidaWord = "VIDA";
+        const otherWords = allWords.filter(word => word !== vidaWord);
+
+        const radialWordsContainer = document.getElementById('radialWordsContainer');
+        const wordSearchInput = document.getElementById('wordSearchInput');
+        const randomWordButton = document.getElementById('randomWordButton');
+        const searchButton = document.getElementById('searchButton');
+        const searchMessage = document.getElementById('searchMessage');
+        const centralVidaButton = document.querySelector('.central-vida-button');
+
+        // Dimensiones fijas de keyword-card para cálculos
+        const CARD_WIDTH = 130;
+        const CARD_HEIGHT = 50;
+
+        // Dimensiones aproximadas del botón central VIDA para evitar su área
+        const VIDA_BUTTON_WIDTH = 180;
+        const VIDA_BUTTON_HEIGHT = 80;
+
+        // Definir la distribución de palabras por capa para pantallas grandes
+        const wordsPerLayer = [16, 17, 16]; // Suma 49
+
+        // Función para mostrar mensajes de búsqueda/estado
+        function displaySearchMessage(message, isError = false) {
+            searchMessage.textContent = message;
+            searchMessage.classList.remove('hidden');
+            searchMessage.style.color = isError ? '#ef4444' : '#4299e1'; // Rojo para error, azul para información/próximamente
+            setTimeout(() => {
+                searchMessage.classList.add('hidden');
+            }, 5000); // Ocultar mensaje después de 5 segundos
+        }
+
+        function placeWords() {
+            const searchTerm = wordSearchInput.value.toUpperCase();
+            const wordsToDisplay = searchTerm
+                ? otherWords.filter(word => word.includes(searchTerm))
+                : otherWords;
+
+            radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
+
+            const wordElements = [];
+            wordsToDisplay.forEach((word, index) => {
+                const colorClass = colors[index % colors.length];
+                const wordCard = document.createElement('div');
+                wordCard.className = `keyword-card ${colorClass}`;
+                wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
+                wordCard.dataset.word = word; // Store word in data attribute
+
+                // Add event listener for each card
+                wordCard.addEventListener('click', (event) => {
+                    const clickedWord = event.currentTarget.dataset.word;
+                    if (wordPageMap[clickedWord]) {
+                        window.location.href = wordPageMap[clickedWord];
+                    } else {
+                        displaySearchMessage(`¡La palabra "${clickedWord}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras. ¡Vuelve pronto!`);
+                    }
+                });
+                wordElements.push(wordCard);
+            });
+
+            // Always append elements, regardless of view
+            wordElements.forEach(card => radialWordsContainer.appendChild(card));
+
+            // Determine if it's mobile view based on current width
+            const currentIsMobileView = window.innerWidth <= 768;
+
+            if (!currentIsMobileView) { // Desktop logic for positioning
+                const containerWidth = radialWordsContainer.clientWidth;
+                const containerHeight = radialWordsContainer.clientHeight;
+
+                // If container dimensions are zero, it means layout hasn't happened yet.
+                // Re-schedule the placement if dimensions are not ready
+                if (containerWidth === 0 || containerHeight === 0) {
+                    requestAnimationFrame(placeWords);
+                    return; // Exit current execution
+                }
+
+                const centerX = containerWidth / 2;
+                const centerY = containerHeight / 2;
+
+                // Define los radios para las diferentes capas de palabras
+                const radii = [
+                    Math.min(containerWidth, containerHeight) * 0.25,
+                    Math.min(containerWidth, containerHeight) * 0.40,
+                    Math.min(containerWidth, containerHeight) * 0.55
+                ];
+
+                // Adjust distribution of words per layer dynamically if fewer words
+                let wordsPerLayerAdjusted = [...wordsPerLayer];
+                let totalWordsInPresetLayers = wordsPerLayer.reduce((a, b) => a + b, 0);
+
+                if (wordsToDisplay.length < totalWordsInPresetLayers) {
+                    wordsPerLayerAdjusted = [];
+                    let remainingWords = wordsToDisplay.length;
+                    for (let i = 0; i < wordsPerLayer.length; i++) {
+                        const wordsInThisLayer = Math.min(remainingWords, wordsPerLayer[i]);
+                        wordsPerLayerAdjusted.push(wordsInThisLayer);
+                        remainingWords -= wordsInThisLayer;
+                        if (remainingWords <= 0) {
+                            for (let j = i + 1; j < wordsPerLayer.length; j++) {
+                                wordsPerLayerAdjusted.push(0);
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                let currentWordIndex = 0;
+                const placedCards = [];
+
+                // --- Initial Placement ---
+                radii.forEach((radius, layerIndex) => {
+                    const numWordsInLayer = wordsPerLayerAdjusted[layerIndex];
+                    if (numWordsInLayer === 0) return;
+
+                    const angleStep = (2 * Math.PI) / numWordsInLayer;
+                    const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2)));
+
+                    for (let i = 0; i < numWordsInLayer; i++) {
+                        if (currentWordIndex >= wordsToDisplay.length) break;
+
+                        const wordCard = wordElements[currentWordIndex]; // Use already created element
+                        const angle = (i * angleStep) + initialAngleOffset;
+
+                        let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
+                        let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
+
+                        wordCard.style.position = 'absolute'; // Set position for desktop
+                        wordCard.style.left = `${x}px`;
+                        wordCard.style.top = `${y}px`;
+                        wordCard.style.transform = `rotate(0deg)`;
+
+                        placedCards.push({
+                            element: wordCard,
+                            x: x,
+                            y: y,
+                            width: CARD_WIDTH,
+                            height: CARD_HEIGHT,
+                            effectiveRadiusX: CARD_WIDTH / 2,
+                            effectiveRadiusY: CARD_HEIGHT / 2
+                        });
+                        currentWordIndex++;
+                    }
+                });
+
+                // --- Collision Resolution (Iterative Push) ---
+                const maxIterations = 600;
+                const repulsionStrength = 1.3;
+                const minDistanceFactor = 1.15;
+
+                for (let iter = 0; iter < maxIterations; iter++) {
+                    let hasOverlaps = false;
+                    for (let i = 0; i < placedCards.length; i++) {
+                        const cardA = placedCards[i];
+                        for (let j = i + 1; j < placedCards.length; j++) {
+                            const cardB = placedCards[j];
+
+                            const dx = (cardA.x + cardA.width / 2) - (cardB.x + cardB.width / 2);
+                            const dy = (cardA.y + cardA.height / 2) - (cardB.y + cardB.height / 2);
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            const requiredDistance = (Math.max(cardA.effectiveRadiusX, cardA.effectiveRadiusY) + Math.max(cardB.effectiveRadiusX, cardB.effectiveRadiusY)) * minDistanceFactor;
+
+                            if (distance < requiredDistance) {
+                                hasOverlaps = true;
+                                const overlap = requiredDistance - distance;
+                                if (overlap > 0) {
+                                    const angle = Math.atan2(dy, dx);
+                                    const moveX = (overlap / 2) * Math.cos(angle) * repulsionStrength;
+                                    const moveY = (overlap / 2) * Math.sin(angle) * repulsionStrength;
+
+                                    cardA.x += moveX;
+                                    cardA.y += moveY;
+                                    cardB.x -= moveX;
+                                    cardB.y -= moveY;
+                                }
+                            }
+                        }
+                    }
+                    // Empujar las tarjetas hacia el centro si se alejan demasiado
+                    for (let i = 0; i < placedCards.length; i++) {
+                        const card = placedCards[i];
+                        const cardCenterX = card.x + card.width / 2;
+                        const cardCenterY = card.y + card.height / 2;
+                        const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
+
+                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65;
+                        if (distFromCenter > maxAllowedRadius) {
+                            hasOverlaps = true;
+                            const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
+                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1;
+                            card.x += pushStrength * Math.cos(angleToCenter);
+                            card.y += pushStrength * Math.sin(angleToCenter);
+                        }
+
+                        // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
+                        const vidaButtonCenterTolerance = 15;
+                        const effectiveVidaButtonRadiusX = (VIDA_BUTTON_WIDTH / 2) + vidaButtonCenterTolerance;
+                        const effectiveVidaButtonRadiusY = (VIDA_BUTTON_HEIGHT / 2) + vidaButtonCenterTolerance;
+
+                        const cardRadiusX = card.width / 2;
+                        const cardRadiusY = card.height / 2;
+
+                        const dx_vida = (cardCenterX) - centerX;
+                        const dy_vida = (cardCenterY) - centerY;
+                        const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
+
+                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10;
+
+                        if (distance_vida < requiredVidaDistance) {
+                            hasOverlaps = true;
+                            const overlap_vida = requiredVidaDistance - distance_vida;
+                            if (overlap_vida > 0) {
+                                const angle_vida = Math.atan2(dy_vida, dx_vida);
+                                const moveX_vida = overlap_vida * Math.cos(angle_vida) * repulsionStrength;
+                                const moveY_vida = overlap_vida * Math.sin(angle_vida) * repulsionStrength;
+                                card.x += moveX_vida;
+                                card.y += moveY_vida;
+                            }
+                        }
+                    }
+
+                    if (!hasOverlaps && iter > 0) break;
+                }
+
+                placedCards.forEach(card => {
+                    card.element.style.left = `${card.x}px`;
+                    card.element.style.top = `${card.y}px`;
+                });
+            } else {
+                // Mobile logic: No need to set position:static or transform:none explicitly here
+                // as they are handled by the CSS media query for .keyword-card and .central-vida-button
+                // when the screen width is <= 768px.
+            }
+        }
+
+        // Event listener para el input de búsqueda
+        wordSearchInput.addEventListener('input', placeWords);
+
+        // Event listener para el botón "Buscar"
+        searchButton.addEventListener('click', () => {
+            const searchTerm = wordSearchInput.value.toUpperCase().trim();
+            if (!searchTerm) {
+                displaySearchMessage("Por favor, introduce una palabra.", true); // Es un error si no hay palabra
+                return;
+            }
+
+            if (wordPageMap[searchTerm]) {
+                // Si la palabra tiene una página dedicada, redirigir
+                window.location.href = wordPageMap[searchTerm];
+            } else if (allWords.includes(searchTerm)) {
+                // Si la palabra existe en la lista general pero no tiene página aún
+                displaySearchMessage(`¡Tu palabra "${searchTerm}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras y cargando nuevas definiciones e inspiraciones cada día. ¡Vuelve pronto para descubrirla!`);
+            } else {
+                // Si la palabra no está en la lista general
+                displaySearchMessage(`"${searchTerm}" no encontrada en nuestra colección.`, true);
+            }
+        });
+
+        // Event listener para el botón "Mi Palabra del Día"
+        randomWordButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * allWords.length); // Elegir de todas las palabras
+            const randomWord = allWords[randomIndex];
+            if (wordPageMap[randomWord]) {
+                // Si la palabra aleatoria tiene una página dedicada, redirigir
+                window.location.href = wordPageMap[randomWord];
+            } else {
+                // Si no tiene página, mostrar el mensaje de "en camino"
+                displaySearchMessage(`¡Tu Palabra del Día es "${randomWord}"! Estamos expandiendo nuestro universo de Ricas Palabras y pronto estará disponible su definición. ¡Vuelve pronto!`);
+            }
+        });
+
+        // Event listener para el botón central VIDA
+        centralVidaButton.addEventListener('click', (event) => {
+            const word = event.currentTarget.dataset.word; // Debería ser "VIDA"
+            if (wordPageMap[word]) {
+                window.location.href = wordPageMap[word];
+            } else {
+                // Esto no debería ocurrir para VIDA, pero como fallback
+                displaySearchMessage(`¡La palabra "${word}" está en camino!`, true);
+            }
+        });
+
+        // Función para mostrar/ocultar el modal
         function showMessage(message) {
             const modal = document.getElementById('messageModal');
             const messageText = document.getElementById('modalMessageText');
@@ -302,6 +648,10 @@
             const modal = document.getElementById('messageModal');
             modal.classList.remove('visible');
         }
+
+        // Llama a placeWords al cargar la página y al redimensionar la ventana
+        window.addEventListener('load', placeWords);
+        window.addEventListener('resize', placeWords);
     </script>
 </body>
 </html>
