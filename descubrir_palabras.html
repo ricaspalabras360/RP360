@@ -35,35 +35,43 @@
             align-items: center;
         }
         .word-group {
-            margin-bottom: 2.5rem; /* Slightly increased for more separation between groups */
+            margin-bottom: 3rem; /* Increased for more separation between groups */
+            width: 100%; /* Ensure groups take full width for consistent centering */
         }
         .group-title {
             font-size: 1.75rem; /* 28px */
             font-weight: 700; /* font-bold */
             color: #1a202c; /* gray-900 */
-            margin-bottom: 1rem; /* Increased from 0.5rem */
-            padding-bottom: 0.5rem; /* Added padding below title */
+            margin-bottom: 1.5rem; /* Increased from 1rem */
+            padding: 0.75rem 1rem; /* Increased padding */
             border-bottom: 1px solid #e2e8f0; /* Subtle separator */
+            background-color: #e2e8f0; /* Light background for title */
+            border-radius: 0.5rem; /* Rounded corners for title */
+            display: inline-block; /* To apply padding and background correctly */
+            min-width: 200px; /* Ensure a minimum width for titles */
         }
         .word-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            gap: 0.75rem; /* Space between word items */
         }
         .word-item {
             font-size: 1.25rem; /* 20px */
             color: #4a5568; /* gray-700 */
-            margin: 0.5rem 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
+            margin: 0.5rem 0.5rem; /* Adjusted margin */
+            padding: 0.75rem 1.25rem; /* Increased padding */
+            border-radius: 0.5rem; /* Rounded corners */
             background-color: #edf2f7; /* Light gray */
             text-decoration: none; /* Remove underline from links */
             cursor: pointer; /* Indicate clickable */
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); /* Subtle shadow */
         }
         .word-item:hover {
-            background-color: #e2e8f0; /* Slightly darker on hover */
+            background-color: #dbe4ee; /* Slightly darker on hover */
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
         }
         .back-button {
             background-color: #4299e1; /* Blue-500 */
@@ -132,6 +140,26 @@
         }
         .modal-close-button:hover {
             background-color: #3182ce;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-container {
+                padding: 1.5rem;
+            }
+            .group-title {
+                font-size: 1.5rem;
+                padding: 0.6rem 0.8rem;
+                min-width: unset; /* Remove min-width on small screens */
+            }
+            .word-item {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+                margin: 0.4rem 0.4rem;
+            }
+            .word-group {
+                margin-bottom: 2rem;
+            }
         }
     </style>
 </head>
