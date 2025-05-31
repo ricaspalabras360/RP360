@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Poder Transformador de las Palabras y la Escritura Consciente | Ricas Palabras 360</title>
+    <title>El Poder de las Palabras y la Escritura Consciente - Ricas Palabras 360</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; 
+        }
         .gradient-text {
             background: linear-gradient(to right, #4ade80, #3b82f6);
             -webkit-background-clip: text;
@@ -17,18 +21,81 @@
             background-clip: text;
             text-fill-color: transparent;
         }
-        .container { max-width: 960px; } /* Ajusta el ancho para mejor lectura */
+        .content-section p, .content-section ul li {
+            margin-bottom: 1.5rem; /* Equivalent to mb-6 */
+            line-height: 1.75; /* Equivalent to leading-relaxed */
+            color: #4a5568; /* text-gray-700 */
+            font-size: 1.125rem; /* text-lg */
+        }
+        .content-section strong {
+            font-weight: 600; /* font-semibold */
+            color: #2d3748; /* text-gray-800 */
+        }
+        .content-section h2 {
+            margin-top: 2.5rem; /* mt-10 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1a202c; /* text-gray-900 */
+            text-align: center;
+        }
+        .content-section h3 {
+            margin-top: 2rem; /* mt-8 */
+            margin-bottom: 1rem; /* mb-4 */
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 600; /* font-semibold */
+            color: #2d3748; /* text-gray-800 */
+        }
+        .content-section ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+        .content-section ul li {
+            margin-bottom: 1rem; /* Adjusted for list items */
+            padding-left: 1.5rem; /* Space for custom bullet */
+            position: relative;
+        }
+        .content-section ul li:last-child {
+            margin-bottom: 0;
+        }
+        /* Custom bullet for list items */
+        .content-section ul li::before {
+            content: '✔️'; /* Checkmark emoji */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #10b981; /* emerald-500 */
+            font-size: 1.25rem;
+        }
+        .content-section blockquote {
+            margin: 2.5rem 0; /* mt-10 mb-10 */
+            padding: 1.5rem 2rem;
+            border-left: 6px solid #3b82f6; /* blue-500 */
+            background-color: #e0f2fe; /* blue-50 */
+            color: #1e3a8a; /* blue-900 */
+            font-style: italic;
+            font-size: 1.25rem; /* text-xl */
+            border-radius: 0 0.75rem 0.75rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+        .content-section blockquote footer {
+            margin-top: 1rem;
+            font-size: 1rem; /* text-base */
+            color: #4a5568; /* text-gray-700 */
+            text-align: right;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="text-2xl font-bold text-gray-800">
-                <a href="index.html" class="hover:text-blue-500 transition duration-300">Ricas <span class="gradient-text">Palabras 360</span></a>
+                Ricas <span class="gradient-text">Palabras 360</span>
             </div>
             <div class="hidden md:flex space-x-6">
-                <a href="index.html#que-es" class="text-gray-600 hover:text-blue-500 transition duration-300">Inicio</a>
+                <a href="index.html#que-es" class="text-gray-600 hover:text-blue-500 transition duration-300">Qué es</a>
+                <a href="poder_y_escritura_consciente.html" class="text-blue-500 font-semibold transition duration-300">El Poder de las Palabras</a>
                 <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-500 transition duration-300">Tienda</a>
                 <a href="quien_soy.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Conocé a Gonzai</a>
                 <a href="index.html#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
@@ -40,34 +107,33 @@
             </div>
         </nav>
         <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40">
-             <a href="index.html#que-es" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Inicio</a>
+             <a href="index.html#que-es" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Qué es</a>
+             <a href="poder_y_escritura_consciente.html" class="block px-6 py-3 text-blue-600 font-semibold hover:bg-gray-100">El Poder de las Palabras</a>
              <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Tienda</a>
              <a href="quien_soy.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Conocé a Gonzai</a>
              <a href="index.html#contacto" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Contacto</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 text-blue-700">El Poder Transformador de las Palabras y la Escritura Consciente</h1>
+    <main class="container mx-auto px-6 py-12 md:py-16 max-w-4xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-8 md:mb-12">
+            El Poder Transformador de las Palabras y la Escritura Consciente
+        </h1>
 
-        <section id="el-poder-de-las-palabras-detallado" class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">🌟 La Esencia de las Palabras 🌟</h2>
-            
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+        <section class="content-section mb-12">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">🌟 La Esencia de las Palabras 🌟</h2>
+            <p>
                 Las palabras son mucho más que sonidos o signos. Son energía, son acto, son creación. Más aún, tienen el profundo poder de moldear y estructurar la realidad misma que experimentamos y el mundo que nos circunda.
             </p>
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            <p>
                 Desde tiempos remotos, los seres humanos hemos narrado, escrito y nombrado para dar sentido a la vida. Cada palabra tiene el poder de construir o destruir, de abrir caminos o cerrarlos. Nos atraviesan, nos definen, nos transforman. Son semillas simbólicas que, cuando se eligen y se pronuncian con conciencia, pueden despertar mundos enteros.
             </p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                El lenguaje no solo refleja lo que pensamos; moldea profundamente lo que somos y las historias que nos contamos a nosotros mismos. Las palabras que elegimos —para hablarle a otros, pero sobre todo, para hablarnos a nosotros— tienen un impacto directo en nuestra autoestima, nuestras relaciones y nuestra percepción de la realidad, incluso editando cómo recordamos y construimos nuestra propia identidad.
-                <span class="font-semibold">Decir es crear.</span>
+            <p>
+                El lenguaje no solo refleja lo que pensamos; moldea profundamente lo que somos y las historias que nos contamos a nosotros mismos. Las palabras que elegimos —para hablarle a otros, pero sobre todo, para hablarnos a nosotros— tienen un impacto directo en nuestra autoestima, nuestras relaciones y nuestra percepción de la realidad, incluso editando cómo recordamos y construimos nuestra propia identidad. **Decir es crear.**
             </p>
 
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-                Las investigaciones en psicología social, lingüística y neurociencia afirman lo que ya intuíamos desde lo ancestral:
-            </p>
-            <ul class="list-disc list-inside text-left text-lg text-gray-700 mb-6 space-y-2">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Las investigaciones en psicología social, lingüística y neurociencia afirman lo que ya intuíamos desde lo ancestral:</h3>
+            <ul class="list-none pl-0">
                 <li>📚 Las palabras influyen en nuestra biología emocional, afectando cómo sentimos y regulamos nuestras emociones.</li>
                 <li>💭 El lenguaje condiciona la forma en que pensamos y sentimos, otorgándonos una precisión clave para la claridad mental.</li>
                 <li>🧠 Nuestro diálogo interno moldea nuestros estados mentales, y aprender a hablar con nosotros mismos con afecto es una herramienta de bienestar.</li>
@@ -75,82 +141,141 @@
             </ul>
 
             <h3 class="text-2xl font-semibold text-gray-800 mb-4">🌱 Una palabra puede cambiarlo todo</h3>
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            <p>
                 Hay frases que abren. Palabras que acarician. Otras que activan. O que sanan. Hay palabras que transforman una experiencia en sabiduría. La precisión en el uso del lenguaje, especialmente a través de la escritura consciente, nos permite no solo expresar, sino también moldear nuestras experiencias y emociones hasta alcanzar una claridad que solo la palabra exacta puede ofrecer. La escritura se convierte así en una herramienta invaluable para desentrañar lo complejo y ordenar nuestros pensamientos.
             </p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            <p>
                 Por eso nace Ricas Palabras: Para recordarnos que las palabras tienen alma, y que cuando las elegimos con intención, sembramos en nosotros mismos una realidad diferente. Cada producto de esta propuesta —ya sea un lápiz plantable, una vela con intención, una libreta con frases semilla o un e-book transformador— lleva en sí una vibración. Un llamado. Una posibilidad.
             </p>
 
             <h3 class="text-2xl font-semibold text-gray-800 mb-4">🔍 ¿Por qué importa cómo hablamos?</h3>
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            <p>
                 Porque las palabras configuran nuestra Matriz Interna. Porque el lenguaje que usamos puede liberar o encadenar. Porque lo que decimos... nos dice.
             </p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            <p>
                 El lenguaje es cultura, es historia, es cuerpo. Es voz, es gesto, es acto colectivo y también camino interior. Por eso la comunicación consciente no es solo una habilidad: es un modo de vivir.
             </p>
 
-            <h3 class="2xl font-semibold text-gray-800 mb-4">🌞 ¿Y si empezamos a hablar con propósito?</h3>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">🌞 ¿Y si empezamos a hablar con propósito?</h3>
+            <p>
                 Desde Ricas Palabras, creemos que cada palabra que sembramos en un objeto, una experiencia o una página escrita puede generar un cambio en quien la recibe. Una palabra puede conectar. Sanar. Inspirar. O simplemente recordarte lo esencial.
             </p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            <p>
                 💡 Por eso desarrollamos contenidos, productos y formaciones que invitan a redescubrir el poder del lenguaje como herramienta de transformación personal y colectiva.
             </p>
-            <p class="text-lg text-gray-700 mb-8 leading-relaxed font-semibold">
+            <p>
                 Ya no se trata solo de comunicarse… Se trata de crear realidad desde lo que decimos y sentimos.
             </p>
         </section>
 
-        <hr class="my-12 border-gray-300">
+        <section class="content-section mb-12">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">✍️ Profundizando en la Escritura Consciente ✍️</h2>
+            <p>
+                La escritura es la **precisión de la organización mental**, es el medio, es un don, una facultad, y enriquecerla inteligentemente con Arte eleva al crecimiento, que es la razón de la conciencia.
+            </p>
+            <p>
+                Es un **comprobado hermoso viaje y conexión con el Tiempo**, donde te podrás enviar mensajes motivacionales al Futuro, te podrás conectar con experiencias de tu pasado, te hará estar más presente y disfrutar de lo que estás construyendo. Es unir tiempos de tu vida.
+            </p>
+            <p>
+                La **escritura manuscrita** te reflejará una vida llena de conocimientos, experiencias, emociones y vivencias.
+            </p>
+            <p>
+                Hay un pensamiento que me volvió a la mente, lo había perdido, por eso lo escribo, para que quede registrado y tenga la oportunidad de recordarlo, hasta incluso trabajarlo internamente y desarrollarlo aún más. "Hay cosas que me había olvidado, por eso las escribí, las escribo, y las escribiré".
+            </p>
+            <p>
+                Luego de leerme en el Tiempo, siento **Paz interior, seguridad, armonía, tranquilidad, equilibrio, confianza**... es muy energizante y estimulante, una Gran **retroalimentación biopsicoespiritual**, por lo que es altamente efectivo y recomendable cuando sentimos que no estamos bien, cuando las preocupaciones nos nublan, cuando los pensamientos y emociones no están alineados, cuando queremos volver a reencontrarnos. Ahí estarán tus escritos más valiosos, para hacerte acordar y volver a conectarte con tu energía positiva que tú has creado, pero la habías olvidado, dándote fuerzas de impulsos positivos.
+            </p>
+            <p>
+                La idea es que cada uno pueda descubrir adentro de sí mismo cada palabra, encontrarle **múltiples beneficios** a cada una, que sean elementos de conexión, de unión, de alimentación mental, emocional y espiritual, y que les sea realmente una herramienta útil que les ayude a cultivar su transformación, crecimiento y desarrollo personal.
+            </p>
+            <p>
+                El secreto de la escritura está en la **constancia**, en el dejarse llevar por la inspiración, en la conexión con la mente superior, en adentrarse en otro estado de conciencia... y el poder escribirlo, y que quede impreso por la eternidad.
+            </p>
+            <p>
+                Es el **camino espiralado de volver a la profundidad de la Esencia** descubriendo nuevos conocimientos mediante el Arte de la escritura.
+            </p>
+            <p>
+                Si nunca escribiste, es una excelente oportunidad para que te animes a crear un hermoso y apasionante Arte en tu Vida, para que experimentes todos estos beneficios positivos, y puedas aún explorar y descubrir muchos más... ¡Amarás escribir! Y si ya eres un escritor amateur o profesional, también es una nueva oportunidad de probar esta ingeniosa herramienta para la conexión, organización y comunicación interna con tus escritos.
+            </p>
+            <p>
+                Así como organizamos los utensilios en la cocina, la ropa en los armarios, etc., también debemos organizar nuestros escritos. ¡Con los **Ecoscritores** ganarás Tiempo, ganarás Energía, Ganarás enfocarte con mayor precisión! Probá con los Ecoscritores y **Escribí donde tengas que escribir**. ¡Encontrá tu Ecoscritor con las palabras que necesites enfocarte y con las que sientas que te van a ser útiles y esenciales!
+            </p>
+            <p>
+                Abre nuevos caminos y ramas de tu árbol, abre tu mente a nuevas perspectivas, ilumina tu red mental y enciende la inteligencia del Corazón.
+            </p>
+        </section>
 
-        <section id="beneficios-escritura-consciente">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">✍️ Los Beneficios de la Escritura Consciente ✍️</h2>
-            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+
+        <section class="content-section mb-12">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">✍️ Los Beneficios Detallados de la Escritura Consciente ✍️</h2>
+            <p>
                 La escritura, especialmente la manuscrita, es una herramienta poderosa que te invita a conectar con tu interior y a cultivar tu crecimiento. Cada Rica Palabra puede ser grabada en tu ser a través de este acto intencional. Explorarás un viaje de autoconocimiento y transformación con cada trazo.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">⚡ Activa tu Cerebro y Corazón</h3>
-                    <p class="text-gray-700 mb-4">La escritura a mano impulsa la actividad neuronal, reactivando áreas dormidas y fomentando nuevas conexiones, tanto en la mente como en la inteligencia de tu corazón. Es una gimnasia mental y emocional.</p>
+            <ul class="list-none pl-0">
+                <li>
+                    <strong>⚡ Activa tu Cerebro y Corazón</strong><br>
+                    La escritura a mano impulsa la actividad neuronal, reactivando áreas dormidas y fomentando nuevas conexiones, tanto en la mente como en la inteligencia de tu corazón. Es una gimnasia mental y emocional.
+                </li>
+                <li>
+                    <strong>😊 Bienestar Emocional y Sanación</strong><br>
+                    Estimula la producción de endorfinas, liberando neurotransmisores positivos que elevan tu energía anímica. Escribir se convierte en un método terapéutico, revelador y sanador para gestionar tus emociones y potenciar tu estado de ánimo.
+                </li>
+                <li>
+                    <strong>🧠 Claridad de Pensamiento y Razonamiento</strong><br>
+                    Al escribir, procesas, analizas y organizas tus ideas, movilizando pensamientos y emociones. Te permite una introspección profunda para reflexionar, comprender y transformar lo negativo en positivo, edificando tu mundo interno.
+                </li>
+                <li>
+                    <strong>📂 Orden y Organización Mental</strong><br>
+                    Libera tu mente de ser una "agenda" desordenada. La escritura te ayuda a encontrar tus propósitos, definir prioridades, establecer principios y marcar el rumbo de tu vida. Una mente organizada a través de tus escritos es una mente con dirección.
+                </li>
+                <li>
+                    <strong>🎯 Concentración y Precisión</strong><br>
+                    Enfoca tu atención en el acto de escribir, mejorando tu capacidad de concentración y facilitando un proceso de aprendizaje más profundo. Ideal para abordar problemas puntuales, plantear preguntas y encontrar soluciones creativas y organizadas.
+                </li>
+                <li>
+                    <strong>💡 Agudiza la Percepción y Enciende la Creatividad</strong><br>
+                    Incrementa la búsqueda de nuevas fuentes de inspiración y el deseo de descubrimiento. La escritura te permite abrir nuevas perspectivas mentales e iluminar la inteligencia de tu corazón.
+                </li>
+                <li>
+                    <strong>📚 Fortalece la Memoria y el Aprendizaje</strong><br>
+                    El proceso de escritura fija nuevos recuerdos y establece conexiones neuronales, interconectando puntos no solo en tu mente, sino también en tu sentir. Fomenta la asimilación de conocimientos y convierte el aprendizaje en un hábito duradero.
+                </li>
+                <li>
+                    <strong>🌟 Autoconocimiento y Crecimiento Personal</strong><br>
+                    Favorece la reconexión, el redescubrimiento, la revalorización y el rediseño de tu mundo interior. Aumenta tu seguridad, energías, fuerzas y confianza en ti mismo, conociendo con mayor exactitud de dónde venís y a dónde vas.
+                </li>
+                <li>
+                    <strong>🗣️ Mejora la Comunicación Interna y Externa</strong><br>
+                    Al brindarte un espacio para el estudio y el trabajo interno, empalizas primero contigo. Escribir te ayuda a equilibrar tus planos, preparar lo que quieres decir y cómo decirlo, mejorando exponencialmente tu comunicación, tanto contigo mismo como con los demás.
+                </li>
+                <li>
+                    <strong>➡️ Fomenta la Acción y la Materialización</strong><br>
+                    La escritura es el puente del pensamiento a la acción. Plasmar tus ideas, diagramas o mapas mentales en papel las organiza y las impulsa a convertirse en proyectos, emprendimientos y realidades tangibles.
+                </li>
+                <li>
+                    <strong>🧘 Entra en un Estado de Presencia</strong><br>
+                    Escribir puede llevarte a un estado similar al de la meditación, permitiéndote estar más presente, conectado y consciente. Reduce el estrés mental, gana autoestima, seguridad y comprensión de sí mismo, favoreciendo estados de consciencia más elevados.
+                </li>
+                <li>
+                    <strong>🔒 Genera Documentación Personal Valiosa</strong><br>
+                    Creas un registro único y muy personal de tu vida, tus aprendizajes y tus transformaciones. Además, te brinda mayor privacidad y seguridad ante pérdidas de dispositivos o datos digitales.
+                </li>
+            </ul>
+        </section>
 
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">😊 Bienestar Emocional y Sanación</h3>
-                    <p class="text-gray-700 mb-4">Estimula la producción de endorfinas, liberando neurotransmisores positivos que elevan tu energía anímica. Escribir se convierte en un método terapéutico, revelador y sanador para gestionar tus emociones y potenciar tu estado de ánimo.</p>
+        <section class="content-section">
+            <blockquote>
+                "El viaje más maravilloso no es al centro de la Tierra ni a los confines del Universo, sino al fondo de uno mismo."
+                <footer>— Julio Verne</footer>
+            </blockquote>
 
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🧠 Claridad de Pensamiento y Razonamiento</h3>
-                    <p class="text-gray-700 mb-4">Al escribir, procesas, analizas y organizas tus ideas, movilizando pensamientos y emociones. Te permite una introspección profunda para reflexionar, comprender y transformar lo negativo en positivo, edificando tu mundo interno.</p>
+            <blockquote>
+                "Aprende a Ver. Date cuenta de que Todo se Conecta con Todo lo demás."
+                <footer>— Leonardo Da Vinci</footer>
+            </blockquote>
+        </section>
 
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">📂 Orden y Organización Mental</h3>
-                    <p class="text-gray-700 mb-4">Libera tu mente de ser una "agenda" desordenada. La escritura te ayuda a encontrar tus propósitos, definir prioridades, establecer principios y marcar el rumbo de tu vida. Una mente organizada a través de tus escritos es una mente con dirección.</p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🎯 Concentración y Precisión</h3>
-                    <p class="text-gray-700 mb-4">Enfoca tu atención en el acto de escribir, mejorando tu capacidad de concentración y facilitando un proceso de aprendizaje más profundo. Ideal para abordar problemas puntuales, plantear preguntas y encontrar soluciones creativas y organizadas.</p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">💡 Agudiza la Percepción y Enciende la Creatividad</h3>
-                    <p class="text-gray-700 mb-4">Incrementa la búsqueda de nuevas fuentes de inspiración y el deseo de descubrimiento. La escritura te permite abrir nuevas perspectivas mentales e iluminar la inteligencia de tu corazón.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">📚 Fortalece la Memoria y el Aprendizaje</h3>
-                    <p class="text-gray-700 mb-4">El proceso de escritura fija nuevos recuerdos y establece conexiones neuronales, interconectando puntos no solo en tu mente, sino también en tu sentir. Fomenta la asimilación de conocimientos y convierte el aprendizaje en un hábito duradero.</p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🌟 Autoconocimiento y Crecimiento Personal</h3>
-                    <p class="text-gray-700 mb-4">Favorece la reconexión, el redescubrimiento, la revalorización y el rediseño de tu mundo interior. Aumenta tu seguridad, energías, fuerzas y confianza en ti mismo, conociendo con mayor exactitud de dónde venís y a dónde vas.</p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🗣️ Mejora la Comunicación Interna y Externa</h3>
-                    <p class="text-gray-700 mb-4">Al brindarte un espacio para el estudio y el trabajo interno, empalizas primero contigo. Escribir te ayuda a equilibrar tus planos, preparar lo que quieres decir y cómo decirlo, mejorando exponencialmente tu comunicación, tanto contigo mismo como con los demás.</p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">➡️ Fomenta la Acción y la Materialización</h3>
-                    <p class="text-gray-700 mb-4">La escritura es el puente del pensamiento a la acción. Plasmar tus ideas, diagramas o mapas mentales en papel las organiza y las impulsa a convertirse en proyectos, emprendimientos y realidades tangibles.</p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🧘 Entra en un Estado de Presencia</h3>
-                    <p class="text-gray-700 mb-4">Escribir puede llevarte a un estado similar al de la meditación, permitiéndote estar más presente, conectado y consciente. Reduce el estrés mental, gana autoestima, seguridad y comprensión de sí mismo, favoreciendo estados de consciencia más elevados.</p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🔒 Genera Documentación Personal Valiosa</h3>
-                    <p class="text-gray-700 mb-4">Creas un registro único y muy personal de tu vida, tus aprendizajes y tus transformaciones. Además, te brinda mayor privacidad y seguridad ante pérdidas de dispositivos o datos digitales.</p>
-                </div>
-            </div>
-
-             </main>
+    </main>
 
     <footer class="bg-gray-800 text-gray-300 py-12">
         <div class="container mx-auto px-6">
@@ -163,9 +288,9 @@
                     <h5 class="font-semibold mb-3 text-white">Enlaces Rápidos</h5>
                     <ul class="space-y-2 text-sm">
                         <li><a href="index.html#que-es" class="hover:text-white transition duration-300">Qué es</a></li>
+                        <li><a href="poder_y_escritura_consciente.html" class="hover:text-white transition duration-300">El Poder de las Palabras</a></li>
                         <li><a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Tienda</a></li>
                         <li><a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Web Principal</a></li>
-                        <li><a href="poder_y_escritura_consciente.html" class="hover:text-white transition duration-300">El Poder de las Palabras</a></li>
                     </ul>
                 </div>
                 <div>
