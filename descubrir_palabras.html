@@ -74,20 +74,20 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
         }
         .search-button {
-            background-color: #10b981; /* Emerald-500 (Green) */
+            background-color: #34d399; /* Green-400 (más claro y vivo) */
             color: white;
         }
         .search-button:hover {
-            background-color: #059669; /* Emerald-600 (Darker Green) */
+            background-color: #10b981; /* Emerald-500 */
             transform: translateY(-2px); /* Efecto hover */
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
         .random-word-button {
-            background-color: #f97316; /* Orange-500 */
+            background-color: #fb923c; /* Orange-400 (más claro y vivo) */
             color: white;
         }
         .random-word-button:hover {
-            background-color: #ea580c; /* Orange-600 */
+            background-color: #f97316; /* Orange-500 */
             transform: translateY(-2px); /* Efecto hover */
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
@@ -336,35 +336,28 @@
 
     <script>
         const colors = [
-            'bg-red-300', 'bg-purple-300', 'bg-pink-300', 'bg-indigo-300',
-            'bg-orange-300', 'bg-violet-300', 'bg-fuchsia-300', 'bg-rose-300',
-            'bg-amber-300', 'bg-lime-300', 'bg-emerald-300', 'bg-teal-300',
-            'bg-cyan-300', 'bg-sky-300', 'bg-blue-300',
-            'bg-red-400', 'bg-purple-400', 'bg-pink-400', 'bg-indigo-400',
-            'bg-orange-400', 'bg-violet-400', 'bg-fuchsia-400', 'bg-rose-400',
-            'bg-amber-400', 'bg-lime-400', 'bg-emerald-400', 'bg-teal-400',
-            'bg-cyan-400', 'bg-sky-400', 'bg-blue-400'
+            'bg-red-300', 'bg-pink-300', 'bg-purple-300', 'bg-violet-300', 'bg-fuchsia-300', 'bg-rose-300',
+            'bg-orange-300', 'bg-amber-300', 'bg-yellow-300', 'bg-lime-300',
+            'bg-green-300', 'bg-emerald-300', 'bg-teal-300', 'bg-cyan-300', 'bg-sky-300', 'bg-blue-300',
+            'bg-red-400', 'bg-pink-400', 'bg-purple-400', 'bg-violet-400', 'bg-fuchsia-400', 'bg-rose-400',
+            'bg-orange-400', 'bg-amber-400', 'bg-yellow-400', 'bg-lime-400',
+            'bg-green-400', 'bg-emerald-400', 'bg-teal-400', 'bg-cyan-400', 'bg-sky-400', 'bg-blue-400'
         ];
 
         // Define all words in the desired order for radial display
         // This array will be the source of truth for the word positions
         let allWords = [
             // Layer 1 (Top-Left to Top-Right - roughly 16 words)
-            "ALEGRIA", // Moved to the very beginning as per drawing
-            "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
-            "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
-            "DESPERTAR", "DISFRUTAR",
+            "ALEGRIA", "AMOR", "ARMONIA", "CONFIANZA", "CRECER", "DESPERTAR", "DISFRUTAR", "ENERGIA", 
+            "EQUILIBRIO", "ESPERANZA", "EVOLUCIONAR", "FELICIDAD", "FELIZ", "FUERZA", "GRACIAS", "GRATITUD",
 
             // Layer 2 (Right to Bottom - roughly 17 words)
-            "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO", "EVOLUCION", "EVOLUCIONAR",
-            "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA", "GRACIAS", "GRATITUD", "INTELIGENCIA",
-            "LIBERTAD", "MAMÁ", "MEDITAR", "PAPÁ",
+            "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR", "PAPÁ", "PAZ", "PLENITUD", "POSITIVO", 
+            "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR", "TIEMPO", "UNIÓN", "VALENTIA",
 
             // Layer 3 (Bottom-Left to Top-Left - roughly 16 words)
-            "VALENTIA", // Moved VALENTIA to the start of Layer 3 for top-left placement
-            "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS", "PROSPERIDAD",
-            "PURIFICAR", "REIR", "RESILIENCIA", "VOLUNTAD", "SALUD", // VOLUNTAD between RESILIENCIA and SALUD
-            "SEMBRAR", "TIEMPO", "UNIÓN",
+            "ACCIONAR", "ACTITUD", "ACTIVAR", "APRENDER", "CONCIENCIA", "CONECTAR", "CORAZÓN", "CREAR", 
+            "CULTIVAR", "ETERNO", "EVOLUCION", "FAMILIA", "PAZCIENCIA", "VOLUNTAD",
             // "UNIVERSO", // UNIVERSO eliminado como se solicitó
             "VIDA" // VIDA is always filtered out for radial display
         ];
