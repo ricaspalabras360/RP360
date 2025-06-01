@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -110,13 +110,14 @@
             z-index: 10; /* Asegura que esté por encima de las otras palabras */
             background-color: #FFD700; /* Color dorado para VIDA */
             color: #374151;
-            width: 150px; /* Fixed width for perfect circle */
-            height: 150px; /* Fixed height for perfect circle */
-            padding: 0; /* Remove padding if using fixed width/height */
+            padding: 2.5rem; /* Adjusted padding for a larger, more circular shape */
+            aspect-ratio: 1/1; /* Ensures it's a perfect circle */
+            max-width: 180px; /* Max width for desktop */
+            max-height: 180px; /* Max height for desktop */
             display: flex; /* Use flex to center content within fixed size */
             justify-content: center;
             align-items: center;
-            font-size: 2.5rem; /* Adjusted font size for desktop */
+            font-size: 3rem; /* Adjusted font size for desktop */
             font-weight: 700;
             border-radius: 9999px; /* Botón circular */
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -286,7 +287,7 @@
                 width: 100px; /* Smaller fixed width for mobile circle */
                 height: 100px; /* Smaller fixed height for mobile circle */
                 padding: 0; /* Remove padding to ensure perfect circle */
-                font-size: 1.6rem; /* Adjusted font size for mobile */
+                font-size: 1.8rem; /* Adjusted font size for mobile */
             }
 
             .radial-words-container {
@@ -404,8 +405,8 @@
         const CARD_HEIGHT = 50;
 
         // Dimensiones aproximadas del botón central VIDA para evitar su área
-        const VIDA_BUTTON_WIDTH = 150; // Updated to match CSS width
-        const VIDA_BUTTON_HEIGHT = 150; // Updated to match CSS height
+        const VIDA_BUTTON_WIDTH = 180; // Updated to reflect max-width for desktop collision
+        const VIDA_BUTTON_HEIGHT = 180; // Updated to reflect max-height for desktop collision
 
         // Definir la distribución de palabras por capa para pantallas grandes
         const wordsPerLayer = [16, 17, 16]; // Suma 49
