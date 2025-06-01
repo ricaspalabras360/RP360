@@ -27,7 +27,7 @@
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-            max-width: 1200px; 
+            max-width: 1200px;
             width: 100%;
             text-align: center;
             display: flex;
@@ -112,30 +112,30 @@
             top: 0;
             left: 0;
         }
-        
+
         .keyword-card {
-            padding: 0.8rem 1.2rem; 
+            padding: 0.8rem 1.2rem;
             border-radius: 9999px; /* rounded-full para forma de hoja/ovalada */
-            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15); 
+            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15);
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 50px; 
-            width: 130px; 
+            min-height: 50px;
+            width: 130px;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            cursor: pointer; 
+            cursor: pointer;
         }
         .keyword-card:hover {
-            transform: translateY(-5px) scale(1.05); 
+            transform: translateY(-5px) scale(1.05);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .keyword-text {
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            color: #374151; 
-            word-break: break-word; 
-            line-height: 1.1; 
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #374151;
+            word-break: break-word;
+            line-height: 1.1;
             white-space: nowrap; /* ¡Importante! Evita que el texto se corte en varias líneas */
         }
         .back-button {
@@ -155,7 +155,66 @@
         .search-message {
             margin-top: 0.5rem;
             font-size: 0.9rem;
-            color: #ef4444; /* red-500 */
+            color: #ef4444; /* Default red for error, will be overwritten by JS for info */
+            font-weight: 600;
+            text-align: center;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+        .modal-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.visible .modal-content {
+            transform: translateY(0);
+        }
+        .modal-message {
+            font-size: 1.125rem;
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+        .modal-close-button {
+            background-color: #4299e1;
+            color: white;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .modal-close-button:hover {
+            background-color: #3182ce;
         }
 
         /* **************************************** */
@@ -198,32 +257,32 @@
             }
 
             .central-vida-button {
-                position: static !important; 
-                transform: none !important; 
-                margin-bottom: 1.5rem; 
-                width: 80%; 
-                padding: 1rem 1.5rem; 
-                font-size: 1.3rem; 
+                position: static !important;
+                transform: none !important;
+                margin-bottom: 1.5rem;
+                width: 80%;
+                padding: 1rem 1.5rem;
+                font-size: 1.3rem;
             }
 
             .radial-words-container {
                 position: static;
                 display: flex;
-                flex-direction: column; 
-                align-items: center; 
-                gap: 0.75rem; 
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
                 width: 100%;
-                height: auto; 
+                height: auto;
             }
 
             .keyword-card {
-                position: static !important; 
-                transform: none !important; 
-                width: 80%; 
-                max-width: 250px; 
-                margin: 0.25rem auto; 
-                padding: 0.7rem 1rem; 
-                font-size: 0.9rem; 
+                position: static !important;
+                transform: none !important;
+                width: 80%;
+                max-width: 250px;
+                margin: 0.25rem auto;
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -231,7 +290,7 @@
 <body>
     <div class="page-container">
         <h1 class="page-title">Vos elegís a que te conectas!</h1>
-        
+
         <div class="search-controls">
             <input type="text" id="wordSearchInput" class="search-input" placeholder="Buscar palabra...">
             <button id="searchButton" class="search-button">Buscar</button>
@@ -244,10 +303,17 @@
                 <span class="keyword-text">VIDA</span>
             </div>
             <div class="radial-words-container" id="radialWordsContainer">
-                </div>
+            </div>
         </div>
 
         <a href="index.html" class="back-button">Volver a la Página Principal</a>
+    </div>
+
+    <div id="messageModal" class="modal-overlay">
+        <div class="modal-content">
+            <p id="modalMessageText" class="modal-message"></p>
+            <button class="modal-close-button" onclick="hideMessage()">Cerrar</button>
+        </div>
     </div>
 
     <script>
@@ -588,7 +654,7 @@
         }
 
         function hideMessage() {
-            const modal = document.getElementById('modalMessage');
+            const modal = document.getElementById('messageModal');
             modal.classList.remove('visible');
         }
 
