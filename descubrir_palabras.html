@@ -95,7 +95,7 @@
             color: #374151;
             font-size: 1.5rem;
             font-weight: 700;
-            padding: 1.5rem 2.5rem;
+            padding: 2rem 3rem; /* Aumentado para hacer el botón más grande */
             border-radius: 9999px; /* Botón circular */
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             cursor: pointer;
@@ -344,9 +344,10 @@
             "LIBERTAD", "MAMÁ", "MEDITAR", "PAPÁ",
 
             // Layer 3 (Bottom-Left to Top-Left - roughly 16 words)
+            "VALENTIA", // Moved VALENTIA to the start of Layer 3 for top-left placement
             "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS", "PROSPERIDAD",
             "PURIFICAR", "REIR", "RESILIENCIA", "VOLUNTAD", "SALUD", // VOLUNTAD between RESILIENCIA and SALUD
-            "SEMBRAR", "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", // VALENTIA after UNIVERSO
+            "SEMBRAR", "TIEMPO", "UNIÓN", "UNIVERSO", // UNIVERSO earlier in layer 3 to move it left
             "VIDA" // VIDA is always filtered out for radial display
         ];
         // No .sort() here. The order is manually defined for visual harmony.
