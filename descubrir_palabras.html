@@ -102,14 +102,14 @@
         
         /* Updated keyword-card styles for rounded/bubble effect (leaf/surfboard) */
         .keyword-card {
-            padding: 0.6rem 1rem; 
+            padding: 0.8rem 1.2rem; /* Adjusted padding for better fit */
             border-radius: 50% / 25%; /* Key for elongated oval/leaf/surfboard shape */
             box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 55px; /* Fixed height to control aspect ratio with padding */
+            height: 60px; /* Fixed height to control aspect ratio with padding */
             min-width: 140px; /* Wider for surfboard */
             max-width: 220px; /* Maximum width */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -460,8 +460,8 @@
 
                 // --- Collision Resolution (Iterative Push) ---
                 const maxIterations = 800; // Increased iterations
-                const repulsionStrength = 5.0; // Increased repulsion strength
-                const minDistanceFactor = 2.2; // Increased minimum distance factor
+                const repulsionStrength = 8.0; // Increased significantly
+                const minDistanceFactor = 3.0; // Increased significantly
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
