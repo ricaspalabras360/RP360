@@ -126,15 +126,15 @@
         }
         /* Updated keyword-card styles for rounded/bubble effect */
         .keyword-card {
-            padding: 0.8rem 1.2rem; /* Adjusted padding */
+            padding: 0.5rem 0.8rem; /* Adjusted padding for smaller size */
             border-radius: 9999px; /* rounded-full for leaf/oval shape */
             box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15); /* Stronger shadow for floating effect */
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 50px; /* Smaller min-height for rounded shape */
-            width: 130px; /* Fixed width for consistency */
+            height: 60px; /* Adjusted height for more consistent oval/leaf shape */
+            width: 100px; /* Adjusted width for consistency */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer; 
             text-decoration: none; /* Ensure no underline for links */
@@ -144,7 +144,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .keyword-text {
-            font-size: 0.95rem; /* Adjusted font size */
+            font-size: 0.85rem; /* Adjusted font size for smaller card */
             font-weight: 600; 
             color: #374151; 
             word-break: break-word; 
@@ -165,7 +165,8 @@
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
             max-width: 800px; /* Ancho máximo para el área de palabras */
-            padding-bottom: 800px; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
+            height: 0; /* Set height to 0 for padding-bottom to control aspect ratio */
+            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
             margin-bottom: 2rem;
             margin-top: 3rem; /* Espacio desde el área de display */
             display: flex; /* Usamos flex para centrar el botón VIDA */
@@ -412,33 +413,25 @@
 
             // Define radii for different layers
             const radii = [
-                Math.min(containerWidth, containerHeight) * 0.25, // Inner layer
-                Math.min(containerWidth, containerHeight) * 0.40, // Middle layer
-                Math.min(containerWidth, containerHeight) * 0.55  // Outer layer
+                Math.min(containerWidth, containerHeight) * 0.28, // Inner layer (increased)
+                Math.min(containerWidth, containerHeight) * 0.45, // Middle layer (increased)
+                Math.min(containerWidth, containerHeight) * 0.62  // Outer layer (increased)
             ];
 
-            // Distribute words into layers
-            const wordsInLayers = [[], [], []];
-            let layerIndex = 0;
-            let currentLayerCount = 0;
-            const wordsPerLayerTarget = [16, 17, 16]; // Target distribution for 49 words
+            // Dynamic layer distribution
+            const numLayers = 3;
+            const baseWordsPerLayer = Math.floor(wordsToPlace.length / numLayers);
+            const remainder = wordsToPlace.length % numLayers;
 
-            wordsToPlace.forEach((word, index) => {
-                if (currentLayerCount < wordsPerLayerTarget[layerIndex]) {
-                    wordsInLayers[layerIndex].push(word);
-                    currentLayerCount++;
-                } else {
-                    layerIndex++;
-                    if (layerIndex < wordsPerLayerTarget.length) {
-                        wordsInLayers[layerIndex].push(word);
-                        currentLayerCount = 1;
-                    } else {
-                        // Fallback for extra words if they exceed defined layers
-                        wordsInLayers[wordsInLayers.length - 1].push(word);
-                    }
-                }
-            });
+            const wordsInLayers = [];
+            let currentWordIndexForLayering = 0;
+            for (let i = 0; i < numLayers; i++) {
+                const layerSize = baseWordsPerLayer + (i < remainder ? 1 : 0);
+                wordsInLayers.push(wordsToPlace.slice(currentWordIndexForLayering, currentWordIndexForLayering + layerSize));
+                currentWordIndexForLayering += layerSize;
+            }
 
+            const placedCards = []; // Array to hold card data for collision detection
 
             wordsInLayers.forEach((layerWords, i) => {
                 const radius = radii[i];
@@ -462,11 +455,9 @@
 
                     const angle = (j * angleStep) + initialAngleOffset;
                     
-                    // Calculate position
-                    // CARD_WIDTH and CARD_HEIGHT are assumed from CSS, but better to get them dynamically if possible
-                    // For now, use approximate values for calculation
-                    const CARD_APPROX_WIDTH = 130; 
-                    const CARD_APPROX_HEIGHT = 50; 
+                    // Calculate initial position
+                    const CARD_APPROX_WIDTH = 100; // Updated from CSS
+                    const CARD_APPROX_HEIGHT = 60; // Updated from CSS
 
                     let x = centerX + radius * Math.cos(angle) - (CARD_APPROX_WIDTH / 2);
                     let y = centerY + radius * Math.sin(angle) - (CARD_APPROX_HEIGHT / 2);
@@ -474,21 +465,165 @@
                     wordCard.style.position = 'absolute';
                     wordCard.style.left = `${x}px`;
                     wordCard.style.top = `${y}px`;
-                    // No rotation for now, keep text horizontal
-                    // wordCard.style.transform = `rotate(${angle * (180 / Math.PI)}deg)`; 
 
                     radialLayoutSection.appendChild(wordCard);
+
+                    placedCards.push({
+                        element: wordCard,
+                        x: x,
+                        y: y,
+                        width: CARD_APPROX_WIDTH,
+                        height: CARD_APPROX_HEIGHT,
+                        effectiveRadiusX: CARD_APPROX_WIDTH / 2,
+                        effectiveRadiusY: CARD_APPROX_HEIGHT / 2
+                    });
 
                     // Add event listener to keyword cards to display words without dedicated pages
                     if (!dedicatedPageWords.includes(word)) {
                         wordCard.addEventListener('click', (event) => {
                             event.preventDefault(); // Prevent default link behavior
-                            displayWord(word);
-                            history.pushState({word: word}, '', `?word=${word}`);
+                            // showMessage(`¡La palabra "${word}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras. ¡Vuelve pronto!`);
+                            // Revert to original behavior for now, as per user's previous request to show on page
+                            displaySearchMessage(`¡Tu palabra "${word}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras y cargando nuevas definiciones e inspiraciones cada día. ¡Vuelve pronto para descubrirla!`);
                         });
                     }
                 });
             });
+
+            // --- Collision Resolution (Iterative Push) ---
+            const maxIterations = 800; // Increased iterations
+            const repulsionStrength = 1.5; // Increased repulsion strength
+            const minDistanceFactor = 1.25; // Increased minimum distance factor
+
+            for (let iter = 0; iter < maxIterations; iter++) {
+                let hasOverlaps = false;
+                for (let i = 0; i < placedCards.length; i++) {
+                    const cardA = placedCards[i];
+                    for (let j = i + 1; j < placedCards.length; j++) {
+                        const cardB = placedCards[j];
+
+                        const dx = (cardA.x + cardA.width / 2) - (cardB.x + cardB.width / 2);
+                        const dy = (cardA.y + cardA.height / 2) - (cardB.y + cardB.height / 2);
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        const requiredDistance = (Math.max(cardA.effectiveRadiusX, cardA.effectiveRadiusY) + Math.max(cardB.effectiveRadiusX, cardB.effectiveRadiusY)) * minDistanceFactor;
+
+                        if (distance < requiredDistance) {
+                            hasOverlaps = true;
+                            const overlap = requiredDistance - distance;
+                            if (overlap > 0) {
+                                const angle = Math.atan2(dy, dx);
+                                const moveX = (overlap / 2) * Math.cos(angle) * repulsionStrength;
+                                const moveY = (overlap / 2) * Math.sin(angle) * repulsionStrength;
+
+                                cardA.x += moveX;
+                                cardA.y += moveY;
+                                cardB.x -= moveX;
+                                cardB.y -= moveY;
+                            }
+                        }
+                    }
+                }
+                // Empujar las tarjetas hacia el centro si se alejan demasiado
+                for (let i = 0; i < placedCards.length; i++) {
+                    const card = placedCards[i];
+                    const cardCenterX = card.x + card.width / 2;
+                    const cardCenterY = card.y + card.height / 2;
+                    const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
+
+                    const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65;
+                    if (distFromCenter > maxAllowedRadius) {
+                        hasOverlaps = true;
+                        const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
+                        const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1;
+                        card.x += pushStrength * Math.cos(angleToCenter);
+                        card.y += pushStrength * Math.sin(angleToCenter);
+                    }
+
+                    // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
+                    const vidaButtonCenterTolerance = 15;
+                    const effectiveVidaButtonRadiusX = (VIDA_BUTTON_WIDTH / 2) + vidaButtonCenterTolerance;
+                    const effectiveVidaButtonRadiusY = (VIDA_BUTTON_HEIGHT / 2) + vidaButtonCenterTolerance;
+
+                    const cardRadiusX = card.width / 2;
+                    const cardRadiusY = card.height / 2;
+
+                    const dx_vida = (cardCenterX) - centerX;
+                    const dy_vida = (cardCenterY) - centerY;
+                    const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
+
+                    const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10;
+
+                    if (distance_vida < requiredVidaDistance) {
+                        hasOverlaps = true;
+                        const overlap_vida = requiredVidaDistance - distance_vida;
+                        if (overlap_vida > 0) {
+                            const angle_vida = Math.atan2(dy_vida, dx_vida);
+                            const moveX_vida = overlap_vida * Math.cos(angle_vida) * repulsionStrength;
+                            const moveY_vida = overlap_vida * Math.sin(angle_vida) * repulsionStrength;
+                            card.x += moveX_vida;
+                            card.y += moveY_vida;
+                        }
+                    }
+                }
+
+                if (!hasOverlaps && iter > 0) break;
+            }
+
+            placedCards.forEach(card => {
+                card.element.style.left = `${card.x}px`;
+                card.element.style.top = `${card.y}px`;
+            });
+        }
+
+        // Event listener para el input de búsqueda
+        wordInput.addEventListener('input', placeWords); // Changed from wordSearchInput to wordInput
+
+        // Event listener para el botón "Buscar"
+        searchButton.addEventListener('click', () => {
+            const searchTerm = wordInput.value.toUpperCase().trim(); // Changed from wordSearchInput to wordInput
+            if (searchTerm) {
+                if (dedicatedPageWords.includes(searchTerm)) {
+                    window.location.href = searchTerm.toLowerCase() + ".html";
+                } else if (allWords.includes(searchTerm)) {
+                    displaySearchMessage(`¡Tu palabra "${searchTerm}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras y cargando nuevas definiciones e inspiraciones cada día. ¡Vuelve pronto para descubrirla!`);
+                } else {
+                    displaySearchMessage(`"${searchTerm}" no encontrada en nuestra colección.`, true);
+                }
+            } else {
+                displaySearchMessage("Por favor, introduce una palabra.", true);
+            }
+        });
+
+        // Event listener para el botón "Mi Palabra del Día"
+        randomButton.addEventListener('click', () => { // Changed from randomWordButton to randomButton
+            const randomIndex = Math.floor(Math.random() * allWords.length); // Elegir de todas las palabras, incluyendo VIDA
+            const randomWord = allWords[randomIndex];
+            if (dedicatedPageWords.includes(randomWord)) {
+                window.location.href = randomWord.toLowerCase() + ".html";
+            } else {
+                displaySearchMessage(`¡Tu Palabra del Día es "${randomWord}"! Estamos expandiendo nuestro universo de Ricas Palabras y pronto estará disponible su definición. ¡Vuelve pronto!`);
+            }
+        });
+
+        // Event listener para el botón central VIDA
+        centralVidaButton.addEventListener('click', (event) => {
+            const word = event.currentTarget.dataset.word;
+            if (wordPageMap[word]) {
+                window.location.href = wordPageMap[word];
+            } else {
+                displaySearchMessage(`¡La palabra "${word}" está en camino!`, true); // Fallback, should not happen for VIDA
+            }
+        });
+
+        // Función para mostrar mensajes de búsqueda/estado
+        function displaySearchMessage(message, isError = false) {
+            searchMessage.textContent = message;
+            searchMessage.classList.remove('hidden');
+            searchMessage.style.color = isError ? '#ef4444' : '#4299e1'; // Rojo para error, azul para información/próximamente
+            setTimeout(() => {
+                searchMessage.classList.add('hidden');
+            }, 5000); // Ocultar mensaje después de 5 segundos
         }
 
         // Check for URL parameter on page load
@@ -498,15 +633,17 @@
                 results = regex.exec(url);
             if (!results) return null;
             if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            return decodeURIComponent(results[2].replace(/\+/g = ' '));
         }
 
         window.onload = () => {
             populateRadialWords(); // Call the new function
             const urlWord = getParameterByName('word');
             if (urlWord) {
-                if (!dedicatedPageWords.includes(urlWord.toUpperCase())) {
-                    displayWord(urlWord);
+                if (dedicatedPageWords.includes(urlWord.toUpperCase())) {
+                    window.location.href = urlWord.toLowerCase() + ".html"; // Redirect if it has a dedicated page
+                } else {
+                    displaySearchMessage(`¡Tu palabra "${urlWord.toUpperCase()}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras y cargando nuevas definiciones e inspiraciones cada día. ¡Vuelve pronto para descubrirla!`);
                 }
             }
         };
@@ -514,12 +651,22 @@
         // Handle browser back/forward buttons
         window.addEventListener('popstate', (event) => {
             if (event.state && event.state.word) {
-                displayWord(event.state.word);
+                // If a word is in the history state, check if it has a dedicated page
+                if (dedicatedPageWords.includes(event.state.word.toUpperCase())) {
+                    // If it has a dedicated page, we should ideally navigate there.
+                    // However, popstate fires *after* the browser has navigated.
+                    // For now, we'll just re-display the message if it's not a dedicated page.
+                    // A full solution would involve checking if the current URL matches the dedicated page.
+                    // For simplicity, we'll assume if it's a dedicated page, the browser handles it.
+                    // If it's a non-dedicated word, we display the message.
+                    displaySearchMessage(`¡Tu palabra "${event.state.word.toUpperCase()}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras y cargando nuevas definiciones e inspiraciones cada día. ¡Vuelve pronto para descubrirla!`);
+                } else {
+                    // For words without dedicated pages, just display the message.
+                    displaySearchMessage(`¡Tu palabra "${event.state.word.toUpperCase()}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras y cargando nuevas definiciones e inspiraciones cada día. ¡Vuelve pronto para descubrirla!`);
+                }
             } else if (window.location.search === "") {
-                wordDisplay.textContent = "";
-                wordMeaning.textContent = "Busca o descubre una palabra.";
-                wordDisplayArea.style.backgroundColor = "#ffffff";
-                wordDisplayArea.style.borderColor = "#cbd5e0";
+                // If back to no parameter, clear display
+                displaySearchMessage("Busca o descubre una palabra.", false); // Info message
             }
         });
 
