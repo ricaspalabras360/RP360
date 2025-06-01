@@ -115,7 +115,8 @@
 
         .keyword-card {
             padding: 0.8rem 1.2rem;
-            border-radius: 0.5rem; /* Cambiado a bordes más puntiagudos */
+            /* Modificado para forma de hoja/ojo */
+            border-radius: 0.5rem 2rem 0.5rem 2rem; 
             box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15);
             text-align: center;
             display: flex;
@@ -594,15 +595,9 @@
                     card.element.style.top = `${card.y}px`;
                 });
             } else {
-                // Mobile logic: simply append elements, let CSS handle layout
-                wordElements.forEach((wordCard) => {
-                    radialWordsContainer.appendChild(wordCard); // Append for mobile
-                    // *** IMPORTANTE: Eliminar estilos inline de posicionamiento para móvil ***
-                    wordCard.style.position = ''; 
-                    wordCard.style.left = ''; 
-                    wordCard.style.top = ''; 
-                    wordCard.style.transform = ''; 
-                });
+                // Mobile logic: No need to set position:static or transform:none explicitly here
+                // as they are handled by the CSS media query for .keyword-card and .central-vida-button
+                // when the screen width is <= 768px.
             }
         }
 
