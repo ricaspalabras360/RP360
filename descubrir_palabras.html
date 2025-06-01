@@ -328,6 +328,8 @@
             'bg-cyan-400', 'bg-sky-400', 'bg-blue-400'
         ];
 
+        // Define all words in the desired order for radial display
+        // This array will be the source of truth for the word positions
         let allWords = [
             "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
             "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
@@ -335,60 +337,13 @@
             "EVOLUCION", "EVOLUCIONAR", "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA",
             "GRACIAS", "GRATITUD", "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR",
             "PAPÁ", "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS",
-            "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR",
-            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "ALEGRIA", "VOLUNTAD"
+            "PROSPERIDAD", "PURIFICAR", "REIR",
+            "RESILIENCIA", "VOLUNTAD", "SALUD", // VOLUNTAD is placed here
+            "SEMBRAR",
+            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", // VALENTIA is placed here, after UNIVERSO
+            "ALEGRIA",
+            "VIDA" // VIDA is at the end, will be filtered out for radial display
         ];
-
-        // 1. Remove "VIDA" as it's handled separately
-        const vidaWord = "VIDA";
-        let otherWords = allWords.filter(word => word !== vidaWord);
-
-        // 2. Sort the remaining words alphabetically
-        otherWords.sort();
-
-        // 3. Manual re-positioning for "VOLUNTAD"
-        const indexResiliencia = otherWords.indexOf("RESILIENCIA");
-        const indexSalud = otherWords.indexOf("SALUD");
-        const currentVoluntadIndex = otherWords.indexOf("VOLUNTAD");
-
-        if (currentVoluntadIndex !== -1) {
-            otherWords.splice(currentVoluntadIndex, 1); // Remove VOLUNTAD
-        }
-        if (indexResiliencia !== -1 && indexSalud !== -1) {
-            // Re-insert VOLUNTAD between RESILIENCIA and SALUD
-            // Find the new index of RESILIENCIA (in case it shifted after removal)
-            const newIndexResiliencia = otherWords.indexOf("RESILIENCIA");
-            otherWords.splice(newIndexResiliencia + 1, 0, "VOLUNTAD");
-        } else if (indexResiliencia !== -1) {
-            otherWords.splice(indexResiliencia + 1, 0, "VOLUNTAD");
-        } else if (indexSalud !== -1) {
-            otherWords.splice(indexSalud, 0, "VOLUNTAD");
-        } else {
-            // Fallback if neither is found, just add it to the end
-            otherWords.push("VOLUNTAD");
-        }
-
-        // 4. Manual re-positioning for "VALENTIA"
-        const currentValentiaIndex = otherWords.indexOf("VALENTIA");
-        const indexUnion = otherWords.indexOf("UNIÓN");
-        const indexUniverso = otherWords.indexOf("UNIVERSO");
-
-        if (currentValentiaIndex !== -1) {
-            otherWords.splice(currentValentiaIndex, 1); // Remove VALENTIA
-        }
-
-        // Place VALENTIA after UNIVERSO for a more harmonious flow
-        if (indexUniverso !== -1) {
-            const newIndexUniverso = otherWords.indexOf("UNIVERSO"); // Get updated index
-            otherWords.splice(newIndexUniverso + 1, 0, "VALENTIA");
-        } else if (indexUnion !== -1) { // Fallback if UNIVERSO not found
-            const newIndexUnion = otherWords.indexOf("UNIÓN");
-            otherWords.splice(newIndexUnion + 1, 0, "VALENTIA");
-        } else {
-            // Fallback if neither is found, just add it to the end
-            otherWords.push("VALENTIA");
-        }
-
 
         // Mapeo de palabras a sus archivos HTML dedicados
         const wordPageMap = {
@@ -397,11 +352,15 @@
             "EVOLUCIONAR": "evolucionar.html", 
             "ALEGRIA": "alegria.html", 
             "ENERGIA": "energia.html", 
-            "FUERZA": "fuerza.html" // Added FUERZA
+            "FUERZA": "fuerza.html" 
             // Cuando crees más páginas (ej. paz.html, gratitud.html), agrégalas aquí:
             // "PAZ": "paz.html",
             // "GRATITUD": "gratitud.html",
         };
+
+        const vidaWord = "VIDA";
+        // Filter out VIDA from the list of words to be placed radially
+        const otherWords = allWords.filter(word => word !== vidaWord);
 
         const radialWordsContainer = document.getElementById('radialWordsContainer');
         const wordSearchInput = document.getElementById('wordSearchInput');
@@ -629,9 +588,15 @@
                     card.element.style.top = `${card.y}px`;
                 });
             } else {
-                // Mobile logic: No need to set position:static or transform:none explicitly here
-                // as they are handled by the CSS media query for .keyword-card and .central-vida-button
-                // when the screen width is <= 768px.
+                // Mobile logic: simply append elements, let CSS handle layout
+                wordElements.forEach((wordCard) => {
+                    radialWordsContainer.appendChild(wordCard); // Append for mobile
+                    // *** IMPORTANTE: Eliminar estilos inline de posicionamiento para móvil ***
+                    wordCard.style.position = ''; 
+                    wordCard.style.left = ''; 
+                    wordCard.style.top = ''; 
+                    wordCard.style.transform = ''; 
+                });
             }
         }
 
