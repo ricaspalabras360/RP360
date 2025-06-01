@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREAR - Ricas Palabras 360</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            color: #1a202c; /* gray-900 */
+        }
+        .back-button {
+            background-color: #4299e1; /* Blue-500 */
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #3182ce; /* Blue-600 */
+        }
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .card-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+            max-height: 500px; /* Limit height for larger screens */
+            object-fit: contain; /* Ensure the image fits within boundaries */
+        }
+        .card-title {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 800; /* font-extrabold */
+            color: #6d28d9; /* Violet-700 for CREAR */
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-description {
+            font-size: 1.125rem; /* text-lg */
+            color: #4a5568; /* gray-700 */
+            line-height: 1.8;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            background-color: #f6ad55; /* Orange-400 */
+            color: #2d3748; /* gray-800 */
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0.5rem; /* Added margin for spacing between buttons */
+        }
+        .cta-button:hover {
+            background-color: #ed8936; /* Orange-500 */
+            transform: translateY(-2px);
+        }
+        .footer {
+            background-color: #2d3748; /* gray-800 */
+            color: #a0aec0; /* gray-400 */
+            padding: 1.5rem 1rem;
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .header-title {
+                margin-bottom: 1rem;
+                font-size: 1.25rem;
+            }
+            .main-content {
+                padding: 1.5rem 0.5rem;
+            }
+            .card-title {
+                font-size: 2.25rem;
+            }
+            .card-description {
+                font-size: 1rem;
+            }
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-title">Ricas Palabras 360</div>
+        <a href="index.html" class="back-button">Volver a la Página Principal</a>
+    </header>
+
+    <main class="main-content">
+        <img src="crear.png" alt="Carta de CREAR de Ricas Palabras" class="card-image" onerror="this.src='https://placehold.co/400x600/6d28d9/ffffff?text=Carta+CREAR'; this.onerror=null;">
+        
+        <h1 class="card-title">CREAR</h1>
+        
+        <p class="card-description">
+            Crear es el acto fundamental de manifestar lo que reside en tu interior. Es la capacidad de dar forma a tus ideas, de transformar la inspiración en realidad tangible y de dejar tu huella única en el mundo. Esta carta te invita a conectar con tu poder creativo ilimitado, a explorar nuevas posibilidades y a construir el camino que deseas recorrer. Cada pensamiento, cada palabra y cada acción son una oportunidad para crear algo nuevo. ¡Atrévete a innovar, a experimentar y a dar vida a tus sueños!
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+            <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="cta-button">
+                Descubrí más productos para CREAR
+            </a>
+            <a href="descubrir_palabras.html" class="cta-button bg-emerald-500 hover:bg-emerald-600 text-white">
+                Descubrí más palabras
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
