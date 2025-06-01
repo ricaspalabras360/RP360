@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -333,16 +333,40 @@
             'bg-sky-300', 'bg-blue-300'
         ];
 
-        const allWords = [
+        let allWords = [
             "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
             "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
             "DESPERTAR", "DISFRUTAR", "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO",
             "EVOLUCION", "EVOLUCIONAR", "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA",
             "GRACIAS", "GRATITUD", "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR",
             "PAPÁ", "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS",
-            "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "VOLUNTAD", "SALUD", "SEMBRAR", // Moved VOLUNTAD
-            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "ALEGRIA" 
-        ].sort(); // Asegura el orden alfabético
+            "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR",
+            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "ALEGRIA", "VOLUNTAD" // VOLUNTAD added to the list to be sorted
+        ];
+
+        // Sort the base list alphabetically first
+        allWords.sort();
+
+        // Now, manually adjust "VOLUNTAD" position to be between "RESILIENCIA" and "SALUD"
+        const indexResiliencia = allWords.indexOf("RESILIENCIA");
+        const indexVoluntad = allWords.indexOf("VOLUNTAD");
+        const indexSalud = allWords.indexOf("SALUD");
+
+        // Only proceed if all three words are found and VOLUNTAD is not already in the desired spot
+        if (indexResiliencia !== -1 && indexVoluntad !== -1 && indexSalud !== -1 &&
+            !(indexVoluntad > indexResiliencia && indexVoluntad < indexSalud)) {
+            
+            // Remove VOLUNTAD from its current sorted position
+            allWords.splice(indexVoluntad, 1);
+
+            // Re-calculate the index of RESILIENCIA in the modified array
+            const newIndexResiliencia = allWords.indexOf("RESILIENCIA");
+
+            // Insert VOLUNTAD right after RESILIENCIA
+            if (newIndexResiliencia !== -1) {
+                allWords.splice(newIndexResiliencia + 1, 0, "VOLUNTAD");
+            }
+        }
 
         // Mapeo de palabras a sus archivos HTML dedicados
         const wordPageMap = {
