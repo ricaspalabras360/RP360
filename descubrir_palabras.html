@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -100,26 +100,26 @@
             background-color: #dd6b20; /* Orange-600 */
         }
         
-        /* Updated keyword-card styles for rounded/bubble effect */
+        /* Updated keyword-card styles for rounded/bubble effect (leaf/surfboard) */
         .keyword-card {
-            padding: 0.6rem 1rem; /* Adjusted padding */
-            border-radius: 9999px; /* rounded-full for oval/leaf shape */
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15); /* Stronger shadow */
+            padding: 0.6rem 1rem; 
+            border-radius: 9999px; /* Fully rounded for oval/leaf shape */
+            box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 55px; /* Fixed height */
-            min-width: 120px; /* Minimum width, allowing it to grow */
-            max-width: 180px; /* Max width to prevent excessive stretching */
+            min-width: 120px; /* Minimum width */
+            max-width: 180px; /* Maximum width */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer; 
             text-decoration: none; 
             aspect-ratio: 2.5 / 1; /* Maintain aspect ratio for the shape */
         }
         .keyword-card:hover {
-            transform: translateY(-5px) scale(1.05); /* More pronounced lift and slight scale */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px) scale(1.08); /* More pronounced lift and scale */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
         .keyword-text {
             font-size: 0.9rem; 
