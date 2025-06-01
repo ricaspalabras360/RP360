@@ -129,26 +129,32 @@
             max-width: 900px; /* Wider for more columns */
             margin-top: 3rem;
         }
+        /* Updated keyword-card styles for rounded/bubble effect */
         .keyword-card {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            padding: 0.8rem 1.2rem; /* Adjusted padding */
+            border-radius: 9999px; /* rounded-full for leaf/oval shape */
+            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15); /* Stronger shadow for floating effect */
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 80px;
-            transition: transform 0.2s ease-in-out;
-            text-decoration: none; /* Remove underline from links */
+            min-height: 50px; /* Smaller min-height for rounded shape */
+            width: 130px; /* Fixed width for consistency */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: pointer; 
+            text-decoration: none; /* Ensure no underline for links */
         }
         .keyword-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px) scale(1.05); /* More pronounced lift and slight scale */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .keyword-text {
-            font-size: 1rem; /* text-base */
-            font-weight: 600;
-            color: #374151;
+            font-size: 0.95rem; /* Adjusted font size */
+            font-weight: 600; 
+            color: #374151; 
+            word-break: break-word; 
+            line-height: 1.1; 
+            white-space: nowrap; /* Important! Prevent text from breaking into multiple lines */
         }
         .footer {
             background-color: #2d3748; /* gray-800 */
@@ -157,6 +163,45 @@
             text-align: center;
             font-size: 0.875rem; /* text-sm */
             margin-top: auto; /* Push footer to bottom */
+        }
+
+        /* Styles for the radial layout */
+        .main-word-area {
+            position: relative; /* Para posicionar los elementos hijos de forma absoluta */
+            width: 100%;
+            max-width: 800px; /* Ancho máximo para el área de palabras */
+            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
+            margin-bottom: 2rem;
+            display: flex; /* Usamos flex para centrar el botón VIDA */
+            justify-content: center;
+            align-items: center;
+        }
+        .central-vida-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centra el botón VIDA con precisión */
+            z-index: 10; /* Asegura que esté por encima de las otras palabras */
+            background-color: #FFD700; /* Color dorado para VIDA */
+            color: #374151;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 1.5rem 2.5rem;
+            border-radius: 9999px; /* Botón circular */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            white-space: nowrap; /* Evita que la palabra se rompa en varias líneas */
+        }
+        .central-vida-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .radial-words-container {
+            position: absolute; /* Ocupa todo el espacio del main-word-area */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
         /* Responsive adjustments */
@@ -199,6 +244,45 @@
             }
             .keyword-card {
                 min-height: 70px;
+            }
+
+            /* Mobile specific radial layout adjustments */
+            .main-word-area {
+                position: static; /* Anula el posicionamiento absoluto */
+                padding-bottom: 0; /* Eliminar el padding que crea la relación de aspecto */
+                max-width: 100%; /* Ocupar todo el ancho disponible */
+                height: auto; /* Permitir que la altura se ajuste al contenido */
+                flex-direction: column; /* Asegura que los elementos se apilen (si display flex) */
+                align-items: center; /* Centra los elementos apilados (si display flex) */
+            }
+
+            .central-vida-button {
+                position: static !important; 
+                transform: none !important; 
+                margin-bottom: 1.5rem; 
+                width: 80%; 
+                padding: 1rem 1.5rem; 
+                font-size: 1.3rem; 
+            }
+
+            .radial-words-container {
+                position: static;
+                display: flex;
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.75rem; 
+                width: 100%;
+                height: auto; 
+            }
+
+            .keyword-card {
+                position: static !important; 
+                transform: none !important; 
+                width: 80%; 
+                max-width: 250px; 
+                margin: 0.25rem auto; 
+                padding: 0.7rem 1rem; 
+                font-size: 0.9rem; 
             }
         }
     </style>
@@ -250,25 +334,32 @@
             "SERENIDAD", "SILENCIO", "SOBERANIA", "TRANSFORMACION", "UNION", "VALOR", "VOLUNTAD",
             // Verbos (sin página dedicada, se muestran en esta misma página)
             "ACCIONAR", "ACTIVAR", "APRENDER", "CONECTAR", "CREAR", "CRECER", "CULTIVAR", "MEDITAR", "PURIFICAR", "REIR", "SEMBRAR", "SANAR"
-        ];
+        ].sort(); // Asegura el orden alfabético
 
         // Definimos las palabras que tienen una página HTML dedicada
         const dedicatedPageWords = [
             "AMOR", "ALEGRIA", "ENERGIA", "FUERZA", "EVOLUCIONAR", "VIDA"
         ];
 
-        // Mapeo de colores para las tarjetas (puedes ampliarlo)
+        // Mapeo de colores para las tarjetas (nueva paleta)
+        const colors = [
+            'bg-rose-200', 'bg-emerald-200', 'bg-sky-200', 'bg-amber-200',
+            'bg-purple-200', 'bg-teal-200', 'bg-indigo-200', 'bg-yellow-200',
+            'bg-pink-100', 'bg-lime-100', 'bg-cyan-100', 'bg-orange-100',
+            'bg-fuchsia-200', 'bg-blue-300', 'bg-green-300', 'bg-red-300'
+        ];
+
         const wordColors = {
-            "AMOR": "bg-red-200",
-            "ALEGRIA": "bg-yellow-200",
-            "ENERGIA": "bg-green-200",
-            "FUERZA": "bg-orange-200",
+            "AMOR": "bg-rose-200",
+            "ALEGRIA": "bg-amber-200",
+            "ENERGIA": "bg-emerald-200",
+            "FUERZA": "bg-indigo-200",
             "EVOLUCIONAR": "bg-purple-200",
-            "VIDA": "bg-yellow-300", // Diferente para destacarla
-            "ACCIONAR": "bg-indigo-200",
+            "VIDA": "bg-yellow-300", // Destacada
+            "ACCIONAR": "bg-orange-200",
             "CONECTAR": "bg-pink-200",
-            "CREAR": "bg-blue-200",
-            "DESPERTAR": "bg-purple-220", // Un color ligeramente diferente si existe en tu tailwind config
+            "CREAR": "bg-sky-200",
+            "DESPERTAR": "bg-fuchsia-200",
             "GRATITUD": "bg-teal-200",
             "PAZ": "bg-blue-100",
             "FELICIDAD": "bg-yellow-100",
@@ -284,6 +375,11 @@
         const wordMeaning = document.getElementById('wordMeaning');
         const allWordsGrid = document.getElementById('allWordsGrid');
 
+        // References for radial layout
+        const radialWordsContainer = document.getElementById('radialWordsContainer');
+        const centralVidaButton = document.querySelector('.central-vida-button');
+
+
         // Function to display a word (either from search or URL param)
         function displayWord(word) {
             const normalizedWord = word.toUpperCase();
@@ -292,7 +388,7 @@
                 // You would fetch/define the meaning here
                 wordMeaning.textContent = "Significado de " + normalizedWord + " (próximamente contenido detallado)";
                 wordDisplayArea.style.backgroundColor = wordColors[normalizedWord] || wordColors.default;
-                wordDisplayArea.style.borderColor = wordColors[normalizedWord] ? wordColors[normalizedWord].replace('200', '400').replace('300', '500') : '#cbd5e0';
+                wordDisplayArea.style.borderColor = wordColors[normalizedWord] ? wordColors[normalizedWord].replace('200', '400').replace('300', '500').replace('100', '300') : '#cbd5e0';
             } else {
                 wordDisplay.textContent = "Palabra no encontrada";
                 wordMeaning.textContent = "Por favor, intenta con otra palabra.";
@@ -305,7 +401,6 @@
         searchButton.addEventListener('click', () => {
             const searchTerm = wordInput.value.trim().toUpperCase();
             if (searchTerm) {
-                // For direct search, always show on this page for now, unless it has a dedicated page
                 if (dedicatedPageWords.includes(searchTerm)) {
                     window.location.href = searchTerm.toLowerCase() + ".html";
                 } else {
@@ -323,18 +418,16 @@
             const randomWord = allWords[randomIndex];
 
             if (dedicatedPageWords.includes(randomWord)) {
-                // If the random word has a dedicated page, navigate to it
                 window.location.href = randomWord.toLowerCase() + ".html";
             } else {
-                // Otherwise, display it on this page
                 displayWord(randomWord);
-                // Update URL without reloading to reflect the word for potential sharing
                 history.pushState({word: randomWord}, '', `?word=${randomWord}`);
             }
         });
 
         // Populate the grid with all words
         function populateAllWordsGrid() {
+            allWordsGrid.innerHTML = ''; // Clear existing cards
             allWords.forEach(word => {
                 const wordCard = document.createElement('a');
                 // Check if the word has a dedicated page for its link
@@ -373,8 +466,6 @@
             populateAllWordsGrid();
             const urlWord = getParameterByName('word');
             if (urlWord) {
-                // If a word is in the URL, check if it has a dedicated page
-                // If not, display it on this page. If yes, it would have already redirected.
                 if (!dedicatedPageWords.includes(urlWord.toUpperCase())) {
                     displayWord(urlWord);
                 }
