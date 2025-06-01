@@ -1,9 +1,9 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descubrir Palabras - Ricas Palabras 360</title>
+    <title>Vos elegís a que te conectas! - Ricas Palabras 360</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,147 +11,79 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background-color: #f0f4f8; /* Fondo azul-gris claro */
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Permite que el contenido se apile verticalmente */
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            padding: 1rem;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Evita el scroll horizontal */
         }
-        .header {
+        .page-container {
             background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-        }
-        .header-title {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 700; /* font-bold */
-            color: #1a202c; /* gray-900 */
-            margin-bottom: 0.5rem; /* Space below on wrap */
-        }
-        .back-button {
-            background-color: #4299e1; /* Blue-500 */
-            color: white;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            white-space: nowrap; /* Prevent button text from wrapping */
-        }
-        .back-button:hover {
-            background-color: #3182ce; /* Blue-600 */
-        }
-        .main-content {
-            flex-grow: 1;
-            padding: 2rem 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
         }
-        .word-search-container {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        .page-title {
+            font-size: 2.5rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1a202c; /* gray-900 */
+            margin-bottom: 2rem;
+        }
+        .search-controls {
             margin-bottom: 2rem;
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column; /* Apilar en móvil */
+            gap: 1rem; /* Espacio entre elementos */
+            align-items: center;
         }
         .search-input {
-            border: 2px solid #cbd5e0; /* gray-300 */
-            border-radius: 0.5rem;
+            width: 100%;
             padding: 0.75rem 1rem;
-            width: calc(100% - 130px); /* Adjust width considering button */
-            margin-right: 0.5rem;
+            border: 2px solid #cbd5e0; /* border-gray-300 */
+            border-radius: 0.5rem; /* rounded-lg */
             font-size: 1rem;
+            color: #4a5568; /* text-gray-700 */
+            outline: none;
             transition: border-color 0.3s ease;
         }
         .search-input:focus {
-            outline: none;
-            border-color: #4299e1; /* Blue-500 */
+            border-color: #4299e1; /* border-blue-500 */
         }
-        .search-button, .random-button {
-            background-color: #48bb78; /* Green-500 */
+        .random-word-button, .search-button { /* Estilos para ambos botones */
+            background-color: #6d28d9; /* Indigo-700 */
             color: white;
             font-weight: 600;
-            padding: 0.75rem 1.25rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            border: none;
-            white-space: nowrap;
+            white-space: nowrap; /* Evita que el texto se rompa */
         }
-        .search-button:hover, .random-button:hover {
-            background-color: #38a169; /* Green-600 */
+        .random-word-button:hover, .search-button:hover {
+            background-color: #5b21b6; /* Indigo-800 */
         }
-        .random-button {
-            background-color: #ed8936; /* Orange-500 */
-            margin-top: 1rem; /* Space from search bar */
-            width: 100%;
-        }
-        .random-button:hover {
-            background-color: #dd6b20; /* Orange-600 */
-        }
-        
-        /* Updated keyword-card styles for rounded/bubble effect (leaf/surfboard) */
-        .keyword-card {
-            padding: 0.8rem 1.2rem; /* Adjusted padding for better fit */
-            border-radius: 50% / 25%; /* Key for elongated oval/leaf/surfboard shape */
-            box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 60px; /* Fixed height to control aspect ratio with padding */
-            min-width: 140px; /* Wider for surfboard */
-            max-width: 220px; /* Maximum width */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            cursor: pointer; 
-            text-decoration: none; 
-        }
-        .keyword-card:hover {
-            transform: translateY(-8px) scale(1.08); /* More pronounced lift and scale */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        }
-        .keyword-text {
-            font-size: 0.9rem; 
-            font-weight: 600; 
-            color: #374151; 
-            white-space: nowrap; 
-            overflow: hidden; /* Hide overflow if text is too long */
-            text-overflow: ellipsis; /* Add ellipsis for overflow */
-            padding: 0 0.2rem; /* Small internal padding to prevent text from touching edges */
-        }
-        .footer {
-            background-color: #2d3748; /* gray-800 */
-            color: #a0aec0; /* gray-400 */
-            padding: 1.5rem 1rem;
-            text-align: center;
-            font-size: 0.875rem; /* text-sm */
-            margin-top: auto; /* Push footer to bottom */
-        }
-
-        /* Styles for the radial layout */
-        .radial-layout-section {
+        .main-word-area {
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
             max-width: 800px; /* Ancho máximo para el área de palabras */
-            min-height: 800px; /* Asegura que siempre haya espacio para el layout radial */
+            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
             margin-bottom: 2rem;
-            margin-top: 3rem; /* Espacio desde el área de display */
             display: flex; /* Usamos flex para centrar el botón VIDA */
             justify-content: center;
             align-items: center;
-            /* Eliminado: border-radius: 50%; */
-            /* Eliminado: overflow: hidden; */
-            /* Eliminado: box-shadow: 0 0 15px rgba(0,0,0,0.1); */
         }
         .central-vida-button {
             position: absolute;
@@ -163,26 +95,63 @@
             color: #374151;
             font-size: 1.5rem;
             font-weight: 700;
-            padding: 1.5rem 2.5rem; /* Ajustado para una forma más redonda */
-            border-radius: 50%; /* Make it a perfect circle */
-            aspect-ratio: 1 / 1; /* Ensure perfect circle */
+            padding: 1.5rem 2.5rem;
+            border-radius: 9999px; /* Botón circular */
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
             white-space: nowrap; /* Evita que la palabra se rompa en varias líneas */
-            display: flex; /* Para centrar el texto dentro del círculo */
-            align-items: center;
-            justify-content: center;
         }
         .central-vida-button:hover {
             transform: translate(-50%, -50%) scale(1.1);
         }
-        /* Keyword cards within the radial layout */
-        .radial-words-container .keyword-card {
-            position: absolute; /* Absolute positioning for radial layout */
-            /* Initial position will be set by JS */
+        .radial-words-container {
+            position: absolute; /* Ocupa todo el espacio del main-word-area */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
+        .keyword-card {
+            padding: 0.8rem 1.2rem;
+            border-radius: 9999px; /* rounded-full para forma de hoja/ovalada */
+            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            width: 130px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .keyword-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .keyword-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #374151;
+            word-break: break-word;
+            line-height: 1.1;
+            white-space: nowrap; /* ¡Importante! Evita que el texto se corte en varias líneas */
+        }
+        .back-button {
+            background-color: #4299e1; /* Blue-500 */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background-color: #3182ce; /* Blue-600 */
+        }
         .search-message {
             margin-top: 0.5rem;
             font-size: 0.9rem;
@@ -194,105 +163,175 @@
             margin-right: auto;
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+        .modal-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.visible .modal-content {
+            transform: translateY(0);
+        }
+        .modal-message {
+            font-size: 1.125rem;
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+        .modal-close-button {
+            background-color: #4299e1;
+            color: white;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .modal-close-button:hover {
+            background-color: #3182ce;
+        }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start; /* Align header items to start on small screens */
+        /* **************************************** */
+        /* MEDIA QUERIES PARA OPTIMIZACIÓN MÓVIL */
+        /* **************************************** */
+        @media (max-width: 768px) { /* Ajustes para pantallas más pequeñas (móvil y tablets pequeñas) */
+            .page-container {
+                padding: 1rem; /* Ajustar padding general para móvil */
             }
-            .header-title {
-                margin-bottom: 1rem;
-                width: 100%;
+
+            .page-title {
+                font-size: 2rem; /* Título más pequeño en móvil */
+                margin-bottom: 1.5rem;
             }
-            .back-button {
-                width: 100%;
-                text-align: center;
+            .search-controls {
+                margin-bottom: 1.5rem;
+                max-width: 90%;
             }
-            .word-search-container {
-                padding: 1.5rem;
+            /* Para que el buscador y el botón se pongan uno al lado del otro en pantallas medianas si hay espacio */
+            @media (min-width: 480px) and (max-width: 768px) {
+                .search-controls {
+                    flex-direction: row;
+                    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+                    justify-content: center;
+                    gap: 0.75rem;
+                }
+                .search-input {
+                    flex-grow: 1; /* Permite que el input ocupe el espacio disponible */
+                }
             }
-            .search-flex {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .search-input {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 0.75rem;
-            }
-            .search-button {
-                width: 100%;
-            }
-            
-            /* Mobile specific radial layout adjustments */
-            .radial-layout-section {
+
+
+            .main-word-area {
                 position: static; /* Anula el posicionamiento absoluto */
                 padding-bottom: 0; /* Eliminar el padding que crea la relación de aspecto */
                 max-width: 100%; /* Ocupar todo el ancho disponible */
                 height: auto; /* Permitir que la altura se ajuste al contenido */
                 flex-direction: column; /* Asegura que los elementos se apilen (si display flex) */
                 align-items: center; /* Centra los elementos apilados (si display flex) */
-                border-radius: 0; /* Remove circular border for mobile */
-                display: flex; /* Ensure it's a flex container for stacking */
-                min-height: auto; /* Reset min-height for mobile stacking */
-                overflow: visible; /* Allow stacking in mobile */
-                box-shadow: none; /* Remove shadow for mobile */
             }
 
             .central-vida-button {
-                position: static !important; 
-                transform: none !important; 
-                margin-bottom: 1.5rem; 
-                width: 80%; 
-                padding: 1rem 1.5rem; 
-                font-size: 1.3rem; 
+                position: static !important;
+                transform: none !important;
+                margin-bottom: 1.5rem;
+                width: 80%;
+                padding: 1rem 1.5rem;
+                font-size: 1.3rem;
             }
 
-            .radial-words-container .keyword-card { /* Target cards inside the new container */
-                position: static !important; 
-                transform: none !important; 
-                width: 80%; 
-                max-width: 250px; 
-                margin: 0.25rem auto; 
-                padding: 0.7rem 1rem; 
-                font-size: 0.9rem; 
+            .radial-words-container {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                width: 100%;
+                height: auto;
+            }
+
+            .keyword-card {
+                position: static !important;
+                transform: none !important;
+                width: 80%;
+                max-width: 250px;
+                margin: 0.25rem auto;
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-title">Ricas Palabras 360</div>
-        <a href="index.html" class="back-button">Volver a la Página Principal</a>
-    </header>
+    <div class="page-container">
+        <h1 class="page-title">Vos elegís a que te conectas!</h1>
 
-    <main class="main-content">
-        <div class="word-search-container">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Descubrí el poder de una palabra</h2>
-            <div class="flex flex-col sm:flex-row items-center sm:space-x-2 space-y-3 sm:space-y-0 search-flex">
-                <input type="text" id="wordSearchInput" class="search-input" placeholder="Escribe una palabra (Ej: AMOR)">
-                <button id="searchButton" class="search-button">Buscar Palabra</button>
-            </div>
-            <button id="randomWordButton" class="random-button">Mi Palabra del Día</button>
+        <div class="search-controls">
+            <input type="text" id="wordSearchInput" class="search-input" placeholder="Buscar palabra...">
+            <button id="searchButton" class="search-button">Buscar</button>
+            <button id="randomWordButton" class="random-word-button">Mi Palabra del Día</button>
             <div id="searchMessage" class="search-message hidden"></div>
         </div>
 
-        <div class="radial-layout-section" id="radialLayoutSection">
-            <a href="vida.html" class="central-vida-button" data-word="VIDA">
+        <div class="main-word-area">
+            <div class="central-vida-button" data-word="VIDA">
                 <span class="keyword-text">VIDA</span>
-            </a>
-            <div class="radial-words-container" id="radialWordsContainer"></div>
+            </div>
+            <div class="radial-words-container" id="radialWordsContainer">
+            </div>
         </div>
-    </main>
 
-    <footer class="footer">
-        &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
-    </footer>
+        <a href="index.html" class="back-button">Volver a la Página Principal</a>
+    </div>
+
+    <div id="messageModal" class="modal-overlay">
+        <div class="modal-content">
+            <p id="modalMessageText" class="modal-message"></p>
+            <button class="modal-close-button" onclick="hideMessage()">Cerrar</button>
+        </div>
+    </div>
 
     <script>
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const colors = [
+            'bg-red-200', 'bg-purple-200', 'bg-pink-200', 'bg-indigo-200',
+            'bg-orange-200', 'bg-violet-200', 'bg-fuchsia-200', 'bg-rose-200',
+            'bg-amber-200', 'bg-gray-200', 'bg-zinc-200', 'bg-stone-200',
+            'bg-yellow-200', 'bg-red-100', 'bg-purple-100', 'bg-pink-100',
+            'bg-lime-200', 'bg-indigo-100', 'bg-orange-100', 'bg-violet-100',
+            'bg-green-200', 'bg-fuchsia-100', 'bg-rose-100', 'bg-amber-100',
+            'bg-emerald-200', 'bg-gray-100', 'bg-zinc-100', 'bg-stone-100',
+            'bg-teal-200', 'bg-yellow-100', 'bg-lime-100', 'bg-green-100',
+            'bg-cyan-200', 'bg-emerald-100', 'bg-teal-100', 'bg-cyan-100',
+            'bg-sky-200', 'bg-sky-100', 'bg-blue-100', 'bg-indigo-100',
+            'bg-red-300', 'bg-orange-300', 'bg-yellow-300', 'bg-lime-300',
+            'bg-green-300', 'bg-emerald-300', 'bg-teal-300', 'bg-cyan-300',
+            'bg-sky-300', 'bg-blue-300'
+        ];
 
         const allWords = [
             "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
@@ -312,7 +351,6 @@
             "EVOLUCIONAR": "evolucionar.html", 
             "ALEGRIA": "alegria.html", 
             "ENERGIA": "energia.html", 
-            "FUERZA": "fuerza.html" 
             // Cuando crees más páginas (ej. paz.html, gratitud.html), agrégalas aquí:
             // "PAZ": "paz.html",
             // "GRATITUD": "gratitud.html",
@@ -321,8 +359,7 @@
         const vidaWord = "VIDA";
         const otherWords = allWords.filter(word => word !== vidaWord);
 
-        const radialLayoutSection = document.getElementById('radialLayoutSection');
-        const radialWordsContainer = document.getElementById('radialWordsContainer'); // Nuevo elemento
+        const radialWordsContainer = document.getElementById('radialWordsContainer');
         const wordSearchInput = document.getElementById('wordSearchInput');
         const randomWordButton = document.getElementById('randomWordButton');
         const searchButton = document.getElementById('searchButton');
@@ -330,12 +367,15 @@
         const centralVidaButton = document.querySelector('.central-vida-button');
 
         // Dimensiones fijas de keyword-card para cálculos
-        const CARD_WIDTH = 140; // min-width de .keyword-card
-        const CARD_HEIGHT = 60; // height de .keyword-card
+        const CARD_WIDTH = 130;
+        const CARD_HEIGHT = 50;
 
         // Dimensiones aproximadas del botón central VIDA para evitar su área
-        const VIDA_BUTTON_WIDTH = 180; 
-        const VIDA_BUTTON_HEIGHT = 80; 
+        const VIDA_BUTTON_WIDTH = 180;
+        const VIDA_BUTTON_HEIGHT = 80;
+
+        // Definir la distribución de palabras por capa para pantallas grandes
+        const wordsPerLayer = [16, 17, 16]; // Suma 49
 
         // Función para mostrar mensajes de búsqueda/estado
         function displaySearchMessage(message, isError = false) {
@@ -347,35 +387,24 @@
             }, 5000); // Ocultar mensaje después de 5 segundos
         }
 
-        function populateRadialWords() {
-            // Clear existing cards from the radialWordsContainer
-            radialWordsContainer.innerHTML = ''; 
-            
-            const wordsToPlace = otherWords; // All words except VIDA
+        function placeWords() {
+            const searchTerm = wordSearchInput.value.toUpperCase();
+            const wordsToDisplay = searchTerm
+                ? otherWords.filter(word => word.includes(searchTerm))
+                : otherWords;
 
-            // Create and append all word elements first to get their computed dimensions
+            radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
+
             const wordElements = [];
-            wordsToPlace.forEach((word, index) => {
-                // Use a more vibrant and diverse color palette
-                const colorPalette = [
-                    'bg-red-300', 'bg-purple-300', 'bg-pink-300', 'bg-indigo-300',
-                    'bg-orange-300', 'bg-violet-300', 'bg-fuchsia-300', 'bg-rose-300',
-                    'bg-amber-300', 'bg-lime-300', 'bg-emerald-300', 'bg-teal-300',
-                    'bg-cyan-300', 'bg-sky-300', 'bg-blue-300', 'bg-gray-300'
-                ];
-                const colorClass = colorPalette[index % colorPalette.length]; 
-                
-                const wordCard = document.createElement('a'); // Use <a> tag for clickable elements
+            wordsToDisplay.forEach((word, index) => {
+                const colorClass = colors[index % colors.length];
+                const wordCard = document.createElement('div');
                 wordCard.className = `keyword-card ${colorClass}`;
                 wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
                 wordCard.dataset.word = word; // Store word in data attribute
 
-                radialWordsContainer.appendChild(wordCard); // Append to the new radialWordsContainer
-                wordElements.push(wordCard);
-
                 // Add event listener for each card
                 wordCard.addEventListener('click', (event) => {
-                    event.preventDefault(); // Prevent default link behavior for now
                     const clickedWord = event.currentTarget.dataset.word;
                     if (wordPageMap[clickedWord]) {
                         window.location.href = wordPageMap[clickedWord];
@@ -383,96 +412,98 @@
                         displaySearchMessage(`¡La palabra "${clickedWord}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras. ¡Vuelve pronto!`);
                     }
                 });
+                wordElements.push(wordCard);
             });
+
+            // Always append elements, regardless of view
+            wordElements.forEach(card => radialWordsContainer.appendChild(card));
 
             // Determine if it's mobile view based on current width
             const currentIsMobileView = window.innerWidth <= 768;
 
             if (!currentIsMobileView) { // Desktop logic for positioning
-                const containerWidth = radialWordsContainer.clientWidth; // Use radialWordsContainer dimensions
-                const containerHeight = radialWordsContainer.clientHeight; // Use radialWordsContainer dimensions
+                const containerWidth = radialWordsContainer.clientWidth;
+                const containerHeight = radialWordsContainer.clientHeight;
 
                 // If container dimensions are zero, it means layout hasn't happened yet.
                 // Re-schedule the placement if dimensions are not ready
                 if (containerWidth === 0 || containerHeight === 0) {
-                    requestAnimationFrame(populateRadialWords); // Call itself again
+                    requestAnimationFrame(placeWords);
                     return; // Exit current execution
                 }
 
                 const centerX = containerWidth / 2;
                 const centerY = containerHeight / 2;
 
-                // Get actual dimensions of the central VIDA button after it's rendered
-                // Using fixed values if element not yet rendered accurately
-                const VIDA_BUTTON_ELEMENT = document.querySelector('.central-vida-button');
-                const actualVidaButtonWidth = VIDA_BUTTON_ELEMENT ? VIDA_BUTTON_ELEMENT.offsetWidth : VIDA_BUTTON_WIDTH;
-                const actualVidaButtonHeight = VIDA_BUTTON_ELEMENT ? VIDA_BUTTON_ELEMENT.offsetHeight : VIDA_BUTTON_HEIGHT;
-
-
-                // Define radii for different layers
+                // Define los radios para las diferentes capas de palabras
                 const radii = [
-                    Math.min(containerWidth, containerHeight) * 0.20, /* Inner layer (más cerca de VIDA) */
-                    Math.min(containerWidth, containerHeight) * 0.40, /* Middle layer */
-                    Math.min(containerWidth, containerHeight) * 0.60  /* Outer layer (más lejos) */
+                    Math.min(containerWidth, containerHeight) * 0.25,
+                    Math.min(containerWidth, containerHeight) * 0.40,
+                    Math.min(containerWidth, containerHeight) * 0.55
                 ];
 
-                // Dynamic layer distribution
-                const numLayers = 3;
-                const baseWordsPerLayer = Math.floor(wordsToPlace.length / numLayers);
-                const remainder = wordsToPlace.length % numLayers;
+                // Adjust distribution of words per layer dynamically if fewer words
+                let wordsPerLayerAdjusted = [...wordsPerLayer];
+                let totalWordsInPresetLayers = wordsPerLayer.reduce((a, b) => a + b, 0);
 
-                const wordsInLayers = [];
-                let currentWordIndexForLayering = 0;
-                for (let i = 0; i < numLayers; i++) {
-                    const layerSize = baseWordsPerLayer + (i < remainder ? 1 : 0);
-                    wordsInLayers.push(wordsToPlace.slice(currentWordIndexForLayering, currentWordIndexForLayering + layerSize));
-                    currentWordIndexForLayering += layerSize;
+                if (wordsToDisplay.length < totalWordsInPresetLayers) {
+                    wordsPerLayerAdjusted = [];
+                    let remainingWords = wordsToDisplay.length;
+                    for (let i = 0; i < wordsPerLayer.length; i++) {
+                        const wordsInThisLayer = Math.min(remainingWords, wordsPerLayer[i]);
+                        wordsPerLayerAdjusted.push(wordsInThisLayer);
+                        remainingWords -= wordsInThisLayer;
+                        if (remainingWords <= 0) {
+                            for (let j = i + 1; j < wordsPerLayer.length; j++) {
+                                wordsPerLayerAdjusted.push(0);
+                            }
+                            break;
+                        }
+                    }
                 }
 
-                const placedCards = []; 
+                let currentWordIndex = 0;
+                const placedCards = [];
 
                 // --- Initial Placement ---
                 radii.forEach((radius, layerIndex) => {
-                    const numWordsInLayer = wordsInLayers[layerIndex].length; // Use length of actual words in layer
+                    const numWordsInLayer = wordsPerLayerAdjusted[layerIndex];
                     if (numWordsInLayer === 0) return;
 
                     const angleStep = (2 * Math.PI) / numWordsInLayer;
-                    const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2))); 
+                    const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2)));
 
-                    wordsInLayers[layerIndex].forEach((word, i) => { // Iterate through words in this specific layer
-                        const wordCard = wordElements.find(el => el.dataset.word === word); // Find the element
-                        if (!wordCard) return; // Should not happen
+                    for (let i = 0; i < numWordsInLayer; i++) {
+                        if (currentWordIndex >= wordsToDisplay.length) break;
 
+                        const wordCard = wordElements[currentWordIndex]; // Use already created element
                         const angle = (i * angleStep) + initialAngleOffset;
-                        
-                        // Use fixed dimensions for calculation
-                        const actualCardWidth = CARD_WIDTH;
-                        const actualCardHeight = CARD_HEIGHT;
 
-                        let x = centerX + radius * Math.cos(angle) - (actualCardWidth / 2);
-                        let y = centerY + radius * Math.sin(angle) - (actualCardHeight / 2);
-                        
-                        wordCard.style.position = 'absolute'; 
+                        let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
+                        let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
+
+                        wordCard.style.position = 'absolute'; // Set position for desktop
                         wordCard.style.left = `${x}px`;
                         wordCard.style.top = `${y}px`;
-                        wordCard.style.transform = `rotate(0deg)`; 
+                        wordCard.style.transform = `rotate(0deg)`;
 
                         placedCards.push({
                             element: wordCard,
                             x: x,
                             y: y,
-                            width: actualCardWidth,
-                            height: actualCardHeight,
-                            effectiveRadiusX: actualCardWidth / 2,
-                            effectiveRadiusY: actualCardHeight / 2
+                            width: CARD_WIDTH,
+                            height: CARD_HEIGHT,
+                            effectiveRadiusX: CARD_WIDTH / 2,
+                            effectiveRadiusY: CARD_HEIGHT / 2
                         });
-                    });
+                        currentWordIndex++;
+                    }
                 });
 
                 // --- Collision Resolution (Iterative Push) ---
-                const maxIterations = 800; // Increased iterations
-                const repulsionStrength = 2.0; // Adjusted for better spacing
-                const minDistanceFactor = 1.2; // Adjusted for better spacing
+                const maxIterations = 600;
+                const repulsionStrength = 1.3;
+                const minDistanceFactor = 1.15;
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
@@ -510,25 +541,28 @@
                         const cardCenterY = card.y + card.height / 2;
                         const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
 
-                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; 
+                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65;
                         if (distFromCenter > maxAllowedRadius) {
-                            hasOverlaps = true; 
+                            hasOverlaps = true;
                             const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
-                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; 
+                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1;
                             card.x += pushStrength * Math.cos(angleToCenter);
                             card.y += pushStrength * Math.sin(angleToCenter);
                         }
 
                         // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
-                        // Use dynamic VIDA button dimensions
-                        const vidaButtonCenterX = centerX;
-                        const vidaButtonCenterY = centerY;
+                        const vidaButtonCenterTolerance = 15;
+                        const effectiveVidaButtonRadiusX = (VIDA_BUTTON_WIDTH / 2) + vidaButtonCenterTolerance;
+                        const effectiveVidaButtonRadiusY = (VIDA_BUTTON_HEIGHT / 2) + vidaButtonCenterTolerance;
 
-                        const dx_vida = cardCenterX - vidaButtonCenterX;
-                        const dy_vida = cardCenterY - vidaButtonCenterY;
+                        const cardRadiusX = card.width / 2;
+                        const cardRadiusY = card.height / 2;
+
+                        const dx_vida = (cardCenterX) - centerX;
+                        const dy_vida = (cardCenterY) - centerY;
                         const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
 
-                        const requiredVidaDistance = (Math.max(actualVidaButtonWidth, actualVidaButtonHeight) / 2) + (Math.max(card.effectiveRadiusX, card.effectiveRadiusY)) + 20; // Increased buffer
+                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10;
 
                         if (distance_vida < requiredVidaDistance) {
                             hasOverlaps = true;
@@ -543,7 +577,7 @@
                         }
                     }
 
-                    if (!hasOverlaps && iter > 0) break; 
+                    if (!hasOverlaps && iter > 0) break;
                 }
 
                 placedCards.forEach(card => {
@@ -551,19 +585,14 @@
                     card.element.style.top = `${card.y}px`;
                 });
             } else {
-                // Mobile logic: elements are already appended, CSS handles stacking
-                wordElements.forEach((wordCard) => {
-                    // Ensure inline styles from desktop positioning are removed
-                    wordCard.style.position = ''; 
-                    wordCard.style.left = ''; 
-                    wordCard.style.top = ''; 
-                    wordCard.style.transform = ''; 
-                });
+                // Mobile logic: No need to set position:static or transform:none explicitly here
+                // as they are handled by the CSS media query for .keyword-card and .central-vida-button
+                // when the screen width is <= 768px.
             }
         }
 
         // Event listener para el input de búsqueda
-        wordSearchInput.addEventListener('input', populateRadialWords); // Changed to populateRadialWords for live filtering
+        wordSearchInput.addEventListener('input', placeWords);
 
         // Event listener para el botón "Buscar"
         searchButton.addEventListener('click', () => {
@@ -609,9 +638,22 @@
             }
         });
 
-        // Llama a populateRadialWords al cargar la página y al redimensionar la ventana
-        window.addEventListener('load', populateRadialWords);
-        window.addEventListener('resize', populateRadialWords);
+        // Función para mostrar/ocultar el modal
+        function showMessage(message) {
+            const modal = document.getElementById('messageModal');
+            const messageText = document.getElementById('modalMessageText');
+            messageText.textContent = message;
+            modal.classList.add('visible');
+        }
+
+        function hideMessage() {
+            const modal = document.getElementById('messageModal');
+            modal.classList.remove('visible');
+        }
+
+        // Llama a placeWords al cargar la página y al redimensionar la ventana
+        window.addEventListener('load', placeWords);
+        window.addEventListener('resize', placeWords);
     </script>
 </body>
 </html>
