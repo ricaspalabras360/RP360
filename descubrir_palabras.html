@@ -143,16 +143,15 @@
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
             max-width: 800px; /* Ancho máximo para el área de palabras */
-            height: 0; /* Set height to 0 for padding-bottom to control aspect ratio */
-            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
+            min-height: 800px; /* Asegura que siempre haya espacio para el layout radial */
             margin-bottom: 2rem;
             margin-top: 3rem; /* Espacio desde el área de display */
             display: flex; /* Usamos flex para centrar el botón VIDA */
             justify-content: center;
             align-items: center;
-            border-radius: 50%; /* Make the container visually circular */
-            overflow: hidden; /* Crucial for clipping cards that go outside */
-            box-shadow: 0 0 15px rgba(0,0,0,0.1); /* Optional: subtle shadow for the radial area */
+            /* Eliminado: border-radius: 50%; */
+            /* Eliminado: overflow: hidden; */
+            /* Eliminado: box-shadow: 0 0 15px rgba(0,0,0,0.1); */
         }
         .central-vida-button {
             position: absolute;
