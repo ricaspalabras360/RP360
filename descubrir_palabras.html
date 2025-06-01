@@ -62,19 +62,36 @@
         .search-input:focus {
             border-color: #4299e1; /* border-blue-500 */
         }
-        .random-word-button, .search-button { /* Estilos para ambos botones */
-            background-color: #6d28d9; /* Indigo-700 */
-            color: white;
+        /* Estilos actualizados para los botones */
+        .random-word-button, .search-button {
+            width: 100%; /* Ocupar todo el ancho disponible */
             font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            padding: 1rem 1.5rem; /* Aumentado el padding vertical */
+            border-radius: 0.75rem; /* Esquinas más redondeadas */
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            white-space: nowrap; /* Evita que el texto se rompa */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
         }
-        .random-word-button:hover, .search-button:hover {
-            background-color: #5b21b6; /* Indigo-800 */
+        .search-button {
+            background-color: #3b82f6; /* Blue-500 */
+            color: white;
         }
+        .search-button:hover {
+            background-color: #2563eb; /* Blue-600 */
+            transform: translateY(-2px); /* Efecto hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .random-word-button {
+            background-color: #9333ea; /* Purple-600 */
+            color: white;
+        }
+        .random-word-button:hover {
+            background-color: #7e22ce; /* Purple-700 */
+            transform: translateY(-2px); /* Efecto hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
         .main-word-area {
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
@@ -237,8 +254,8 @@
             /* Para que el buscador y el botón se pongan uno al lado del otro en pantallas medianas si hay espacio */
             @media (min-width: 480px) and (max-width: 768px) {
                 .search-controls {
-                    flex-direction: row;
-                    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+                    flex-direction: column; /* Forzar apilamiento en este rango también para consistencia con 100% width */
+                    flex-wrap: nowrap; /* Evitar que se envuelvan */
                     justify-content: center;
                     gap: 0.75rem;
                 }
