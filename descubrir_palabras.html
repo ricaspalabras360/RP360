@@ -74,20 +74,20 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
         }
         .search-button {
-            background-color: #34d399; /* Green-400 (más claro y vivo) */
-            color: white;
+            background-color: #6ee7b7; /* Green-300 (más claro y vivo) */
+            color: #1a202c; /* Darker text for better contrast */
         }
         .search-button:hover {
-            background-color: #10b981; /* Emerald-500 */
+            background-color: #34d399; /* Green-400 */
             transform: translateY(-2px); /* Efecto hover */
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
         .random-word-button {
-            background-color: #fb923c; /* Orange-400 (más claro y vivo) */
-            color: white;
+            background-color: #fdba74; /* Orange-300 (más claro y vivo) */
+            color: #1a202c; /* Darker text for better contrast */
         }
         .random-word-button:hover {
-            background-color: #f97316; /* Orange-500 */
+            background-color: #fb923c; /* Orange-400 */
             transform: translateY(-2px); /* Efecto hover */
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
@@ -344,25 +344,30 @@
             'bg-green-400', 'bg-emerald-400', 'bg-teal-400', 'bg-cyan-400', 'bg-sky-400', 'bg-blue-400'
         ];
 
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [
+                    array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
         // Define all words in the desired order for radial display
         // This array will be the source of truth for the word positions
         let allWords = [
-            // Layer 1 (Top-Left to Top-Right - roughly 16 words)
-            "ALEGRIA", "AMOR", "ARMONIA", "CONFIANZA", "CRECER", "DESPERTAR", "DISFRUTAR", "ENERGIA", 
-            "EQUILIBRIO", "ESPERANZA", "EVOLUCIONAR", "FELICIDAD", "FELIZ", "FUERZA", "GRACIAS", "GRATITUD",
-
-            // Layer 2 (Right to Bottom - roughly 17 words)
-            "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR", "PAPÁ", "PAZ", "PLENITUD", "POSITIVO", 
-            "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR", "TIEMPO", "UNIÓN", "VALENTIA",
-
-            // Layer 3 (Bottom-Left to Top-Left - roughly 16 words)
-            "ACCIONAR", "ACTITUD", "ACTIVAR", "APRENDER", "CONCIENCIA", "CONECTAR", "CORAZÓN", "CREAR", 
-            "CULTIVAR", "ETERNO", "EVOLUCION", "FAMILIA", "PAZCIENCIA", "VOLUNTAD",
-            // "UNIVERSO", // UNIVERSO eliminado como se solicitó
-            "VIDA" // VIDA is always filtered out for radial display
-        ];
-        // No .sort() here. The order is manually defined for visual harmony.
-
+            "ACCIONAR", "ACTITUD", "ACTIVAR", "ALEGRIA", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
+            "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
+            "DESPERTAR", "DISFRUTAR", "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO",
+            "EVOLUCION", "EVOLUCIONAR", "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA",
+            "GRACIAS", "GRATITUD", "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR",
+            "PAPÁ", "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS",
+            "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR",
+            "TIEMPO", "UNIÓN", "VALENTIA", "VIDA", "VOLUNTAD"
+        ].sort(); // Ensures alphabetical order for both desktop and mobile
 
         // Mapeo de palabras a sus archivos HTML dedicados
         const wordPageMap = {
@@ -417,9 +422,12 @@
 
             radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
 
+            // Shuffle colors for a more varied distribution each time placeWords is called
+            const shuffledColors = shuffleArray([...colors]);
+
             const wordElements = [];
             wordsToDisplay.forEach((word, index) => {
-                const colorClass = colors[index % colors.length];
+                const colorClass = shuffledColors[index % shuffledColors.length]; // Use shuffled colors
                 const wordCard = document.createElement('div');
                 wordCard.className = `keyword-card ${colorClass}`;
                 wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
