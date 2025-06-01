@@ -103,16 +103,15 @@
         /* Updated keyword-card styles for rounded/bubble effect (leaf/surfboard) */
         .keyword-card {
             padding: 0.6rem 1rem; 
-            border-radius: 50%; /* Fully rounded corners */
+            border-radius: 50% / 25%; /* Key for elongated oval/leaf/surfboard shape */
             box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: auto; /* Let content define height */
+            height: 55px; /* Fixed height to control aspect ratio with padding */
             min-width: 140px; /* Wider for surfboard */
             max-width: 220px; /* Maximum width */
-            aspect-ratio: 3 / 1; /* Key for surfboard shape */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer; 
             text-decoration: none; 
@@ -165,12 +164,16 @@
             color: #374151;
             font-size: 1.5rem;
             font-weight: 700;
-            padding: 1.5rem 2.5rem;
-            border-radius: 9999px; /* Botón circular */
+            padding: 1.5rem 2.5rem; /* Ajustado para una forma más redonda */
+            border-radius: 50%; /* Make it a perfect circle */
+            aspect-ratio: 1 / 1; /* Ensure perfect circle */
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
             white-space: nowrap; /* Evita que la palabra se rompa en varias líneas */
+            display: flex; /* Para centrar el texto dentro del círculo */
+            align-items: center;
+            justify-content: center;
         }
         .central-vida-button:hover {
             transform: translate(-50%, -50%) scale(1.1);
@@ -460,76 +463,7 @@
                 const repulsionStrength = 3.0; // Increased repulsion strength
                 const minDistanceFactor = 1.8; // Increased minimum distance factor
 
-                for (let iter = 0; iter < maxIterations; iter++) {
-                    let hasOverlaps = false;
-                    for (let i = 0; i < placedCards.length; i++) {
-                        const cardA = placedCards[i];
-                        for (let j = i + 1; j < placedCards.length; j++) {
-                            const cardB = placedCards[j];
-
-                            const dx = (cardA.x + cardA.width / 2) - (cardB.x + cardB.width / 2);
-                            const dy = (cardA.y + cardA.height / 2) - (cardB.y + cardB.height / 2);
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-
-                            const requiredDistance = (Math.max(cardA.effectiveRadiusX, cardA.effectiveRadiusY) + Math.max(cardB.effectiveRadiusX, cardB.effectiveRadiusY)) * minDistanceFactor;
-
-                            if (distance < requiredDistance) {
-                                hasOverlaps = true;
-                                const overlap = requiredDistance - distance;
-                                if (overlap > 0) {
-                                    const angle = Math.atan2(dy, dx);
-                                    const moveX = (overlap / 2) * Math.cos(angle) * repulsionStrength;
-                                    const moveY = (overlap / 2) * Math.sin(angle) * repulsionStrength;
-
-                                    cardA.x += moveX;
-                                    cardA.y += moveY;
-                                    cardB.x -= moveX;
-                                    cardB.y -= moveY;
-                                }
-                            }
-                        }
-                    }
-                    // Empujar las tarjetas hacia el centro si se alejan demasiado
-                    for (let i = 0; i < placedCards.length; i++) {
-                        const card = placedCards[i];
-                        const cardCenterX = card.x + card.width / 2;
-                        const cardCenterY = card.y + card.height / 2;
-                        const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
-
-                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; 
-                        if (distFromCenter > maxAllowedRadius) {
-                            hasOverlaps = true; 
-                            const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
-                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; 
-                            card.x += pushStrength * Math.cos(angleToCenter);
-                            card.y += pushStrength * Math.sin(angleToCenter);
-                        }
-
-                        // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
-                        // Use dynamic VIDA button dimensions
-                        const vidaButtonCenterX = centerX;
-                        const vidaButtonCenterY = centerY;
-
-                        const dx_vida = cardCenterX - vidaButtonCenterX;
-                        const dy_vida = cardCenterY - vidaButtonCenterY;
-                        const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
-
-                        const requiredVidaDistance = (Math.max(VIDA_BUTTON_WIDTH, VIDA_BUTTON_HEIGHT) / 2) + (Math.max(card.effectiveRadiusX, card.effectiveRadiusY)) + 20; // Increased buffer
-
-                        if (distance_vida < requiredVidaDistance) {
-                            hasOverlaps = true;
-                            const overlap_vida = requiredVidaDistance - distance_vida;
-                            if (overlap_vida > 0) {
-                                const angle_vida = Math.atan2(dy_vida, dx_vida);
-                                const moveX_vida = overlap_vida * Math.cos(angle_vida) * repulsionStrength;
-                                const moveY_vida = overlap_vida * Math.sin(angle_vida) * repulsionStrength;
-                                card.x += moveX_vida;
-                                card.y += moveY_vida;
-                            }
-                        }
-                    }
-
-                    if (!hasOverlaps && iter > 0) break; 
+                for (let iter = 0; iter = 0) break; 
                 }
 
                 placedCards.forEach(card => {
