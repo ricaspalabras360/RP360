@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -340,7 +340,15 @@
             // Create and append all word elements first to get their computed dimensions
             const wordElements = [];
             wordsToPlace.forEach((word, index) => {
-                const colorClass = `bg-${wordColors[word] ? wordColors[word].split('-')[1] : 'gray'}-200`; // Use wordColors map, extract base color
+                // Use a more vibrant and diverse color palette
+                const colorPalette = [
+                    'bg-red-300', 'bg-purple-300', 'bg-pink-300', 'bg-indigo-300',
+                    'bg-orange-300', 'bg-violet-300', 'bg-fuchsia-300', 'bg-rose-300',
+                    'bg-amber-300', 'bg-lime-300', 'bg-emerald-300', 'bg-teal-300',
+                    'bg-cyan-300', 'bg-sky-300', 'bg-blue-300', 'bg-gray-300'
+                ];
+                const colorClass = colorPalette[index % colorPalette.length]; 
+                
                 const wordCard = document.createElement('a'); // Use <a> tag for clickable elements
                 wordCard.className = `keyword-card ${colorClass}`;
                 wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
@@ -445,8 +453,8 @@
 
                 // --- Collision Resolution (Iterative Push) ---
                 const maxIterations = 800; // Increased iterations
-                const repulsionStrength = 1.8; // Increased repulsion strength
-                const minDistanceFactor = 1.3; // Increased minimum distance factor
+                const repulsionStrength = 2.0; // Increased repulsion strength
+                const minDistanceFactor = 1.4; // Increased minimum distance factor
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
@@ -525,10 +533,9 @@
                     card.element.style.top = `${card.y}px`;
                 });
             } else {
-                // Mobile logic: simply append elements, let CSS handle layout
+                // Mobile logic: elements are already appended, CSS handles stacking
                 wordElements.forEach((wordCard) => {
-                    // No need to append again, already appended above
-                    // Just ensure inline styles from desktop are removed
+                    // Ensure inline styles from desktop positioning are removed
                     wordCard.style.position = ''; 
                     wordCard.style.left = ''; 
                     wordCard.style.top = ''; 
