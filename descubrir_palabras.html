@@ -110,9 +110,14 @@
             z-index: 10; /* Asegura que esté por encima de las otras palabras */
             background-color: #FFD700; /* Color dorado para VIDA */
             color: #374151;
-            font-size: 1.5rem;
+            width: 150px; /* Fixed width for perfect circle */
+            height: 150px; /* Fixed height for perfect circle */
+            padding: 0; /* Remove padding if using fixed width/height */
+            display: flex; /* Use flex to center content within fixed size */
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem; /* Adjust font size to fit */
             font-weight: 700;
-            padding: 2rem 3rem; /* Aumentado para hacer el botón más grande */
             border-radius: 9999px; /* Botón circular */
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             cursor: pointer;
@@ -398,8 +403,8 @@
         const CARD_HEIGHT = 50;
 
         // Dimensiones aproximadas del botón central VIDA para evitar su área
-        const VIDA_BUTTON_WIDTH = 180;
-        const VIDA_BUTTON_HEIGHT = 80;
+        const VIDA_BUTTON_WIDTH = 150; // Updated to match CSS width
+        const VIDA_BUTTON_HEIGHT = 150; // Updated to match CSS height
 
         // Definir la distribución de palabras por capa para pantallas grandes
         const wordsPerLayer = [16, 17, 16]; // Suma 49
