@@ -327,6 +327,14 @@
         const searchMessage = document.getElementById('searchMessage');
         const centralVidaButton = document.querySelector('.central-vida-button');
 
+        // Dimensiones fijas de keyword-card para cálculos
+        const CARD_WIDTH = 140; // min-width de .keyword-card
+        const CARD_HEIGHT = 60; // height de .keyword-card
+
+        // Dimensiones aproximadas del botón central VIDA para evitar su área
+        const VIDA_BUTTON_WIDTH = 180; 
+        const VIDA_BUTTON_HEIGHT = 80; 
+
         // Función para mostrar mensajes de búsqueda/estado
         function displaySearchMessage(message, isError = false) {
             searchMessage.textContent = message;
@@ -393,9 +401,10 @@
                 const centerY = containerHeight / 2;
 
                 // Get actual dimensions of the central VIDA button after it's rendered
+                // Using fixed values if element not yet rendered accurately
                 const VIDA_BUTTON_ELEMENT = document.querySelector('.central-vida-button');
-                const VIDA_BUTTON_WIDTH = VIDA_BUTTON_ELEMENT ? VIDA_BUTTON_ELEMENT.offsetWidth : 180;
-                const VIDA_BUTTON_HEIGHT = VIDA_BUTTON_ELEMENT ? VIDA_BUTTON_ELEMENT.offsetHeight : 80;
+                const actualVidaButtonWidth = VIDA_BUTTON_ELEMENT ? VIDA_BUTTON_ELEMENT.offsetWidth : VIDA_BUTTON_WIDTH;
+                const actualVidaButtonHeight = VIDA_BUTTON_ELEMENT ? VIDA_BUTTON_ELEMENT.offsetHeight : VIDA_BUTTON_HEIGHT;
 
 
                 // Define radii for different layers
@@ -434,9 +443,9 @@
 
                         const angle = (i * angleStep) + initialAngleOffset;
                         
-                        // Use actual dimensions for calculation
-                        const actualCardWidth = wordCard.offsetWidth;
-                        const actualCardHeight = wordCard.offsetHeight;
+                        // Use fixed dimensions for calculation
+                        const actualCardWidth = CARD_WIDTH;
+                        const actualCardHeight = CARD_HEIGHT;
 
                         let x = centerX + radius * Math.cos(angle) - (actualCardWidth / 2);
                         let y = centerY + radius * Math.sin(angle) - (actualCardHeight / 2);
@@ -517,7 +526,7 @@
                         const dy_vida = cardCenterY - vidaButtonCenterY;
                         const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
 
-                        const requiredVidaDistance = (Math.max(VIDA_BUTTON_WIDTH, VIDA_BUTTON_HEIGHT) / 2) + (Math.max(card.effectiveRadiusX, card.effectiveRadiusY)) + 20; // Increased buffer
+                        const requiredVidaDistance = (Math.max(actualVidaButtonWidth, actualVidaButtonHeight) / 2) + (Math.max(card.effectiveRadiusX, card.effectiveRadiusY)) + 20; // Increased buffer
 
                         if (distance_vida < requiredVidaDistance) {
                             hasOverlaps = true;
