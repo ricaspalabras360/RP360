@@ -124,11 +124,6 @@
             color: #4a5568; /* gray-700 */
             line-height: 1.6;
         }
-        .word-grid-container {
-            width: 100%;
-            max-width: 900px; /* Wider for more columns */
-            margin-top: 3rem;
-        }
         /* Updated keyword-card styles for rounded/bubble effect */
         .keyword-card {
             padding: 0.8rem 1.2rem; /* Adjusted padding */
@@ -166,15 +161,18 @@
         }
 
         /* Styles for the radial layout */
-        .main-word-area {
+        .radial-layout-section {
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
             max-width: 800px; /* Ancho máximo para el área de palabras */
-            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
+            padding-bottom: 800px; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
             margin-bottom: 2rem;
+            margin-top: 3rem; /* Espacio desde el área de display */
             display: flex; /* Usamos flex para centrar el botón VIDA */
             justify-content: center;
             align-items: center;
+            border-radius: 50%; /* Make the container visually circular */
+            /* background-color: #e2e8f0; Optional: light background for the radial area */
         }
         .central-vida-button {
             position: absolute;
@@ -196,13 +194,12 @@
         .central-vida-button:hover {
             transform: translate(-50%, -50%) scale(1.1);
         }
-        .radial-words-container {
-            position: absolute; /* Ocupa todo el espacio del main-word-area */
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+        /* Keyword cards within the radial layout */
+        .radial-layout-section .keyword-card {
+            position: absolute; /* Absolute positioning for radial layout */
+            /* Initial position will be set by JS */
         }
+
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -239,21 +236,17 @@
             .word-display-area p {
                 font-size: 0.95rem;
             }
-            .word-grid-container {
-                margin-top: 2rem;
-            }
-            .keyword-card {
-                min-height: 70px;
-            }
-
+            
             /* Mobile specific radial layout adjustments */
-            .main-word-area {
+            .radial-layout-section {
                 position: static; /* Anula el posicionamiento absoluto */
                 padding-bottom: 0; /* Eliminar el padding que crea la relación de aspecto */
                 max-width: 100%; /* Ocupar todo el ancho disponible */
                 height: auto; /* Permitir que la altura se ajuste al contenido */
                 flex-direction: column; /* Asegura que los elementos se apilen (si display flex) */
                 align-items: center; /* Centra los elementos apilados (si display flex) */
+                border-radius: 0; /* Remove circular border for mobile */
+                display: flex; /* Ensure it's a flex container for stacking */
             }
 
             .central-vida-button {
@@ -265,17 +258,7 @@
                 font-size: 1.3rem; 
             }
 
-            .radial-words-container {
-                position: static;
-                display: flex;
-                flex-direction: column; 
-                align-items: center; 
-                gap: 0.75rem; 
-                width: 100%;
-                height: auto; 
-            }
-
-            .keyword-card {
+            .radial-layout-section .keyword-card {
                 position: static !important; 
                 transform: none !important; 
                 width: 80%; 
@@ -308,11 +291,11 @@
             <p id="wordMeaning"></p>
         </div>
 
-        <div class="word-grid-container">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Todas las palabras</h2>
-            <div id="allWordsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                </div>
-        </div>
+        <div class="radial-layout-section" id="radialLayoutSection">
+            <a href="vida.html" class="central-vida-button" data-word="VIDA">
+                <span class="keyword-text">VIDA</span>
+            </a>
+            </div>
     </main>
 
     <footer class="footer">
@@ -342,13 +325,6 @@
         ];
 
         // Mapeo de colores para las tarjetas (nueva paleta)
-        const colors = [
-            'bg-rose-200', 'bg-emerald-200', 'bg-sky-200', 'bg-amber-200',
-            'bg-purple-200', 'bg-teal-200', 'bg-indigo-200', 'bg-yellow-200',
-            'bg-pink-100', 'bg-lime-100', 'bg-cyan-100', 'bg-orange-100',
-            'bg-fuchsia-200', 'bg-blue-300', 'bg-green-300', 'bg-red-300'
-        ];
-
         const wordColors = {
             "AMOR": "bg-rose-200",
             "ALEGRIA": "bg-amber-200",
@@ -373,10 +349,7 @@
         const randomButton = document.getElementById('randomButton');
         const wordDisplay = document.getElementById('wordDisplay');
         const wordMeaning = document.getElementById('wordMeaning');
-        const allWordsGrid = document.getElementById('allWordsGrid');
-
-        // References for radial layout
-        const radialWordsContainer = document.getElementById('radialWordsContainer');
+        const radialLayoutSection = document.getElementById('radialLayoutSection'); // Changed from allWordsGrid
         const centralVidaButton = document.querySelector('.central-vida-button');
 
 
@@ -425,30 +398,96 @@
             }
         });
 
-        // Populate the grid with all words
-        function populateAllWordsGrid() {
-            allWordsGrid.innerHTML = ''; // Clear existing cards
-            allWords.forEach(word => {
-                const wordCard = document.createElement('a');
-                // Check if the word has a dedicated page for its link
-                if (dedicatedPageWords.includes(word)) {
-                    wordCard.href = word.toLowerCase() + ".html"; // Link to dedicated page
-                } else {
-                    wordCard.href = `?word=${word}`; // Link to self with parameter
-                }
-                
-                wordCard.className = `keyword-card ${wordColors[word] || wordColors.default}`;
-                wordCard.innerHTML = `<p class="keyword-text">${word}</p>`;
-                allWordsGrid.appendChild(wordCard);
+        // Populate the radial layout with words
+        function populateRadialWords() {
+            radialLayoutSection.querySelectorAll('.keyword-card').forEach(card => card.remove()); // Clear existing cards, except central VIDA
+            
+            const wordsToPlace = allWords.filter(word => word !== "VIDA"); // Exclude VIDA as it's central
 
-                 // Add event listener to keyword cards to display words without dedicated pages
-                if (!dedicatedPageWords.includes(word)) {
-                    wordCard.addEventListener('click', (event) => {
-                        event.preventDefault(); // Prevent default link behavior
-                        displayWord(word);
-                        history.pushState({word: word}, '', `?word=${word}`);
-                    });
+            const containerWidth = radialLayoutSection.clientWidth;
+            const containerHeight = radialLayoutSection.clientHeight;
+
+            const centerX = containerWidth / 2;
+            const centerY = containerHeight / 2;
+
+            // Define radii for different layers
+            const radii = [
+                Math.min(containerWidth, containerHeight) * 0.25, // Inner layer
+                Math.min(containerWidth, containerHeight) * 0.40, // Middle layer
+                Math.min(containerWidth, containerHeight) * 0.55  // Outer layer
+            ];
+
+            // Distribute words into layers
+            const wordsInLayers = [[], [], []];
+            let layerIndex = 0;
+            let currentLayerCount = 0;
+            const wordsPerLayerTarget = [16, 17, 16]; // Target distribution for 49 words
+
+            wordsToPlace.forEach((word, index) => {
+                if (currentLayerCount < wordsPerLayerTarget[layerIndex]) {
+                    wordsInLayers[layerIndex].push(word);
+                    currentLayerCount++;
+                } else {
+                    layerIndex++;
+                    if (layerIndex < wordsPerLayerTarget.length) {
+                        wordsInLayers[layerIndex].push(word);
+                        currentLayerCount = 1;
+                    } else {
+                        // Fallback for extra words if they exceed defined layers
+                        wordsInLayers[wordsInLayers.length - 1].push(word);
+                    }
                 }
+            });
+
+
+            wordsInLayers.forEach((layerWords, i) => {
+                const radius = radii[i];
+                const numWordsInLayer = layerWords.length;
+                if (numWordsInLayer === 0) return;
+
+                const angleStep = (2 * Math.PI) / numWordsInLayer;
+                const initialAngleOffset = (i * (Math.PI / (numWordsInLayer * 2))); // Slight offset for visual staggering
+
+                layerWords.forEach((word, j) => {
+                    const wordCard = document.createElement('a');
+                    if (dedicatedPageWords.includes(word)) {
+                        wordCard.href = word.toLowerCase() + ".html";
+                    } else {
+                        wordCard.href = `?word=${word}`;
+                    }
+                    
+                    wordCard.className = `keyword-card ${wordColors[word] || wordColors.default}`;
+                    wordCard.innerHTML = `<p class="keyword-text">${word}</p>`;
+                    wordCard.dataset.word = word; // Store word in data attribute
+
+                    const angle = (j * angleStep) + initialAngleOffset;
+                    
+                    // Calculate position
+                    // CARD_WIDTH and CARD_HEIGHT are assumed from CSS, but better to get them dynamically if possible
+                    // For now, use approximate values for calculation
+                    const CARD_APPROX_WIDTH = 130; 
+                    const CARD_APPROX_HEIGHT = 50; 
+
+                    let x = centerX + radius * Math.cos(angle) - (CARD_APPROX_WIDTH / 2);
+                    let y = centerY + radius * Math.sin(angle) - (CARD_APPROX_HEIGHT / 2);
+                    
+                    wordCard.style.position = 'absolute';
+                    wordCard.style.left = `${x}px`;
+                    wordCard.style.top = `${y}px`;
+                    // No rotation for now, keep text horizontal
+                    // wordCard.style.transform = `rotate(${angle * (180 / Math.PI)}deg)`; 
+
+                    radialLayoutSection.appendChild(wordCard);
+
+                    // Add event listener to keyword cards to display words without dedicated pages
+                    if (!dedicatedPageWords.includes(word)) {
+                        wordCard.addEventListener('click', (event) => {
+                            event.preventDefault(); // Prevent default link behavior
+                            displayWord(word);
+                            history.pushState({word: word}, '', `?word=${word}`);
+                        });
+                    }
+                });
             });
         }
 
@@ -463,7 +502,7 @@
         }
 
         window.onload = () => {
-            populateAllWordsGrid();
+            populateRadialWords(); // Call the new function
             const urlWord = getParameterByName('word');
             if (urlWord) {
                 if (!dedicatedPageWords.includes(urlWord.toUpperCase())) {
@@ -477,13 +516,15 @@
             if (event.state && event.state.word) {
                 displayWord(event.state.word);
             } else if (window.location.search === "") {
-                // If back to no parameter, clear display
                 wordDisplay.textContent = "";
                 wordMeaning.textContent = "Busca o descubre una palabra.";
                 wordDisplayArea.style.backgroundColor = "#ffffff";
                 wordDisplayArea.style.borderColor = "#cbd5e0";
             }
         });
+
+        // Re-populate on resize to adjust radial positions
+        window.addEventListener('resize', populateRadialWords);
 
     </script>
 </body>
