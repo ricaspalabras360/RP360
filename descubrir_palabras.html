@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -116,7 +116,7 @@
             display: flex; /* Use flex to center content within fixed size */
             justify-content: center;
             align-items: center;
-            font-size: 1.8rem; /* Adjust font size to fit */
+            font-size: 2.5rem; /* Adjusted font size for desktop */
             font-weight: 700;
             border-radius: 9999px; /* Botón circular */
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -283,9 +283,10 @@
                 position: static !important;
                 transform: none !important;
                 margin-bottom: 1.5rem;
-                width: 80%;
-                padding: 1rem 1.5rem;
-                font-size: 1.3rem;
+                width: 100px; /* Smaller fixed width for mobile circle */
+                height: 100px; /* Smaller fixed height for mobile circle */
+                padding: 0; /* Remove padding to ensure perfect circle */
+                font-size: 1.6rem; /* Adjusted font size for mobile */
             }
 
             .radial-words-container {
@@ -579,7 +580,7 @@
                         const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65;
                         if (distFromCenter > maxAllowedRadius) {
                             hasOverlaps = true;
-                            const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
+                            const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterY);
                             const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1;
                             card.x += pushStrength * Math.cos(angleToCenter);
                             card.y += pushStrength * Math.sin(angleToCenter);
