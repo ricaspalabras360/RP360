@@ -103,15 +103,16 @@
         /* Updated keyword-card styles for rounded/bubble effect (leaf/surfboard) */
         .keyword-card {
             padding: 0.6rem 1rem; 
-            border-radius: 50% / 25%; /* More elongated oval for leaf/surfboard shape */
+            border-radius: 50%; /* Fully rounded corners */
             box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 55px; /* Fixed height */
-            min-width: 120px; /* Minimum width */
-            max-width: 180px; /* Maximum width */
+            height: auto; /* Let content define height */
+            min-width: 140px; /* Wider for surfboard */
+            max-width: 220px; /* Maximum width */
+            aspect-ratio: 3 / 1; /* Key for surfboard shape */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer; 
             text-decoration: none; 
@@ -143,14 +144,16 @@
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
             max-width: 800px; /* Ancho máximo para el área de palabras */
-            min-height: 800px; /* Asegura que siempre haya espacio para el layout radial */
+            height: 0; /* Set height to 0 for padding-bottom to control aspect ratio */
+            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
             margin-bottom: 2rem;
             margin-top: 3rem; /* Espacio desde el área de display */
             display: flex; /* Usamos flex para centrar el botón VIDA */
             justify-content: center;
             align-items: center;
             border-radius: 50%; /* Make the container visually circular */
-            /* background-color: #e2e8f0; Optional: light background for the radial area */
+            overflow: hidden; /* Crucial for clipping cards that go outside */
+            box-shadow: 0 0 15px rgba(0,0,0,0.1); /* Optional: subtle shadow for the radial area */
         }
         .central-vida-button {
             position: absolute;
@@ -231,6 +234,8 @@
                 border-radius: 0; /* Remove circular border for mobile */
                 display: flex; /* Ensure it's a flex container for stacking */
                 min-height: auto; /* Reset min-height for mobile stacking */
+                overflow: visible; /* Allow stacking in mobile */
+                box-shadow: none; /* Remove shadow for mobile */
             }
 
             .central-vida-button {
@@ -392,9 +397,9 @@
 
                 // Define radii for different layers
                 const radii = [
-                    Math.min(containerWidth, containerHeight) * 0.28, 
-                    Math.min(containerWidth, containerHeight) * 0.45, 
-                    Math.min(containerWidth, containerHeight) * 0.62  
+                    Math.min(containerWidth, containerHeight) * 0.20, /* Inner layer (más cerca de VIDA) */
+                    Math.min(containerWidth, containerHeight) * 0.40, /* Middle layer */
+                    Math.min(containerWidth, containerHeight) * 0.60  /* Outer layer (más lejos) */
                 ];
 
                 // Dynamic layer distribution
@@ -452,8 +457,8 @@
 
                 // --- Collision Resolution (Iterative Push) ---
                 const maxIterations = 800; // Increased iterations
-                const repulsionStrength = 2.0; // Increased repulsion strength
-                const minDistanceFactor = 1.4; // Increased minimum distance factor
+                const repulsionStrength = 3.0; // Increased repulsion strength
+                const minDistanceFactor = 1.8; // Increased minimum distance factor
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
