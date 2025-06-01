@@ -138,7 +138,7 @@
         .keyword-card {
             padding: 0.8rem 1.2rem;
             /* Modificado para forma ovalada/ojo */
-            border-radius: 50%;
+            border-radius: 50%; 
             box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15);
             text-align: center;
             display: flex;
@@ -372,20 +372,19 @@
             "GRACIAS", "GRATITUD", "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR",
             "PAPÁ", "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS",
             "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR",
-            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "VOLUNTAD"
+            "TIEMPO", "UNIÓN", "VALENTIA", "VIDA", "VOLUNTAD"
         ].sort(); // Ensures alphabetical order for both desktop and mobile
 
         // Mapeo de palabras a sus archivos HTML dedicados
         const wordPageMap = {
             "VIDA": "vida.html",
             "AMOR": "amor.html",
-            "EVOLUCIONAR": "evolucionar.html",
-            "ALEGRIA": "alegria.html",
-            "ENERGIA": "energia.html",
-            "FUERZA": "fuerza.html",
-            "CONECTAR": "conectar.html",
-            "ACCIONAR": "accionar.html",
-            "CREAR": "crear.html", // Asegurado que CREAR está aquí
+            "EVOLUCIONAR": "evolucionar.html", 
+            "ALEGRIA": "alegria.html", 
+            "ENERGIA": "energia.html", 
+            "FUERZA": "fuerza.html"
+            "CONECTAR": "conectar.html"
+            "ACCIONAR": "accionar.html"
             // Cuando crees más páginas (ej. paz.html, gratitud.html), agrégalas aquí:
             // "PAZ": "paz.html",
             // "GRATITUD": "gratitud.html",
@@ -686,7 +685,7 @@
         }
 
         function hideMessage() {
-            const modal = document.getElementById('messageModal');
+            const modal = document.getElementById('modalMessage');
             modal.classList.remove('visible');
         }
 
