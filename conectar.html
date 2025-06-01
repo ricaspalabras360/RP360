@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -11,187 +11,152 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Fondo azul-gris claro */
+            background-color: #f0f4f8; /* Light blue-gray background */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 1rem;
+            padding: 0;
             box-sizing: border-box;
             overflow-x: hidden;
         }
-        .page-container {
+        .header {
             background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            max-width: 900px; /* Ancho máximo para el contenido */
-            width: 100%;
-            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem 1.5rem;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
         }
-        .page-title {
-            font-size: 3rem; /* text-5xl */
+        .header-title {
+            font-size: 1.5rem; /* text-2xl */
             font-weight: 700; /* font-bold */
             color: #1a202c; /* gray-900 */
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        .subtitle {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            color: #4a5568; /* gray-700 */
-            margin-bottom: 2rem;
-        }
-        .content-section {
-            text-align: left;
-            margin-bottom: 2rem;
-            color: #2d3748; /* gray-800 */
-            line-height: 1.7;
-        }
-        .content-section p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        .content-section h2 {
-            font-size: 1.8rem; /* text-3xl */
-            font-weight: 700;
-            color: #1a202c;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .content-section ul {
-            list-style-type: disc;
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .content-section li {
-            margin-bottom: 0.5rem;
-            font-size: 1.05rem;
-        }
-        .image-container {
-            margin: 2rem auto;
-            max-width: 100%;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
         }
         .back-button {
             background-color: #4299e1; /* Blue-500 */
             color: white;
             font-weight: 600;
-            padding: 0.75rem 2rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            margin-top: 2rem;
-            display: inline-block;
         }
         .back-button:hover {
             background-color: #3182ce; /* Blue-600 */
         }
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .card-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+            max-height: 500px; /* Limit height for larger screens */
+            object-fit: contain; /* Ensure the image fits within boundaries */
+        }
+        .card-title {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 800; /* font-extrabold */
+            color: #be185d; /* rose-700 for CONECTAR */
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-description {
+            font-size: 1.125rem; /* text-lg */
+            color: #4a5568; /* gray-700 */
+            line-height: 1.8;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            background-color: #f6ad55; /* Orange-400 */
+            color: #2d3748; /* gray-800 */
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0.5rem; /* Added margin for spacing between buttons */
+        }
+        .cta-button:hover {
+            background-color: #ed8936; /* Orange-500 */
+            transform: translateY(-2px);
+        }
+        .footer {
+            background-color: #2d3748; /* gray-800 */
+            color: #a0aec0; /* gray-400 */
+            padding: 1.5rem 1rem;
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .page-container {
-                padding: 1.5rem;
-            }
-            .page-title {
-                font-size: 2.2rem;
-            }
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            .content-section p, .content-section li {
-                font-size: 1rem;
-            }
-            .content-section h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-container {
+            .header {
+                flex-direction: column;
                 padding: 1rem;
             }
-            .page-title {
-                font-size: 1.8rem;
+            .header-title {
+                margin-bottom: 1rem;
+                font-size: 1.25rem;
             }
-            .subtitle {
+            .main-content {
+                padding: 1.5rem 0.5rem;
+            }
+            .card-title {
+                font-size: 2.25rem;
+            }
+            .card-description {
                 font-size: 1rem;
             }
-            .content-section p, .content-section li {
-                font-size: 0.95rem;
-            }
-            .content-section h2 {
-                font-size: 1.3rem;
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <h1 class="page-title">CONECTAR: Tejiendo Lazos de Significado</h1>
+    <header class="header">
+        <div class="header-title">Ricas Palabras 360</div>
+        <a href="index.html" class="back-button">Volver a la Página Principal</a>
+    </header>
 
-        <p class="subtitle">
-            Vos elegís a qué, cómo y para qué te conectas. Es abrir la puerta a lo que quieras.
-            Es tejer redes entre el Aquí y el Ahora, el Pasado y el Futuro.
-            Es recordar que Todo está unido por una red vibrante y amorosa.
+    <main class="main-content">
+        <img src="CONECTAR.png" alt="Carta de CONECTAR de Ricas Palabras" class="card-image" onerror="this.src='https://placehold.co/400x600/be185d/ffffff?text=Carta+CONECTAR'; this.onerror=null;">
+        
+        <h1 class="card-title">CONECTAR</h1>
+        
+        <p class="card-description">
+            Conectar es la fuerza que entrelaza corazones, ideas y propósitos, dándonos la sensación de pertenencia a algo más grande. Es un acto consciente de tejer lazos, tanto con los demás como con nuestro propio ser interior y el vasto universo que nos rodea. En Ricas Palabras 360, exploramos cómo esta conexión nos permite crecer, aprender y expandir nuestra conciencia. Cada interacción, cada momento de introspección y cada paso hacia el mundo son oportunidades para fortalecer este vínculo vital. Es recordar que todo está unido por una red vibrante y amorosa, y que al elegir conscientemente a qué y cómo nos conectamos, abrimos la puerta a una vida más plena y significativa.
         </p>
 
-        <div class="image-container">
-            <img src="https://placehold.co/800x450/A78BFA/FFFFFF?text=CONECTAR" alt="Imagen representativa de Conectar">
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+            <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="cta-button">
+                Descubrí más productos con CONECTAR
+            </a>
+            <a href="descubrir_palabras.html" class="cta-button bg-emerald-500 hover:bg-emerald-600 text-white">
+                Descubrí más palabras
+            </a>
         </div>
+    </main>
 
-        <div class="content-section">
-            <p>
-                En el vibrante tapiz de la existencia, la acción de <strong>conectar</strong> resuena como un hilo dorado que une los puntos dispersos de nuestra experiencia. Es la fuerza invisible que entrelaza corazones, ideas y propósitos, dándonos la sensación de pertenencia a algo más grande que nosotros mismos. En <strong>Ricas Palabras 360</strong>, exploramos las múltiples dimensiones de este verbo esencial, desde los vínculos interpersonales hasta la profunda conexión con nuestro ser interior y el universo que nos rodea.
-            </p>
+    <footer class="footer">
+        &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
+    </footer>
 
-            <h2>Conectar con Otros</h2>
-            <p>
-                ¿Qué significa realmente establecer una conexión genuina? Va más allá de un simple saludo o un intercambio superficial. Implica escucha activa, empatía, compartir vulnerabilidad y construir puentes de entendimiento mutuo. Exploraremos cómo cultivar relaciones significativas que nutran nuestro espíritu y nos brinden apoyo en el camino.
-            </p>
-
-            <h2>Conectar con Uno Mismo</h2>
-            <p>
-                En la vorágine del día a día, a menudo olvidamos el arte de <strong>conectar</strong> con nuestra propia esencia. Esto implica dedicar tiempo a la introspección, reconocer nuestras emociones, escuchar nuestra intuición y alinear nuestras acciones con nuestros valores más profundos. Descubriremos prácticas como la meditación y el mindfulness que nos ayudan a fortalecer este vínculo interno.
-            </p>
-
-            <h2>Conectar con el Mundo</h2>
-            <p>
-                La <strong>conexión</strong> se extiende a nuestro entorno, a la naturaleza que nos sustenta y a la comunidad de la que formamos parte. Sentirnos parte del tejido de la vida nos impulsa a actuar con responsabilidad, a valorar la diversidad y a contribuir a un mundo más armonioso.
-            </p>
-
-            <h2>La Conexión como Aprendizaje</h2>
-            <p>
-                Cada interacción, cada lectura, cada nueva idea es una oportunidad para <strong>conectar</strong> puntos, expandir nuestro conocimiento y enriquecer nuestra perspectiva. <strong>Ricas Palabras 360</strong> es un espacio diseñado para fomentar estas conexiones intelectuales y emocionales.
-            </p>
-
-            <h2>Preguntas para la Reflexión</h2>
-            <ul>
-                <li>¿Qué conexiones son las más importantes en tu vida?</li>
-                <li>¿Cómo cultivas la conexión con tus seres queridos y con tu interior?</li>
-                <li>¿De qué manera te sientes conectado con el mundo que te rodea?</li>
-                <li>¿Qué nuevas conexiones te gustaría explorar o fortalecer?</li>
-            </ul>
-
-            <p>
-                Te invitamos a explorar las <strong>ricas palabras</strong> que se desprenden del concepto de <strong>conectar</strong> en nuestro universo <strong>360</strong>. Descubre definiciones, reflexiones, citas inspiradoras y recursos que te ayudarán a profundizar tus lazos y a vivir una vida más plena y significativa. ¡<strong>Conecta</strong> con la sabiduría que reside en las palabras y en las experiencias compartidas!
-            </p>
-        </div>
-
-        <a href="index.html" class="back-button">Volver a la Página Principal</a>
-    </div>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
