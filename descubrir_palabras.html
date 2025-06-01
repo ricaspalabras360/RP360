@@ -331,19 +331,25 @@
         // Define all words in the desired order for radial display
         // This array will be the source of truth for the word positions
         let allWords = [
+            // Layer 1 (Top-Left to Top-Right - roughly 16 words)
             "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
             "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
-            "DESPERTAR", "DISFRUTAR", "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO",
-            "EVOLUCION", "EVOLUCIONAR", "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA",
-            "GRACIAS", "GRATITUD", "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR",
-            "PAPÁ", "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS",
-            "PROSPERIDAD", "PURIFICAR", "REIR",
-            "RESILIENCIA", "VOLUNTAD", "SALUD", // VOLUNTAD is placed here
-            "SEMBRAR",
-            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", // VALENTIA is placed here, after UNIVERSO
-            "ALEGRIA",
-            "VIDA" // VIDA is at the end, will be filtered out for radial display
+            "DESPERTAR", "DISFRUTAR",
+
+            // Layer 2 (Right to Bottom - roughly 17 words)
+            "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO", "EVOLUCION", "EVOLUCIONAR",
+            "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA", "GRACIAS", "GRATITUD", "INTELIGENCIA",
+            "LIBERTAD", "MAMÁ", "MEDITAR", "PAPÁ",
+
+            // Layer 3 (Bottom-Left to Top-Left - roughly 16 words)
+            "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS", "PROSPERIDAD",
+            "PURIFICAR", "REIR", "RESILIENCIA", "VOLUNTAD", "SALUD", // VOLUNTAD between RESILIENCIA and SALUD
+            "SEMBRAR", "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", // VALENTIA after UNIVERSO
+            "ALEGRIA", // ALEGRIA at the end of the main words, before VIDA
+            "VIDA" // VIDA is always filtered out for radial display
         ];
+        // No .sort() here. The order is manually defined for visual harmony.
+
 
         // Mapeo de palabras a sus archivos HTML dedicados
         const wordPageMap = {
