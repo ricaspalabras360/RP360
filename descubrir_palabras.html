@@ -471,8 +471,8 @@
 
                 // --- Collision Resolution (Iterative Push) ---
                 const maxIterations = 800; // Increased iterations
-                const repulsionStrength = 8.0; // Increased significantly
-                const minDistanceFactor = 3.0; // Increased significantly
+                const repulsionStrength = 2.0; // Adjusted for better spacing
+                const minDistanceFactor = 1.2; // Adjusted for better spacing
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
