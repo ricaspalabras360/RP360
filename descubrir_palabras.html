@@ -360,6 +360,9 @@
                 wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
                 wordCard.dataset.word = word; // Store word in data attribute
 
+                radialLayoutSection.appendChild(wordCard); // Append to get dimensions
+                wordElements.push(wordCard);
+
                 // Add event listener for each card
                 wordCard.addEventListener('click', (event) => {
                     event.preventDefault(); // Prevent default link behavior for now
@@ -370,8 +373,6 @@
                         displaySearchMessage(`¡La palabra "${clickedWord}" está en camino! Estamos expandiendo nuestro universo de Ricas Palabras. ¡Vuelve pronto!`);
                     }
                 });
-                radialLayoutSection.appendChild(wordCard); // Append to get dimensions
-                wordElements.push(wordCard);
             });
 
             // Determine if it's mobile view based on current width
@@ -459,8 +460,8 @@
 
                 // --- Collision Resolution (Iterative Push) ---
                 const maxIterations = 800; // Increased iterations
-                const repulsionStrength = 4.0; // Increased repulsion strength
-                const minDistanceFactor = 2.0; // Increased minimum distance factor
+                const repulsionStrength = 5.0; // Increased repulsion strength
+                const minDistanceFactor = 2.2; // Increased minimum distance factor
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
