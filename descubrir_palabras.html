@@ -62,19 +62,36 @@
         .search-input:focus {
             border-color: #4299e1; /* border-blue-500 */
         }
-        .random-word-button, .search-button { /* Estilos para ambos botones */
-            background-color: #6d28d9; /* Indigo-700 */
-            color: white;
+        /* Estilos actualizados para los botones */
+        .random-word-button, .search-button {
+            width: 100%; /* Ocupar todo el ancho disponible */
             font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            padding: 1rem 1.5rem; /* Aumentado el padding vertical */
+            border-radius: 0.75rem; /* Esquinas más redondeadas */
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            white-space: nowrap; /* Evita que el texto se rompa */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
         }
-        .random-word-button:hover, .search-button:hover {
-            background-color: #5b21b6; /* Indigo-800 */
+        .search-button {
+            background-color: #6ee7b7; /* Green-300 (más claro y vivo) */
+            color: #1a202c; /* Darker text for better contrast */
         }
+        .search-button:hover {
+            background-color: #34d399; /* Green-400 */
+            transform: translateY(-2px); /* Efecto hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .random-word-button {
+            background-color: #fdba74; /* Orange-300 (más claro y vivo) */
+            color: #1a202c; /* Darker text for better contrast */
+        }
+        .random-word-button:hover {
+            background-color: #fb923c; /* Orange-400 */
+            transform: translateY(-2px); /* Efecto hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
         .main-word-area {
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
@@ -93,9 +110,14 @@
             z-index: 10; /* Asegura que esté por encima de las otras palabras */
             background-color: #FFD700; /* Color dorado para VIDA */
             color: #374151;
-            font-size: 1.5rem;
+            width: 150px; /* Fixed width for perfect circle */
+            height: 150px; /* Fixed height for perfect circle */
+            padding: 0; /* Remove padding if using fixed width/height */
+            display: flex; /* Use flex to center content within fixed size */
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem; /* Adjusted font size for desktop */
             font-weight: 700;
-            padding: 1.5rem 2.5rem;
             border-radius: 9999px; /* Botón circular */
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             cursor: pointer;
@@ -115,7 +137,8 @@
 
         .keyword-card {
             padding: 0.8rem 1.2rem;
-            border-radius: 9999px; /* rounded-full para forma de hoja/ovalada */
+            /* Modificado para forma ovalada/ojo */
+            border-radius: 50%; 
             box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15);
             text-align: center;
             display: flex;
@@ -236,8 +259,8 @@
             /* Para que el buscador y el botón se pongan uno al lado del otro en pantallas medianas si hay espacio */
             @media (min-width: 480px) and (max-width: 768px) {
                 .search-controls {
-                    flex-direction: row;
-                    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+                    flex-direction: column; /* Forzar apilamiento en este rango también para consistencia con 100% width */
+                    flex-wrap: nowrap; /* Evitar que se envuelvan */
                     justify-content: center;
                     gap: 0.75rem;
                 }
@@ -260,9 +283,10 @@
                 position: static !important;
                 transform: none !important;
                 margin-bottom: 1.5rem;
-                width: 80%;
-                padding: 1rem 1.5rem;
-                font-size: 1.3rem;
+                width: 100px; /* Smaller fixed width for mobile circle */
+                height: 100px; /* Smaller fixed height for mobile circle */
+                padding: 0; /* Remove padding to ensure perfect circle */
+                font-size: 1.6rem; /* Adjusted font size for mobile */
             }
 
             .radial-words-container {
@@ -318,31 +342,38 @@
 
     <script>
         const colors = [
-            'bg-red-200', 'bg-purple-200', 'bg-pink-200', 'bg-indigo-200',
-            'bg-orange-200', 'bg-violet-200', 'bg-fuchsia-200', 'bg-rose-200',
-            'bg-amber-200', 'bg-gray-200', 'bg-zinc-200', 'bg-stone-200',
-            'bg-yellow-200', 'bg-red-100', 'bg-purple-100', 'bg-pink-100',
-            'bg-lime-200', 'bg-indigo-100', 'bg-orange-100', 'bg-violet-100',
-            'bg-green-200', 'bg-fuchsia-100', 'bg-rose-100', 'bg-amber-100',
-            'bg-emerald-200', 'bg-gray-100', 'bg-zinc-100', 'bg-stone-100',
-            'bg-teal-200', 'bg-yellow-100', 'bg-lime-100', 'bg-green-100',
-            'bg-cyan-200', 'bg-emerald-100', 'bg-teal-100', 'bg-cyan-100',
-            'bg-sky-200', 'bg-sky-100', 'bg-blue-100', 'bg-indigo-100',
-            'bg-red-300', 'bg-orange-300', 'bg-yellow-300', 'bg-lime-300',
-            'bg-green-300', 'bg-emerald-300', 'bg-teal-300', 'bg-cyan-300',
-            'bg-sky-300', 'bg-blue-300'
+            'bg-red-300', 'bg-pink-300', 'bg-purple-300', 'bg-violet-300', 'bg-fuchsia-300', 'bg-rose-300',
+            'bg-orange-300', 'bg-amber-300', 'bg-yellow-300', 'bg-lime-300',
+            'bg-green-300', 'bg-emerald-300', 'bg-teal-300', 'bg-cyan-300', 'bg-sky-300', 'bg-blue-300',
+            'bg-red-400', 'bg-pink-400', 'bg-purple-400', 'bg-violet-400', 'bg-fuchsia-400', 'bg-rose-400',
+            'bg-orange-400', 'bg-amber-400', 'bg-yellow-400', 'bg-lime-400',
+            'bg-green-400', 'bg-emerald-400', 'bg-teal-400', 'bg-cyan-400', 'bg-sky-400', 'bg-blue-400'
         ];
 
-        const allWords = [
-            "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [
+                    array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Define all words in the desired order for radial display
+        // This array will be the source of truth for the word positions
+        let allWords = [
+            "ACCIONAR", "ACTITUD", "ACTIVAR", "ALEGRIA", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
             "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
             "DESPERTAR", "DISFRUTAR", "ENERGIA", "EQUILIBRIO", "ESPERANZA", "ETERNO",
             "EVOLUCION", "EVOLUCIONAR", "FAMILIA", "FELICIDAD", "FELIZ", "FUERZA",
             "GRACIAS", "GRATITUD", "INTELIGENCIA", "LIBERTAD", "MAMÁ", "MEDITAR",
             "PAPÁ", "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS",
             "PROSPERIDAD", "PURIFICAR", "REIR", "RESILIENCIA", "SALUD", "SEMBRAR",
-            "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", "VIDA", "VOLUNTAD", "ALEGRIA" 
-        ].sort(); // Asegura el orden alfabético
+            "TIEMPO", "UNIÓN", "VALENTIA", "VIDA", "VOLUNTAD"
+        ].sort(); // Ensures alphabetical order for both desktop and mobile
 
         // Mapeo de palabras a sus archivos HTML dedicados
         const wordPageMap = {
@@ -351,13 +382,14 @@
             "EVOLUCIONAR": "evolucionar.html", 
             "ALEGRIA": "alegria.html", 
             "ENERGIA": "energia.html", 
-            "CONECTAR": "conectar.html", // Added CONECTAR
+            "FUERZA": "fuerza.html" 
             // Cuando crees más páginas (ej. paz.html, gratitud.html), agrégalas aquí:
             // "PAZ": "paz.html",
             // "GRATITUD": "gratitud.html",
         };
 
         const vidaWord = "VIDA";
+        // Filter out VIDA from the list of words to be placed radially
         const otherWords = allWords.filter(word => word !== vidaWord);
 
         const radialWordsContainer = document.getElementById('radialWordsContainer');
@@ -372,12 +404,13 @@
         const CARD_HEIGHT = 50;
 
         // Dimensiones aproximadas del botón central VIDA para evitar su área
-        const VIDA_BUTTON_WIDTH = 180; 
-        const VIDA_BUTTON_HEIGHT = 80; 
+        const VIDA_BUTTON_WIDTH = 150; // Updated to match CSS width
+        const VIDA_BUTTON_HEIGHT = 150; // Updated to match CSS height
 
         // Definir la distribución de palabras por capa para pantallas grandes
         const wordsPerLayer = [16, 17, 16]; // Suma 49
 
+        // Función para mostrar mensajes de búsqueda/estado
         function displaySearchMessage(message, isError = false) {
             searchMessage.textContent = message;
             searchMessage.classList.remove('hidden');
@@ -389,19 +422,23 @@
 
         function placeWords() {
             const searchTerm = wordSearchInput.value.toUpperCase();
-            const wordsToDisplay = searchTerm 
+            const wordsToDisplay = searchTerm
                 ? otherWords.filter(word => word.includes(searchTerm))
                 : otherWords;
 
-            // Create word elements (common for both desktop and mobile)
+            radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
+
+            // Shuffle colors for a more varied distribution each time placeWords is called
+            const shuffledColors = shuffleArray([...colors]);
+
             const wordElements = [];
             wordsToDisplay.forEach((word, index) => {
-                const colorClass = colors[index % colors.length];
+                const colorClass = shuffledColors[index % shuffledColors.length]; // Use shuffled colors
                 const wordCard = document.createElement('div');
-                wordCard.className = `keyword-card ${colorClass}`; 
+                wordCard.className = `keyword-card ${colorClass}`;
                 wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
                 wordCard.dataset.word = word; // Store word in data attribute
-                
+
                 // Add event listener for each card
                 wordCard.addEventListener('click', (event) => {
                     const clickedWord = event.currentTarget.dataset.word;
@@ -414,15 +451,13 @@
                 wordElements.push(wordCard);
             });
 
-            radialWordsContainer.innerHTML = ''; // Clear container at the very beginning
+            // Always append elements, regardless of view
+            wordElements.forEach(card => radialWordsContainer.appendChild(card));
 
             // Determine if it's mobile view based on current width
-            const currentIsMobileView = window.innerWidth <= 768; 
+            const currentIsMobileView = window.innerWidth <= 768;
 
-            if (!currentIsMobileView) { // Desktop logic
-                // Append elements first so their parent's dimensions are available
-                wordElements.forEach(card => radialWordsContainer.appendChild(card));
-
+            if (!currentIsMobileView) { // Desktop logic for positioning
                 const containerWidth = radialWordsContainer.clientWidth;
                 const containerHeight = radialWordsContainer.clientHeight;
 
@@ -438,13 +473,13 @@
 
                 // Define los radios para las diferentes capas de palabras
                 const radii = [
-                    Math.min(containerWidth, containerHeight) * 0.25, 
-                    Math.min(containerWidth, containerHeight) * 0.40, 
-                    Math.min(containerWidth, containerHeight) * 0.55 
+                    Math.min(containerWidth, containerHeight) * 0.25,
+                    Math.min(containerWidth, containerHeight) * 0.40,
+                    Math.min(containerWidth, containerHeight) * 0.55
                 ];
 
                 // Adjust distribution of words per layer dynamically if fewer words
-                let wordsPerLayerAdjusted = [...wordsPerLayer]; 
+                let wordsPerLayerAdjusted = [...wordsPerLayer];
                 let totalWordsInPresetLayers = wordsPerLayer.reduce((a, b) => a + b, 0);
 
                 if (wordsToDisplay.length < totalWordsInPresetLayers) {
@@ -456,7 +491,7 @@
                         remainingWords -= wordsInThisLayer;
                         if (remainingWords <= 0) {
                             for (let j = i + 1; j < wordsPerLayer.length; j++) {
-                                wordsPerLayerAdjusted.push(0); 
+                                wordsPerLayerAdjusted.push(0);
                             }
                             break;
                         }
@@ -464,7 +499,7 @@
                 }
 
                 let currentWordIndex = 0;
-                const placedCards = []; 
+                const placedCards = [];
 
                 // --- Initial Placement ---
                 radii.forEach((radius, layerIndex) => {
@@ -472,21 +507,21 @@
                     if (numWordsInLayer === 0) return;
 
                     const angleStep = (2 * Math.PI) / numWordsInLayer;
-                    const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2))); 
+                    const initialAngleOffset = (layerIndex * (Math.PI / (numWordsInLayer * 2)));
 
                     for (let i = 0; i < numWordsInLayer; i++) {
-                        if (currentWordIndex >= wordsToDisplay.length) break; 
+                        if (currentWordIndex >= wordsToDisplay.length) break;
 
                         const wordCard = wordElements[currentWordIndex]; // Use already created element
                         const angle = (i * angleStep) + initialAngleOffset;
-                        
+
                         let x = centerX + radius * Math.cos(angle) - (CARD_WIDTH / 2);
                         let y = centerY + radius * Math.sin(angle) - (CARD_HEIGHT / 2);
-                        
+
                         wordCard.style.position = 'absolute'; // Set position for desktop
                         wordCard.style.left = `${x}px`;
                         wordCard.style.top = `${y}px`;
-                        wordCard.style.transform = `rotate(0deg)`; 
+                        wordCard.style.transform = `rotate(0deg)`;
 
                         placedCards.push({
                             element: wordCard,
@@ -502,9 +537,9 @@
                 });
 
                 // --- Collision Resolution (Iterative Push) ---
-                const maxIterations = 600; 
-                const repulsionStrength = 1.3; 
-                const minDistanceFactor = 1.15; 
+                const maxIterations = 600;
+                const repulsionStrength = 1.3;
+                const minDistanceFactor = 1.15;
 
                 for (let iter = 0; iter < maxIterations; iter++) {
                     let hasOverlaps = false;
@@ -542,20 +577,20 @@
                         const cardCenterY = card.y + card.height / 2;
                         const distFromCenter = Math.sqrt(Math.pow(cardCenterX - centerX, 2) + Math.pow(cardCenterY - centerY, 2));
 
-                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65; 
+                        const maxAllowedRadius = Math.min(containerWidth, containerHeight) * 0.65;
                         if (distFromCenter > maxAllowedRadius) {
-                            hasOverlaps = true; 
+                            hasOverlaps = true;
                             const angleToCenter = Math.atan2(centerY - cardCenterY, centerX - cardCenterX);
-                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1; 
+                            const pushStrength = (distFromCenter - maxAllowedRadius) * 0.1;
                             card.x += pushStrength * Math.cos(angleToCenter);
                             card.y += pushStrength * Math.sin(angleToCenter);
                         }
 
                         // Asegurarse de que las tarjetas no se superpongan con el botón VIDA central
-                        const vidaButtonCenterTolerance = 15; 
+                        const vidaButtonCenterTolerance = 15;
                         const effectiveVidaButtonRadiusX = (VIDA_BUTTON_WIDTH / 2) + vidaButtonCenterTolerance;
                         const effectiveVidaButtonRadiusY = (VIDA_BUTTON_HEIGHT / 2) + vidaButtonCenterTolerance;
-                        
+
                         const cardRadiusX = card.width / 2;
                         const cardRadiusY = card.height / 2;
 
@@ -563,7 +598,7 @@
                         const dy_vida = (cardCenterY) - centerY;
                         const distance_vida = Math.sqrt(dx_vida * dx_vida + dy_vida * dy_vida);
 
-                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10; 
+                        const requiredVidaDistance = Math.max(effectiveVidaButtonRadiusX, effectiveVidaButtonRadiusY) + Math.max(cardRadiusX, cardRadiusY) + 10;
 
                         if (distance_vida < requiredVidaDistance) {
                             hasOverlaps = true;
@@ -578,7 +613,7 @@
                         }
                     }
 
-                    if (!hasOverlaps && iter > 0) break; 
+                    if (!hasOverlaps && iter > 0) break;
                 }
 
                 placedCards.forEach(card => {
@@ -586,15 +621,9 @@
                     card.element.style.top = `${card.y}px`;
                 });
             } else {
-                // Mobile logic: simply append elements, let CSS handle layout
-                wordElements.forEach((wordCard) => {
-                    radialWordsContainer.appendChild(wordCard); // Append for mobile
-                    // *** IMPORTANTE: Eliminar estilos inline de posicionamiento para móvil ***
-                    wordCard.style.position = ''; 
-                    wordCard.style.left = ''; 
-                    wordCard.style.top = ''; 
-                    wordCard.style.transform = ''; 
-                });
+                // Mobile logic: No need to set position:static or transform:none explicitly here
+                // as they are handled by the CSS media query for .keyword-card and .central-vida-button
+                // when the screen width is <= 768px.
             }
         }
 
@@ -654,7 +683,7 @@
         }
 
         function hideMessage() {
-            const modal = document.getElementById('messageModal');
+            const modal = document.getElementById('modalMessage');
             modal.classList.remove('visible');
         }
 
