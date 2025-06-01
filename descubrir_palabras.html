@@ -115,8 +115,8 @@
 
         .keyword-card {
             padding: 0.8rem 1.2rem;
-            /* Modificado para forma de hoja/ojo */
-            border-radius: 0.5rem 2rem 0.5rem 2rem; 
+            /* Modificado para forma ovalada/ojo */
+            border-radius: 50%; 
             box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.15);
             text-align: center;
             display: flex;
@@ -333,6 +333,7 @@
         // This array will be the source of truth for the word positions
         let allWords = [
             // Layer 1 (Top-Left to Top-Right - roughly 16 words)
+            "ALEGRIA", // Moved to the very beginning as per drawing
             "ACCIONAR", "ACTITUD", "ACTIVAR", "AMISTAD", "AMOR", "APRENDER", "ARMONIA",
             "CONCIENCIA", "CONECTAR", "CONFIANZA", "CORAZÓN", "CREAR", "CRECER", "CULTIVAR",
             "DESPERTAR", "DISFRUTAR",
@@ -346,7 +347,6 @@
             "PAZ", "PAZCIENCIA", "PLENITUD", "POSITIVO", "PRINCIPIOS", "PROSPERIDAD",
             "PURIFICAR", "REIR", "RESILIENCIA", "VOLUNTAD", "SALUD", // VOLUNTAD between RESILIENCIA and SALUD
             "SEMBRAR", "TIEMPO", "UNIÓN", "UNIVERSO", "VALENTIA", // VALENTIA after UNIVERSO
-            "ALEGRIA", // ALEGRIA at the end of the main words, before VIDA
             "VIDA" // VIDA is always filtered out for radial display
         ];
         // No .sort() here. The order is manually defined for visual harmony.
