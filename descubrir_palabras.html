@@ -178,7 +178,7 @@
             transform: translate(-50%, -50%) scale(1.1);
         }
         /* Keyword cards within the radial layout */
-        .radial-layout-section .keyword-card {
+        .radial-words-container .keyword-card {
             position: absolute; /* Absolute positioning for radial layout */
             /* Initial position will be set by JS */
         }
@@ -249,7 +249,7 @@
                 font-size: 1.3rem; 
             }
 
-            .radial-layout-section .keyword-card {
+            .radial-words-container .keyword-card { /* Target cards inside the new container */
                 position: static !important; 
                 transform: none !important; 
                 width: 80%; 
@@ -282,7 +282,8 @@
             <a href="vida.html" class="central-vida-button" data-word="VIDA">
                 <span class="keyword-text">VIDA</span>
             </a>
-            </div>
+            <div class="radial-words-container" id="radialWordsContainer"></div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -321,6 +322,7 @@
         const otherWords = allWords.filter(word => word !== vidaWord);
 
         const radialLayoutSection = document.getElementById('radialLayoutSection');
+        const radialWordsContainer = document.getElementById('radialWordsContainer'); // Nuevo elemento
         const wordSearchInput = document.getElementById('wordSearchInput');
         const randomWordButton = document.getElementById('randomWordButton');
         const searchButton = document.getElementById('searchButton');
@@ -346,8 +348,8 @@
         }
 
         function populateRadialWords() {
-            // Clear existing cards, except central VIDA button
-            radialLayoutSection.querySelectorAll('.keyword-card').forEach(card => card.remove()); 
+            // Clear existing cards from the radialWordsContainer
+            radialWordsContainer.innerHTML = ''; 
             
             const wordsToPlace = otherWords; // All words except VIDA
 
@@ -368,7 +370,7 @@
                 wordCard.innerHTML = `<span class="keyword-text">${word}</span>`;
                 wordCard.dataset.word = word; // Store word in data attribute
 
-                radialLayoutSection.appendChild(wordCard); // Append to get dimensions
+                radialWordsContainer.appendChild(wordCard); // Append to the new radialWordsContainer
                 wordElements.push(wordCard);
 
                 // Add event listener for each card
@@ -387,8 +389,8 @@
             const currentIsMobileView = window.innerWidth <= 768;
 
             if (!currentIsMobileView) { // Desktop logic for positioning
-                const containerWidth = radialLayoutSection.clientWidth;
-                const containerHeight = radialLayoutSection.clientHeight;
+                const containerWidth = radialWordsContainer.clientWidth; // Use radialWordsContainer dimensions
+                const containerHeight = radialWordsContainer.clientHeight; // Use radialWordsContainer dimensions
 
                 // If container dimensions are zero, it means layout hasn't happened yet.
                 // Re-schedule the placement if dimensions are not ready
