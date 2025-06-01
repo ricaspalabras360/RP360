@@ -103,7 +103,7 @@
         /* Updated keyword-card styles for rounded/bubble effect (leaf/surfboard) */
         .keyword-card {
             padding: 0.6rem 1rem; 
-            border-radius: 9999px; /* Fully rounded for oval/leaf shape */
+            border-radius: 50% / 25%; /* More elongated oval for leaf/surfboard shape */
             box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
             text-align: center;
             display: flex;
@@ -115,7 +115,6 @@
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer; 
             text-decoration: none; 
-            aspect-ratio: 2.5 / 1; /* Maintain aspect ratio for the shape */
         }
         .keyword-card:hover {
             transform: translateY(-8px) scale(1.08); /* More pronounced lift and scale */
@@ -144,8 +143,7 @@
             position: relative; /* Para posicionar los elementos hijos de forma absoluta */
             width: 100%;
             max-width: 800px; /* Ancho máximo para el área de palabras */
-            height: 0; /* Set height to 0 for padding-bottom to control aspect ratio */
-            padding-bottom: 100%; /* Mantiene una relación de aspecto 1:1 (cuadrado) para el área, útil para distribución radial */
+            min-height: 800px; /* Asegura que siempre haya espacio para el layout radial */
             margin-bottom: 2rem;
             margin-top: 3rem; /* Espacio desde el área de display */
             display: flex; /* Usamos flex para centrar el botón VIDA */
@@ -232,6 +230,7 @@
                 align-items: center; /* Centra los elementos apilados (si display flex) */
                 border-radius: 0; /* Remove circular border for mobile */
                 display: flex; /* Ensure it's a flex container for stacking */
+                min-height: auto; /* Reset min-height for mobile stacking */
             }
 
             .central-vida-button {
