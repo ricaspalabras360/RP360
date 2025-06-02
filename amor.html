@@ -9,20 +9,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Estilos generales del cuerpo */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background-color: #f0f4f8; /* Fondo azul-gris claro */
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Evita el scroll horizontal */
         }
+        /* Estilos del encabezado */
         .header {
             background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil */
             padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
@@ -33,20 +35,22 @@
             font-weight: 700; /* font-bold */
             color: #1a202c; /* gray-900 */
         }
+        /* Estilos del botón de volver */
         .back-button {
-            background-color: #4299e1; /* Blue-500 */
+            background-color: #4299e1; /* Azul-500 */
             color: white;
             font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
         }
         .back-button:hover {
-            background-color: #3182ce; /* Blue-600 */
+            background-color: #3182ce; /* Azul-600 al pasar el ratón */
         }
+        /* Estilos del contenido principal */
         .main-content {
-            flex-grow: 1;
+            flex-grow: 1; /* Permite que el contenido principal ocupe el espacio restante */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -54,44 +58,49 @@
             padding: 2rem 1rem;
             text-align: center;
         }
+        /* Estilos de la imagen de la carta */
         .card-image {
             max-width: 100%;
             height: auto;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 1rem; /* Esquinas redondeadas */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra pronunciada */
             margin-bottom: 2rem;
-            max-height: 500px; /* Limit height for larger screens */
-            object-fit: contain; /* Ensure the image fits within boundaries */
+            max-height: 500px; /* Limita la altura para pantallas más grandes */
+            object-fit: contain; /* Asegura que la imagen se ajuste dentro de los límites */
         }
+        /* Estilos del título de la carta */
         .card-title {
             font-size: 3rem; /* text-5xl */
             font-weight: 800; /* font-extrabold */
-            color: #c53030; /* red-700 for AMOR */
+            color: #ef4444; /* Rojo-500 para AMOR */
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Sombra de texto */
         }
+        /* Estilos de la descripción de la carta */
         .card-description {
-            font-size: 1.25rem; /* text-xl */
+            font-size: 1.125rem; /* text-lg */
             color: #4a5568; /* gray-700 */
-            line-height: 1.8;
-            max-width: 700px;
+            line-height: 1.8; /* Espaciado de línea para mejor legibilidad */
+            max-width: 700px; /* Ancho máximo para el texto */
             margin-bottom: 2rem;
         }
+        /* Estilos de los botones CTA (Call to Action) */
         .cta-button {
-            background-color: #f6ad55; /* Orange-400 */
+            background-color: #f6ad55; /* Naranja-400 */
             color: #2d3748; /* gray-800 */
             font-weight: 700;
             padding: 1rem 2.5rem;
             border-radius: 0.75rem;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 0.5rem; /* Added margin for spacing between buttons */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+            margin: 0.5rem; /* Margen para espaciar los botones */
         }
         .cta-button:hover {
-            background-color: #ed8936; /* Orange-500 */
-            transform: translateY(-2px);
+            background-color: #ed8936; /* Naranja-500 al pasar el ratón */
+            transform: translateY(-2px); /* Efecto de elevación */
         }
+        /* Estilos del pie de página */
         .footer {
             background-color: #2d3748; /* gray-800 */
             color: #a0aec0; /* gray-400 */
@@ -100,10 +109,10 @@
             font-size: 0.875rem; /* text-sm */
         }
 
-        /* Responsive adjustments */
+        /* Ajustes responsivos para pantallas más pequeñas (móvil) */
         @media (max-width: 768px) {
             .header {
-                flex-direction: column;
+                flex-direction: column; /* Apila los elementos en el encabezado */
                 padding: 1rem;
             }
             .header-title {
@@ -133,12 +142,16 @@
     </header>
 
     <main class="main-content">
-        <img src="AMOR.PNG" alt="Carta de AMOR de Ricas Palabras" class="card-image" onerror="this.src='https://placehold.co/400x600/c53030/ffffff?text=Carta+AMOR'; this.onerror=null;">
+        <img src="AMOR.png" alt="Carta de AMOR de Ricas Palabras" class="card-image" onerror="this.src='https://placehold.co/400x600/ef4444/ffffff?text=Carta+AMOR'; this.onerror=null;">
         
         <h1 class="card-title">AMOR</h1>
         
         <p class="card-description">
-            El amor es la fuerza más poderosa del universo, el motor que impulsa la vida y la conexión. Es la capacidad de reconocer la chispa divina en uno mismo y en los demás, de aceptar, perdonar y expandir la compasión. Esta carta te invita a abrir tu corazón, a cultivar el amor incondicional en todas tus relaciones y, sobre todo, a amarte a ti mismo profundamente. El amor no es solo un sentimiento, es una acción, una elección diaria que transforma el mundo.
+            El amor es la fuerza más poderosa del universo, el motor que impulsa la vida y la conexión. Es la capacidad de reconocer la chispa divina en uno mismo y en los demás, de aceptar, perdonar y expandir la compasión.
+
+            En el corazón de tu Matriz Interna, el Amor es el principio fundamental que te guía, el cimiento sobre el que se construye cada paso consciente. Es un acto de cultivo diario para nutrir tu Semilla Solar y reconocer la chispa divina que te une a toda la Gran Familia Humana y a la Red Lumínica del Tiempo Eterno. Con él, escribes tu historia más poderosa, amando todo lo existente con el Corazón y el Alma, en todos los Tiempos.
+
+            Esta carta te invita a abrir tu corazón, a cultivar el amor incondicional en todas tus relaciones y, sobre todo, a amarte a ti mismo profundamente. El amor no es solo un sentimiento, es una acción, una elección diaria que transforma el mundo.
         </p>
 
         <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
@@ -156,6 +169,7 @@
     </footer>
 
     <script>
+        // Establece el año actual en el pie de página
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
