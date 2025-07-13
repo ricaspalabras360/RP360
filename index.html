@@ -71,7 +71,7 @@
         /* Styles for the single video on the homepage */
         .homepage-video-container {
             width: 100%;
-            max-width: 800px; /* Desktop max-width */
+            max-width: 900px; /* Desktop max-width: tamaño mediano */
             margin: 0 auto 2.5rem auto; /* Center and add bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
@@ -87,14 +87,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Default for desktop: covers the container, may crop edges */
+            object-fit: contain; /* Desktop: Show entire video, may add black bars to fit */
         }
 
         /* Responsive adjustments for homepage video on smaller screens */
         @media (max-width: 768px) { /* Applies to screens up to 768px wide (typical tablets/mobiles) */
             .homepage-video-container {
-                width: 90vw; /* Occupy 90% of viewport width */
-                max-width: 90vw; /* Ensure it doesn't exceed 90vw */
+                width: 100vw; /* Occupy 100% of viewport width */
+                max-width: 100vw; /* Ensure it doesn't exceed 100vw */
                 margin: 0 auto 2.5rem auto; /* Center it */
                 border-radius: 0; /* Remove rounded corners for full mobile width */
                 box-shadow: none; /* Remove shadow on mobile */
@@ -107,7 +107,7 @@
         /* Styles for the product showcase video section */
         .product-video-showcase {
             width: 100%;
-            max-width: 600px; /* Desktop max-width */
+            max-width: 700px; /* Desktop max-width: tamaño mediano */
             margin: 2rem auto 3rem auto; /* Top, auto horizontal, bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 5px 15px -3px rgba(0,0,0,0.1), 0 2px 6px -2px rgba(0,0,0,0.05);
@@ -123,7 +123,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Default for desktop: covers the container, may crop edges */
+            object-fit: contain; /* Desktop: Show entire video, may add black bars to fit */
         }
 
         /* Responsive adjustments for product video on smaller screens */
