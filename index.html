@@ -469,8 +469,11 @@
 
         // Función para mostrar una diapositiva específica
         function showSlide(index) {
+            console.log('showSlide called with index:', index);
+
             // Pausar y reiniciar el video que estaba reproduciéndose, si existe
             if (currentlyPlayingVideo) {
+                console.log('Pausing and resetting previous video:', currentlyPlayingVideo.src);
                 currentlyPlayingVideo.pause();
                 currentlyPlayingVideo.currentTime = 0;
                 currentlyPlayingVideo.classList.remove('active'); // Remover clase activa del slide anterior
@@ -487,26 +490,38 @@
 
             // Remover la clase activa de todos los puntos y establecer el punto activo
             dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentSlide].classList.add('active');
+            if (dots[currentSlide]) { // Asegura que el dot exista
+                dots[currentSlide].classList.add('active');
+            }
 
             // Establecer el nuevo slide activo
             const newActiveSlide = slides[currentSlide];
-            newActiveSlide.classList.add('active');
-            
-            // Reproducir el nuevo video activo
-            if (newActiveSlide.tagName === 'VIDEO') {
-                const playPromise = newActiveSlide.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // Reproducción iniciada con éxito
-                    }).catch(error => {
-                        // La reproducción automática fue impedida o interrumpida (ej. por otra llamada a pause())
-                        // Este es el AbortError que se está reportando.
-                        console.warn('La reproducción del video fue impedida o interrumpida:', error);
-                    });
+            if (newActiveSlide) { // Asegura que el slide exista
+                newActiveSlide.classList.add('active');
+                currentlyPlayingVideo = newActiveSlide; // Actualizar el seguimiento del video activo
+                console.log('New active slide:', newActiveSlide.src || newActiveSlide.tagName);
+
+                // Reproducir el nuevo video activo
+                if (newActiveSlide.tagName === 'VIDEO') {
+                    const playPromise = newActiveSlide.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            // Reproducción iniciada con éxito
+                            console.log('Video playing successfully:', newActiveSlide.src);
+                        }).catch(error => {
+                            // La reproducción automática fue impedida o interrumpida (ej. por otra llamada a pause())
+                            // Este es el AbortError que se está reportando.
+                            if (error.name === "AbortError") {
+                                console.warn('La reproducción del video fue interrumpida (AbortError):', error.message);
+                            } else {
+                                console.error('Error al intentar reproducir el video:', error);
+                            }
+                        });
+                    }
                 }
+            } else {
+                console.error('No se encontró el slide con el índice:', currentSlide);
             }
-            currentlyPlayingVideo = newActiveSlide; // Actualizar el seguimiento del video activo
         }
 
         // Función para avanzar automáticamente las diapositivas
@@ -515,6 +530,7 @@
             // Para los videos de palabras (6 segundos) y los especiales (2-3 segundos).
             // Vamos a usar 6500ms (6.5 segundos) para dar tiempo a los videos de palabras.
             const slideDisplayDuration = 6500; // 6.5 segundos por video/slide
+            console.log('autoSlide started. Changing slide every', slideDisplayDuration, 'ms');
 
             slideInterval = setInterval(() => {
                 showSlide(currentSlide + 1);
@@ -524,6 +540,7 @@
         // Agrega eventos de clic a los puntos para navegación manual
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
+                console.log('Dot clicked. Navigating to slide:', index);
                 clearInterval(slideInterval); // Detiene el auto-slide al hacer clic manual
                 showSlide(index);
                 autoSlide(); // Reinicia el auto-slide después de la navegación manual
@@ -532,8 +549,24 @@
 
         // Inicia el carrusel cuando la página se carga
         window.onload = () => {
-            showSlide(0); // Muestra el primer slide inmediatamente
-            currentlyPlayingVideo = slides[0]; // Inicializa el seguimiento para el primer video
-            autoSlide();
+            console.log('window.onload fired');
+            console.log('Número de slides encontrados:', slides.length);
+            if (slides.length > 0) {
+                showSlide(0); // Muestra el primer slide inmediatamente
+                // currentlyPlayingVideo se inicializa dentro de showSlide(0)
+                
+                // Retrasa el inicio del autoSlide para permitir que el primer video se reproduzca
+                // Si el video tiene una duración conocida, úsala; de lo contrario, usa el valor predeterminado.
+                const initialDelay = slides[0].tagName === 'VIDEO' && slides[0].duration ? slides[0].duration * 1000 : 6500;
+                console.log('Initial autoSlide delay set to:', initialDelay, 'ms');
+                setTimeout(() => {
+                    autoSlide();
+                }, initialDelay);
+            } else {
+                console.error('¡No se encontraron slides para el carrusel!');
+            }
         };
     </script>
+
+</body>
+</html>
