@@ -8,7 +8,517 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Preconecta a Google Fonts para mejorar el rendimiento de carga de la fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-…        // Inicia el carrusel cuando la página se carga
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carga la fuente Inter desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Aplica la fuente Inter globalmente a todo el cuerpo del documento */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Evita el desbordamiento horizontal */
+        }
+
+        /* Comportamiento de desplazamiento suave para anclas internas */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Estilo para texto con degradado (opcional, para títulos o elementos destacados) */
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #3b82f6); /* Degradado de verde a azul */
+            -webkit-background-clip: text; /* Recorta el fondo al texto */
+            -webkit-text-fill-color: transparent; /* Hace el texto transparente para mostrar el fondo */
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Estilos para las tarjetas de palabras clave */
+        .keyword-card {
+            padding: 1rem; /* Espaciado interno */
+            border-radius: 0.5rem; /* Bordes redondeados */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* Sombra suave */
+            text-align: center; /* Centra el texto */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px; /* Altura mínima para las tarjetas */
+            aspect-ratio: 3 / 2; /* Mantiene una relación de aspecto */
+            transition: transform 0.2s ease-in-out; /* Transición suave al pasar el ratón */
+        }
+        .keyword-card:hover {
+            transform: translateY(-3px); /* Ligero levantamiento al pasar el ratón */
+        }
+        .keyword-text {
+            font-size: 1.25rem; /* Tamaño de fuente */
+            font-weight: 600; /* Negrita */
+            color: #374151; /* Color de texto gris oscuro */
+        }
+
+        /* Estilos para el contenedor de la imagen principal del héroe */
+        .hero-main-image-container img {
+            display: block;
+            width: 100%;
+            max-width: 700px; /* Ancho máximo para la imagen */
+            height: auto;
+            object-fit: cover; /* Ajuste de la imagen */
+            border-radius: 0.5rem; /* Bordes redondeados */
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Sombra */
+            margin-left: auto; /* Centra la imagen horizontalmente */
+            margin-right: auto;
+        }
+
+        /* Estilos para el contenedor de la sección de video */
+        .video-section-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .video-wrapper {
+            width: 100%;
+            max-width: 22rem; /* Ancho máximo para el video */
+            background: #111827; /* Fondo oscuro para el contenedor del video */
+            border-radius: 0.75rem; /* Bordes redondeados */
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1); /* Sombra */
+            overflow: hidden; /* Oculta el contenido que se desborda */
+        }
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem; /* Bordes redondeados para el video */
+        }
+
+        /* Estilos específicos para el carrusel de la portada */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-height: 400px; /* Altura máxima para el carrusel */
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            margin-bottom: 2.5rem; /* Espacio debajo del carrusel */
+        }
+
+        .carousel-slide {
+            display: none; /* Oculta todas las diapositivas por defecto */
+            width: 100%;
+            height: 400px; /* Altura fija para las imágenes/videos del carrusel */
+            object-fit: cover; /* Asegura que el contenido cubra el área sin distorsionarse */
+            transition: opacity 0.5s ease-in-out; /* Transición suave para el cambio de contenido */
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .carousel-slide.active {
+            display: block; /* Muestra el contenido activo */
+            opacity: 1;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #3b82f6; /* Color del dot activo */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado de la página -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo de Ricas Palabras 360 con texto degradado -->
+            <div class="text-2xl font-bold text-gray-800">
+                Ricas <span class="gradient-text">Palabras 360</span>
+            </div>
+            <!-- Menú de navegación para pantallas grandes -->
+            <div class="hidden md:flex space-x-6">
+                <a href="poder_y_escritura_consciente.html" class="text-gray-600 hover:text-blue-500 transition duration-300">El Poder de las Palabras</a>
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-500 transition duration-300">Tienda</a>
+                <a href="quien_soy.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Conocé a Gonzai</a>
+                <a href="#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
+            </div>
+            <!-- Botón de menú móvil (hamburguesa) -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Menú móvil desplegable -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40">
+             <a href="poder_y_escritura_consciente.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">El Poder de las Palabras</a>
+             <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Tienda</a>
+             <a href="quien_soy.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Conocé a Gonzai</a>
+             <a href="#contacto" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Sección principal (Hero) -->
+    <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 pb-10 md:pb-16">
+        <!-- Carrusel Dinámico de Portada (12 videos combinados) -->
+        <div class="carousel-container mx-auto">
+            <!-- Video 1: Introducción -->
+            <video class="carousel-slide active" autoplay loop muted playsinline>
+                <source src="TU_URL_DEL_VIDEO_DE_INTRODUCCION_AQUI.mp4" type="video/mp4">
+                <!-- Por favor, reemplaza "TU_URL_DEL_VIDEO_DE_INTRODUCCION_AQUI.mp4" con la URL real de tu video de introducción. -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 2: Palabra VIDA (combinado: texto + imagen + producto) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de VIDA (ej. vida_completo.mp4) -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+            
+            <!-- Video 3: Palabra ENERGÍA (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de ENERGÍA -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 4: Palabra AMOR (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de AMOR -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 5: Palabra ALEGRÍA (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de ALEGRÍA -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 6: TU PALABRA CUENTA / COMUNIDAD (Video adicional) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video de Comunidad / Tu Palabra Cuenta -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 7: Palabra FUERZA (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de FUERZA -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 8: Palabra ACCIONAR (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de ACCIONAR -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 9: Palabra CONECTAR (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de CONECTAR -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 10: Palabra CREAR (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de CREAR -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 11: Palabra EVOLUCIONAR (combinado) -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL del video combinado de EVOLUCIONAR -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+
+            <!-- Video 12: Conclusión -->
+            <video class="carousel-slide" autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- Reemplaza con la URL de tu video de Conclusión (ej. conclusion_rp360.mp4) -->
+                Tu navegador no soporta el elemento de video.
+            </video>
+            
+            <div class="carousel-dots">
+                <!-- 12 puntos para los 12 videos -->
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+                <span class="dot" data-slide="4"></span>
+                <span class="dot" data-slide="5"></span>
+                <span class="dot" data-slide="6"></span>
+                <span class="dot" data-slide="7"></span>
+                <span class="dot" data-slide="8"></span>
+                <span class="dot" data-slide="9"></span>
+                <span class="dot" data-slide="10"></span>
+                <span class="dot" data-slide="11"></span>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <!-- Frase inspiradora -->
+            <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
+                "Cada producto es un mensaje. Cada palabra, una puerta."
+            </p>
+            <!-- Descripción corta -->
+            <p class="text-lg text-gray-600 mb-10">
+                Integrando sabiduría, tecnología y conexión humana para la transformación.
+            </p>
+            
+            <!-- Contenedor de la imagen principal del héroe -->
+            <div class="hero-main-image-container mt-8">
+                <img src="VIDA360.jpg" alt="Vela Ricas Palabras con mensaje Vida" onerror="this.src='https://placehold.co/700x450/cccccc/333333?text=Imagen+Principal+no+disponible'; this.onerror=null;">
+            </div>
+            <!-- Botón "VIDA" que enlaza a la página vida.html -->
+            <div class="mt-10 flex justify-center">
+                <a href="vida.html" class="keyword-card bg-yellow-300 w-[150px]">
+                    <span class="keyword-text">VIDA</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección "¿Qué es Ricas Palabras?" -->
+    <section id="que-es" class="pt-8 md:pt-12 pb-8 md:pb-12 bg-white">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">¿Qué es Ricas Palabras?</h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                Ricas Palabras 360 es una invitación a conectar con frases que inspiran, transformadas en objetos con propósito y experiencias que despiertan bienestar, conciencia y evolución. Somos un ecosistema vivo donde las palabras se convierten en catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras (narrativa, juegos, escritura, conciencia y comunidad) para potenciar tu crecimiento personal y colectivo, generando una nueva cultura del lenguaje y la evolución.
+            </p>
+
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Algunas de nuestras Palabras Clave:</h2>
+            <!-- Cuadrícula de palabras clave con enlaces -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 px-4">
+                <a href="amor.html" class="keyword-card bg-red-200">
+                    <p class="keyword-text">AMOR</p>
+                </a>
+                <a href="alegria.html" class="keyword-card bg-yellow-200">
+                    <p class="keyword-text">ALEGRIA</p>
+                </a>
+                <a href="energia.html" class="keyword-card bg-green-300">
+                    <p class="keyword-text">ENERGIA</p>
+                </a>
+                <a href="fuerza.html" class="keyword-card bg-blue-300">
+                    <p class="keyword-text">FUERZA</p>
+                </a>
+                <a href="conectar.html" class="keyword-card bg-pink-300">
+                    <p class="keyword-text">CONECTAR</p>
+                </a>
+                <a href="accionar.html" class="keyword-card bg-orange-300">
+                    <p class="keyword-text">ACCIONAR</p>
+                </a>
+                <a href="crear.html" class="keyword-card bg-purple-300">
+                    <p class="keyword-text">CREAR</p>
+                </a>
+                <a href="evolucionar.html" class="keyword-card bg-indigo-300">
+                    <p class="keyword-text">EVOLUCIONAR</p>
+                </a>
+            </div>
+            
+            <!-- Botones para descubrir más palabras y productos -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+                <a href="descubrir_palabras.html" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
+                    Descubrí más palabras
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección "El Poder de las Palabras" -->
+    <section id="poder-palabras" class="py-8 md:py-12 bg-gray-50">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">🌟 EL PODER DE LAS PALABRAS 🌟</h2>
+
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                Las palabras son el tejido de nuestra realidad. Más que simples sonidos o signos, son energía, acto y creación. Tienen el profundo poder de moldear nuestros pensamientos, emociones y la percepción misma de nuestro mundo. En Ricas Palabras, te invitamos a redescubrir este inmenso poder: el de construirte a ti mismo y tu realidad con conciencia, palabra por palabra.
+            </p>
+
+            <div class="mt-8 flex justify-center">
+                <a href="poder_y_escritura_consciente.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block text-center">
+                    Descubre el Poder de las Palabras y la Escritura Consciente
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección "El Corazón de Ricas Palabras" -->
+    <section id="corazon-proyecto" class="pt-8 md:pt-12 pb-16 md:pb-24 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">El Corazón de Ricas Palabras</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+                Somos un ecosistema vivo donde las palabras se convierten en catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras (narrativa, juegos, escritura, conciencia y comunidad) para potenciar tu crecimiento personal y colectivo, generando una nueva cultura del lenguaje y la evolución.
+            </p>
+            <div class="bg-sky-50 border border-sky-200 rounded-lg p-6 max-w-2xl mx-auto shadow-sm">
+                <h3 class="text-xl font-semibold mb-2 text-sky-800">Nuestra Propuesta Única de Valor</h3>
+                <p class="text-gray-700">
+                    Integramos productos físicos y editoriales, contenido digital transformador y experiencias vivenciales profundas, creando un camino 360° hacia el autoconocimiento y la acción positiva.
+                </p>
+                <p class="text-sm text-gray-500 mt-4">Estado actual: Proyecto validado, en fase de crecimiento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Llamada a la Acción Principal (CTA) -->
+    <section id="cta-principal" class="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-emerald-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Sé Parte de la Evolución</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+                Buscamos socios, colaboradores, inversores y co-creadores visionarios que resuenen con nuestra misión de generar una nueva cultura del lenguaje, el tiempo y la evolución. Tu apoyo es fundamental para acelerar nuestro impacto.
+            </p>
+            <div class="space-y-4 md:space-y-0 md:space-x-4">
+                <a href="mailto:ricaspalabras360@gmail.com?subject=QUIERO SER PARTE! - Ricas Palabras 360" class="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
+                    QUIERO SER PARTE!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página (Footer) -->
+    <footer id="contacto" class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 text-white">Ricas Palabras 360</h4>
+                    <p class="text-sm">Conectando crecimiento, evolución y transformación global.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-3 text-white">Enlaces Rápidos</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="poder_y_escritura_consciente.html" class="hover:text-white transition duration-300">El Poder de las Palabras</a></li>
+                        <li><a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Tienda</a></li>
+                        <li><a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Web Principal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-3 text-white">Contacto</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="mailto:ricaspalabras360@gmail.com" class="hover:text-white transition duration-300">ricaspalabras360@gmail.com</a></li>
+                        <li>Buenos Aires, Argentina</li>
+                        
+                        <li>
+                            <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
+                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c-4.068 0-4.58 0-6.17.08C4.402 2.16 3.43 2.54 2.69 3.28 1.95 4.02 1.57 4.99 1.48 6.14.1 7.73 0 8.25 0 12.315s.08 4.58.16 6.17c.09 1.15.47 2.12 1.21 2.86 1.48 1.48 3.59 1.21 6.17.16 1.59.08 2.1.08 6.17.08s4.58 0 6.17-.08c2.58-.05 4.69-1.38 6.17-.16 1.15-.09 2.12-.47 2.86-1.21-.74-.74-1.71-1.12-2.86-1.21C20.89 2.16 20.37 2.08 18.78 2.08 17.19 2 16.67 2 12.315 2zm0 1.62c4.003 0 4.48.015 6.074.088 1.46.066 2.304.35 2.98.98.674.635.967 1.478.98 2.98.072 1.592.087 2.07.087 6.075s-.015 4.48-.087 6.074c-.013 1.504-.306 2.347-.98 2.98-.673.632-1.52.917-2.98.98-1.592.073-2.07.088-6.074.088s-4.48-.015-6.074-.088c-1.46-.063-2.304-.348-2.98-.98-.674-.633-.967-1.476-.98-2.98C3.695 16.8 3.68 16.32 3.68 12.315s.015-4.48.087-6.074c.013-1.504.306 2.347.98-2.98.673-.635 1.52-.915 2.98-.98C7.835 3.695 8.315 3.68 12.315 3.68zM12 7.38a4.935 4.935 0 100 9.87 4.935 4.935 0 000-9.87zm0 8.25a3.315 3.315 0 110-6.63 3.315 3.315 0 010 6.63zM18.8 6.84a1.26 1.26 0 100-2.52 1.26 1.26 0 000 2.52z" clip-rule="evenodd"/></svg>
+                                <span>Seguinos en Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="quien_soy.html" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
+                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                <span>Quién soy?</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Derechos de autor -->
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
+                &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Establece el año actual en el pie de página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Toggle del menú móvil ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden'); // Alterna la visibilidad del menú
+            });
+            // Cierra el menú móvil al hacer clic en un enlace
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // --- Lógica del Carrusel Dinámico ---
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Función para mostrar una diapositiva específica
+        function showSlide(index) {
+            // Oculta todas las diapositivas y desactiva todos los puntos
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                // Si es un video, pausarlo y reiniciarlo al ocultar
+                if (slide.tagName === 'VIDEO') {
+                    slide.pause();
+                    slide.currentTime = 0; // Reinicia el video al principio
+                }
+            });
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Asegura que el índice esté dentro de los límites
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            // Muestra la diapositiva activa y activa el punto correspondiente
+            slides[currentSlide].classList.add('active');
+            // Si es un video, reproducirlo al activarlo
+            if (slides[currentSlide].tagName === 'VIDEO') {
+                slides[currentSlide].play();
+            }
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Función para avanzar automáticamente las diapositivas
+        function autoSlide() {
+            // La duración de cada slide será la duración del video combinado.
+            // Para los videos de palabras (6 segundos) y los especiales (2-3 segundos).
+            // Vamos a usar 6500ms (6.5 segundos) para dar tiempo a los videos de palabras.
+            const slideDisplayDuration = 6500; // 6.5 segundos por video/slide
+
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, slideDisplayDuration);
+        }
+
+        // Agrega eventos de clic a los puntos para navegación manual
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval); // Detiene el auto-slide al hacer clic manual
+                showSlide(index);
+                autoSlide(); // Reinicia el auto-slide después de la navegación manual
+            });
+        });
+
+        // Inicia el carrusel cuando la página se carga
         window.onload = autoSlide;
     </script>
 
