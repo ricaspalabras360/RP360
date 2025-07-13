@@ -13,159 +13,102 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Aplica la fuente Inter globalmente a todo el cuerpo del documento */
+        /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Evita el desbordamiento horizontal */
+            overflow-x: hidden;
         }
 
-        /* Comportamiento de desplazamiento suave para anclas internas */
+        /* Simple scroll behavior */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Estilo para texto con degradado (opcional, para títulos o elementos destacados) */
+        /* Style for gradient text - optional */
         .gradient-text {
-            background: linear-gradient(to right, #4ade80, #3b82f6); /* Degradado de verde a azul */
-            -webkit-background-clip: text; /* Recorta el fondo al texto */
-            -webkit-text-fill-color: transparent; /* Hace el texto transparente para mostrar el fondo */
+            background: linear-gradient(to right, #4ade80, #3b82f6); /* Example gradient green-blue */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
         }
 
-        /* Estilos para las tarjetas de palabras clave */
+        /* Styling for the keyword cards */
         .keyword-card {
-            padding: 1rem; /* Espaciado interno */
-            border-radius: 0.5rem; /* Bordes redondeados */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* Sombra suave */
-            text-align: center; /* Centra el texto */
+            padding: 1rem; /* p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100px; /* Altura mínima para las tarjetas */
-            aspect-ratio: 3 / 2; /* Mantiene una relación de aspecto */
-            transition: transform 0.2s ease-in-out; /* Transición suave al pasar el ratón */
+            min-height: 100px; /* Ensure cards have some height */
+            aspect-ratio: 3 / 2; /* Maintain aspect ratio */
+            transition: transform 0.2s ease-in-out;
         }
         .keyword-card:hover {
-            transform: translateY(-3px); /* Ligero levantamiento al pasar el ratón */
+            transform: translateY(-3px); /* Slight lift on hover */
         }
         .keyword-text {
-            font-size: 1.25rem; /* Tamaño de fuente */
-            font-weight: 600; /* Negrita */
-            color: #374151; /* Color de texto gris oscuro */
+            font-size: 1.25rem; /* text-xl, puedes ajustarlo */
+            font-weight: 600; /* font-semibold */
+            color: #374151; /* text-gray-700 */
         }
 
-        /* Estilos para el contenedor de la imagen principal del héroe */
+        /* Styles for the main hero image container */
         .hero-main-image-container img {
             display: block;
             width: 100%;
-            max-width: 700px; /* Ancho máximo para la imagen */
+            max-width: 700px;
             height: auto;
-            object-fit: cover; /* Ajuste de la imagen */
-            border-radius: 0.5rem; /* Bordes redondeados */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Sombra */
-            margin-left: auto; /* Centra la imagen horizontalmente */
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            margin-left: auto;
             margin-right: auto;
         }
 
-        /* Estilos para el contenedor de la sección de video */
-        .video-section-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* Styles for the single video on the homepage */
+        .homepage-video-container {
             width: 100%;
-        }
-        .video-wrapper {
-            width: 100%;
-            max-width: 22rem; /* Ancho máximo para el video */
-            background: #111827; /* Fondo oscuro para el contenedor del video */
-            border-radius: 0.75rem; /* Bordes redondeados */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1); /* Sombra */
-            overflow: hidden; /* Oculta el contenido que se desborda */
-        }
-        .video-wrapper video {
-            display: block;
-            width: 100%;
-            height: auto;
-            border-radius: 0.75rem; /* Bordes redondeados para el video */
-        }
-
-        /* Estilos específicos para el carrusel de la portada */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-height: 400px; /* Altura máxima para el carrusel */
-            overflow: hidden;
+            max-width: 1200px; /* Adjust as needed */
+            margin: 0 auto 2.5rem auto; /* Center and add bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            margin-bottom: 2.5rem; /* Espacio debajo del carrusel */
+            overflow: hidden;
         }
-
-        .carousel-slide {
-            display: none; /* Oculta todas las diapositivas por defecto */
+        .homepage-video-container video {
+            display: block;
             width: 100%;
-            height: 400px; /* Altura fija para las imágenes/videos del carrusel */
-            object-fit: cover; /* Asegura que el contenido cubra el área sin distorsionarse */
-            transition: opacity 0.5s ease-in-out; /* Transición suave para el cambio de contenido */
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .carousel-slide.active {
-            display: block; /* Muestra el contenido activo */
-            opacity: 1;
-        }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 10;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .dot.active {
-            background-color: #3b82f6; /* Color del dot activo */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
 
-    <!-- Encabezado de la página -->
+    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <!-- Logo de Ricas Palabras 360 con texto degradado -->
+            <!-- Logo -->
             <div class="text-2xl font-bold text-gray-800">
                 Ricas <span class="gradient-text">Palabras 360</span>
             </div>
-            <!-- Menú de navegación para pantallas grandes -->
+            <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6">
                 <a href="poder_y_escritura_consciente.html" class="text-gray-600 hover:text-blue-500 transition duration-300">El Poder de las Palabras</a>
                 <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-500 transition duration-300">Tienda</a>
                 <a href="quien_soy.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Conocé a Gonzai</a>
                 <a href="#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
             </div>
-            <!-- Botón de menú móvil (hamburguesa) -->
+            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <!-- Menú móvil desplegable -->
+        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40">
              <a href="poder_y_escritura_consciente.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">El Poder de las Palabras</a>
              <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Tienda</a>
@@ -174,126 +117,35 @@
         </div>
     </header>
 
-    <!-- Sección principal (Hero) -->
+    <!-- Main Section (Hero) -->
     <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 pb-10 md:pb-16">
-        <!-- Carrusel Dinámico de Portada (12 videos combinados) -->
-        <div class="carousel-container mx-auto">
-            <!-- Video 1: Introducción -->
-            <video class="carousel-slide active" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de introducción:', this.src);">
-                <source src="./Creación_de_Video_Introductorio.mp4" type="video/mp4">
-                <!-- Asegúrate de que el archivo 'Creación_de_Video_Introductorio.mp4' esté en la misma carpeta que tu index.html en Netlify. -->
-                Tu navegador no soporta el elemento de video.
+        <!-- Single Video for Homepage -->
+        <div class="homepage-video-container">
+            <video autoplay loop muted playsinline 
+                   poster="https://placehold.co/1200x400/cccccc/333333?text=Cargando+Video+Intro" 
+                   onerror="console.error('Error al cargar el video de introducción. Verificar URL y archivo:', this.src);">
+                <source src="/Creación_de_Video_Introductorio.mp4" type="video/mp4">
+                <!-- IMPORTANT: Ensure 'Creación_de_Video_Introductorio.mp4' is in the ROOT of your Netlify project. -->
+                <!-- If it's in a 'videos' folder, the path would be: src="/videos/Creación_de_Video_Introductorio.mp4" -->
+                Your browser does not support the video tag.
             </video>
-
-            <!-- Video 2: Palabra VIDA (combinado: texto + imagen + producto) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de VIDA:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de VIDA (ej. vida_completo.mp4) -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-            
-            <!-- Video 3: Palabra ENERGÍA (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de ENERGÍA:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de ENERGÍA -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 4: Palabra AMOR (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de AMOR:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de AMOR -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 5: Palabra ALEGRÍA (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de ALEGRÍA:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de ALEGRÍA -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 6: TU PALABRA CUENTA / COMUNIDAD (Video adicional) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de Comunidad:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video de Comunidad / Tu Palabra Cuenta -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 7: Palabra FUERZA (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de FUERZA:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de FUERZA -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 8: Palabra ACCIONAR (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de ACCIONAR:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de ACCIONAR -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 9: Palabra CONECTAR (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de CONECTAR:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de CONECTAR -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 10: Palabra CREAR (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de CREAR:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de CREAR -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 11: Palabra EVOLUCIONAR (combinado) -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de EVOLUCIONAR:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL del video combinado de EVOLUCIONAR -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-
-            <!-- Video 12: Conclusión -->
-            <video class="carousel-slide" autoplay loop muted playsinline onerror="console.error('Error al cargar el video de Conclusión:', this.src);">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                <!-- Reemplaza con la URL de tu video de Conclusión (ej. conclusion_rp360.mp4) -->
-                Tu navegador no soporta el elemento de video.
-            </video>
-            
-            <div class="carousel-dots">
-                <!-- 12 puntos para los 12 videos -->
-                <span class="dot active" data-slide="0"></span>
-                <span class="dot" data-slide="1"></span>
-                <span class="dot" data-slide="2"></span>
-                <span class="dot" data-slide="3"></span>
-                <span class="dot" data-slide="4"></span>
-                <span class="dot" data-slide="5"></span>
-                <span class="dot" data-slide="6"></span>
-                <span class="dot" data-slide="7"></span>
-                <span class="dot" data-slide="8"></span>
-                <span class="dot" data-slide="9"></span>
-                <span class="dot" data-slide="10"></span>
-                <span class="dot" data-slide="11"></span>
-            </div>
         </div>
         
         <div class="container mx-auto px-6 text-center">
-            <!-- Frase inspiradora -->
+            <!-- Inspiring Phrase -->
             <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
                 "Cada producto es un mensaje. Cada palabra, una puerta."
             </p>
-            <!-- Descripción corta -->
+            <!-- Short Description -->
             <p class="text-lg text-gray-600 mb-10">
                 Integrando sabiduría, tecnología y conexión humana para la transformación.
             </p>
             
-            <!-- Contenedor de la imagen principal del héroe -->
+            <!-- Main Hero Image Container -->
             <div class="hero-main-image-container mt-8">
                 <img src="VIDA360.jpg" alt="Vela Ricas Palabras con mensaje Vida" onerror="this.src='https://placehold.co/700x450/cccccc/333333?text=Imagen+Principal+no+disponible'; this.onerror=null;">
             </div>
-            <!-- Botón "VIDA" que enlaza a la página vida.html -->
+            <!-- "VIDA" Button linking to vida.html -->
             <div class="mt-10 flex justify-center">
                 <a href="vida.html" class="keyword-card bg-yellow-300 w-[150px]">
                     <span class="keyword-text">VIDA</span>
@@ -302,16 +154,18 @@
         </div>
     </section>
 
-    <!-- Sección "¿Qué es Ricas Palabras?" -->
+    <!-- "What is Ricas Palabras?" Section -->
     <section id="que-es" class="pt-8 md:pt-12 pb-8 md:pb-12 bg-white">
         <div class="container mx-auto px-6 text-center max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">¿Qué es Ricas Palabras?</h2>
             <p class="text-lg text-gray-700 mb-8 leading-relaxed">
                 Ricas Palabras 360 es una invitación a conectar con frases que inspiran, transformadas en objetos con propósito y experiencias que despiertan bienestar, conciencia y evolución. Somos un ecosistema vivo donde las palabras se convierten en catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras (narrativa, juegos, escritura, conciencia y comunidad) para potenciar tu crecimiento personal y colectivo, generando una nueva cultura del lenguaje y la evolución.
+                <br><br>
+                Nuestra propuesta única de valor integra productos físicos y editoriales, contenido digital transformador y experiencias vivenciales profundas, creando un camino 360° hacia el autoconocimiento y la acción positiva.
             </p>
 
             <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Algunas de nuestras Palabras Clave:</h2>
-            <!-- Cuadrícula de palabras clave con enlaces -->
+            <!-- Grid of keyword cards with links -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 px-4">
                 <a href="amor.html" class="keyword-card bg-red-200">
                     <p class="keyword-text">AMOR</p>
@@ -339,7 +193,7 @@
                 </a>
             </div>
             
-            <!-- Botones para descubrir más palabras y productos -->
+            <!-- Buttons to discover more words and products -->
             <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
                 <a href="descubrir_palabras.html" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
                     Descubrí más palabras
@@ -348,7 +202,7 @@
         </div>
     </section>
 
-    <!-- Sección "El Poder de las Palabras" -->
+    <!-- "The Power of Words" Section -->
     <section id="poder-palabras" class="py-8 md:py-12 bg-gray-50">
         <div class="container mx-auto px-6 text-center max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">🌟 EL PODER DE LAS PALABRAS 🌟</h2>
@@ -365,7 +219,7 @@
         </div>
     </section>
 
-    <!-- Sección "El Corazón de Ricas Palabras" -->
+    <!-- "The Heart of Ricas Palabras" Section -->
     <section id="corazon-proyecto" class="pt-8 md:pt-12 pb-16 md:pb-24 bg-gray-100">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">El Corazón de Ricas Palabras</h2>
@@ -382,7 +236,7 @@
         </div>
     </section>
 
-    <!-- Sección de Llamada a la Acción Principal (CTA) -->
+    <!-- Main Call to Action (CTA) Section -->
     <section id="cta-principal" class="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-emerald-600 text-white">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Sé Parte de la Evolución</h2>
@@ -397,7 +251,7 @@
         </div>
     </section>
 
-    <!-- Pie de página (Footer) -->
+    <!-- Footer -->
     <footer id="contacto" class="bg-gray-800 text-gray-300 py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -434,7 +288,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- Derechos de autor -->
+            <!-- Copyright -->
             <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
                 &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
             </div>
@@ -442,17 +296,16 @@
     </footer>
 
     <script>
-        // Establece el año actual en el pie de página
+        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // --- Toggle del menú móvil ---
+        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden'); // Alterna la visibilidad del menú
+                mobileMenu.classList.toggle('hidden');
             });
-            // Cierra el menú móvil al hacer clic en un enlace
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
@@ -460,112 +313,25 @@
             });
         }
 
-        // --- Lógica del Carrusel Dinámico ---
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        let currentSlide = 0;
-        let slideInterval;
-        let currentlyPlayingVideo = null; // Variable para rastrear el video actualmente activo
-
-        // Función para mostrar una diapositiva específica
-        function showSlide(index) {
-            console.log('showSlide called with index:', index);
-
-            // Pausar y reiniciar el video que estaba reproduciéndose, si existe
-            if (currentlyPlayingVideo) {
-                console.log('Pausing and resetting previous video:', currentlyPlayingVideo.src);
-                currentlyPlayingVideo.pause();
-                currentlyPlayingVideo.currentTime = 0;
-                currentlyPlayingVideo.classList.remove('active'); // Remover clase activa del slide anterior
-            }
-
-            // Asegura que el índice esté dentro de los límites
-            if (index >= slides.length) {
-                currentSlide = 0;
-            } else if (index < 0) {
-                currentSlide = slides.length - 1;
-            } else {
-                currentSlide = index;
-            }
-
-            // Remover la clase activa de todos los puntos y establecer el punto activo
-            dots.forEach(dot => dot.classList.remove('active'));
-            if (dots[currentSlide]) { // Asegura que el dot exista
-                dots[currentSlide].classList.add('active');
-            }
-
-            // Establecer el nuevo slide activo
-            const newActiveSlide = slides[currentSlide];
-            if (newActiveSlide) { // Asegura que el slide exista
-                newActiveSlide.classList.add('active');
-                currentlyPlayingVideo = newActiveSlide; // Actualizar el seguimiento del video activo
-                console.log('New active slide:', newActiveSlide.src || newActiveSlide.tagName);
-
-                // Reproducir el nuevo video activo
-                if (newActiveSlide.tagName === 'VIDEO') {
-                    const playPromise = newActiveSlide.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(_ => {
-                            // Reproducción iniciada con éxito
-                            console.log('Video playing successfully:', newActiveSlide.src);
-                        }).catch(error => {
-                            // La reproducción automática fue impedida o interrumpida (ej. por otra llamada a pause())
-                            // Este es el AbortError que se está reportando.
-                            if (error.name === "AbortError") {
-                                console.warn('La reproducción del video fue interrumpida (AbortError):', error.message);
-                            } else {
-                                console.error('Error al intentar reproducir el video:', error);
-                            }
-                        });
-                    }
+        // --- Video Playback for Homepage Video ---
+        const homepageVideo = document.querySelector('.homepage-video-container video');
+        if (homepageVideo) {
+            // Attempt to play the video when the page loads
+            window.onload = () => {
+                const playPromise = homepageVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Playback started successfully
+                        console.log('Homepage video playing successfully.');
+                    }).catch(error => {
+                        // Autoplay was prevented or interrupted
+                        console.error('Error playing homepage video:', error);
+                    });
                 }
-            } else {
-                console.error('No se encontró el slide con el índice:', currentSlide);
-            }
+            };
+        } else {
+            console.error('Homepage video element not found.');
         }
-
-        // Función para avanzar automáticamente las diapositivas
-        function autoSlide() {
-            // La duración de cada slide será la duración del video combinado.
-            // Para los videos de palabras (6 segundos) y los especiales (2-3 segundos).
-            // Vamos a usar 6500ms (6.5 segundos) para dar tiempo a los videos de palabras.
-            const slideDisplayDuration = 6500; // 6.5 segundos por video/slide
-            console.log('autoSlide started. Changing slide every', slideDisplayDuration, 'ms');
-
-            slideInterval = setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, slideDisplayDuration);
-        }
-
-        // Agrega eventos de clic a los puntos para navegación manual
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                console.log('Dot clicked. Navigating to slide:', index);
-                clearInterval(slideInterval); // Detiene el auto-slide al hacer clic manual
-                showSlide(index);
-                autoSlide(); // Reinicia el auto-slide después de la navegación manual
-            });
-        });
-
-        // Inicia el carrusel cuando la página se carga
-        window.onload = () => {
-            console.log('window.onload fired');
-            console.log('Número de slides encontrados:', slides.length);
-            if (slides.length > 0) {
-                showSlide(0); // Muestra el primer slide inmediatamente
-                // currentlyPlayingVideo se inicializa dentro de showSlide(0)
-                
-                // Retrasa el inicio del autoSlide para permitir que el primer video se reproduzca
-                // Si el video tiene una duración conocida, úsala; de lo contrario, usa el valor predeterminado.
-                const initialDelay = slides[0].tagName === 'VIDEO' && slides[0].duration ? slides[0].duration * 1000 : 6500;
-                console.log('Initial autoSlide delay set to:', initialDelay, 'ms');
-                setTimeout(() => {
-                    autoSlide();
-                }, initialDelay);
-            } else {
-                console.error('¡No se encontraron slides para el carrusel!');
-            }
-        };
     </script>
 
 </body>
