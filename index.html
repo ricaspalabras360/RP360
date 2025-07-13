@@ -71,7 +71,7 @@
         /* Styles for the single video on the homepage */
         .homepage-video-container {
             width: 100%;
-            max-width: 600px; /* Desktop max-width (50% de 1200px) */
+            max-width: 420px; /* Desktop max-width (30% menos que 600px) */
             margin: 0 auto 2.5rem auto; /* Center and add bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
@@ -98,7 +98,6 @@
                 margin-right: 0;
                 border-radius: 0; /* Remove rounded corners for full mobile width */
                 box-shadow: none; /* Remove shadow on mobile */
-                /* No need for 30% larger, as 100% width and object-fit: contain will fill effectively without cropping */
             }
             .homepage-video-container video {
                 object-fit: contain; /* Show entire video, may add black bars to fit */
@@ -108,7 +107,7 @@
         /* Styles for the product showcase video section */
         .product-video-showcase {
             width: 100%;
-            max-width: 400px; /* Desktop max-width (50% de 800px) */
+            max-width: 280px; /* Desktop max-width (30% menos que 400px) */
             margin: 2rem auto 3rem auto; /* Top, auto horizontal, bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 5px 15px -3px rgba(0,0,0,0.1), 0 2px 6px -2px rgba(0,0,0,0.05);
