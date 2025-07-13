@@ -81,8 +81,8 @@
             width: 100%;
             max-width: 900px; /* Desktop: tamaño mediano */
             margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
-            border-radius: 0.5rem; /* Bordes redondeados para la portada en escritorio (base) */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Sombra para la portada en escritorio (base) */
+            border-radius: 0; /* Sin bordes redondeados para la portada en escritorio */
+            box-shadow: none; /* Sin sombra para la portada en escritorio */
             overflow: hidden;
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
@@ -168,7 +168,7 @@
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
