@@ -71,33 +71,71 @@
         /* Styles for the single video on the homepage */
         .homepage-video-container {
             width: 100%;
-            max-width: 1200px; /* Adjust as needed */
+            max-width: 1200px; /* Desktop max-width */
             margin: 0 auto 2.5rem auto; /* Center and add bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
             overflow: hidden;
+            /* Ensure video scales responsively while maintaining aspect ratio (16:9) */
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
+            height: 0; /* Important for padding-bottom trick */
         }
         .homepage-video-container video {
-            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto; /* Maintain aspect ratio */
-            object-fit: cover;
+            height: 100%;
+            object-fit: cover; /* Default: covers the container, may crop edges */
+        }
+
+        /* Responsive adjustments for homepage video on smaller screens */
+        @media (max-width: 768px) { /* Applies to screens up to 768px wide (typical tablets/mobiles) */
+            .homepage-video-container {
+                max-width: 100%; /* Allow it to take full width on smaller screens */
+                margin-left: 0;
+                margin-right: 0;
+                border-radius: 0; /* Optional: remove rounded corners for full mobile width */
+            }
+            .homepage-video-container video {
+                object-fit: contain; /* Show entire video, may add black bars to fit */
+            }
         }
 
         /* Styles for the product showcase video section */
         .product-video-showcase {
             width: 100%;
-            max-width: 800px; /* Adjust as needed for the product video */
+            max-width: 800px; /* Desktop max-width */
             margin: 2rem auto 3rem auto; /* Top, auto horizontal, bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 5px 15px -3px rgba(0,0,0,0.1), 0 2px 6px -2px rgba(0,0,0,0.05);
             overflow: hidden;
+            /* Ensure video scales responsively while maintaining aspect ratio (16:9) */
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0; /* Important for padding-bottom trick */
         }
         .product-video-showcase video {
-            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            object-fit: cover;
+            height: 100%;
+            object-fit: cover; /* Default: covers the container, may crop edges */
+        }
+
+        /* Responsive adjustments for product video on smaller screens */
+        @media (max-width: 768px) { /* Applies to screens up to 768px wide */
+            .product-video-showcase {
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+                border-radius: 0;
+            }
+            .product-video-showcase video {
+                object-fit: contain; /* Show entire video, may add black bars to fit */
+            }
         }
     </style>
 </head>
