@@ -71,17 +71,73 @@
         /* Styles for the single video on the homepage */
         .homepage-video-container {
             width: 100%;
-            max-width: 1200px; /* Adjust as needed */
+            max-width: 900px; /* Desktop: tamaño mediano */
             margin: 0 auto 2.5rem auto; /* Center and add bottom margin */
             border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
             overflow: hidden;
+            /* Ensure video scales responsively while maintaining aspect ratio (16:9) */
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
+            height: 0; /* Important for padding-bottom trick */
         }
         .homepage-video-container video {
-            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto; /* Maintain aspect ratio */
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain; /* Desktop: Show entire video, may add black bars to fit */
+        }
+
+        /* Responsive adjustments for homepage video on smaller screens */
+        @media (max-width: 768px) { /* Applies to screens up to 768px wide (typical tablets/mobiles) */
+            .homepage-video-container {
+                width: 100vw; /* Occupy 100% of viewport width */
+                max-width: 100vw; /* Ensure it doesn't exceed 100vw */
+                margin: 0 auto 2.5rem auto; /* Center it */
+                border-radius: 0; /* Remove rounded corners for full mobile width */
+                box-shadow: none; /* Remove shadow on mobile */
+            }
+            .homepage-video-container video {
+                object-fit: contain; /* Show entire video, may add black bars to fit */
+            }
+        }
+
+        /* Styles for the product showcase video section */
+        .product-video-showcase {
+            width: 100%;
+            max-width: 700px; /* Desktop: tamaño mediano */
+            margin: 2rem auto 3rem auto; /* Top, auto horizontal, bottom margin */
+            border-radius: 0.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0,0,0,0.1), 0 2px 6px -2px rgba(0,0,0,0.05);
+            overflow: hidden;
+            /* Ensure video scales responsively while maintaining aspect ratio (16:9) */
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0; /* Important for padding-bottom trick */
+        }
+        .product-video-showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Desktop: Show entire video, may add black bars to fit */
+        }
+
+        /* Responsive adjustments for product video on smaller screens */
+        @media (max-width: 768px) { /* Applies to screens up to 768px wide */
+            .product-video-showcase {
+                width: 90vw; /* Occupy 90% of viewport width */
+                max-width: 90vw; /* Ensure it doesn't exceed 90vw */
+                margin: 2rem auto 3rem auto; /* Center it */
+                border-radius: 0; /* Remove rounded corners for full mobile width */
+                box-shadow: none; /* Remove shadow on mobile */
+            }
+            .product-video-showcase video {
+                object-fit: contain; /* Show entire video, may add black bars to fit */
+            }
         }
     </style>
 </head>
@@ -125,9 +181,9 @@
                    poster="https://placehold.co/1200x400/cccccc/333333?text=Cargando+Video+Intro" 
                    onerror="console.error('Error al cargar el video de introducción. Verificar URL y archivo:', this.src);">
                 <source src="/Creación_de_Video_Introductorio.mp4" type="video/mp4">
-                <!-- IMPORTANT: Ensure 'Creación_de_Video_Introductorio.mp4' is in the ROOT of your Netlify project. -->
-                <!-- If it's in a 'videos' folder, the path would be: src="/videos/Creación_de_Video_Introductorio.mp4" -->
-                Your browser does not support the video tag.
+                <!-- IMPORTANTE: Asegúrate de que el archivo 'Creación_de_Video_Introductorio.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
+                <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/Creación_de_Video_Introductorio.mp4" -->
+                Tu navegador no soporta el elemento de video.
             </video>
         </div>
         
@@ -198,6 +254,26 @@
                 <a href="descubrir_palabras.html" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
                     Descubrí más palabras
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section for Product Showcase Video -->
+    <section id="productos-en-accion" class="py-8 md:py-12 bg-gray-50 text-center">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Nuestros Objetos que Inspiran en Movimiento</h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                Cada uno de nuestros productos es una extensión de la palabra que lleva. Diseñados con intención y amor, son herramientas para acompañarte en tu día a día, recordándote tu propósito y el poder de tu lenguaje. Descubre cómo la magia de las palabras se materializa en objetos que inspiran.
+            </p>
+            <div class="product-video-showcase">
+                <video controls 
+                       poster="https://placehold.co/800x450/cccccc/333333?text=Cargando+Video+Productos" 
+                       onerror="console.error('Error al cargar el video de productos. Verificar URL y archivo:', this.src);">
+                    <source src="/RP360.mp4" type="video/mp4">
+                    <!-- IMPORTANTE: Asegúrate de que el archivo 'RP360.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
+                    <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/RP360.mp4" -->
+                    Tu navegador no soporta el elemento de video.
+                </video>
             </div>
         </div>
     </section>
@@ -331,6 +407,18 @@
             };
         } else {
             console.error('Homepage video element not found.');
+        }
+
+        // --- Video Playback for Product Showcase Video ---
+        const productVideo = document.querySelector('.product-video-showcase video');
+        if (productVideo) {
+            // Attempt to play the video when it's in view (optional, but good for performance)
+            // For simplicity, we'll just try to play it on load too, or rely on autoplay attribute.
+            // If you want it to play only when scrolled into view, you'd use Intersection Observer.
+            // For now, it will autoplay due to the attributes.
+            console.log('Product showcase video element found.');
+        } else {
+            console.error('Product showcase video element not found.');
         }
     </script>
 
