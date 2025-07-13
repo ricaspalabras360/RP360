@@ -93,9 +93,9 @@
         /* Responsive adjustments for homepage video on smaller screens */
         @media (max-width: 768px) { /* Applies to screens up to 768px wide (typical tablets/mobiles) */
             .homepage-video-container {
-                max-width: 100%; /* Allow it to take full width on smaller screens */
-                margin-left: 0;
-                margin-right: 0;
+                width: 90vw; /* Occupy 90% of viewport width */
+                max-width: 90vw; /* Ensure it doesn't exceed 90vw */
+                margin: 0 auto 2.5rem auto; /* Center it */
                 border-radius: 0; /* Remove rounded corners for full mobile width */
                 box-shadow: none; /* Remove shadow on mobile */
             }
@@ -129,9 +129,9 @@
         /* Responsive adjustments for product video on smaller screens */
         @media (max-width: 768px) { /* Applies to screens up to 768px wide */
             .product-video-showcase {
-                max-width: 100%;
-                margin-left: 0;
-                margin-right: 0;
+                width: 90vw; /* Occupy 90% of viewport width */
+                max-width: 90vw; /* Ensure it doesn't exceed 90vw */
+                margin: 2rem auto 3rem auto; /* Center it */
                 border-radius: 0; /* Remove rounded corners for full mobile width */
                 box-shadow: none; /* Remove shadow on mobile */
             }
