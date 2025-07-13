@@ -465,19 +465,16 @@
         const dots = document.querySelectorAll('.dot');
         let currentSlide = 0;
         let slideInterval;
+        let currentlyPlayingVideo = null; // Variable para rastrear el video actualmente activo
 
         // Función para mostrar una diapositiva específica
         function showSlide(index) {
-            // Oculta todas las diapositivas y desactiva todos los puntos
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-                // Si es un video, pausarlo y reiniciarlo al ocultar
-                if (slide.tagName === 'VIDEO') {
-                    slide.pause();
-                    slide.currentTime = 0; // Reinicia el video al principio
-                }
-            });
-            dots.forEach(dot => dot.classList.remove('active'));
+            // Pausar y reiniciar el video que estaba reproduciéndose, si existe
+            if (currentlyPlayingVideo) {
+                currentlyPlayingVideo.pause();
+                currentlyPlayingVideo.currentTime = 0;
+                currentlyPlayingVideo.classList.remove('active'); // Remover clase activa del slide anterior
+            }
 
             // Asegura que el índice esté dentro de los límites
             if (index >= slides.length) {
@@ -488,13 +485,28 @@
                 currentSlide = index;
             }
 
-            // Muestra la diapositiva activa y activa el punto correspondiente
-            slides[currentSlide].classList.add('active');
-            // Si es un video, reproducirlo al activarlo
-            if (slides[currentSlide].tagName === 'VIDEO') {
-                slides[currentSlide].play();
-            }
+            // Remover la clase activa de todos los puntos y establecer el punto activo
+            dots.forEach(dot => dot.classList.remove('active'));
             dots[currentSlide].classList.add('active');
+
+            // Establecer el nuevo slide activo
+            const newActiveSlide = slides[currentSlide];
+            newActiveSlide.classList.add('active');
+            
+            // Reproducir el nuevo video activo
+            if (newActiveSlide.tagName === 'VIDEO') {
+                const playPromise = newActiveSlide.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Reproducción iniciada con éxito
+                    }).catch(error => {
+                        // La reproducción automática fue impedida o interrumpida (ej. por otra llamada a pause())
+                        // Este es el AbortError que se está reportando.
+                        console.warn('La reproducción del video fue impedida o interrumpida:', error);
+                    });
+                }
+            }
+            currentlyPlayingVideo = newActiveSlide; // Actualizar el seguimiento del video activo
         }
 
         // Función para avanzar automáticamente las diapositivas
@@ -519,8 +531,9 @@
         });
 
         // Inicia el carrusel cuando la página se carga
-        window.onload = autoSlide;
+        window.onload = () => {
+            showSlide(0); // Muestra el primer slide inmediatamente
+            currentlyPlayingVideo = slides[0]; // Inicializa el seguimiento para el primer video
+            autoSlide();
+        };
     </script>
-
-</body>
-</html>
