@@ -173,4 +173,114 @@
             padding: 1.5rem 1rem;
             text-align: center;
             font-size: 0.875rem; /* text-sm */
-            margin-top: a
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        /* Styles for the "Volver a la Página Principal" button when it's at the bottom */
+        .return-to-main-button {
+            background-color: #4299e1; /* Blue-500 */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem; /* Space above the button */
+            margin-bottom: 2rem; /* Space below the button */
+            
+            /* New styles for consistent size and centered text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 280px; /* Consistent width for desktop */
+            text-align: center; /* Fallback for text alignment */
+        }
+        .return-to-main-button:hover {
+            background-color: #3182ce; /* Blue-600 */
+        }
+
+        /* Responsive adjustments for general content */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .header-title {
+                margin-bottom: 1rem;
+                font-size: 1.25rem;
+            }
+            .main-content {
+                padding: 1.5rem 0.5rem; /* Restore some padding for content within main */
+            }
+            .card-title {
+                font-size: 2.25rem;
+            }
+            .card-description {
+                font-size: 1rem;
+            }
+            .cta-button, .return-to-main-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+                width: 100%; /* Full width on mobile */
+                min-width: unset; /* Remove min-width constraint on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-title">Ricas Palabras 360</div>
+    </header>
+
+    <main class="main-content">
+        <!-- Video for VIDA page (vida video.mp4) -->
+        <div class="vida-hero-video-container">
+            <video autoplay loop muted playsinline 
+                   poster="https://placehold.co/1200x480/cccccc/333333?text=Cargando+Video+VIDA" 
+                   onerror="console.error('Error al cargar el video de VIDA. Verificar URL y archivo:', this.src);">
+                <source src="/vida video.mp4" type="video/mp4">
+                <!-- IMPORTANT: Asegúrate de que el archivo 'vida video.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
+                <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/vida video.mp4" -->
+                Tu navegador no soporta el video tag.
+            </video>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <!-- Image of the VIDA card (vida.png) -->
+            <img src="vida.png" alt="Carta de VIDA de Ricas Palabras" class="vida-image-below-video" onerror="this.src='https://placehold.co/400x600/fbbf24/ffffff?text=Carta+VIDA'; this.onerror=null;">
+            
+            <h1 class="card-title">VIDA</h1>
+            
+            <p class="card-description">
+                Vida es el milagro supremo, el lienzo infinito donde se despliega tu existencia. Es un viaje constante de aprendizaje, evolución consciente y transformación, una oportunidad sublime para experimentar, sentir y dejar una huella única en el Multiverso del Ser.
+
+                Esta palabra te invita a saber vivirla con plena conciencia, a celebrar cada instante, abrazar los desafíos como oportunidades y reconocer la magia en lo cotidiano. Conecta con tu Semilla Solar, ese núcleo de energía y sabiduría que te impulsa a Crear en la Vida tus propios colores, palabras y acciones.
+
+                ¡Despierta, explora y vive con pasión la gloria de tu existencia, porque eres Vida y la Vida es Eterna!
+            </p>
+
+            <!-- Only three buttons at the bottom -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4 mb-8">
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="cta-button">
+                    Descubrir productos con la palabra "VIDA"
+                </a>
+                <a href="descubrir_palabras.html" class="cta-button bg-emerald-500 hover:bg-emerald-600 text-white">
+                    Descubrí más palabras
+                </a>
+                <a href="index.html" class="return-to-main-button">
+                    Volver a la Página Principal
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
