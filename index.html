@@ -91,8 +91,8 @@
         /* Responsive adjustments for llamavida.mp4 on smaller screens */
         @media (max-width: 768px) {
             .hero-main-content-container {
-                width: 90vw; /* 90% del ancho del viewport en móvil */
-                max-width: 90vw;
+                width: 100vw; /* 100% del ancho del viewport en móvil */
+                max-width: 100vw;
                 margin: 0 auto;
                 border-radius: 0;
                 box-shadow: none;
@@ -105,14 +105,14 @@
 
 
         /* * Styles for the homepage video container 
-         * Video de Portada: Computadora - Mediano y Completo, Celular - Pantalla Completa y Completo, Con Marco/Sombra (BASE.3)
+         * Video de Portada: Computadora - Mediano y Completo, Celular - Pantalla Completa y Completo, Sin Marco/Sombra
          */
         .homepage-video-container {
             width: 100%;
-            max-width: 1200px; /* Ajustado a BASE.3 */
-            margin: 0 auto 2.5rem auto; /* Ajustado a BASE.3 */
-            border-radius: 0.5rem; /* Ajustado a BASE.3 */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Ajustado a BASE.3 */
+            max-width: 800px; /* Desktop: tamaño mediano */
+            margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
+            border-radius: 0; /* Sin bordes redondeados para la portada en escritorio */
+            box-shadow: none; /* Sin sombra para la portada en escritorio */
             overflow: hidden;
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
@@ -124,20 +124,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Asegura que el video llene el contenedor (BASE.3) */
+            object-fit: cover; /* Asegura que el video llene el contenedor en escritorio */
         }
 
-        /* Responsive adjustments for homepage video on smaller screens (from BASE.3) */
-        @media (max-width: 768px) {
+        /* Responsive adjustments for homepage video on smaller screens */
+        @media (max-width: 768px) { /* Aplica a pantallas de hasta 768px de ancho (típico de tablets/móviles) */
             .homepage-video-container {
                 width: 100vw; /* Ocupa el 100% del ancho del viewport en móvil */
                 max-width: 100vw; /* Asegura que no exceda el 100vw */
-                margin: 0 auto 2.5rem auto; /* Centrado y margen inferior */
-                border-radius: 0.5rem; /* Mantiene bordes redondeados en móvil (BASE.3) */
-                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Mantiene sombra en móvil (BASE.3) */
+                margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
+                border-radius: 0; /* Sin bordes redondeados en móvil */
+                box-shadow: none; /* Sin sombra en móvil */
             }
             .homepage-video-container video {
-                object-fit: cover; /* Asegura que el video llene el contenedor en móvil (BASE.3) */
+                object-fit: cover; /* Asegura que el video llene el contenedor en móvil */
             }
         }
 
