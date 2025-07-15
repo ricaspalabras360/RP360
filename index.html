@@ -112,7 +112,31 @@
 
  
 
-        /* Styles for the main hero image/video container (llamavida.mp4) / .hero-main-content-container { width: 100%; max-width: 500px; / Desktop: más pequeño / margin: 0 auto; / Center it / border-radius: 0; / Sin marco / box-shadow: none; / Sin sombra / overflow: hidden; position: relative; padding-bottom: 56.25%; / 16:9 Aspect Ratio (height / width * 100%) / height: 0; / Important for padding-bottom trick / margin-top: 1rem; / Ajuste para el espacio con el texto superior / } .hero-main-content-container video, .hero-main-content-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; / Asegura que el video completo sea visible / display: block; / Overrides default inline behavior */ } 
+        /* Styles for the main hero image container */  
+
+        .hero-main-image-container img {  
+
+            display: block;  
+
+            width: 100%;  
+
+            max-width: 700px;  
+
+            height: auto;  
+
+            object-fit: cover;  
+
+            border-radius: 0.5rem;  
+
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);  
+
+            margin-left: auto;  
+
+            margin-right: auto;  
+
+        }  
+
+/* Styles for the main hero image/video container (llamavida.mp4) / .hero-main-content-container { width: 100%; max-width: 500px; / Desktop: más pequeño / margin: 0 auto; / Center it / border-radius: 0; / Sin marco / box-shadow: none; / Sin sombra / overflow: hidden; position: relative; padding-bottom: 56.25%; / 16:9 Aspect Ratio (height / width * 100%) / height: 0; / Important for padding-bottom trick / margin-top: 1rem; / Ajuste para el espacio con el texto superior / } .hero-main-content-container video, .hero-main-content-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; / Asegura que el video completo sea visible / display: block; / Overrides default inline behavior */ } 
 
 /* Responsive adjustments for llamavida.mp4 on smaller screens / @media (max-width: 768px) { .hero-main-content-container { width: 100vw; / 100% del ancho del viewport en móvil / max-width: 100vw; margin: 0 auto; border-radius: 0; box-shadow: none; margin-top: 0.5rem; / Ajuste para el espacio con el texto superior en móvil */ } .hero-main-content-container video, .hero-main-content-container img { object-fit: contain; } } 
 
