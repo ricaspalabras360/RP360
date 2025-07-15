@@ -79,14 +79,14 @@
         .hero-main-content-container {
             width: 100%;
             max-width: 500px; /* Desktop: más pequeño */
-            margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
+            margin: 0 auto; /* Center it */
             border-radius: 0; /* Sin marco */
             box-shadow: none; /* Sin sombra */
             overflow: hidden;
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
             height: 0; /* Important for padding-bottom trick */
-            /* margin-top se controla por el mb del párrafo superior */
+            margin-top: 1rem; /* Ajuste para el espacio con el texto superior */
         }
         .hero-main-content-container video,
         .hero-main-content-container img {
@@ -102,12 +102,12 @@
         /* Responsive adjustments for llamavida.mp4 on smaller screens */
         @media (max-width: 768px) {
             .hero-main-content-container {
-                width: 90vw; /* Ocupa el 90% del ancho del viewport en móvil */
-                max-width: 90vw; /* Asegura que no exceda el 90vw */
-                margin: 0 auto 0 auto; /* Centrado */
+                width: 100vw; /* 100% del ancho del viewport en móvil */
+                max-width: 100vw;
+                margin: 0 auto;
                 border-radius: 0;
                 box-shadow: none;
-                /* margin-top se controla por el mb del párrafo superior */
+                margin-top: 0.5rem; /* Ajuste para el espacio con el texto superior en móvil */
             }
             .hero-main-content-container video,
             .hero-main-content-container img {
@@ -187,6 +187,50 @@
             }
             .product-video-showcase video {
                 object-fit: contain; /* Asegura que el video completo sea visible en móvil */
+            }
+        }
+
+        /* Styles for Instagram sections */
+        .instagram-section {
+            padding: 2rem 1rem;
+            background-color: #f8fafc; /* Lightest gray */
+            border-top: 1px solid #e2e8f0; /* Light border */
+            text-align: center;
+        }
+        .instagram-section h2 {
+            font-size: 2.25rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: #2d3748; /* gray-800 */
+            margin-bottom: 1rem;
+        }
+        .instagram-section p {
+            font-size: 1rem; /* text-base */
+            color: #4a5568; /* gray-700 */
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            line-height: 1.6;
+        }
+        .instagram-feed-placeholder {
+            background-color: #e2e8f0; /* Light gray */
+            color: #718096; /* Gray text */
+            padding: 3rem 1rem;
+            border-radius: 0.5rem;
+            height: 300px; /* Placeholder height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            margin: 0 auto;
+            max-width: 800px; /* Max width for the placeholder */
+            box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .instagram-section h2 {
+                font-size: 1.75rem; /* Smaller on mobile */
+            }
+            .instagram-feed-placeholder {
+                height: 200px; /* Shorter on mobile */
+                padding: 2rem 0.5rem;
             }
         }
     </style>
@@ -332,7 +376,7 @@
                     <source src="/RP360.mp4" type="video/mp4">
                     <!-- IMPORTANT: Asegúrate de que el archivo 'RP360.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
                     <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/RP360.mp4" -->
-                    Your browser no soporta el video tag.
+                    Tu browser no soporta el video tag.
                 </video>
             </div>
         </div>
@@ -388,99 +432,12 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contacto" class="bg-gray-800 text-gray-300 py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 text-white">Ricas Palabras 360</h4>
-                    <p class="text-sm">Conectando crecimiento, evolución y transformación global.</p>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-3 text-white">Enlaces Rápidos</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="poder_y_escritura_consciente.html" class="hover:text-white transition duration-300">El Poder de las Palabras</a></li>
-                        <li><a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Tienda</a></li>
-                        <li><a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Web Principal</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-3 text-white">Contacto</h5>
-                    <ul class="space-y-4 text-sm">
-                        <li><a href="mailto:ricaspalabras360@gmail.com" class="hover:text-white transition duration-300">ricaspalabras360@gmail.com</a></li>
-                        <li>Buenos Aires, Argentina</li>
-                        
-                        <li>
-                            <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
-                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c-4.068 0-4.58 0-6.17.08C4.402 2.16 3.43 2.54 2.69 3.28 1.95 4.02 1.57 4.99 1.48 6.14.1 7.73 0 8.25 0 12.315s.08 4.58.16 6.17c.09 1.15.47 2.12 1.21 2.86 1.48 1.48 3.59 1.21 6.17.16 1.59.08 2.1.08 6.17.08s4.58 0 6.17-.08c2.58-.05 4.69-1.38 6.17-.16 1.15-.09 2.12-.47 2.86-1.21-.74-.74-1.71-1.12-2.86-1.21C20.89 2.16 20.37 2.08 18.78 2.08 17.19 2 16.67 2 12.315 2zm0 1.62c4.003 0 4.48.015 6.074.088 1.46.066 2.304.35 2.98.98.674.635.967 1.478.98 2.98.072 1.592.087 2.07.087 6.075s-.015 4.48-.087 6.074c-.013 1.504-.306 2.347-.98 2.98-.673.632-1.52.917-2.98.98-1.592.073-2.07.088-6.074.088s-4.48-.015-6.074-.088c-1.46-.063-2.304-.348-2.98-.98-.674-.633-.967-1.476-.98-2.98C3.695 16.8 3.68 16.32 3.68 12.315s.015-4.48.087-6.074c.013-1.504.306 2.347.98-2.98.673-.635 1.52-.915 2.98-.98C7.835 3.695 8.315 3.68 12.315 3.68zM12 7.38a4.935 4.935 0 100 9.87 4.935 4.935 0 000-9.87zm0 8.25a3.315 3.315 0 110-6.63 3.315 3.315 0 010 6.63zM18.8 6.84a1.26 1.26 0 100-2.52 1.26 1.26 0 000 2.52z" clip-rule="evenodd"/></svg>
-                                <span>Seguinos en Instagram</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="quien_soy.html" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
-                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                                <span>Quién soy?</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Copyright -->
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
-                &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
-            </div>
-        </div>
+    <footer class="footer">
+        &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
     </footer>
 
     <script>
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        }
-
-        // --- Video Playback for Homepage Video ---
-        const homepageVideo = document.querySelector('.homepage-video-container video');
-        if (homepageVideo) {
-            // Attempt to play the video when the page loads
-            window.onload = () => {
-                const playPromise = homepageVideo.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // Playback started successfully
-                        console.log('Homepage video playing successfully.');
-                    }).catch(error => {
-                        // Autoplay was prevented or interrupted
-                        console.error('Error playing homepage video:', error);
-                    });
-                }
-            };
-        } else {
-            console.error('Homepage video element not found.');
-        }
-
-        // --- Video Playback for Product Showcase Video ---
-        const productVideo = document.querySelector('.product-video-showcase video');
-        if (productVideo) {
-            // Attempt to play the video when it's in view (optional, but good for performance)
-            // For simplicity, we'll just try to play it on load too, or rely on autoplay attribute.
-            // If you want it to play only when scrolled into view, you'd use Intersection Observer.
-            // For now, it will autoplay due to the attributes.
-            console.log('Product showcase video element found.');
-        } else {
-            console.error('Product showcase video element not found.');
-        }
     </script>
-
 </body>
 </html>
