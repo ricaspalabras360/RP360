@@ -136,14 +136,9 @@
             max-width: 700px;
             margin-bottom: 1rem; /* Reduced margin-bottom */
             padding: 0 1rem; /* Add horizontal padding to description for mobile */
-            text-align: justify; /* Justify text for desktop */
+            text-align: center; /* Center text for both desktop and mobile */
         }
-        /* Adjust description text alignment for mobile */
-        @media (max-width: 768px) {
-            .card-description {
-                text-align: center; /* Center text for mobile */
-            }
-        }
+        /* No need for separate media query for card-description text-align now */
 
         .cta-button {
             background-color: #f6ad55; /* Orange-400 */
