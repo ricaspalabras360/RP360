@@ -78,14 +78,14 @@
         .hero-main-content-container {
             width: 100%;
             max-width: 500px; /* Desktop: más pequeño */
-            margin: 0 auto; /* Center it */
+            margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
             border-radius: 0; /* Sin marco */
             box-shadow: none; /* Sin sombra */
             overflow: hidden;
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
             height: 0; /* Important for padding-bottom trick */
-            margin-top: 1rem; /* Ajuste para el espacio con el texto superior */
+            /* margin-top se controla por el mb del párrafo superior */
         }
         .hero-main-content-container video,
         .hero-main-content-container img {
@@ -103,10 +103,10 @@
             .hero-main-content-container {
                 width: 100vw; /* 100% del ancho del viewport en móvil */
                 max-width: 100vw;
-                margin: 0 auto;
+                margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
                 border-radius: 0;
                 box-shadow: none;
-                margin-top: 0.5rem; /* Ajuste para el espacio con el texto superior en móvil */
+                /* margin-top se controla por el mb del párrafo superior */
             }
             .hero-main-content-container video,
             .hero-main-content-container img {
