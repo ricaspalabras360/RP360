@@ -1,25 +1,50 @@
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIDA - Ricas Palabras 360</title>
+    <!-- Incluye Tailwind CSS para un diseño responsivo y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preconecta a Google Fonts para mejorar el rendimiento de carga de la fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carga la fuente Inter desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Reset de márgenes y paddings por defecto del navegador */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8; /* Light blue-gray background */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
             overflow-x: hidden;
         }
+
+        /* Simple scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Style for gradient text - optional */
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #3b82f6); /* Example gradient green-blue */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Header styles */
         .header {
             background-color: #ffffff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -33,41 +58,74 @@
             font-weight: 700; /* font-bold */
             color: #1a202c; /* gray-900 */
         }
-        .back-button {
-            background-color: #4299e1; /* Blue-500 */
-            color: white;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        .back-button:hover {
-            background-color: #3182ce; /* Blue-600 */
-        }
+
+        /* Main content area styles */
         .main-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 2rem 1rem;
+            justify-content: flex-start; /* Align content to top within main */
+            padding: 0; /* Remove padding from main-content to allow video to go full width */
             text-align: center;
         }
-        .card-image {
+        
+        /* Styles for the main video on the VIDA page (vida video.mp4) */
+        .vida-hero-video-container {
+            width: 100%;
+            max-width: 100%; /* Ocupa todo el ancho disponible en desktop */
+            margin: 0 auto; /* Centrado */
+            border-radius: 0; /* Sin marco */
+            box-shadow: none; /* Sin sombra */
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 40%; /* Ajustado a 2.5:1 Aspect Ratio (más ancho y corto) */
+            height: 0; /* Important for padding-bottom trick */
+        }
+        .vida-hero-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que el video llene el contenedor */
+            display: block;
+        }
+
+        /* Responsive adjustments for vida-hero-video-container on smaller screens */
+        @media (max-width: 768px) {
+            .vida-hero-video-container {
+                width: 100vw; /* Ocupa el 100% del ancho del viewport en móvil */
+                max-width: 100vw;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .vida-hero-video-container video {
+                object-fit: cover; /* Asegura que el video llene el contenedor en móvil */
+            }
+        }
+
+        /* Styles for the vida.png2 image */
+        .vida-image-below-video {
             max-width: 100%;
             height: auto;
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            margin-bottom: 2rem;
+            margin-top: 1rem; /* Reduced space below video */
+            margin-bottom: 1rem; /* Reduced space above title */
             max-height: 500px; /* Limit height for larger screens */
-            object-fit: contain; /* Ensure the image fits within boundaries */
+            object-fit: contain;
+            display: block; /* Make it a block element */
+            margin-left: auto; /* Center it horizontally */
+            margin-right: auto; /* Center it horizontally */
         }
+
         .card-title {
             font-size: 3rem; /* text-5xl */
             font-weight: 800; /* font-extrabold */
             color: #fbbf24; /* Amber-400 for VIDA (example color, adjust as needed) */
-            margin-bottom: 1.5rem;
+            margin-top: 0.5rem; /* Further reduced margin-top for title after image */
+            margin-bottom: 1rem; /* Reduced margin-bottom */
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .card-description {
@@ -75,7 +133,8 @@
             color: #4a5568; /* gray-700 */
             line-height: 1.8;
             max-width: 700px;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem; /* Reduced margin-bottom */
+            padding: 0 1rem; /* Add horizontal padding to description for mobile */
         }
         .cta-button {
             background-color: #f6ad55; /* Orange-400 */
@@ -87,6 +146,13 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin: 0.5rem; /* Added margin for spacing between buttons */
+            
+            /* New styles for consistent size and centered text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 280px; /* Consistent width for desktop */
+            text-align: center; /* Fallback for text alignment */
         }
         .cta-button:hover {
             background-color: #ed8936; /* Orange-500 */
@@ -98,9 +164,33 @@
             padding: 1.5rem 1rem;
             text-align: center;
             font-size: 0.875rem; /* text-sm */
+            margin-top: auto; /* Push footer to the bottom */
         }
 
-        /* Responsive adjustments */
+        /* Styles for the "Volver a la Página Principal" button when it's at the bottom */
+        .return-to-main-button {
+            background-color: #4299e1; /* Blue-500 */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem; /* Space above the button */
+            margin-bottom: 2rem; /* Space below the button */
+            
+            /* New styles for consistent size and centered text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 280px; /* Consistent width for desktop */
+            text-align: center; /* Fallback for text alignment */
+        }
+        .return-to-main-button:hover {
+            background-color: #3182ce; /* Blue-600 */
+        }
+
+        /* Responsive adjustments for general content */
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -111,7 +201,7 @@
                 font-size: 1.25rem;
             }
             .main-content {
-                padding: 1.5rem 0.5rem;
+                padding: 1.5rem 0.5rem; /* Restore some padding for content within main */
             }
             .card-title {
                 font-size: 2.25rem;
@@ -119,9 +209,11 @@
             .card-description {
                 font-size: 1rem;
             }
-            .cta-button {
+            .cta-button, .return-to-main-button {
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
+                width: 100%; /* Full width on mobile */
+                min-width: unset; /* Remove min-width constraint on mobile */
             }
         }
     </style>
@@ -129,29 +221,48 @@
 <body>
     <header class="header">
         <div class="header-title">Ricas Palabras 360</div>
-        <a href="index.html" class="back-button">Volver a la Página Principal</a>
     </header>
 
     <main class="main-content">
-        <img src="vida.png" alt="Carta de VIDA de Ricas Palabras" class="card-image" onerror="this.src='https://placehold.co/400x600/fbbf24/ffffff?text=Carta+VIDA'; this.onerror=null;">
+        <!-- Video for VIDA page (vida video.mp4) -->
+        <div class="vida-hero-video-container">
+            <video autoplay loop muted playsinline 
+                   poster="https://placehold.co/1200x480/cccccc/333333?text=Cargando+Video+VIDA" 
+                   onerror="console.error('Error al cargar el video de VIDA. Verificar URL y archivo:', this.src);">
+                <source src="/vida video.mp4" type="video/mp4">
+                <!-- IMPORTANT: Asegúrate de que el archivo 'vida video.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
+                <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/vida video.mp4" -->
+                Tu navegador no soporta el video tag.
+            </video>
+        </div>
         
-        <h1 class="card-title">VIDA</h1>
-        
-        <p class="card-description">
-            Vida es el milagro supremo, el lienzo infinito donde se despliega tu existencia. Es un viaje constante de aprendizaje, evolución consciente y transformación, una oportunidad sublime para experimentar, sentir y dejar una huella única en el Multiverso del Ser.
+        <div class="container mx-auto px-6 text-center">
+            <!-- Image of the VIDA card (vida.png2) -->
+            <img src="vida.png2" alt="Carta de VIDA de Ricas Palabras" class="vida-image-below-video" onerror="this.src='https://placehold.co/400x600/fbbf24/ffffff?text=Carta+VIDA'; this.onerror=null;">
+            
+            <h1 class="card-title">VIDA</h1>
+            
+            <p class="card-description">
+                Vida es el milagro supremo, el lienzo infinito donde se despliega tu existencia. Es un viaje constante de aprendizaje, evolución consciente y transformación, una oportunidad sublime para experimentar, sentir y dejar una huella única en el Multiverso del Ser.
 
-            Esta palabra te invita a saber vivirla con plena conciencia, a celebrar cada instante, abrazar los desafíos como oportunidades y reconocer la magia en lo cotidiano. Conecta con tu Semilla Solar, ese núcleo de energía y sabiduría que te impulsa a Crear en la Vida tus propios colores, palabras y acciones.
+                Esta palabra te invita a saber vivirla con plena conciencia, a celebrar cada instante, abrazar los desafíos como oportunidades y reconocer la magia en lo cotidiano. Conecta con tu Semilla Solar, ese núcleo de energía y sabiduría que te impulsa a Crear en la Vida tus propios colores, palabras y acciones.
 
-            ¡Despierta, explora y vive con pasión la gloria de tu existencia, porque eres Vida y la Vida es Eterna!
-        </p>
+                ¡Despierta, explora y vive con pasión la gloria de tu existencia, porque eres Vida y la Vida es Eterna!
+            </p>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-            <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="cta-button">
-                Descubrí más cartas y productos para VIDA
-            </a>
-            <a href="descubrir_palabras.html" class="cta-button bg-emerald-500 hover:bg-emerald-600 text-white">
-                Descubrí más palabras
-            </a>
+            <!-- Only three buttons at the bottom -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4 mb-8">
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="cta-button">
+                    Descubrir productos con la palabra "VIDA"
+                </a>
+                <a href="descubrir_palabras.html" class="cta-button bg-emerald-500 hover:bg-emerald-600 text-white">
+                    Descubrí más palabras
+                </a>
+                <a href="index.html" class="return-to-main-button">
+                    Volver a la Página Principal
+                </a>
+            </div>
+
         </div>
     </main>
 
