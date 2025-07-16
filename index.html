@@ -79,7 +79,7 @@
         .hero-main-content-container {
             width: 100%;
             max-width: 500px; /* Desktop: más pequeño */
-            margin: 0 auto; /* Center it */
+            margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
             border-radius: 0; /* Sin marco */
             box-shadow: none; /* Sin sombra */
             overflow: hidden;
@@ -102,9 +102,9 @@
         /* Responsive adjustments for llamavida.mp4 on smaller screens */
         @media (max-width: 768px) {
             .hero-main-content-container {
-                width: 100vw; /* 100% del ancho del viewport en móvil */
-                max-width: 100vw;
-                margin: 0 auto;
+                width: 90vw; /* Ocupa el 90% del ancho del viewport en móvil */
+                max-width: 90vw; /* Asegura que no exceda el 90vw */
+                margin: 0 auto 0 auto; /* Centrado */
                 border-radius: 0;
                 box-shadow: none;
                 margin-top: 0.5rem; /* Ajuste para el espacio con el texto superior en móvil */
@@ -376,7 +376,7 @@
                     <source src="/RP360.mp4" type="video/mp4">
                     <!-- IMPORTANT: Asegúrate de que el archivo 'RP360.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
                     <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/RP360.mp4" -->
-                    Tu browser no soporta el video tag.
+                    Your browser no soporta el video tag.
                 </video>
             </div>
         </div>
@@ -437,7 +437,8 @@
             <h2>Síguenos en Instagram: @ricas_palabras</h2>
             <p>Descubre inspiración diaria, reflexiones profundas y contenido que te conecta con el poder transformador de las palabras. Un espacio para crecer y evolucionar juntos.</p>
             <div class="instagram-feed-placeholder">
-                [<div class="embedsocial-hashtag" data-ref="8566c850de76136614c013a71789acfb2ffe7f29"> <a class="feed-powered-by-es feed-powered-by-es-slider-img es-widget-branding" href="https://embedsocial.com/social-media-aggregator/" target="_blank" title="Instagram widget"> <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial"> <div class="es-widget-branding-text">Instagram widget</div> </a> </div> <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>]
+                <!-- Aquí irá el código del widget de Instagram para @ricas_palabras -->
+                [Aquí irá el feed de Instagram @ricas_palabras]
             </div>
             <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline">Visitar @ricas_palabras</a>
         </div>
@@ -449,6 +450,7 @@
             <h2>Explora nuestros Productos en Instagram: @ricaspalabras</h2>
             <p>Un vistazo exclusivo a nuestros objetos con propósito: velas, libretas, eco-escritores y más. Descubre cómo cada producto materializa una palabra y una intención.</p>
             <div class="instagram-feed-placeholder">
+                <!-- Aquí irá el código del widget de Instagram para @ricaspalabras -->
                 [Aquí irá el feed de Instagram @ricaspalabras]
             </div>
             <a href="https://www.instagram.com/ricaspalabras/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline">Visitar @ricaspalabras</a>
