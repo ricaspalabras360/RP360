@@ -201,7 +201,14 @@
             font-size: 2.25rem; /* text-3xl */
             font-weight: 700; /* font-bold */
             color: #2d3748; /* gray-800 */
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Reduced margin-bottom */
+        }
+        .instagram-section h2 a { /* Styles for the <a> tag wrapping the h2 */
+            color: #2d3748; /* Inherit color from h2 or set explicitly */
+            text-decoration: none; /* Remove default underline */
+        }
+        .instagram-section h2 a:hover {
+            text-decoration: underline; /* Add underline on hover */
         }
         .instagram-section p {
             font-size: 1rem; /* text-base */
@@ -214,7 +221,7 @@
             /* Estos estilos son para el placeholder, serán sobrescritos por el widget real */
             background-color: #e2e8f0; /* Light gray */
             color: #718096; /* Gray text */
-            padding: 0; /* Removed padding */
+            padding: 0 !important; /* Removed padding */
             border-radius: 0.5rem;
             min-height: 400px; /* Minimum height for desktop */
             height: auto; /* Allow height to adjust based on content */
@@ -260,11 +267,11 @@
                 font-size: 1.75rem; /* Smaller on mobile */
             }
             .instagram-section p {
-                margin-bottom: 0; /* Reduced margin-bottom for mobile */
+                margin-bottom: 0 !important; /* Reduced margin-bottom for mobile */
             }
             .instagram-feed-placeholder {
                 min-height: 300px; /* Shorter on mobile */
-                padding: 0; /* Removed padding */
+                padding: 0 !important; /* Removed padding */
             }
         }
     </style>
@@ -465,28 +472,30 @@
     <!-- Instagram Section: @ricas_palabras -->
     <section id="instagram-ricas-palabras" class="instagram-section">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2>Síguenos en Instagram: @ricas_palabras</h2>
+            <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                <h2>Síguenos en Instagram: @ricas_palabras</h2>
+            </a>
             <p>Descubre inspiración diaria, reflexiones profundas y contenido que te conecta con el poder transformador de las palabras. Un espacio para crecer y evolucionar juntos.</p>
             <div class="instagram-feed-placeholder">
                 <!-- Código del widget de EmbedSocial para @ricas_palabras -->
                 <div class="embedsocial-hashtag" data-ref="8566c850de76136614c013a71789acfb2ffe7f29"></div>
                 <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>
             </div>
-            <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline">Visitar @ricas_palabras</a>
         </div>
     </section>
 
     <!-- Instagram Section: @ricaspalabras (Productos) -->
     <section id="instagram-productos" class="instagram-section">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2>Explora nuestros Productos en Instagram: @ricaspalabras</h2>
+            <a href="https://www.instagram.com/ricaspalabras/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                <h2>Explora nuestros Productos en Instagram: @ricaspalabras</h2>
+            </a>
             <p>Un vistazo exclusivo a nuestros objetos con propósito: velas, libretas, eco-escritores y más. Descubre cómo cada producto materializa una palabra y una intención.</p>
             <div class="instagram-feed-placeholder">
                 <!-- Código del widget de EmbedSocial para @ricaspalabras (asumiendo otro data-ref o configuración) -->
                 <div class="embedsocial-hashtag" data-ref="OTI1YjA3ZGEzMjQ1MWI3Y2E1YjQzMzI2M2EzZDA2NTFjN2NhZWIzYQ=="></div>
                 <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript2")); </script>
             </div>
-            <a href="https://www.instagram.com/ricaspalabras/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline">Visitar @ricaspalabras</a>
         </div>
     </section>
 
