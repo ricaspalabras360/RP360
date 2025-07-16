@@ -216,13 +216,14 @@
             color: #718096; /* Gray text */
             padding: 3rem 1rem;
             border-radius: 0.5rem;
-            height: 300px; /* Placeholder height */
+            min-height: 2500px; /* Adjusted min-height to 2500px */
+            height: auto; /* Allow height to adjust based on content */
             display: flex;
             align-items: center;
             justify-content: center;
             font-style: italic;
             margin: 0 auto;
-            max-width: 800px; /* Max width for the placeholder */
+            max-width: 1800px; /* Adjusted max-width to 1800px */
             box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
             
             /* Overrides for EmbedSocial widget to remove its default frame */
@@ -239,7 +240,7 @@
             padding: 0 !important;
             margin: 0 auto !important; /* Ensure widget itself is centered */
             width: 100% !important; /* Ensure it takes available width */
-            max-width: 800px !important; /* Limit max-width for desktop */
+            max-width: 1800px !important; /* Limit max-width for desktop */
         }
         .embedsocial-hashtag iframe {
             border: none !important;
@@ -258,8 +259,11 @@
             .instagram-section h2 {
                 font-size: 1.75rem; /* Smaller on mobile */
             }
+            .instagram-section p {
+                margin-bottom: 1rem; /* Reduced margin-bottom for mobile */
+            }
             .instagram-feed-placeholder {
-                height: 200px; /* Shorter on mobile */
+                min-height: 300px; /* Shorter on mobile */
                 padding: 2rem 0.5rem;
             }
         }
