@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -223,14 +223,14 @@
             color: #718096; /* Gray text */
             padding: 0 !important; /* Removed padding */
             border-radius: 0.5rem;
-            min-height: 500px; /* Increased min-height for desktop */
+            min-height: 600px; /* Increased min-height for desktop to make images larger */
             height: auto; /* Allow height to adjust based on content */
             display: flex;
             align-items: center;
             justify-content: center;
             font-style: italic;
             margin: 0 auto;
-            max-width: 800px; /* Max width for the placeholder */
+            max-width: 100vw !important; /* Occupy full viewport width on desktop */
             box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
             
             /* Overrides for EmbedSocial widget to remove its default frame */
@@ -247,7 +247,7 @@
             padding: 0 !important;
             margin: 0 auto !important; /* Ensure widget itself is centered */
             width: 100% !important; /* Ensure it takes available width */
-            max-width: 800px !important; /* Limit max-width for desktop */
+            max-width: 100vw !important; /* Occupy full viewport width on desktop */
         }
         .embedsocial-hashtag iframe {
             border: none !important;
@@ -255,7 +255,7 @@
             background: transparent !important;
             width: 100% !important;
             height: auto !important; /* Allow height to adjust based on content */
-            min-height: 300px; /* Minimum height for the iframe */
+            min-height: 400px; /* Minimum height for the iframe */
         }
         .embedsocial-hashtag .feed-powered-by-es {
             display: none !important; /* Hide "Powered by EmbedSocial" branding */
@@ -272,6 +272,13 @@
             .instagram-feed-placeholder {
                 min-height: 400px; /* Shorter on mobile */
                 padding: 0 !important; /* Removed padding */
+                max-width: 100vw !important; /* Occupy full viewport width on mobile */
+            }
+            .embedsocial-hashtag {
+                max-width: 100vw !important; /* Occupy full viewport width on mobile */
+            }
+            .embedsocial-hashtag iframe {
+                min-height: 300px; /* Minimum height for the iframe */
             }
         }
     </style>
@@ -406,7 +413,7 @@
     <!-- Section for Product Showcase Video -->
     <section id="productos-en-accion" class="py-8 md:py-12 bg-gray-50 text-center">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Nuestros Objetos que Inspiran en Movimiento</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Nuestros Objetos que Inspira en Movimiento</h2>
             <p class="text-lg text-gray-700 mb-8 leading-relaxed">
                 Cada uno de nuestros productos es una extensión de la palabra que lleva. Diseñados con intención y amor, son herramientas para acompañarte en tu día a día, recordándote tu propósito y el poder de tu lenguaje. Descubre cómo la magia de las palabras se materializa en objetos que inspiran.
             </p>
