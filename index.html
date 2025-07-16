@@ -211,6 +211,7 @@
             line-height: 1.6;
         }
         .instagram-feed-placeholder {
+            /* Estos estilos son para el placeholder, serán sobrescritos por el widget real */
             background-color: #e2e8f0; /* Light gray */
             color: #718096; /* Gray text */
             padding: 3rem 1rem;
@@ -223,7 +224,25 @@
             margin: 0 auto;
             max-width: 800px; /* Max width for the placeholder */
             box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            
+            /* Overrides for EmbedSocial widget to remove its default frame */
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important; /* Remove padding if widget adds its own */
+            background: transparent !important; /* Remove background */
         }
+        /* Target EmbedSocial specific elements to remove their default styling */
+        .embedsocial-hashtag iframe,
+        .embedsocial-hashtag .feed-powered-by-es {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+        }
+        .embedsocial-hashtag .es-widget-branding {
+            display: none !important; /* Hide "Powered by EmbedSocial" if desired */
+        }
+
+
         @media (max-width: 768px) {
             .instagram-section h2 {
                 font-size: 1.75rem; /* Smaller on mobile */
@@ -437,8 +456,9 @@
             <h2>Síguenos en Instagram: @ricas_palabras</h2>
             <p>Descubre inspiración diaria, reflexiones profundas y contenido que te conecta con el poder transformador de las palabras. Un espacio para crecer y evolucionar juntos.</p>
             <div class="instagram-feed-placeholder">
-                <!-- Aquí irá el código del widget de Instagram para @ricas_palabras -->
-                [Aquí irá el feed de Instagram @ricas_palabras]
+                <!-- Código del widget de EmbedSocial para @ricas_palabras -->
+                <div class="embedsocial-hashtag" data-ref="8566c850de76136614c013a71789acfb2ffe7f29"></div>
+                <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>
             </div>
             <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline">Visitar @ricas_palabras</a>
         </div>
@@ -450,8 +470,9 @@
             <h2>Explora nuestros Productos en Instagram: @ricaspalabras</h2>
             <p>Un vistazo exclusivo a nuestros objetos con propósito: velas, libretas, eco-escritores y más. Descubre cómo cada producto materializa una palabra y una intención.</p>
             <div class="instagram-feed-placeholder">
-                <!-- Aquí irá el código del widget de Instagram para @ricaspalabras -->
-                [Aquí irá el feed de Instagram @ricaspalabras]
+                <!-- Código del widget de EmbedSocial para @ricaspalabras (asumiendo otro data-ref o configuración) -->
+                <div class="embedsocial-hashtag" data-ref="OTI1YjA3ZGEzMjQ1MWI3Y2E1YjQzMzI2M2EzZDA2NTFjN2NhZWIzYQ=="></div>
+                <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript2")); </script>
             </div>
             <a href="https://www.instagram.com/ricaspalabras/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline">Visitar @ricaspalabras</a>
         </div>
