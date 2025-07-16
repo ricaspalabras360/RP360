@@ -207,7 +207,7 @@
             font-size: 1rem; /* text-base */
             color: #4a5568; /* gray-700 */
             max-width: 600px;
-            margin: 0 auto 1.5rem auto;
+            margin: 0 auto 2.5rem auto; /* Increased margin-bottom to 2.5rem */
             line-height: 1.6;
         }
         .instagram-feed-placeholder {
@@ -232,14 +232,25 @@
             background: transparent !important; /* Remove background */
         }
         /* Target EmbedSocial specific elements to remove their default styling */
-        .embedsocial-hashtag iframe,
-        .embedsocial-hashtag .feed-powered-by-es {
+        .embedsocial-hashtag {
             border: none !important;
             box-shadow: none !important;
             background: transparent !important;
+            padding: 0 !important;
+            margin: 0 auto !important; /* Ensure widget itself is centered */
+            width: 100% !important; /* Ensure it takes available width */
+            max-width: 800px !important; /* Limit max-width for desktop */
         }
-        .embedsocial-hashtag .es-widget-branding {
-            display: none !important; /* Hide "Powered by EmbedSocial" if desired */
+        .embedsocial-hashtag iframe {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            width: 100% !important;
+            height: auto !important; /* Allow height to adjust based on content */
+            min-height: 200px; /* Minimum height for the iframe */
+        }
+        .embedsocial-hashtag .feed-powered-by-es {
+            display: none !important; /* Hide "Powered by EmbedSocial" branding */
         }
 
 
