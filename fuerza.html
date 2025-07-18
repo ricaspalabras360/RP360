@@ -4,22 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUERZA - Ricas Palabras 360</title>
+    <!-- Incluye Tailwind CSS para un diseño responsivo y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preconecta a Google Fonts para mejorar el rendimiento de carga de la fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carga la fuente Inter desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Reset de márgenes y paddings por defecto del navegador */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8; /* Light blue-gray background */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
             overflow-x: hidden;
         }
+
+        /* Simple scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Style for gradient text - optional */
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #3b82f6); /* Example gradient green-blue */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Header styles */
         .header {
             background-color: #ffffff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -33,51 +58,89 @@
             font-weight: 700; /* font-bold */
             color: #1a202c; /* gray-900 */
         }
-        .back-button {
-            background-color: #4299e1; /* Blue-500 */
-            color: white;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        .back-button:hover {
-            background-color: #3182ce; /* Blue-600 */
-        }
+
+        /* Main content area styles */
         .main-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 2rem 1rem;
-            text-align: center;
+            justify-content: flex-start; /* Align content to top within main */
+            padding: 0; /* Remove padding from main-content to allow video to go full width */
+            text-align: center; /* Default text alignment for main content */
         }
-        .card-image {
+        
+        /* Styles for the main video on the FUERZA page (video fuerza.mp4) */
+        .fuerza-hero-video-container {
+            width: 100%;
+            max-width: 100%; /* Ocupa todo el ancho disponible en desktop */
+            margin: 0 auto; /* Centrado */
+            border-radius: 0; /* Sin marco */
+            box-shadow: none; /* Sin sombra */
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 40%; /* Ajustado a 2.5:1 Aspect Ratio (más ancho y corto) */
+            height: 0; /* Important for padding-bottom trick */
+        }
+        .fuerza-hero-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que el video llene el contenedor */
+            display: block;
+        }
+
+        /* Responsive adjustments for fuerza-hero-video-container on smaller screens */
+        @media (max-width: 768px) {
+            .fuerza-hero-video-container {
+                width: 100vw; /* Ocupa el 100% del ancho del viewport en móvil */
+                max-width: 100vw;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .fuerza-hero-video-container video {
+                object-fit: cover; /* Asegura que el video llene el contenedor en móvil */
+            }
+        }
+
+        /* Styles for the fuerza.png image */
+        .fuerza-image-below-video {
             max-width: 100%;
             height: auto;
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            margin-bottom: 2rem;
+            margin-top: 1rem; /* Reduced space below video */
+            margin-bottom: 1rem; /* Reduced space above title */
             max-height: 500px; /* Limit height for larger screens */
-            object-fit: contain; /* Ensure the image fits within boundaries */
+            object-fit: contain;
+            display: block; /* Make it a block element */
+            margin-left: auto; /* Center it horizontally */
+            margin-right: auto; /* Center it horizontally */
         }
+
         .card-title {
             font-size: 3rem; /* text-5xl */
             font-weight: 800; /* font-extrabold */
-            color: #4338ca; /* Indigo-700 for FUERZA */
-            margin-bottom: 1.5rem;
+            color: #3b82f6; /* Blue-500 for FUERZA (example color, adjust as needed) */
+            margin-top: 0.5rem; /* Further reduced margin-top for title after image */
+            margin-bottom: 1rem; /* Reduced margin-bottom */
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-align: center; /* Ensure title is centered */
         }
         .card-description {
             font-size: 1.125rem; /* text-lg */
             color: #4a5568; /* gray-700 */
             line-height: 1.8;
-            max-width: 700px;
-            margin-bottom: 2rem;
-            text-align: center; /* ALINEACIÓN CENTRADA APLICADA AQUÍ */
+            max-width: 700px; /* Original max-width */
+            margin-bottom: 1rem; /* Reduced margin-bottom */
+            padding: 0 1rem; /* Add horizontal padding to description for mobile */
+            text-align: center; /* Center text for both desktop and mobile */
+            margin-left: auto; /* Ensure centering even with max-width */
+            margin-right: auto; /* Ensure centering even with max-width */
         }
+
         .cta-button {
             background-color: #f6ad55; /* Orange-400 */
             color: #2d3748; /* gray-800 */
@@ -88,6 +151,13 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin: 0.5rem; /* Added margin for spacing between buttons */
+            
+            /* New styles for consistent size and centered text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 280px; /* Consistent width for desktop */
+            text-align: center; /* Fallback for text alignment */
         }
         .cta-button:hover {
             background-color: #ed8936; /* Orange-500 */
@@ -99,9 +169,33 @@
             padding: 1.5rem 1rem;
             text-align: center;
             font-size: 0.875rem; /* text-sm */
+            margin-top: auto; /* Push footer to the bottom */
         }
 
-        /* Responsive adjustments */
+        /* Styles for the "Volver a la Página Principal" button when it's at the bottom */
+        .return-to-main-button {
+            background-color: #4299e1; /* Blue-500 */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem; /* Space above the button */
+            margin-bottom: 2rem; /* Space below the button */
+            
+            /* New styles for consistent size and centered text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 280px; /* Consistent width for desktop */
+            text-align: center; /* Fallback for text alignment */
+        }
+        .return-to-main-button:hover {
+            background-color: #3182ce; /* Blue-600 */
+        }
+
+        /* Responsive adjustments for general content */
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -112,7 +206,7 @@
                 font-size: 1.25rem;
             }
             .main-content {
-                padding: 1.5rem 0.5rem;
+                padding: 1.5rem 0.5rem; /* Restore some padding for content within main */
             }
             .card-title {
                 font-size: 2.25rem;
@@ -120,9 +214,11 @@
             .card-description {
                 font-size: 1rem;
             }
-            .cta-button {
+            .cta-button, .return-to-main-button {
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
+                width: 100%; /* Full width on mobile */
+                min-width: unset; /* Remove min-width constraint on mobile */
             }
         }
     </style>
@@ -130,31 +226,48 @@
 <body>
     <header class="header">
         <div class="header-title">Ricas Palabras 360</div>
-        <a href="index.html" class="back-button">Volver a la Página Principal</a>
     </header>
 
     <main class="main-content">
-        <img src="fuerza.png" alt="Carta de FUERZA de Ricas Palabras" class="card-image" onerror="this.src='https://placehold.co/400x600/4338ca/ffffff?text=Carta+FUERZA'; this.onerror=null;">
+        <!-- Video for FUERZA page (video fuerza.mp4) -->
+        <div class="fuerza-hero-video-container">
+            <video autoplay loop muted playsinline 
+                   poster="https://placehold.co/1200x480/cccccc/333333?text=Cargando+Video+FUERZA" 
+                   onerror="console.error('Error al cargar el video de FUERZA. Verificar URL y archivo:', this.src);">
+                <source src="/video fuerza.mp4" type="video/mp4">
+                <!-- IMPORTANT: Asegúrate de que el archivo 'video fuerza.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
+                <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/video fuerza.mp4" -->
+                Tu navegador no soporta el video tag.
+            </video>
+        </div>
         
-        <h1 class="card-title">FUERZA</h1>
-        
-        <p class="card-description">
-            La Fuerza Consciente Positiva es la manifestación de tu energía interior, la fuerza vital que reside en cada célula de tu ser, cultivada con intención y sabiduría. Es el impulso que te permite limpiar, sanar y movilizar cada plano de tu existencia, transformando lo negativo en positivo. Al sentirla, activarla y dirigirla con voluntad, descubres un Poder Positivo que reside en ti, conectándote con las fuerzas creadoras de la Gran Naturaleza.
-            <br><br>
-            Es un camino de constancia y autoconocimiento, donde cada esfuerzo consciente edifica tu matriz interna y te conecta con la creación de lo nuevo. La fuerza de tus pensamientos se alimenta día a día, y al unificar tus energías mentales y sensibles, conquistas el dominio de tu ser.
-            <br><br>
-            Recuerda: <strong>ENERGÍA POSITIVA CREADORA, FUERZA POSITIVA Y MOVILIZADORA, PODER POSITIVO TRANSFORMADOR.</strong> Estos son los escalones que te llevan a la plenitud.
-            <br><br>
-            Como decía un sabio maestro: "Que la Fuerza te acompañe." ✨ ¿Qué vas a hacer hoy para despertar y movilizar tu Fuerza Interior?
-        </p>
+        <div class="container mx-auto px-6 text-center">
+            <!-- Image of the FUERZA card (fuerza.png) -->
+            <img src="fuerza.png" alt="Carta de FUERZA de Ricas Palabras" class="fuerza-image-below-video" onerror="this.src='https://placehold.co/400x600/3b82f6/ffffff?text=Carta+FUERZA'; this.onerror=null;">
+            
+            <h1 class="card-title">FUERZA</h1>
+            
+            <p class="card-description">
+                La Fuerza es el poder inherente que reside en cada ser, la capacidad de superar obstáculos, de persistir ante la adversidad y de manifestar la voluntad. Es la energía que nos impulsa a avanzar, la valentía que nos permite enfrentar desafíos y la resiliencia que nos ayuda a levantarnos una y otra vez. En Ricas Palabras 360, entendemos la fuerza no solo como un atributo físico, sino como una cualidad interna que se nutre de la convicción y el propósito.
 
-        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-            <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="cta-button">
-                Descubrí más productos con FUERZA
-            </a>
-            <a href="descubrir_palabras.html" class="cta-button bg-emerald-500 hover:bg-emerald-600 text-white">
-                Descubrí más palabras
-            </a>
+                Esta palabra te invita a reconocer tu poder interior, a confiar en tu capacidad para transformar y a mantenerte firme en tu camino. Conecta con esa fuente inagotable de determinación que te habita y úsala para construir la realidad que deseas. La Fuerza es la base para la acción consciente y la manifestación de tus sueños.
+
+                ¡Despierta tu fuerza, abraza tu poder y avanza con determinación, porque eres un ser de infinita fortaleza!
+            </p>
+
+            <!-- Only three buttons at the bottom -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4 mb-8">
+                <a href="https://ricaspalabras.mitiendanube.com/fuerza" target="_blank" rel="noopener noreferrer" class="cta-button">
+                    Descubrir productos con la palabra "FUERZA"
+                </a>
+                <a href="descubrir_palabras.html" class="cta-button bg-emerald-500 hover:bg-emerald-600 text-white">
+                    Descubrí más palabras
+                </a>
+                <a href="index.html" class="return-to-main-button">
+                    Volver a la Página Principal
+                </a>
+            </div>
+
         </div>
     </main>
 
