@@ -27,22 +27,20 @@
             text-fill-color: transparent;
         }
 
-        /* --- ESTILOS AÑADIDOS PARA EL CUENTO --- */
+        /* --- ESTILOS MEJORADOS PARA EL CUENTO --- */
         .canva-embed-container {
+            /* --- Para Computadora --- */
+            max-width: 420px; /* Un ancho más contenido para escritorio */
+            margin: 1.6em auto 0.9em auto; /* Centra el contenedor */
+            box-shadow: 0 4px 15px 0 rgba(63,69,81,0.2);
+            border-radius: 12px; /* Bordes un poco más redondeados */
+            overflow: hidden; /* Esconde cualquier desborde o las barras negras */
+            
+            /* --- Control de Proporción Moderno --- */
+            /* Se ajusta la proporción para calzar mejor con el embed de Canva */
+            aspect-ratio: 9 / 16; 
             position: relative;
-            max-width: 450px; /* Limita el ancho máximo en pantallas grandes para que no sea gigante */
-            margin: 1.6em auto 0.9em auto; /* Centra el contenedor en la página */
-            
-            /* Mantiene la proporción de aspecto original de Canva (16:9 vertical) */
-            width: 100%;
-            height: 0;
-            padding-top: 177.7778%;
-            
-            /* Estilos visuales */
-            box-shadow: 0 4px 12px 0 rgba(63,69,81,0.2);
-            overflow: hidden;
-            border-radius: 8px;
-            will-change: transform;
+            background-color: #f0f0f0; /* Color de fondo mientras carga */
         }
 
         .canva-embed-container iframe {
@@ -52,10 +50,18 @@
             top: 0;
             left: 0;
             border: none;
-            padding: 0;
-            margin: 0;
         }
-        /* --- FIN DE ESTILOS AÑADIDOS --- */
+
+        /* --- Para Celulares (pantallas de hasta 768px de ancho) --- */
+        @media (max-width: 768px) {
+            .canva-embed-container {
+                /* Limita la altura para que no ocupe toda la pantalla del celular */
+                max-height: 75vh; 
+                /* Ancho casi completo pero con pequeños márgenes */
+                width: 95%; 
+            }
+        }
+        /* --- FIN DE ESTILOS MEJORADOS --- */
 
     </style>
 </head>
@@ -99,7 +105,7 @@
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-2">Iz, el lápiz feliz</h1>
             <p class="text-center text-gray-600 mb-8">Capítulo 1: Feliz</p>
 
-            <!-- Contenedor del Iframe de Canva (AHORA USA LA CLASE CSS) -->
+            <!-- Contenedor del Iframe de Canva (Usa las nuevas clases CSS) -->
             <div class="canva-embed-container">
                 <iframe loading="lazy"
                     src="https://www.canva.com/design/DAGwDhdjVq0/j7k3TbNKGchEeqYiRZ-OYw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
