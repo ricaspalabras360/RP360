@@ -112,8 +112,19 @@
                 </iframe>
             </div>
             
+            <!-- === NUEVO BOTÓN PARA COMPARTIR === -->
+            <div class="text-center mt-8">
+                <button id="share-button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+                    </svg>
+                    <span>Compartir Cuento</span>
+                </button>
+                <p id="copy-success-message" class="text-green-600 mt-2 text-sm font-semibold hidden">¡Enlace copiado al portapapeles!</p>
+            </div>
+            
             <!-- El enlace de atribución de Canva -->
-            <p class="text-center text-xs text-gray-500 mt-4">
+            <p class="text-center text-xs text-gray-500 mt-8">
                 <a href="https://www.canva.com/design/DAGwDhdjVq0/j7k3TbNKGchEeqYiRZ-OYw/view?utm_content=DAGwDhdjVq0&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Presentación creada en Canva</a> por RICAS PALABRAS.
             </p>
         </div>
@@ -128,6 +139,7 @@
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
         // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -139,6 +151,48 @@
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
                 });
+            });
+        }
+
+        // --- Lógica para el botón de Compartir ---
+        const shareButton = document.getElementById('share-button');
+        const copySuccessMessage = document.getElementById('copy-success-message');
+
+        if (shareButton) {
+            shareButton.addEventListener('click', async () => {
+                const shareData = {
+                    title: 'Iz, el lápiz feliz - Un cuento de Ricas Palabras',
+                    text: 'Descubre este hermoso cuento interactivo sobre un lápiz mágico.',
+                    url: window.location.href // Esto comparte la URL de tu página
+                };
+
+                // Usa la API nativa de compartir si está disponible (móviles)
+                if (navigator.share) {
+                    try {
+                        await navigator.share(shareData);
+                    } catch (err) {
+                        console.error('Error al compartir:', err);
+                    }
+                } else {
+                    // Fallback para escritorio: copiar al portapapeles
+                    try {
+                        const textArea = document.createElement('textarea');
+                        textArea.value = window.location.href;
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+
+                        // Muestra mensaje de éxito
+                        copySuccessMessage.classList.remove('hidden');
+                        setTimeout(() => {
+                            copySuccessMessage.classList.add('hidden');
+                        }, 3000); // Oculta el mensaje después de 3 segundos
+                    } catch (err) {
+                        console.error('No se pudo copiar el enlace:', err);
+                    }
+                }
             });
         }
     </script>
