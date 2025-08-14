@@ -26,6 +26,37 @@
             background-clip: text;
             text-fill-color: transparent;
         }
+
+        /* --- ESTILOS AÑADIDOS PARA EL CUENTO --- */
+        .canva-embed-container {
+            position: relative;
+            max-width: 450px; /* Limita el ancho máximo en pantallas grandes para que no sea gigante */
+            margin: 1.6em auto 0.9em auto; /* Centra el contenedor en la página */
+            
+            /* Mantiene la proporción de aspecto original de Canva (16:9 vertical) */
+            width: 100%;
+            height: 0;
+            padding-top: 177.7778%;
+            
+            /* Estilos visuales */
+            box-shadow: 0 4px 12px 0 rgba(63,69,81,0.2);
+            overflow: hidden;
+            border-radius: 8px;
+            will-change: transform;
+        }
+
+        .canva-embed-container iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+        /* --- FIN DE ESTILOS AÑADIDOS --- */
+
     </style>
 </head>
 <body class="bg-gray-100">
@@ -68,13 +99,14 @@
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-2">Iz, el lápiz feliz</h1>
             <p class="text-center text-gray-600 mb-8">Capítulo 1: Feliz</p>
 
-            <!-- Contenedor del Iframe de Canva -->
-            <div style="position: relative; width: 100%; height: 0; padding-top: 177.7778%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
-                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+            <!-- Contenedor del Iframe de Canva (AHORA USA LA CLASE CSS) -->
+            <div class="canva-embed-container">
+                <iframe loading="lazy"
                     src="https://www.canva.com/design/DAGwDhdjVq0/j7k3TbNKGchEeqYiRZ-OYw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
                 </iframe>
             </div>
-            <!-- El enlace de atribución de Canva no es estrictamente necesario si el iframe ya está ahí, pero se puede dejar si se desea -->
+            
+            <!-- El enlace de atribución de Canva -->
             <p class="text-center text-xs text-gray-500 mt-4">
                 <a href="https://www.canva.com/design/DAGwDhdjVq0/j7k3TbNKGchEeqYiRZ-OYw/view?utm_content=DAGwDhdjVq0&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Presentación creada en Canva</a> por RICAS PALABRAS.
             </p>
