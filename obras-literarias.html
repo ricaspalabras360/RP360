@@ -14,7 +14,6 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
         }
         html {
             scroll-behavior: smooth;
@@ -74,7 +73,17 @@
             
             <!-- Tarjeta para "Iz, el lápiz feliz" -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <img src="https://placehold.co/600x400/A7F3D0/333333?text=Iz,+el+l%C3%A1piz+feliz" alt="Ilustración del cuento Iz, el lápiz feliz" class="w-full h-56 object-cover">
+                <!-- 
+                    ==================================================================
+                    CAMBIO IMPORTANTE: Reemplaza la URL de abajo por la de tu imagen.
+                    Sube la imagen a tu proyecto (Netlify, etc.) y pega el enlace aquí.
+                    ==================================================================
+                -->
+                <img src="portada-iz.jpg" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/A7F3D0/333333?text=Iz,+el+l%C3%A1piz+feliz';" 
+                     alt="Ilustración del cuento Iz, el lápiz feliz" 
+                     class="w-full h-56 object-cover">
+                
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-gray-800 mb-2">Iz, el lápiz feliz</h2>
                     <p class="text-gray-700 mb-4">
@@ -87,26 +96,12 @@
             </div>
 
             <!-- Puedes añadir más tarjetas de obras aquí en el futuro -->
-            <!-- 
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="..." alt="..." class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Próxima Obra</h2>
-                    <p class="text-gray-700 mb-4">
-                        Descripción de la futura obra literaria.
-                    </p>
-                    <a href="#" class="inline-block bg-gray-400 text-white font-semibold py-2 px-6 rounded-lg cursor-not-allowed">
-                        Próximamente
-                    </a>
-                </div>
-            </div>
-            -->
-
+            
         </div>
     </main>
 
     <!-- Footer (Copiado de index.html) -->
-    <footer id="contacto" class="bg-gray-800 text-gray-300 py-12">
+    <footer id="contacto" class="bg-gray-800 text-gray-300 py-12 mt-16">
         <div class="container mx-auto px-6 text-center">
              <p>&copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.</p>
         </div>
