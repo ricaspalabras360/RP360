@@ -12,9 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        html, body {
+            height: 100%; /* Asegura que la página pueda ocupar toda la altura */
+        }
         body {
             font-family: 'Inter', sans-serif;
-            /* Se eliminó 'overflow-x: hidden;' que podía impedir el scroll vertical en móviles */
+            display: flex; /* Crea un contexto de flexbox */
+            flex-direction: column; /* Apila los elementos verticalmente */
+        }
+        main {
+            flex-grow: 1; /* Permite que el contenido principal crezca y empuje el footer */
         }
         html {
             scroll-behavior: smooth;
@@ -131,7 +138,7 @@
     </main>
 
     <!-- Footer (Copiado de index.html) -->
-    <footer id="contacto" class="bg-gray-800 text-gray-300 py-12 mt-12">
+    <footer id="contacto" class="bg-gray-800 text-gray-300 py-12">
         <div class="container mx-auto px-6 text-center">
              <p>&copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.</p>
         </div>
