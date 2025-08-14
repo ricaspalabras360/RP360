@@ -36,18 +36,14 @@
 
         /* --- ESTILOS MEJORADOS PARA EL CUENTO --- */
         .canva-embed-container {
-            /* --- Para Computadora --- */
-            max-width: 380px; /* Reducido desde 420px */
-            margin: 1.6em auto 0.9em auto; /* Centra el contenedor */
+            max-width: 380px;
+            margin: 1.6em auto 0.9em auto;
             box-shadow: 0 4px 15px 0 rgba(63,69,81,0.2);
-            border-radius: 12px; /* Bordes un poco más redondeados */
-            overflow: hidden; /* Esconde cualquier desborde o las barras negras */
-            
-            /* --- Control de Proporción Moderno --- */
-            /* Se ajusta la proporción para calzar mejor con el embed de Canva */
+            border-radius: 12px;
+            overflow: hidden;
             aspect-ratio: 9 / 16; 
             position: relative;
-            background-color: #f0f0f0; /* Color de fondo mientras carga */
+            background-color: #f0f0f0;
         }
 
         .canva-embed-container iframe {
@@ -59,29 +55,22 @@
             border: none;
         }
 
-        /* --- Para Celulares (pantallas de hasta 768px de ancho) --- */
         @media (max-width: 768px) {
             .canva-embed-container {
-                /* Limita la altura para que no ocupe toda la pantalla del celular */
-                max-height: 68vh; /* Reducido desde 75vh */
-                /* Ancho casi completo pero con pequeños márgenes */
+                max-height: 68vh;
                 width: 95%; 
             }
         }
-        /* --- FIN DE ESTILOS MEJORADOS --- */
-
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <!-- Header (Copiado de index.html para consistencia) -->
+    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <!-- Logo -->
             <a href="index.html" class="text-2xl font-bold text-gray-800">
                 Ricas <span class="gradient-text">Palabras 360</span>
             </a>
-            <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6">
                 <a href="obras-literarias.html" class="text-blue-500 font-semibold transition duration-300">Obras Literarias</a>
                 <a href="poder_y_escritura_consciente.html" class="text-gray-600 hover:text-blue-500 transition duration-300">El Poder de las Palabras</a>
@@ -89,14 +78,12 @@
                 <a href="quien_soy.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Conocé a Gonzai</a>
                 <a href="index.html#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
             </div>
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40">
              <a href="obras-literarias.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 font-semibold">Obras Literarias</a>
              <a href="poder_y_escritura_consciente.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">El Poder de las Palabras</a>
@@ -112,32 +99,57 @@
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-2">Iz, el lápiz feliz</h1>
             <p class="text-center text-gray-600 mb-8">Capítulo 1: Feliz</p>
 
-            <!-- Contenedor del Iframe de Canva (Usa las nuevas clases CSS) -->
             <div class="canva-embed-container">
                 <iframe loading="lazy"
                     src="https://www.canva.com/design/DAGwDhdjVq0/j7k3TbNKGchEeqYiRZ-OYw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
                 </iframe>
             </div>
             
-            <!-- === NUEVO BOTÓN PARA COMPARTIR === -->
             <div class="text-center mt-8">
                 <button id="share-button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" /></svg>
                     <span>Compartir Cuento</span>
                 </button>
                 <p id="copy-success-message" class="text-green-600 mt-2 text-sm font-semibold hidden">¡Enlace copiado al portapapeles!</p>
             </div>
             
-            <!-- El enlace de atribución de Canva -->
             <p class="text-center text-xs text-gray-500 mt-8">
                 <a href="https://www.canva.com/design/DAGwDhdjVq0/j7k3TbNKGchEeqYiRZ-OYw/view?utm_content=DAGwDhdjVq0&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Presentación creada en Canva</a> por RICAS PALABRAS.
             </p>
         </div>
+
+        <!-- === SECCIÓN PARA COLOREAR MOVIDA AQUÍ === -->
+        <section id="colorear" class="mt-20 text-center">
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">🎨 ¡A Pintar!</h2>
+                <p class="text-gray-600 mb-6">¡Dale vida a Iz con tus colores favoritos! Descarga la imagen y usa el editor de tu compu, tablet o celu para pintarla.</p>
+                
+                <div class="mb-6">
+                    <img src="URL_DE_TU_IMAGEN_PARA_PINTAR.png" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/600x400/ffffff/cccccc?text=Imagen+para+colorear';"
+                         alt="Dibujo de Iz el lápiz para colorear"
+                         class="rounded-lg shadow-md border border-gray-200 max-w-sm mx-auto">
+                </div>
+                
+                <a href="iz-para-pintar.png" download="Iz-para-pintarr.png" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300">
+                    Descargar Imagen
+                </a>
+
+                <div class="text-left mt-8 text-gray-600 text-sm">
+                    <h3 class="font-semibold text-lg mb-2">Instrucciones:</h3>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li>Haz clic en el botón <strong>"Descargar Imagen"</strong>.</li>
+                        <li>Busca el archivo descargado en tu dispositivo.</li>
+                        <li>Ábrelo con tu programa para editar imágenes preferido (Paint, Fotos, etc.).</li>
+                        <li>¡Usa tu creatividad y llena de color el dibujo!</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <!-- === FIN DE LA SECCIÓN === -->
     </main>
 
-    <!-- Footer (Copiado de index.html) -->
+    <!-- Footer -->
     <footer id="contacto" class="bg-gray-800 text-gray-300 py-12">
         <div class="container mx-auto px-6 text-center">
              <p>&copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.</p>
@@ -147,7 +159,6 @@
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenuButton && mobileMenu) {
@@ -161,7 +172,6 @@
             });
         }
 
-        // --- Lógica para el botón de Compartir ---
         const shareButton = document.getElementById('share-button');
         const copySuccessMessage = document.getElementById('copy-success-message');
 
@@ -170,10 +180,9 @@
                 const shareData = {
                     title: 'Iz, el lápiz feliz - Un cuento de Ricas Palabras',
                     text: 'Descubre este hermoso cuento interactivo sobre un lápiz mágico.',
-                    url: window.location.href // Esto comparte la URL de tu página
+                    url: window.location.href
                 };
 
-                // Usa la API nativa de compartir si está disponible (móviles)
                 if (navigator.share) {
                     try {
                         await navigator.share(shareData);
@@ -181,7 +190,6 @@
                         console.error('Error al compartir:', err);
                     }
                 } else {
-                    // Fallback para escritorio: copiar al portapapeles
                     try {
                         const textArea = document.createElement('textarea');
                         textArea.value = window.location.href;
@@ -191,11 +199,10 @@
                         document.execCommand('copy');
                         document.body.removeChild(textArea);
 
-                        // Muestra mensaje de éxito
                         copySuccessMessage.classList.remove('hidden');
                         setTimeout(() => {
                             copySuccessMessage.classList.add('hidden');
-                        }, 3000); // Oculta el mensaje después de 3 segundos
+                        }, 3000);
                     } catch (err) {
                         console.error('No se pudo copiar el enlace:', err);
                     }
