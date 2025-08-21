@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -42,7 +42,7 @@
         .prose p, .prose li {
             font-size: 1.125rem;
             line-height: 1.75;
-            text-align: justify;
+            text-align: left; /* Alineado a la izquierda por defecto para móviles */
         }
         .prose blockquote {
             border-left: 4px solid #60a5fa;
@@ -50,6 +50,12 @@
             margin-left: 0;
             font-style: italic;
             color: #4b5563;
+        }
+        /* Justificado solo para pantallas de computadora (md y superiores) */
+        @media (min-width: 768px) {
+            .prose p, .prose li {
+                text-align: justify;
+            }
         }
     </style>
 </head>
@@ -92,11 +98,11 @@
             </div>
 
             <article class="prose max-w-none bg-white p-8 rounded-lg shadow-md">
-                <blockquote>
+                <blockquote class="my-8">
                     <p>"La Matriz Interna es donde puedes crear tus propios pensamientos y sentimientos... es la obra de la propia conciencia." - Iz el Lápiz Feliz</p>
                 </blockquote>
                 <p>El viaje de Iz en el camino de la playa es una metáfora de nuestro propio camino de evolución. Capítulo a capítulo, vemos cómo el lápiz feliz no solo aprende, sino que <strong>incorpora conscientemente el conocimiento de cada Rica Palabra</strong>. Cada concepto —Felicidad, Amor, Aprender, Crear— se convierte en una parte viva de su ser, enriqueciendo su conciencia y permitiéndole construir su realidad.</p>
-                <p>De la misma manera, nosotros podemos elegir qué "Ricas Palabras" queremos vivir y cultivar en nuestra existencia. La <strong>Matriz Interna</strong> es el mapa de ese universo interior. Esta guía, basada en estudios e investigaciones Logosóficas, de neurociencias, aprendizajes y experiencias de vida, es una herramienta para aprender a leerlo. Es un sistema integral que conecta lo invisible —nuestros pensamientos, emociones, sentimientos y la conexión energética entre el corazón (conciencia), el cerebro (mente) y el cuerpo (ser)— con lo visible: nuestras acciones, capacidades y el mundo que manifestamos. A través de la metafísica del ser, podemos ser los jardineros de nuestra propia mente, cultivando un "Árbol de la Conciencia" para el reencuentro con nuestro Espíritu Consciente.</p>
+                <p>De la misma manera, nosotros podemos elegir qué "Ricas Palabras" queremos vivir y cultivar en nuestra existencia. La <strong>Matriz Interna</strong> es el mapa de ese universo interior. Esta guía, basada en una síntesis de estudios, neurociencias y experiencias de vida, es una herramienta para aprender a leerlo. Es un sistema integral que conecta lo invisible —nuestros pensamientos, emociones, sentimientos y la <strong>conexión energética entre el corazón (conciencia), el cerebro (mente) y el cuerpo (ser)</strong>— con lo visible: nuestras acciones, capacidades y el mundo que manifestamos. A través de la metafísica del ser, podemos ser los jardineros de nuestra propia mente, cultivando un "Árbol de la Conciencia" para el reencuentro con nuestro Espíritu Consciente.</p>
 
                 <h2>El Árbol de la Conciencia: Tu Ecosistema Interior</h2>
                 <p>Imagina tu ser como un majestuoso árbol. Este árbol es tu Conciencia, y cada una de sus partes representa un aspecto fundamental de tu existencia.</p>
@@ -136,7 +142,7 @@
                 <p>El lenguaje no es estático; evoluciona a medida que nuestra conciencia se expande. Al nombrar lo que antes no tenía nombre, lo traemos a la existencia. Te invitamos a explorar y adoptar estos nuevos conceptos, no como definiciones rígidas, sino como herramientas para crear futuro y nombrar las nuevas realidades que descubrimos en nuestro interior.</p>
 
                 <h3>Matriz Interna</h3>
-                <p>Es la Red Interna de la Conciencia, una estructura dinámica que organiza tus principios y PensaSentiConocimientos. Como una matriz industrial, tiene la capacidad de ser codificada y programada para reproducir las nuevas realidades que deseas crear. Mientras que el <strong>Alma</strong> podría considerarse el software de todo el ser, la Matriz Interna es la herramienta específica con la que diseñamos y construimos activamente nuestro universo interior.</p>
+                <p>Es la <strong>Red Interna de la Conciencia</strong>, una estructura dinámica que organiza tus principios y PensaSentiConocimientos. Como una matriz industrial, tiene la capacidad de ser codificada y programada para reproducir las nuevas realidades que deseas crear. Mientras que el <strong>Alma</strong> podría considerarse el software de todo el ser, la Matriz Interna es la herramienta específica con la que diseñamos y construimos activamente nuestro universo interior.</p>
 
                 <h3>Corazón Solar</h3>
                 <p>Es tu fuente de energía espiritual, ubicada en tu Corazón. De donde sale el amor, la gratitud y tu conexión con la Energía Positiva Creadora del universo. Es el sol interno que nutre tu Árbol de la Conciencia.</p>
@@ -163,7 +169,7 @@
                 <h2>Del Árbol Individual al Bosque Colectivo: El Propósito Final</h2>
                 <p>Cultivar nuestro Árbol de la Conciencia es un viaje profundamente personal, pero su propósito último es colectivo. Como Iz aprende al final de su camino, "ningún bambú crece solo". Cada uno de nosotros es un árbol en el vasto bosque de la humanidad. La salud de nuestro ecosistema interior —la claridad de nuestros pensamientos, la calidez de nuestros sentimientos— irradia una energía que afecta a todo el bosque.</p>
                 <p>Al fortalecer nuestras raíces y dar frutos de sabiduría, no solo nos transformamos a nosotros mismos, sino que contribuimos a la "Red Lumínica" de la conciencia colectiva. Nuestro crecimiento alimenta el de los demás. Un árbol fuerte y sano ofrece sombra, produce oxígeno y enriquece la tierra para todos.</p>
-                <blockquote>
+                <blockquote class="my-8">
                     <p>Tu viaje interior es un servicio al mundo. Al cultivar tu propio jardín, ayudas a que florezca el bosque de la humanidad. Tu evolución es la evolución de todos.</p>
                 </blockquote>
                 <!-- === FIN DE LA NUEVA SECCIÓN === -->
@@ -185,9 +191,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', () => {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
+                mobileMenu.classList.toggle('hidden');
             });
         }
     </script>
