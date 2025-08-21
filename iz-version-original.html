@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -38,11 +38,18 @@
             font-size: 1.125rem; /* text-lg */
             line-height: 1.75; /* leading-relaxed */
             margin-bottom: 1rem; /* mb-4 */
-            text-align: justify; /* === TEXTO JUSTIFICADO === */
         }
         /* Estilo para el resumen (contratapa) */
         .resumen-contenido p {
-            text-align: justify; /* === TEXTO JUSTIFICADO === */
+            text-align: justify;
+        }
+
+        /* === AJUSTE PARA JUSTIFICADO RESPONSIVE === */
+        /* Aplica justificado solo en pantallas grandes (tablets y desktops) */
+        @media (min-width: 768px) {
+            .cuento-contenido p {
+                text-align: justify;
+            }
         }
     </style>
 </head>
