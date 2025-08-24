@@ -95,7 +95,7 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 sm:px-6 py-8 md:py-12">
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-4xl mx-auto">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-2">Iz, el lápiz feliz</h1>
             <p class="text-center text-gray-600 mb-8">Capítulo 1: Feliz</p>
 
@@ -105,23 +105,42 @@
                 </iframe>
             </div>
             
-            <div class="text-center mt-8 space-y-4">
+            <div class="text-center mt-8">
                 <button id="share-button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" /></svg>
                     <span>Compartir Cuento</span>
                 </button>
-                <!-- BOTÓN DE COMPRA LÁPICES PLANTABLES -->
-                <a href="https://ricaspalabras.mitiendanube.com/lapices-plantables/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                    <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.311a7.5 7.5 0 0 1-7.5 0" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9.75v.026a2.25 2.25 0 0 1-2.25 2.224H4.5A2.25 2.25 0 0 1 2.25 9.776V9.75A2.25 2.25 0 0 1 4.5 7.5h15A2.25 2.25 0 0 1 21.75 9.75Z" />
-                    </svg>
-                    Comprar Lápices Plantables
-                </a>
                 <p id="copy-success-message" class="text-green-600 mt-2 text-sm font-semibold hidden">¡Enlace copiado al portapapeles!</p>
             </div>
+
+            <!-- === SECCIÓN DE COMPRA DE LÁPICES === -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <!-- Producto 1: Lápices Plantables -->
+                <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg border border-gray-200 h-full">
+                    <img src="lapicesplantables.png" onerror="this.onerror=null;this.src='https://placehold.co/200x200/A7F3D0/333333?text=L%C3%A1pices+Plantables';" alt="Lápices plantables" class="w-48 h-48 object-contain mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Lápices Plantables</h3>
+                    <a href="https://ricaspalabras.mitiendanube.com/lapices-plantables/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                        <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.311a7.5 7.5 0 0 1-7.5 0" />
+                        </svg>
+                        Comprar
+                    </a>
+                </div>
+
+                <!-- Producto 2: Lápices de Colores -->
+                <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg border border-gray-200 h-full">
+                    <img src="lapicescolores.jpg" onerror="this.onerror=null;this.src='https://placehold.co/200x200/93C5FD/333333?text=L%C3%A1pices+de+Colores';" alt="Lápices de colores grabados" class="w-48 h-48 object-contain mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Lápices de Colores Grabados</h3>
+                    <a href="https://ricaspalabras.mitiendanube.com/lapices/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-500 to-sky-600 hover:from-blue-600 hover:to-sky-700 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                         <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                        Comprar
+                    </a>
+                </div>
+            </div>
             
-            <p class="text-center text-xs text-gray-500 mt-8">
+            <p class="text-center text-xs text-gray-500 mt-12">
                 <a href="https://www.canva.com/design/DAGwDhdjVq0/j7k3TbNKGchEeqYiRZ-OYw/view?utm_content=DAGwDhdjVq0&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Presentación creada en Canva</a> por RICAS PALABRAS.
             </p>
         </div>
