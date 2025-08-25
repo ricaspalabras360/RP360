@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -294,9 +294,7 @@
             </a>
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6">
-                <!-- === NUEVO ENLACE AÑADIDO AQUÍ === -->
                 <a href="obras-literarias.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Obras Literarias</a>
-                <a href="poder_y_escritura_consciente.html" class="text-gray-600 hover:text-blue-500 transition duration-300">El Poder de las Palabras</a>
                 <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-500 transition duration-300">Tienda</a>
                 <a href="quien_soy.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Conocé a Gonzai</a>
                 <a href="#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
@@ -310,9 +308,7 @@
         </nav>
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40">
-             <!-- === NUEVO ENLACE AÑADIDO AQUÍ === -->
              <a href="obras-literarias.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Obras Literarias</a>
-             <a href="poder_y_escritura_consciente.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">El Poder de las Palabras</a>
              <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Tienda</a>
              <a href="quien_soy.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Conocé a Gonzai</a>
              <a href="#contacto" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Contacto</a>
@@ -327,8 +323,6 @@
                    poster="https://placehold.co/1200x400/cccccc/333333?text=Cargando+Video+Intro" 
                    onerror="console.error('Error al cargar el video de introducción. Verificar URL y archivo:', this.src);">
                 <source src="/Creación_de_Video_Introductorio.mp4" type="video/mp4">
-                <!-- IMPORTANT: Asegúrate de que el archivo 'Creación_de_Video_Introductorio.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
-                <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/Creación_de_Video_Introductorio.mp4" -->
                 Your browser no soporta el video tag.
             </video>
         </div>
@@ -349,13 +343,11 @@
                        poster="https://placehold.co/700x450/cccccc/333333?text=Cargando+Llama+Vida" 
                        onerror="console.error('Error al cargar el video de llama de vida. Verificar URL y archivo:', this.src);">
                     <source src="/llamavida.mp4" type="video/mp4">
-                    <!-- IMPORTANT: Asegúrate de que el archivo 'llamavida.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
-                    <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/llamavida.mp4" -->
                     Your browser no soporta el video tag.
                 </video>
             </div>
             <!-- "VIDA" Button linking to vida.html -->
-            <div class="mt-4 flex justify-center"> <!-- mt-4 para reducir el espacio -->
+            <div class="mt-4 flex justify-center">
                 <a href="vida.html" class="keyword-card bg-yellow-300 w-[150px]">
                     <span class="flex flex-col items-center justify-center">
                         <span class="text-base font-semibold text-gray-700">Clickeá</span>
@@ -424,8 +416,6 @@
                        poster="/Nuevo Logo ml.png" 
                        onerror="this.poster='https://placehold.co/800x450/cccccc/333333?text=Cargando+Video+Productos'; console.error('Error al cargar el poster del video de productos:', this.poster);">
                     <source src="/RP360C.mp4" type="video/mp4">
-                    <!-- IMPORTANT: Asegúrate de que el archivo 'RP360C.mp4' esté en la RAIZ de tu proyecto en Netlify. -->
-                    <!-- Si lo subiste a una carpeta 'videos', la ruta sería: src="/videos/RP360C.mp4" -->
                     Your browser no soporta el video tag.
                 </video>
             </div>
@@ -447,10 +437,9 @@
             </p>
             <div class="product-video-showcase">
                 <video controls 
-                       poster="paz.jpg" 
+                       poster="paz.png" 
                        onerror="this.poster='https://placehold.co/800x450/cccccc/333333?text=Error+al+cargar'; console.error('Error al cargar el video de remeras:', this.src);">
                     <source src="REMERAS RP.mp4" type="video/mp4">
-                    <!-- Asegúrate de que el archivo 'REMERAS RP.mp4' esté en la misma carpeta que este archivo HTML o ajusta la ruta. -->
                     Your browser no soporta el video tag.
                 </video>
             </div>
@@ -475,7 +464,7 @@
                 
                 <!-- Card 1: Ecoscritores -->
                 <a href="ecoscritores.html" class="block bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/34D399/ffffff?text=Ecoscritores" alt="Ecoscritores" class="w-full h-48 object-cover">
+                    <img src="portada-ecoscritores.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/34D399/ffffff?text=Ecoscritores';" alt="Ecoscritores" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Ecoscritores</h3>
                         <p class="text-gray-600 text-sm">Un camino de autodescubrimiento a través de la escritura consciente. Cada Ecoscritor es una herramienta para despertar tu potencial.</p>
@@ -484,7 +473,7 @@
 
                 <!-- Card 2: Iz, el Lápiz Feliz -->
                 <a href="iz_el_lapiz_feliz.html" class="block bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/FBBF24/ffffff?text=Iz,+el+lápiz+feliz" alt="Cuento Iz, el lápiz feliz" class="w-full h-48 object-cover">
+                    <img src="portada-iz.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBBF24/ffffff?text=Iz,+el+lápiz+feliz';" alt="Cuento Iz, el lápiz feliz" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Iz, el lápiz feliz</h3>
                         <p class="text-gray-600 text-sm">Un cuento interactivo que enseña sobre la felicidad, la creatividad y el poder de dar vida a nuestras ideas.</p>
@@ -493,7 +482,7 @@
 
                 <!-- Card 3: El Poder de las Palabras -->
                 <a href="poder_y_escritura_consciente.html" class="block bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/93C5FD/ffffff?text=Poder+de+las+Palabras" alt="El Poder de las Palabras" class="w-full h-48 object-cover">
+                    <img src="portada-poderpalabras.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/93C5FD/ffffff?text=Poder+de+las+Palabras';" alt="El Poder de las Palabras" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-2">El Poder de las Palabras</h3>
                         <p class="text-gray-600 text-sm">Descubre cómo el lenguaje moldea tu realidad y aprende a usar la escritura como una herramienta de transformación.</p>
@@ -566,9 +555,7 @@
                 <div>
                     <h5 class="font-semibold mb-3 text-white">Enlaces Rápidos</h5>
                     <ul class="space-y-2 text-sm">
-                        <!-- === NUEVO ENLACE AÑADIDO AQUÍ === -->
                         <li><a href="obras-literarias.html" class="hover:text-white transition duration-300">Obras Literarias</a></li>
-                        <li><a href="poder_y_escritura_consciente.html" class="hover:text-white transition duration-300">El Poder de las Palabras</a></li>
                         <li><a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Tienda</a></li>
                         <li><a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Web Principal</a></li>
                     </ul>
