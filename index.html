@@ -3,297 +3,549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Poder de las Palabras y la Escritura Consciente - Ricas Palabras 360</title>
+    <title>Ricas Palabras 360 - Conectando Crecimiento y Transformación</title>
+    <!-- Incluye Tailwind CSS para un diseño responsivo y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preconecta a Google Fonts para mejorar el rendimiento de carga de la fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carga la fuente Inter desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
+        /* Reset de márgenes y paddings por defecto del navegador */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
+
+        /* Simple scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Style for gradient text - optional */
         .gradient-text {
-            background: linear-gradient(to right, #4ade80, #3b82f6);
+            background: linear-gradient(to right, #4ade80, #3b82f6); /* Example gradient green-blue */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
         }
-        .content-section p, .content-section ul li {
-            margin-bottom: 1.5rem; /* Equivalent to mb-6 */
-            line-height: 1.75; /* Equivalent to leading-relaxed */
-            color: #4a5568; /* text-gray-700 */
-            font-size: 1.125rem; /* text-lg */
-        }
-        .content-section strong {
-            font-weight: 600; /* font-semibold */
-            color: #2d3748; /* text-gray-800 */
-        }
-        .content-section h2 {
-            margin-top: 2.5rem; /* mt-10 */
-            margin-bottom: 1.5rem; /* mb-6 */
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #1a202c; /* text-gray-900 */
+
+        /* Styling for the keyword cards */
+        .keyword-card {
+            padding: 1rem; /* p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
             text-align: center;
+            display: flex; /* Make it a flex container */
+            flex-direction: column; /* Stack children vertically */
+            align-items: center; /* Center items horizontally in column */
+            justify-content: center; /* Center items vertically */
+            min-height: 100px; /* Ensure cards have some height */
+            aspect-ratio: 3 / 2; /* Maintain aspect ratio */
+            transition: transform 0.2s ease-in-out;
         }
-        .content-section h3 {
-            margin-top: 2rem; /* mt-8 */
-            margin-bottom: 1rem; /* mb-4 */
-            font-size: 1.875rem; /* text-3xl */
+        .keyword-card:hover {
+            transform: translateY(-3px); /* Slight lift on hover */
+        }
+        .keyword-text {
+            font-size: 1.25rem; /* text-xl, puedes ajustarlo */
             font-weight: 600; /* font-semibold */
-            color: #2d3748; /* text-gray-800 */
-        }
-        .content-section ul {
-            list-style: none; /* Remove default bullets */
-            padding-left: 0;
-        }
-        .content-section ul li {
-            margin-bottom: 1rem; /* Adjusted for list items */
-            padding-left: 1.5rem; /* Space for custom bullet */
-            position: relative;
-        }
-        .content-section ul li:last-child {
-            margin-bottom: 0;
-        }
-        /* Custom bullet for list items */
-        .content-section ul li::before {
-            content: '✔️'; /* Checkmark emoji */
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #10b981; /* emerald-500 */
-            font-size: 1.25rem;
-        }
-        .content-section blockquote {
-            margin: 2.5rem 0; /* mt-10 mb-10 */
-            padding: 1.5rem 2rem;
-            border-left: 6px solid #3b82f6; /* blue-500 */
-            background-color: #e0f2fe; /* blue-50 */
-            color: #1e3a8a; /* blue-900 */
-            font-style: italic;
-            font-size: 1.25rem; /* text-xl */
-            border-radius: 0 0.75rem 0.75rem 0;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-        }
-        .content-section blockquote footer {
-            margin-top: 1rem;
-            font-size: 1rem; /* text-base */
-            color: #4a5568; /* text-gray-700 */
-            text-align: right;
+            color: #374151; /* text-gray-700 */
         }
 
-        /* Styling for paragraphs in "Profundizando" section with icons */
-        .profundizando-section p {
-            position: relative;
-            padding-left: 1.8rem; /* More space for the icon */
+        /* Styles for the main hero image container */
+        .hero-main-image-container img {
+            display: block;
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            margin-left: auto;
+            margin-right: auto;
         }
-        .profundizando-section p::before {
-            content: '◆'; /* Diamond icon */
+
+        /* Styles for the main hero video container (llamavida.mp4) */
+        .hero-main-content-container {
+            width: 100%;
+            max-width: 500px; /* Desktop: más pequeño */
+            margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
+            border-radius: 0; /* Sin marco */
+            box-shadow: none; /* Sin sombra */
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width * 100%) */
+            height: 0; /* Important for padding-bottom trick */
+            margin-top: 1rem; /* Ajuste para el espacio con el texto superior */
+        }
+        .hero-main-content-container video,
+        .hero-main-content-container img {
             position: absolute;
+            top: 0;
             left: 0;
-            top: 0.25rem; /* Adjust top to align with text */
-            color: #3b82f6; /* A blue color */
-            font-size: 1rem;
-            line-height: 1.75; /* Inherit line height */
-            font-weight: bold; /* Make the icon stand out a bit */
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Asegura que el video completo sea visible */
+            display: block; /* Overrides default inline behavior */
+        }
+
+        /* Responsive adjustments for llamavida.mp4 on smaller screens */
+        @media (max-width: 768px) {
+            .hero-main-content-container {
+                width: 90vw; /* Ocupa el 90% del ancho del viewport en móvil */
+                max-width: 90vw; /* Asegura que no exceda el 90vw */
+                margin: 0 auto 0 auto; /* Centrado */
+                border-radius: 0;
+                box-shadow: none;
+                margin-top: 0.5rem; /* Ajuste para el espacio con el texto superior en móvil */
+            }
+            .hero-main-content-container video,
+            .hero-main-content-container img {
+                object-fit: contain;
+            }
+        }
+
+
+        /* * Styles for the homepage video container 
+         * Video de Portada: Computadora - Ancho Completo y Completo, Celular - Pantalla Completa y Completo, Sin Marco/Sombra
+         */
+        .homepage-video-container {
+            width: 100%;
+            max-width: 100%; /* Desktop: ocupa el 100% del ancho */
+            margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
+            border-radius: 0; /* Sin bordes redondeados para la portada en escritorio */
+            box-shadow: none; /* Sin sombra para la portada en escritorio */
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 40%; /* Aspect Ratio más ancho y corto (2.5:1) */
+            height: 0; /* Important for padding-bottom trick */
+        }
+        .homepage-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que el video llene el contenedor en escritorio */
+        }
+
+        /* Responsive adjustments for homepage video on smaller screens */
+        @media (max-width: 768px) { /* Aplica a pantallas de hasta 768px de ancho (típico de tablets/móviles) */
+            .homepage-video-container {
+                width: 100vw; /* Ocupa el 100% del ancho del viewport en móvil */
+                max-width: 100vw; /* Asegura que no exceda el 100vw */
+                margin: 0 auto 0 auto; /* Centrado y sin margen inferior */
+                border-radius: 0; /* Sin bordes redondeados en móvil */
+                box-shadow: none; /* Sin sombra en móvil */
+            }
+            .homepage-video-container video {
+                object-fit: cover; /* Asegura que el video llene el contenedor en móvil */
+            }
+        }
+
+        /* * Styles for the product showcase video section 
+         * Video de Productos: Computadora - Mediano y Completo, Celular - 90% Ancho y Completo, Sin Marco/Sombra
+         */
+        .product-video-showcase {
+            width: 100%;
+            max-width: 700px; /* Desktop: tamaño mediano para el video de productos */
+            margin: 2rem auto 0 auto; /* Margen superior, centrado, sin margen inferior */
+            border-radius: 0.5rem; /* Bordes redondeados para el video de productos en escritorio */
+            box-shadow: 0 5px 15px -3px rgba(0,0,0,0.1), 0 2px 6px -2px rgba(0,0,0,0.05); /* Sombra para el video de productos en escritorio */
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0; /* Importante para el truco de padding-bottom */
+        }
+        .product-video-showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Asegura que el video completo sea visible en escritorio */
+        }
+
+        /* Responsive adjustments for product video on smaller screens */
+        @media (max-width: 768px) { /* Aplica a pantallas de hasta 768px de ancho */
+            .product-video-showcase {
+                width: 90vw; /* Ocupa el 90% del ancho del viewport en móvil */
+                max-width: 90vw; /* Asegura que no exceda el 90vw */
+                margin: 2rem auto 0 auto; /* Centrado y sin margen inferior */
+                border-radius: 0; /* Sin bordes redondeados en móvil */
+                box-shadow: none; /* Sin sombra en móvil */
+            }
+            .product-video-showcase video {
+                object-fit: contain; /* Asegura que el video completo sea visible en móvil */
+            }
+        }
+
+        /* Styles for Instagram sections */
+        .instagram-section {
+            padding: 0.5rem 1rem; /* Reduced padding-top to 0.5rem */
+            background-color: #f8fafc; /* Lightest gray */
+            border-top: 1px solid #e2e8f0; /* Light border */
+            text-align: center;
+        }
+        .instagram-section h2 {
+            font-size: 2.25rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: #2d3748; /* gray-800 */
+            margin-bottom: 0.5rem; /* Reduced margin-bottom */
+        }
+        .instagram-section h2 a { /* Styles for the <a> tag wrapping the h2 */
+            color: #2d3748; /* Inherit color from h2 or set explicitly */
+            text-decoration: none; /* Remove default underline */
+        }
+        .instagram-section h2 a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+        .instagram-section p {
+            font-size: 1rem; /* text-base */
+            color: #4a5568; /* gray-700 */
+            max-width: 600px;
+            margin: 0 auto 0 !important; /* Reduced margin-bottom to 0 and added !important */
+            line-height: 1.6;
+        }
+        .instagram-feed-placeholder {
+            /* Estos estilos son para el placeholder, serán sobrescritos por el widget real */
+            background-color: #e2e8f0; /* Light gray */
+            color: #718096; /* Gray text */
+            padding: 0 !important; /* Removed padding */
+            border-radius: 0.5rem;
+            min-height: 600px; /* Increased min-height for desktop to make images larger */
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            margin: 0 auto 0 !important; /* Reduced margin-bottom to 0 and added !important */
+            max-width: 100vw !important; /* Occupy full viewport width on desktop */
+            box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            
+            /* Overrides for EmbedSocial widget to remove its default frame */
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important; /* Remove padding if widget adds its own */
+            background: transparent !important; /* Remove background */
+        }
+        /* Target EmbedSocial specific elements to remove their default styling */
+        .embedsocial-hashtag {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 0 auto !important; /* Ensure widget itself is centered */
+            width: 100% !important; /* Ensure it takes available width */
+            max-width: 100vw !important; /* Occupy full viewport width on desktop */
+        }
+        .embedsocial-hashtag iframe {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            width: 100% !important;
+            height: auto !important; /* Allow height to adjust based on content */
+            min-height: 400px; /* Minimum height for the iframe */
+        }
+        .embedsocial-hashtag .feed-powered-by-es {
+            display: none !important; /* Hide "Powered by EmbedSocial" branding */
+        }
+
+
+        @media (max-width: 768px) {
+            .instagram-section h2 {
+                font-size: 1.75rem; /* Smaller on mobile */
+            }
+            .instagram-section p {
+                margin-bottom: 0 !important; /* Reduced margin-bottom for mobile */
+            }
+            .instagram-feed-placeholder {
+                min-height: 400px; /* Shorter on mobile */
+                padding: 0 !important; /* Removed padding */
+                max-width: 100vw !important; /* Occupy full viewport width on mobile */
+            }
+            .embedsocial-hashtag {
+                max-width: 100vw !important; /* Occupy full viewport width on mobile */
+            }
+            .embedsocial-hashtag iframe {
+                min-height: 350px; /* Minimum height for the iframe */
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="text-2xl font-bold text-gray-800">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold text-gray-800">
                 Ricas <span class="gradient-text">Palabras 360</span>
-            </div>
+            </a>
+            <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6">
-                <a href="index.html#que-es" class="text-gray-600 hover:text-blue-500 transition duration-300">Qué es</a>
-                <a href="poder_y_escritura_consciente.html" class="text-blue-500 font-semibold transition duration-300">El Poder de las Palabras</a>
+                <a href="obras-literarias.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Obras Literarias</a>
                 <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-500 transition duration-300">Tienda</a>
                 <a href="quien_soy.html" class="text-gray-600 hover:text-blue-500 transition duration-300">Conocé a Gonzai</a>
-                <a href="index.html#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
+                <a href="#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300">Contacto</a>
             </div>
+            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
+        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40">
-             <a href="index.html#que-es" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Qué es</a>
-             <a href="poder_y_escritura_consciente.html" class="block px-6 py-3 text-blue-600 font-semibold hover:bg-gray-100">El Poder de las Palabras</a>
+             <a href="obras-literarias.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Obras Literarias</a>
              <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Tienda</a>
              <a href="quien_soy.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Conocé a Gonzai</a>
-             <a href="index.html#contacto" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Contacto</a>
+             <a href="#contacto" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Contacto</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12 md:py-16 max-w-4xl">
-        <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-8 md:mb-12">
-            El Poder Transformador de las Palabras y la Escritura Consciente
-        </h1>
+    <!-- Main Section (Hero) -->
+    <section class="bg-gradient-to-br from-emerald-100 via-white to-sky-100 pb-10 md:pb-16">
+        <!-- Single Video for Homepage -->
+        <div class="homepage-video-container">
+            <video autoplay loop muted playsinline 
+                   poster="https://placehold.co/1200x400/cccccc/333333?text=Cargando+Video+Intro" 
+                   onerror="console.error('Error al cargar el video de introducción. Verificar URL y archivo:', this.src);">
+                <source src="/Creación_de_Video_Introductorio.mp4" type="video/mp4">
+                Your browser no soporta el video tag.
+            </video>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <!-- Inspiring Phrase -->
+            <p class="text-2xl md:text-3xl font-semibold text-gray-700 mb-4 italic">
+                "Cada producto es un mensaje. Cada palabra, una puerta."
+            </p>
+            <!-- Short Description -->
+            <p class="text-lg text-gray-600 mb-10">
+                Integrando sabiduría, tecnología y conexión humana para la transformación.
+            </p>
+            
+            <!-- Main Hero Video Container (llamavida.mp4) -->
+            <div class="hero-main-content-container">
+                <video autoplay loop muted playsinline 
+                       poster="https://placehold.co/700x450/cccccc/333333?text=Cargando+Llama+Vida" 
+                       onerror="console.error('Error al cargar el video de llama de vida. Verificar URL y archivo:', this.src);">
+                    <source src="/llamavida.mp4" type="video/mp4">
+                    Your browser no soporta el video tag.
+                </video>
+            </div>
+            <!-- "VIDA" Button linking to vida.html -->
+            <div class="mt-4 flex justify-center">
+                <a href="vida.html" class="keyword-card bg-yellow-300 w-[150px]">
+                    <span class="flex flex-col items-center justify-center">
+                        <span class="text-base font-semibold text-gray-700">Clickeá</span>
+                        <span class="text-xl font-semibold text-gray-700">VIDA</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <section class="content-section mb-12">
-            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">🌟 La Esencia de las Palabras 🌟</h2>
-            <p>
-                Las palabras son mucho más que sonidos o signos. Son energía, son acto, son creación. Más aún, tienen el profundo poder de moldear y estructurar la realidad misma que experimentamos y el mundo que nos circunda.
-            </p>
-            <p>
-                Desde tiempos remotos, los seres humanos hemos narrado, escrito y nombrado para dar sentido a la vida. Cada palabra tiene el poder de construir o destruir, de abrir caminos o cerrarlos. Nos atraviesan, nos definen, nos transforman. Son semillas simbólicas que, cuando se eligen y se pronuncian con conciencia, pueden despertar mundos enteros.
-            </p>
-            <p>
-                El lenguaje no solo refleja lo que pensamos; moldea profundamente lo que somos y las historias que nos contamos a nosotros mismos. Las palabras que elegimos —para hablarle a otros, pero sobre todo, para hablarnos a nosotros— tienen un impacto directo en nuestra autoestima, nuestras relaciones y nuestra percepción de la realidad, incluso editando cómo recordamos y construimos nuestra propia identidad. <strong>Decir es crear.</strong>
+    <!-- "What is Ricas Palabras?" Section -->
+    <section id="que-es" class="pt-8 md:pt-12 pb-8 md:pb-12 bg-white">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">¿Qué es Ricas Palabras?</h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                Ricas Palabras 360 es una invitación a conectar con frases que inspiran, transformadas en objetos con propósito y experiencias que despiertan bienestar, conciencia y evolución. Somos un ecosistema vivo donde las palabras se convierten en catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras (narrativa, juegos, escritura, conciencia y comunidad) para potenciar tu crecimiento personal y colectivo. Nuestra propuesta única de valor integra productos físicos y editoriales, contenido digital transformador y experiencias vivenciales profundas, creando un camino 360° hacia el autoconocimiento y la acción positiva, generando una nueva cultura del lenguaje y la evolución.
             </p>
 
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Las investigaciones en psicología social, lingüística y neurociencia afirman lo que ya intuíamos desde lo ancestral:</h3>
-            <ul class="list-none pl-0">
-                <li>📚 Las palabras influyen en nuestra biología emocional, afectando cómo sentimos y regulamos nuestras emociones.</li>
-                <li>💭 El lenguaje condiciona la forma en que pensamos y sentimos, otorgándonos una precisión clave para la claridad mental.</li>
-                <li>🧠 Nuestro diálogo interno moldea nuestros estados mentales, y aprender a hablar con nosotros mismos con afecto es una herramienta de bienestar.</li>
-                <li>🌍 El lenguaje que usamos en comunidad modela nuestra cultura y sociedad.</li>
-            </ul>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Clickeá y Descubrí cada carta en las Palabras:</h2>
+            <!-- Grid of keyword cards with links -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 px-4">
+                <a href="amor.html" class="keyword-card bg-red-200">
+                    <p class="keyword-text">AMOR</p>
+                </a>
+                <a href="alegria.html" class="keyword-card bg-yellow-200">
+                    <p class="keyword-text">ALEGRIA</p>
+                </a>
+                <a href="energia.html" class="keyword-card bg-green-300">
+                    <p class="keyword-text">ENERGIA</p>
+                </a>
+                <a href="fuerza.html" class="keyword-card bg-blue-300">
+                    <p class="keyword-text">FUERZA</p>
+                </a>
+                <a href="conectar.html" class="keyword-card bg-pink-300">
+                    <p class="keyword-text">CONECTAR</p>
+                </a>
+                <a href="accionar.html" class="keyword-card bg-orange-300">
+                    <p class="keyword-text">ACCIONAR</p>
+                </a>
+                <a href="crear.html" class="keyword-card bg-purple-300">
+                    <p class="keyword-text">CREAR</p>
+                </a>
+                <a href="evolucionar.html" class="keyword-card bg-indigo-300">
+                    <p class="keyword-text">EVOLUCIONAR</p>
+                </a>
+            </div>
+            
+            <!-- Buttons to discover more words and products -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+                <a href="descubrir_palabras.html" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
+                    Descubrí más palabras
+                </a>
+            </div>
+        </div>
+    </section>
 
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">🌱 Una palabra puede cambiarlo todo</h3>
-            <p>
-                Hay frases que abren. Palabras que acarician. Otras que activan. O que sanan. Hay palabras que transforman una experiencia en sabiduría. La precisión en el uso del lenguaje, especialmente a través de la escritura consciente, nos permite no solo expresar, sino también moldear nuestras experiencias y emociones hasta alcanzar una claridad que solo la palabra exacta puede ofrecer. La escritura se convierte así en una herramienta invaluable para desentrañar lo complejo y ordenar nuestros pensamientos.
+    <!-- Section for Product Showcase Video -->
+    <section id="productos-en-accion" class="py-8 md:py-12 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 text-center">Nuestros Objetos que Inspiran en Movimiento</h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed text-center">
+                Cada uno de nuestros productos es una extensión de la palabra que lleva. Diseñados con intención y amor, son herramientas para acompañarte en tu día a día, recordándote tu propósito y el poder de tu lenguaje. Descubre cómo la magia de las palabras se materializa en objetos que inspiran.
             </p>
-            <p>
-                Por eso nace Ricas Palabras: Para recordarnos que las palabras tienen alma, y que cuando las elegimos con intención, sembramos en nosotros mismos una realidad diferente. Cada producto de esta propuesta —ya sea un lápiz plantable, una vela con intención, una libreta con frases semilla o un e-book transformador— lleva en sí una vibración. Un llamado. Una posibilidad.
+            <div class="product-video-showcase">
+                <video controls 
+                       poster="/Nuevo Logo ml.png" 
+                       onerror="this.poster='https://placehold.co/800x450/cccccc/333333?text=Cargando+Video+Productos'; console.error('Error al cargar el poster del video de productos:', this.poster);">
+                    <source src="/RP360C.mp4" type="video/mp4">
+                    Your browser no soporta el video tag.
+                </video>
+            </div>
+            <!-- BOTÓN DESCUBRIR PRODUCTOS -->
+            <div class="mt-8 text-center">
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 inline-block text-lg">
+                    DESCUBRIR PRODUCTOS
+                </a>
+            </div>
+       </div>
+    </section>
+ 
+    <!-- === NUEVA SECCIÓN PARA EL PROYECTO DE REMERAS === -->
+    <section id="proyecto-remeras" class="py-8 md:py-12 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 text-center">Un Proyecto Especial: Remeras con Propósito</h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed text-center">
+                Lleva el mensaje de Ricas Palabras contigo. Nuestras remeras son más que una prenda, son una declaración de intenciones, un recordatorio visible del poder que reside en ti y en tu voz.
             </p>
+            <div class="product-video-showcase">
+                <video controls 
+                       poster="paz.png" 
+                       onerror="this.poster='https://placehold.co/800x450/cccccc/333333?text=Error+al+cargar'; console.error('Error al cargar el video de remeras:', this.src);">
+                    <source src="REMERAS RP.mp4" type="video/mp4">
+                    Your browser no soporta el video tag.
+                </video>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 inline-block text-lg">
+                    VER REMERAS
+                </a>
+            </div>
+       </div>
+    </section>
+    
+    <!-- Obras Literarias Destacadas Section -->
+    <section id="obras-destacadas" class="pt-8 md:pt-12 pb-16 md:pb-24 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Explora Nuestras Obras Literarias</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                Desde cuentos que despiertan la imaginación hasta herramientas de escritura consciente, cada obra es una puerta a un nuevo universo de autodescubrimiento y creatividad.
+            </p>
+            
+            <!-- Grid de Obras -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Card 1: Ecoscritores -->
+                <a href="ecoscritores.html" class="block bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="portada-ecoscritores.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/34D399/ffffff?text=Ecoscritores';" alt="Ecoscritores" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Ecoscritores</h3>
+                        <p class="text-gray-600 text-sm">Un camino de autodescubrimiento a través de la escritura consciente. Cada Ecoscritor es una herramienta para despertar tu potencial.</p>
+                    </div>
+                </a>
 
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">🔍 ¿Por qué importa cómo hablamos?</h3>
-            <p>
-                Porque las palabras configuran nuestra Matriz Interna. Porque el lenguaje que usamos puede liberar o encadenar. Porque lo que decimos... nos dice.
-            </p>
-            <p>
-                El lenguaje es cultura, es historia, es cuerpo. Es voz, es gesto, es acto colectivo y también camino interior. Por eso la comunicación consciente no es solo una habilidad: es un modo de vivir.
-            </p>
+                <!-- Card 2: Iz, el Lápiz Feliz -->
+                <a href="iz_el_lapiz_feliz.html" class="block bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="portada-iz.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBBF24/ffffff?text=Iz,+el+lápiz+feliz';" alt="Cuento Iz, el lápiz feliz" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Iz, el lápiz feliz</h3>
+                        <p class="text-gray-600 text-sm">Un cuento interactivo que enseña sobre la felicidad, la creatividad y el poder de dar vida a nuestras ideas.</p>
+                    </div>
+                </a>
 
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">🌞 ¿Y si empezamos a hablar con propósito?</h3>
-            <p>
-                Desde Ricas Palabras, creemos que cada palabra que sembramos en un objeto, una experiencia o una página escrita puede generar un cambio en quien la recibe. Una palabra puede conectar. Sanar. Inspirar. O simplemente recordarte lo esencial.
-            </p>
-            <p>
-                💡 Por eso desarrollamos contenidos, productos y formaciones que invitan a redescubrir el poder del lenguaje como herramienta de transformación personal y colectiva.
-            </p>
-            <p>
-                Ya no se trata solo de comunicarse… Se trata de crear realidad desde lo que decimos y sentimos.
-            </p>
-        </section>
+                <!-- Card 3: El Poder de las Palabras -->
+                <a href="poder_y_escritura_consciente.html" class="block bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="portada-poderpalabras.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/93C5FD/ffffff?text=Poder+de+las+Palabras';" alt="El Poder de las Palabras" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">El Poder de las Palabras</h3>
+                        <p class="text-gray-600 text-sm">Descubre cómo el lenguaje moldea tu realidad y aprende a usar la escritura como una herramienta de transformación.</p>
+                    </div>
+                </a>
 
-        <section class="content-section mb-12 profundizando-section">
-            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">✍️ Profundizando en la Escritura Consciente ✍️</h2>
-            <p>
-                La escritura es la <strong>precisión de la organización mental</strong>, es el medio, es un don, una facultad, y enriquecerla inteligentemente con Arte eleva al crecimiento, que es la razón de la conciencia.
-            </p>
-            <p>
-                Es un <strong>comprobado hermoso viaje y conexión con el Tiempo</strong>, donde te podrás enviar mensajes motivacionales al Futuro, te podrás conectar con experiencias de tu pasado, te hará estar más presente y disfrutar de lo que estás construyendo. Es unir tiempos de tu vida.
-            </p>
-            <p>
-                La <strong>escritura manuscrita</strong> te reflejará una vida llena de conocimientos, experiencias, emociones y vivencias.
-            </p>
-            <p>
-                Hay un pensamiento que me volvió a la mente, lo había perdido, por eso lo escribo, para que quede registrado y tenga la oportunidad de recordarlo, hasta incluso trabajarlo internamente y desarrollarlo aún más. "Hay cosas que me había olvidado, por eso las escribí, las escribo, y las escribiré".
-            </p>
-            <p>
-                Luego de leerme en el Tiempo, siento <strong>Paz interior, seguridad, armonía, tranquilidad, equilibrio, confianza</strong>... es muy energizante y estimulante, una Gran <strong>retroalimentación biopsicoespiritual</strong>, por lo que es altamente efectivo y recomendable cuando sentimos que no estamos bien, cuando las preocupaciones nos nublan, cuando los pensamientos y emociones no están alineados, cuando queremos volver a reencontrarnos. Ahí estarán tus escritos más valiosos, para hacerte acordar y volver a conectarte con tu energía positiva que tú has creado, pero la habías olvidado, dándote fuerzas de impulsos positivos.
-            </p>
-            <p>
-                La idea es que cada uno pueda descubrir adentro de sí mismo cada palabra, encontrarle <strong>múltiples beneficios</strong> a cada una, que sean elementos de conexión, de unión, de alimentación mental, emocional y espiritual, y que les sea realmente una herramienta útil que les ayude a cultivar su transformación, crecimiento y desarrollo personal.
-            </p>
-            <p>
-                El secreto de la escritura está en la <strong>constancia</strong>, en el dejarse llevar por la inspiración, en la conexión con la mente superior, en adentrarse en otro estado de conciencia... y el poder escribirlo, y que quede impreso por la eternidad.
-            </p>
-            <p>
-                Es el <strong>camino espiralado de volver a la profundidad de la Esencia</strong> descubriendo nuevos conocimientos mediante el Arte de la escritura.
-            </p>
-            <p>
-                Si nunca escribiste, es una excelente oportunidad para que te animes a crear un hermoso y apasionante Arte en tu Vida, para que experimentes todos estos beneficios positivos, y puedas aún explorar y descubrir muchos más... ¡Amarás escribir! Y si ya eres un escritor amateur o profesional, también es una nueva oportunidad de probar esta ingeniosa herramienta para la conexión, organización y comunicación interna con tus escritos.
-            </p>
-            <p>
-                Así como organizamos los utensilios en la cocina, la ropa en los armarios, etc., también debemos organizar nuestros escritos. ¡Con los <strong>Ecoscritores</strong> ganarás Tiempo, ganarás Energía, Ganarás enfocarte con mayor precisión! Probá con los Ecoscritores y <strong>Escribí donde tengas que escribir</strong>. ¡Encontrá tu Ecoscritor con las palabras que necesites enfocarte y con las que sientas que te van a ser útiles y esenciales!
-            </p>
-            <p>
-                Abre nuevos caminos y ramas de tu árbol, abre tu mente a nuevas perspectivas, ilumina tu red mental y enciende la inteligencia del Corazón.
-            </p>
-        </section>
+            </div>
 
+            <div class="mt-12">
+                <a href="obras-literarias.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
+                    Ver todas las Obras
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <section class="content-section mb-12">
-            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">✍️ Los Beneficios Detallados de la Escritura Consciente ✍️</h2>
-            <p>
-                La escritura, especialmente la manuscrita, es una herramienta poderosa que te invita a conectar con tu interior y a cultivar tu crecimiento. Cada Rica Palabra puede ser grabada en tu ser a través de este acto intencional. Explorarás un viaje de autoconocimiento y transformación con cada trazo.
+    <!-- Main Call to Action (CTA) Section -->
+    <section id="cta-principal" class="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-emerald-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Sé Parte de la Evolución</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+                Buscamos socios, colaboradores, inversores y co-creadores visionarios que resuenan con nuestra misión de generar una nueva cultura del lenguaje, el tiempo y la evolución. Tu apoyo es fundamental para acelerar nuestro impacto.
             </p>
-            <ul class="list-none pl-0">
-                <li>
-                    <strong>⚡ Activa tu Cerebro y Corazón</strong><br>
-                    La escritura a mano impulsa la actividad neuronal, reactivando áreas dormidas y fomentando nuevas conexiones, tanto en la mente como en la inteligencia de tu corazón. Es una gimnasia mental y emocional.
-                </li>
-                <li>
-                    <strong>😊 Bienestar Emocional y Sanación</strong><br>
-                    Estimula la producción de endorfinas, liberando neurotransmisores positivos que elevan tu energía anímica. Escribir se convierte en un método terapéutico, revelador y sanador para gestionar tus emociones y potenciar tu estado de ánimo.
-                </li>
-                <li>
-                    <strong>🧠 Claridad de Pensamiento y Razonamiento</strong><br>
-                    Al escribir, procesas, analizas y organizas tus ideas, movilizando pensamientos y emociones. Te permite una introspección profunda para reflexionar, comprender y transformar lo negativo en positivo, edificando tu mundo interno.
-                </li>
-                <li>
-                    <strong>📂 Orden y Organización Mental</strong><br>
-                    Libera tu mente de ser una "agenda" desordenada. La escritura te ayuda a encontrar tus propósitos, definir prioridades, establecer principios y marcar el rumbo de tu vida. Una mente organizada a través de tus escritos es una mente con dirección.
-                </li>
-                <li>
-                    <strong>🎯 Concentración y Precisión</strong><br>
-                    Enfoca tu atención en el acto de escribir, mejorando tu capacidad de concentración y facilitando un proceso de aprendizaje más profundo. Ideal para abordar problemas puntuales, plantear preguntas y encontrar soluciones creativas y organizadas.
-                </li>
-                <li>
-                    <strong>💡 Agudiza la Percepción y Enciende la Creatividad</strong><br>
-                    Incrementa la búsqueda de nuevas fuentes de inspiración y el deseo de descubrimiento. La escritura te permite abrir nuevas perspectivas mentales e iluminar la inteligencia de tu corazón.
-                </li>
-                <li>
-                    <strong>📚 Fortalece la Memoria y el Aprendizaje</strong><br>
-                    El proceso de escritura fija nuevos recuerdos y establece conexiones neuronales, interconectando puntos no solo en tu mente, sino también en tu sentir. Fomenta la asimilación de conocimientos y convierte el aprendizaje en un hábito duradero.
-                </li>
-                <li>
-                    <strong>🌟 Autoconocimiento y Crecimiento Personal</strong><br>
-                    Favorece la reconexión, el redescubrimiento, la revalorización y el rediseño de tu mundo interior. Aumenta tu seguridad, energías, fuerzas y confianza en ti mismo, conociendo con mayor exactitud de dónde venís y a dónde vas.
-                </li>
-                <li>
-                    <strong>🗣️ Mejora la Comunicación Interna y Externa</strong><br>
-                    Al brindarte un espacio para el estudio y el trabajo interno, empatizas primero contigo. Escribir te ayuda a equilibrar tus planos, preparar lo que quieres decir y cómo decirlo, mejorando exponencialmente tu comunicación, tanto contigo mismo como con los demás.
-                </li>
-                <li>
-                    <strong>➡️ Fomenta la Acción y la Materialización</strong><br>
-                    La escritura es el puente del pensamiento a la acción. Plasmar tus ideas, diagramas o mapas mentales en papel las organiza y las impulsa a convertirse en proyectos, emprendimientos y realidades tangibles.
-                </li>
-                <li>
-                    <strong>🧘 Entra en un Estado de Presencia</strong><br>
-                    Escribir puede llevarte a un estado similar al de la meditación, permitiéndote estar más presente, conectado y consciente. Reduce el estrés mental, gana autoestima, seguridad y comprensión de sí mismo, favoreciendo estados de consciencia más elevados.
-                </li>
-                <li>
-                    <strong>🔒 Genera Documentación Personal Valiosa</strong><br>
-                    Creas un registro único y muy personal de tu vida, tus aprendizajes y tus transformaciones. Además, te brinda mayor privacidad y seguridad ante pérdidas de dispositivos o datos digitales.
-                </li>
-            </ul>
-        </section>
+            <div class="space-y-4 md:space-y-0 md:space-x-4">
+                <a href="mailto:ricaspalabras360@gmail.com?subject=QUIERO SER PARTE! - Ricas Palabras 360" class="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 inline-block">
+                    QUIERO SER PARTE!
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <section class="content-section">
-            <blockquote>
-                "El viaje más maravilloso no es al centro de la Tierra ni a los confines del Universo, sino al fondo de uno mismo."
-                <footer>— Julio Verne</footer>
-            </blockquote>
+    <!-- Instagram Section: @ricas_palabras -->
+    <section id="instagram-ricas-palabras" class="instagram-section">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                <h2>Síguenos en Instagram: @ricas_palabras</h2>
+            </a>
+            <p>Descubre inspiración diaria, reflexiones profundas y contenido que te conecta con el poder transformador de las palabras. Un espacio para crecer y evolucionar juntos.</p>
+            <div class="instagram-feed-placeholder">
+                <!-- Código del widget de EmbedSocial para @ricas_palabras -->
+                <div class="embedsocial-hashtag" data-ref="8566c850de76136614c013a71789acfb2ffe7f29"></div>
+                <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>
+            </div>
+        </div>
+    </section>
 
-            <blockquote>
-                "Aprende a Ver. Date cuenta de que Todo se Conecta con Todo lo demás."
-                <footer>— Leonardo Da Vinci</footer>
-            </blockquote>
-        </section>
+    <!-- Instagram Section: @ricaspalabras (Productos) -->
+    <section id="instagram-productos" class="instagram-section">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <a href="https://www.instagram.com/ricaspalabras/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                <h2>Explora nuestros Productos en Instagram: @ricaspalabras</h2>
+            </a>
+            <p>Un vistazo exclusivo a nuestros objetos con propósito: velas, libretas, eco-escritores y más. Descubre cómo cada producto materializa una palabra y una intención.</p>
+            <div class="instagram-feed-placeholder">
+                <!-- Código del widget de EmbedSocial para @ricaspalabras (asumiendo otro data-ref o configuración) -->
+                <div class="embedsocial-hashtag" data-ref="25ff703f39f0f3b170195b2e2fcc16f80c334f2c" data-lazyload="yes"></div>
+                <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript2")); </script>
+            </div>
+        </div>
+    </section>
 
-    </main>
-
-    <footer class="bg-gray-800 text-gray-300 py-12">
+    <!-- Footer -->
+    <footer id="contacto" class="bg-gray-800 text-gray-300 py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
@@ -303,33 +555,33 @@
                 <div>
                     <h5 class="font-semibold mb-3 text-white">Enlaces Rápidos</h5>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="index.html#que-es" class="hover:text-white transition duration-300">Qué es</a></li>
-                        <li><a href="poder_y_escritura_consciente.html" class="hover:text-white transition duration-300">El Poder de las Palabras</a></li>
+                        <li><a href="obras-literarias.html" class="hover:text-white transition duration-300">Obras Literarias</a></li>
                         <li><a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Tienda</a></li>
                         <li><a href="http://www.ricaspalabras.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-300">Web Principal</a></li>
                     </ul>
                 </div>
                 <div>
                     <h5 class="font-semibold mb-3 text-white">Contacto</h5>
-                     <ul class="space-y-4 text-sm"> 
+                    <ul class="space-y-4 text-sm">
                         <li><a href="mailto:ricaspalabras360@gmail.com" class="hover:text-white transition duration-300">ricaspalabras360@gmail.com</a></li>
                         <li>Buenos Aires, Argentina</li>
                         
                         <li>
-                             <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
-                                 <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c-4.068 0-4.58 0-6.17.08C4.402 2.16 3.43 2.54 2.69 3.28 1.95 4.02 1.57 4.99 1.48 6.14.1 7.73 0 8.25 0 12.315s.08 4.58.16 6.17c.09 1.15.47 2.12 1.21 2.86 1.48 1.48 3.59 1.21 6.17.16 1.59.08 2.1.08 6.17.08s4.58 0 6.17-.08c2.58-.05 4.69-1.38 6.17-.16 1.15-.09 2.12-.47 2.86-1.21-.74-.74-1.71-1.12-2.86-1.21C20.89 2.16 20.37 2.08 18.78 2.08 17.19 2 16.67 2 12.315 2zm0 1.62c4.003 0 4.48.015 6.074.088 1.46.066 2.304.35 2.98.98.674.635.967 1.478.98 2.98.072 1.592.087 2.07.087 6.075s-.015 4.48-.087 6.074c-.013 1.504-.306 2.347-.98 2.98-.673.632-1.52.917-2.98.98-1.592.073-2.07.088-6.074.088s-4.48-.015-6.074-.088c-1.46-.063-2.304-.348-2.98-.98-.674-.633-.967-1.476-.98-2.98C3.695 16.8 3.68 16.32 3.68 12.315s.015-4.48.087-6.074c.013-1.504.306 2.347.98-2.98.673-.635 1.52-.915 2.98-.98C7.835 3.695 8.315 3.68 12.315 3.68zM12 7.38a4.935 4.935 0 100 9.87 4.935 4.935 0 000-9.87zm0 8.25a3.315 3.315 0 110-6.63 3.315 3.315 0 010 6.63zM18.8 6.84a1.26 1.26 0 100-2.52 1.26 1.26 0 000 2.52z" clip-rule="evenodd"/></svg>
-                                 <span>Seguinos en Instagram</span>
-                             </a>
+                            <a href="https://www.instagram.com/ricas_palabras/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
+                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c-4.068 0-4.58 0-6.17.08C4.402 2.16 3.43 2.54 2.69 3.28 1.95 4.02 1.57 4.99 1.48 6.14.1 7.73 0 8.25 0 12.315s.08 4.58.16 6.17c.09 1.15.47 2.12 1.21 2.86 1.48 1.48 3.59 1.21 6.17.16 1.59.08 2.1.08 6.17.08s4.58 0 6.17-.08c2.58-.05 4.69-1.38 6.17-.16 1.15-.09 2.12-.47 2.86-1.21-.74-.74-1.71-1.12-2.86-1.21C20.89 2.16 20.37 2.08 18.78 2.08 17.19 2 16.67 2 12.315 2zm0 1.62c4.003 0 4.48.015 6.074.088 1.46.066 2.304.35 2.98.98.674.635.967 1.478.98 2.98.072 1.592.087 2.07.087 6.075s-.015 4.48-.087 6.074c-.013 1.504-.306 2.347-.98 2.98-.673.632-1.52.917-2.98.98-1.592.073-2.07.088-6.074.088s-4.48-.015-6.074-.088c-1.46-.063-2.304-.348-2.98-.98-.674-.633-.967-1.476-.98-2.98C3.695 16.8 3.68 16.32 3.68 12.315s.015-4.48.087-6.074c.013-1.504.306 2.347.98-2.98.673-.635 1.52-.915 2.98-.98C7.835 3.695 8.315 3.68 12.315 3.68zM12 7.38a4.935 4.935 0 100 9.87 4.935 4.935 0 000-9.87zm0 8.25a3.315 3.315 0 110-6.63 3.315 3.315 0 010 6.63zM18.8 6.84a1.26 1.26 0 100-2.52 1.26 1.26 0 000 2.52z" clip-rule="evenodd"/></svg>
+                                <span>Seguinos en Instagram</span>
+                            </a>
                         </li>
                         <li>
-                             <a href="quien_soy.html" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
+                            <a href="quien_soy.html" class="flex items-center space-x-2 text-gray-300 hover:text-white transition duration-300 text-lg">
                                 <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                                 <span>Quién soy?</span>
-                             </a>
+                                <span>Quién soy?</span>
+                            </a>
                         </li>
-                     </ul>
+                    </ul>
                 </div>
             </div>
+            <!-- Copyright -->
             <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
                 &copy; <span id="currentYear"></span> Ricas Palabras 360. Todos los derechos reservados.
             </div>
@@ -337,7 +589,6 @@
     </footer>
 
     <script>
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         // --- Mobile Menu Toggle ---
@@ -352,6 +603,41 @@
                     mobileMenu.classList.add('hidden');
                 });
             });
+        }
+
+        // --- Video Playback for Homepage Video (Creación_de_Video_Introductorio.mp4) ---
+        const homepageVideo = document.querySelector('.homepage-video-container video');
+        if (homepageVideo) {
+            window.onload = () => {
+                const playPromise = homepageVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        console.log('Homepage video playing successfully.');
+                    }).catch(error => {
+                        console.error('Error playing homepage video:', error);
+                    });
+                }
+            };
+        } else {
+            console.error('Homepage video element not found.');
+        }
+
+        // --- Video Playback for Llama Vida Video (llamavida.mp4) ---
+        const llamaVidaVideo = document.querySelector('.hero-main-content-container video');
+        if (llamaVidaVideo) {
+            // No window.onload for this one, as it's part of the page content and should autoplay
+            // when it becomes visible, based on its attributes.
+            console.log('Llama Vida video element found.');
+        } else {
+            console.error('Llama Vida video element not found.');
+        }
+
+        // --- Video Playback for Product Showcase Video (RP360.mp4) ---
+        const productVideo = document.querySelector('.product-video-showcase video');
+        if (productVideo) {
+            console.log('Product showcase video element found.');
+        } else {
+            console.error('Product showcase video element not found.');
         }
     </script>
 
