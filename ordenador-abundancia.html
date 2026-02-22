@@ -14,6 +14,15 @@
             box-sizing: border-box;
         }
 
+        .titulo-bonus {
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #000;
+        }
+
         .texto-introductorio {
             background-color: #EDFFA7;
             padding: 10px 0 30px 0;
@@ -180,13 +189,31 @@
             font-size: 0.85rem;
         }
 
+        .btn-inicio {
+            background: #2E2A39;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: 900;
+            border: 2px solid #000;
+            transition: 0.3s;
+        }
+
+        .btn-inicio:hover {
+            background: #000;
+            transform: scale(1.05);
+        }
+
         @media screen and (max-width: 600px) {
             .contenedor-tabla { overflow-x: auto; }
             .tabla-ate { min-width: 500px; }
         }
 
         @media print {
-            .texto-introductorio, .instrucciones-caja, .selector-planos, .footer-btns { display: none !important; }
+            .texto-introductorio, .instrucciones-caja, .selector-planos, .footer-btns, .btn-inicio { display: none !important; }
             #ate-wrapper-soberano { background: white; padding: 0; }
             .contenedor-tabla { border: none; }
         }
@@ -195,6 +222,8 @@
 <body>
 
 <div id="ate-wrapper-soberano">
+    <div class="titulo-bonus">BONUS 1: PLANIFICADOR SEMANAL ATE</div>
+
     <div class="texto-introductorio">
         <p><strong>GESTIÓN del TIEMPO:</strong> Esta tabla es el complemento perfecto para el libro "El Ordenador de tu Abundancia" porque transforma la teoría de la arquitectura interna en una herramienta de ejecución técnica diaria.</p>
     </div>
@@ -243,6 +272,10 @@
     <div class="footer-btns">
         <button type="button" class="btn-grande" onclick="window.print()">🖨️ IMPRIMIR</button>
         <button type="button" class="btn-grande" onclick="window.exportarExcel()">📊 EXCEL</button>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="https://ricaspalabras.com.ar" class="btn-inicio">🏠 IR A INICIO</a>
     </div>
 </div>
 
