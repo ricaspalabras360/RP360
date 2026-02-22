@@ -1,0 +1,306 @@
+<div id="auditoria-definitiva-root">
+    <style>
+        /* 1. ELIMINACIÓN DE DOBLE CURSOR Y DISEÑO DE FONDO */
+        #auditoria-definitiva-root {
+            background-color: #EDFFA7 !important;
+            color: #2E2A39 !important;
+            font-family: 'Montserrat', sans-serif !important;
+            padding: 60px 20px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important; 
+        }
+
+        /* 2. TÍTULO GIGANTE JERÁRQUICO */
+        #auditoria-definitiva-root h1.main-title {
+            font-family: 'Lora', serif !important;
+            font-size: clamp(3rem, 10vw, 6rem) !important; 
+            color: #000000 !important;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 0.85;
+            margin-bottom: 20px;
+        }
+
+        .instrucciones-box {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #000;
+        }
+
+        .idea-box {
+            background: #fff;
+            padding: 40px;
+            border: 5px solid #000;
+            border-radius: 25px;
+            margin: 0 auto 50px auto;
+            max-width: 800px;
+            box-shadow: 15px 15px 0px #000;
+        }
+
+        .idea-box input {
+            width: 100%;
+            padding: 20px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-family: 'Lora', serif;
+            box-sizing: border-box;
+        }
+
+        /* CAPAS - PREGUNTAS NEGRAS Y GRANDES */
+        .layer-card {
+            background: #fff;
+            padding: 35px;
+            border-radius: 25px;
+            border: 4px solid #000;
+            margin: 0 auto 30px auto;
+            max-width: 800px;
+        }
+
+        .layer-label {
+            font-weight: 900;
+            font-size: 2rem; 
+            color: #000 !important;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .score-display {
+            background: #000;
+            color: #EDFFA7;
+            padding: 5px 20px;
+            border-radius: 10px;
+            font-size: 1.8rem;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: #000;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* BOTÓN ANÁLISIS - LETRAS AMARILLAS */
+        .btn-analisis {
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            background: #000;
+            color: #EDFFA7 !important;
+            padding: 30px;
+            font-size: 2.2rem;
+            font-weight: 900;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* RESULTADOS DINÁMICOS */
+        #results-area {
+            display: none;
+            max-width: 850px;
+            margin: 50px auto;
+            background: #2E2A39;
+            color: #fff;
+            padding: 50px;
+            border-radius: 40px;
+            border: 8px solid #000;
+        }
+
+        .total-badge {
+            text-align: center;
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #EDFFA7;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .scale-result {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #EDFFA7;
+        }
+
+        .layer-analysis-card {
+            background: rgba(255,255,255,0.07);
+            padding: 25px;
+            border-left: 10px solid #EDFFA7;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .pro-con-tag {
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .cta-final {
+            text-align: center;
+            margin-top: 50px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 25px;
+            color: #000;
+        }
+
+        .btn-buy {
+            display: inline-block;
+            background: #000;
+            color: #EDFFA7 !important;
+            padding: 20px 40px;
+            text-decoration: none;
+            font-weight: 900;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 1.3rem;
+        }
+
+        .final-quote {
+            text-align: center;
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            font-style: italic;
+            margin-top: 80px;
+            border-top: 4px solid #000;
+            padding-top: 40px;
+            color: #000;
+        }
+    </style>
+
+    <h1 class="main-title">Auditoría de las 9 Capas</h1>
+
+    <div class="instrucciones-box">
+        <p>Este ejercicio lo podrás realizar cuando llegues a la lectura del <strong>Capítulo 5.7</strong> de <em>El Ordenador de tu Abundancia</em>.</p>
+        <p><strong>Instrucciones:</strong> Poné el cursor de 0 a 11 según consideres el estado de tu idea. Luego presioná <strong>"ANALÍSIS"</strong> para ver tu puntaje y dónde necesitás mayor ATE.</p>
+    </div>
+
+    <div class="idea-box">
+        <label style="font-weight:900; text-transform:uppercase; display:block; margin-bottom:10px;">Idea o Huevo de Oro a validar:</label>
+        <input type="text" id="idea-input" placeholder="Ej: Mi proyecto de mentoría consciente...">
+    </div>
+
+    <div id="layers-hook"></div>
+
+    <button class="btn-analisis" onclick="runFullAudit()">ANALÍSIS</button>
+
+    <div id="results-area">
+        <div class="total-badge" id="score-num">00/99</div>
+        <div class="scale-result" id="scale-txt"></div>
+        <div id="detailed-report"></div>
+        
+        <div class="cta-final">
+            <h2 style="margin-top:0;">¿TU MATRIZ DETECTÓ PUNTOS CRÍTICOS?</h2>
+            <p>Descargá la actualización completa y madurá tu Huevo de Oro hoy mismo.</p>
+            <a href="https://ricaspalabras.shop/products/ebook" class="btn-buy">SOLUCIONAR CON EL EBOOK + WORKBOOK</a>
+        </div>
+    </div>
+
+    <div class="final-quote">
+        "La abundancia es una consecuencia natural del orden interno".
+    </div>
+
+    <script>
+        const layersData = [
+            { id: 1, name: "Motor", q: "¿Qué tanto te mueve desde el corazón solar?" },
+            { id: 2, name: "Talento", q: "¿Tenés la base técnica o el compromiso de aprender?" },
+            { id: 3, name: "Demanda", q: "¿El mundo realmente necesita esto hoy?" },
+            { id: 4, name: "Validación", q: "¿Hay alguien dispuesto a pagar por esto?" },
+            { id: 5, name: "Enfoque", q: "¿Soluciona un problema específico y real?" },
+            { id: 6, name: "Vehículo", q: "¿El formato de entrega es claro y probado?" },
+            { id: 7, name: "Viabilidad", q: "¿Es posible ejecutarlo con tus recursos hoy?" },
+            { id: 8, name: "Sostenibilidad", q: "¿Es un proyecto sano para vos a largo plazo?" },
+            { id: 9, name: "Escalabilidad", q: "¿Puede crecer sin exigir más de tu presencia?" }
+        ];
+
+        // Lógica de 11 niveles por capa (Simplificada en 3 rangos técnicos para el copy)
+        function getLayerAnalysis(id, val) {
+            const analyses = {
+                1: { low: "Motor apagado. Energía de 'Fuerza'.", high: "Motor Radiante. Fuente de energía solar.", qLow: "¿Qué parte harías gratis?", qHigh: "¿Cómo protegerás este fuego?" },
+                2: { low: "Brecha técnica alta. Faltan herramientas.", high: "Maestría detectada. Caja de herramientas sólida.", qLow: "¿En qué debés capacitarte hoy?", qHigh: "¿Cómo pondrás este don al servicio?" },
+                3: { low: "Idea aislada. Falta empatía con el entorno.", high: "Demanda validada. El mundo pide esto.", qLow: "¿Quién se queja de este problema?", qHigh: "¿Cómo gestionarás el flujo de demanda?" },
+                4: { low: "Intercambio bloqueado. Sin valor percibido.", high: "Validación real. Intercambio fluyendo.", qLow: "¿Por qué valor pagarían hoy?", qHigh: "¿Cómo honrarás esta confianza?" },
+                5: { low: "Dispersión total. Foco debilitado.", high: "Precisión láser. El problema es claro.", qLow: "¿Podés resumirlo en 5 palabras?", qHigh: "¿Cómo evitarás nuevas distracciones?" },
+                6: { low: "Sin envase funcional. Idea gaseosa.", high: "Modelo ganador. Vehículo fluido.", qLow: "¿Cuál es el formato más simple?", qHigh: "¿Este modelo te da libertad?" },
+                7: { low: "Inviable hoy. Supervivencia activada.", high: "Totalmente posible. ATE alineado.", qLow: "¿Qué versión semilla lanzarás hoy?", qHigh: "¿Cuál es el primer paso de mañana?" },
+                8: { low: "Riesgo biológico. El proyecto te desgasta.", high: "Sistema regenerativo. Sano y fértil.", qLow: "¿Cómo te verás en 3 años?", qHigh: "¿Cómo celebrarás tu equilibrio?" },
+                9: { low: "Límite biológico. Depende solo de vos.", high: "Potencial infinito. Bosque en potencia.", qLow: "¿Qué proceso podés automatizar?", qHigh: "¿Qué tan grande permitís soñar?" }
+            };
+            const item = analyses[id];
+            return val > 5 
+                ? { txt: item.high, q: item.qHigh, tag: "Fortaleza", color: "#4CAF50" } 
+                : { txt: item.low, q: item.qLow, tag: "Punto Crítico", color: "#FF5252" };
+        }
+
+        const hook = document.getElementById('layers-hook');
+        layersData.forEach(l => {
+            hook.innerHTML += `
+                <div class="layer-card">
+                    <div class="layer-label">
+                        <span>${l.id}. ${l.name}</span>
+                        <span class="score-display" id="val-${l.id}">5</span>
+                    </div>
+                    <p style="font-weight:700; margin: 15px 0; font-size:1.1rem; color:#000;">${l.q}</p>
+                    <input type="range" min="0" max="11" value="5" oninput="document.getElementById('val-${l.id}').innerText=this.value">
+                </div>
+            `;
+        });
+
+        function runFullAudit() {
+            let total = 0;
+            const report = document.getElementById('detailed-report');
+            const idea = document.getElementById('idea-input').value || "Tu Huevo de Oro";
+            report.innerHTML = `<h3 style="text-align:center; color:#EDFFA7;">ANÁLISIS DE: ${idea.toUpperCase()}</h3>`;
+            
+            layersData.forEach(l => {
+                const score = parseInt(document.getElementById(`val-${l.id}`).innerText);
+                total += score;
+                const analysis = getLayerAnalysis(l.id, score);
+                report.innerHTML += `
+                    <div class="layer-analysis-card">
+                        <div class="pro-con-tag" style="background:${analysis.color}">${analysis.tag}</div>
+                        <h4 style="margin:0; color:#EDFFA7;">CAPA ${l.id}: ${l.name.toUpperCase()} (${score}/11)</h4>
+                        <p style="margin:10px 0;">${analysis.txt}</p>
+                        <p style="font-style:italic; font-weight:700; color:#EDFFA7;">💡 PREGUNTA: ${analysis.q}</p>
+                    </div>
+                `;
+            });
+
+            document.getElementById('score-num').innerText = `${total}/99`;
+            
+            // ESCALA DE 9 RESULTADOS DINÁMICOS
+            let msg = "";
+            if(total <= 10) msg = "⚠️ Caos Inicial: El sistema requiere orden urgente.";
+            else if(total <= 25) msg = "🥚 Huevo Cósmico: Potencial latente, falta estructura.";
+            else if(total <= 40) msg = "🌱 Germinando: La idea tiene raíz pero falta ATE.";
+            else if(total <= 50) msg = "📈 En Construcción: Estás en el umbral del orden.";
+            else if(total <= 65) msg = "⚡ Maduración Técnica: El sistema empieza a circular.";
+            else if(total <= 75) msg = "✨ Camino a la Brillantez: Coherencia en movimiento.";
+            else if(total <= 85) msg = "🔥 Umbral de Abundancia: Tu Matriz está casi lista.";
+            else if(total <= 95) msg = "💎 Coherencia Superior: El Huevo está listo para nacer.";
+            else msg = "🏆 HUEVO DE ORO ABSOLUTO: Unidad de Abundancia Total.";
+
+            document.getElementById('scale-txt').innerText = msg;
+            document.getElementById('results-area').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('results-area').offsetTop - 50, behavior: 'smooth' });
+        }
+    </script>
+</div>
