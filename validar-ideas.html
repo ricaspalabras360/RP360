@@ -1,25 +1,170 @@
-<div id="auditoria-definitiva-root">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricas Palabras 360 - Conectando Crecimiento y Transformación</title>
+    <!-- Incluye Tailwind CSS para un diseño responsivo y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preconecta a Google Fonts para mejorar el rendimiento de carga de la fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carga la fuente Inter desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* 1. ELIMINACIÓN DE DOBLE CURSOR Y DISEÑO DE FONDO */
+        /* Reset de márgenes y paddings por defecto del navegador */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Simple scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Style for gradient text */
+        .gradient-text {
+            background: linear-gradient(to right, #4ade80, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Styling for the keyword cards */
+        .keyword-card {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            aspect-ratio: 3 / 2;
+            transition: transform 0.2s ease-in-out;
+        }
+        .keyword-card:hover {
+            transform: translateY(-3px);
+        }
+        .keyword-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* Hero video containers */
+        .homepage-video-container {
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            padding-bottom: 40%;
+            height: 0;
+            overflow: hidden;
+        }
+        .homepage-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-main-content-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-top: 1rem;
+        }
+        .hero-main-content-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-video-showcase {
+            width: 100%;
+            max-width: 700px;
+            margin: 2rem auto 0;
+            border-radius: 0.5rem;
+            box-shadow: 0 5px 15px -3px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .product-video-showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Instagram styling */
+        .instagram-section {
+            padding: 2rem 1rem;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .homepage-video-container { padding-bottom: 60%; }
+            .hero-main-content-container { width: 90vw; max-width: 90vw; }
+        }
+
+        /* ESTILOS ESPECÍFICOS PARA LA AUDITORÍA DE IDEAS */
         #auditoria-definitiva-root {
             background-color: #EDFFA7 !important;
             color: #2E2A39 !important;
-            font-family: 'Montserrat', sans-serif !important;
+            font-family: 'Inter', sans-serif !important;
             padding: 60px 20px !important;
             width: 100% !important;
             box-sizing: border-box !important;
             overflow-x: hidden !important; 
         }
 
-        /* 2. TÍTULO GIGANTE JERÁRQUICO */
         #auditoria-definitiva-root h1.main-title {
-            font-family: 'Lora', serif !important;
-            font-size: clamp(3rem, 10vw, 6rem) !important; 
+            font-size: clamp(2.5rem, 8vw, 5rem) !important; 
             color: #000000 !important;
             text-align: center;
             text-transform: uppercase;
-            line-height: 0.85;
+            line-height: 1;
             margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .header-image-container {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0px #000;
+            border: 3px solid #000;
+        }
+
+        .header-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .instrucciones-box {
@@ -48,11 +193,9 @@
             border: 3px solid #000;
             border-radius: 12px;
             font-size: 1.5rem;
-            font-family: 'Lora', serif;
             box-sizing: border-box;
         }
 
-        /* CAPAS - PREGUNTAS NEGRAS Y GRANDES */
         .layer-card {
             background: #fff;
             padding: 35px;
@@ -64,11 +207,12 @@
 
         .layer-label {
             font-weight: 900;
-            font-size: 2rem; 
+            font-size: 1.8rem; 
             color: #000 !important;
             text-transform: uppercase;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
         .score-display {
@@ -86,7 +230,6 @@
             cursor: pointer;
         }
 
-        /* BOTÓN ANÁLISIS - LETRAS AMARILLAS */
         .btn-analisis {
             display: block;
             width: 100%;
@@ -95,7 +238,7 @@
             background: #000;
             color: #EDFFA7 !important;
             padding: 30px;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
             border: none;
             border-radius: 20px;
@@ -103,7 +246,6 @@
             transition: 0.3s;
         }
 
-        /* RESULTADOS DINÁMICOS */
         #results-area {
             display: none;
             max-width: 850px;
@@ -117,7 +259,7 @@
 
         .total-badge {
             text-align: center;
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 900;
             color: #EDFFA7;
             line-height: 1;
@@ -126,7 +268,7 @@
 
         .scale-result {
             text-align: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             text-transform: uppercase;
             color: #fff;
@@ -145,7 +287,7 @@
 
         .pro-con-tag {
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             padding: 3px 8px;
             border-radius: 4px;
             text-transform: uppercase;
@@ -171,13 +313,12 @@
             font-weight: 900;
             border-radius: 12px;
             margin-top: 20px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .final-quote {
             text-align: center;
-            font-family: 'Lora', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-style: italic;
             margin-top: 80px;
             border-top: 4px solid #000;
@@ -185,122 +326,199 @@
             color: #000;
         }
     </style>
+</head>
+<body class="bg-white">
 
-    <h1 class="main-title">Auditoría de las 9 Capas</h1>
-
-    <div class="instrucciones-box">
-        <p>Este ejercicio lo podrás realizar cuando llegues a la lectura del <strong>Capítulo 5.7</strong> de <em>El Ordenador de tu Abundancia</em>.</p>
-        <p><strong>Instrucciones:</strong> Poné el cursor de 0 a 11 según consideres el estado de tu idea. Luego presioná <strong>"ANALÍSIS"</strong> para ver tu puntaje y dónde necesitás mayor ATE.</p>
-    </div>
-
-    <div class="idea-box">
-        <label style="font-weight:900; text-transform:uppercase; display:block; margin-bottom:10px;">Idea o Huevo de Oro a validar:</label>
-        <input type="text" id="idea-input" placeholder="Ej: Mi proyecto de mentoría consciente...">
-    </div>
-
-    <div id="layers-hook"></div>
-
-    <button class="btn-analisis" onclick="runFullAudit()">ANALÍSIS</button>
-
-    <div id="results-area">
-        <div class="total-badge" id="score-num">00/99</div>
-        <div class="scale-result" id="scale-txt"></div>
-        <div id="detailed-report"></div>
-        
-        <div class="cta-final">
-            <h2 style="margin-top:0;">¿TU MATRIZ DETECTÓ PUNTOS CRÍTICOS?</h2>
-            <p>Descargá la actualización completa y madurá tu Huevo de Oro hoy mismo.</p>
-            <a href="https://ricaspalabras.shop/products/ebook" class="btn-buy">SOLUCIONAR CON EL EBOOK + WORKBOOK</a>
-        </div>
-    </div>
-
-    <div class="final-quote">
-        "La abundancia es una consecuencia natural del orden interno".
-    </div>
-
-    <script>
-        const layersData = [
-            { id: 1, name: "Motor", q: "¿Qué tanto te mueve desde el corazón solar?" },
-            { id: 2, name: "Talento", q: "¿Tenés la base técnica o el compromiso de aprender?" },
-            { id: 3, name: "Demanda", q: "¿El mundo realmente necesita esto hoy?" },
-            { id: 4, name: "Validación", q: "¿Hay alguien dispuesto a pagar por esto?" },
-            { id: 5, name: "Enfoque", q: "¿Soluciona un problema específico y real?" },
-            { id: 6, name: "Vehículo", q: "¿El formato de entrega es claro y probado?" },
-            { id: 7, name: "Viabilidad", q: "¿Es posible ejecutarlo con tus recursos hoy?" },
-            { id: 8, name: "Sostenibilidad", q: "¿Es un proyecto sano para vos a largo plazo?" },
-            { id: 9, name: "Escalabilidad", q: "¿Puede crecer sin exigir más de tu presencia?" }
-        ];
-
-        // Lógica de 11 niveles por capa (Simplificada en 3 rangos técnicos para el copy)
-        function getLayerAnalysis(id, val) {
-            const analyses = {
-                1: { low: "Motor apagado. Energía de 'Fuerza'.", high: "Motor Radiante. Fuente de energía solar.", qLow: "¿Qué parte harías gratis?", qHigh: "¿Cómo protegerás este fuego?" },
-                2: { low: "Brecha técnica alta. Faltan herramientas.", high: "Maestría detectada. Caja de herramientas sólida.", qLow: "¿En qué debés capacitarte hoy?", qHigh: "¿Cómo pondrás este don al servicio?" },
-                3: { low: "Idea aislada. Falta empatía con el entorno.", high: "Demanda validada. El mundo pide esto.", qLow: "¿Quién se queja de este problema?", qHigh: "¿Cómo gestionarás el flujo de demanda?" },
-                4: { low: "Intercambio bloqueado. Sin valor percibido.", high: "Validación real. Intercambio fluyendo.", qLow: "¿Por qué valor pagarían hoy?", qHigh: "¿Cómo honrarás esta confianza?" },
-                5: { low: "Dispersión total. Foco debilitado.", high: "Precisión láser. El problema es claro.", qLow: "¿Podés resumirlo en 5 palabras?", qHigh: "¿Cómo evitarás nuevas distracciones?" },
-                6: { low: "Sin envase funcional. Idea gaseosa.", high: "Modelo ganador. Vehículo fluido.", qLow: "¿Cuál es el formato más simple?", qHigh: "¿Este modelo te da libertad?" },
-                7: { low: "Inviable hoy. Supervivencia activada.", high: "Totalmente posible. ATE alineado.", qLow: "¿Qué versión semilla lanzarás hoy?", qHigh: "¿Cuál es el primer paso de mañana?" },
-                8: { low: "Riesgo biológico. El proyecto te desgasta.", high: "Sistema regenerativo. Sano y fértil.", qLow: "¿Cómo te verás en 3 años?", qHigh: "¿Cómo celebrarás tu equilibrio?" },
-                9: { low: "Límite biológico. Depende solo de vos.", high: "Potencial infinito. Bosque en potencia.", qLow: "¿Qué proceso podés automatizar?", qHigh: "¿Qué tan grande permitís soñar?" }
-            };
-            const item = analyses[id];
-            return val > 5 
-                ? { txt: item.high, q: item.qHigh, tag: "Fortaleza", color: "#4CAF50" } 
-                : { txt: item.low, q: item.qLow, tag: "Punto Crítico", color: "#FF5252" };
-        }
-
-        const hook = document.getElementById('layers-hook');
-        layersData.forEach(l => {
-            hook.innerHTML += `
-                <div class="layer-card">
-                    <div class="layer-label">
-                        <span>${l.id}. ${l.name}</span>
-                        <span class="score-display" id="val-${l.id}">5</span>
-                    </div>
-                    <p style="font-weight:700; margin: 15px 0; font-size:1.1rem; color:#000;">${l.q}</p>
-                    <input type="range" min="0" max="11" value="5" oninput="document.getElementById('val-${l.id}').innerText=this.value">
-                </div>
-            `;
-        });
-
-        function runFullAudit() {
-            let total = 0;
-            const report = document.getElementById('detailed-report');
-            const idea = document.getElementById('idea-input').value || "Tu Huevo de Oro";
-            report.innerHTML = `<h3 style="text-align:center; color:#EDFFA7;">ANÁLISIS DE: ${idea.toUpperCase()}</h3>`;
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold text-gray-800">
+                Ricas <span class="gradient-text">Palabras 360</span>
+            </a>
             
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex space-x-5 items-center">
+                <a href="ordenador-abundancia.html" class="text-emerald-600 font-semibold hover:text-emerald-700 transition duration-300 text-sm">El ordenador de tu Abundancia</a>
+                <a href="validar-ideas.html" class="text-blue-600 font-semibold hover:text-blue-700 transition duration-300 text-sm">Validar Ideas</a>
+                <a href="obras-literarias.html" class="text-gray-600 hover:text-blue-500 transition duration-300 text-sm">Obras Literarias</a>
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-500 transition duration-300 text-sm">Tienda</a>
+                <a href="quien_soy.html" class="text-gray-600 hover:text-blue-500 transition duration-300 text-sm">Conocé a Gonzai</a>
+                <a href="#contacto" class="text-gray-600 hover:text-blue-500 transition duration-300 text-sm">Contacto</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 z-40 border-t">
+             <a href="ordenador-abundancia.html" class="block px-6 py-3 text-emerald-600 font-bold hover:bg-emerald-50">El ordenador de tu Abundancia</a>
+             <a href="validar-ideas.html" class="block px-6 py-3 text-blue-600 font-bold hover:bg-blue-50">Validar Ideas</a>
+             <a href="obras-literarias.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Obras Literarias</a>
+             <a href="https://ricaspalabras.mitiendanube.com" target="_blank" rel="noopener noreferrer" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Tienda</a>
+             <a href="quien_soy.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Conocé a Gonzai</a>
+             <a href="#contacto" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Auditoría de las 9 Capas Section -->
+    <div id="auditoria-definitiva-root">
+        
+        <div class="header-image-container">
+            <img src="9_capas_validacion.png" alt="[Imagen de las 9 capas de validación]">
+        </div>
+
+        <h1 class="main-title">Auditoría de las 9 Capas</h1>
+
+        <div class="instrucciones-box">
+            <p>Este ejercicio lo podrás realizar cuando llegues a la lectura del <strong>Capítulo 5.7</strong> de <em>El Ordenador de tu Abundancia</em>.</p>
+            <p><strong>Instrucciones:</strong> Poné el cursor de 0 a 11 según consideres el estado de tu idea. Luego presioná <strong>"ANALÍSIS"</strong> para ver tu puntaje y dónde necesitás mayor ATE.</p>
+        </div>
+
+        <div class="idea-box">
+            <label style="font-weight:900; text-transform:uppercase; display:block; margin-bottom:10px;">Idea o Huevo de Oro a validar:</label>
+            <input type="text" id="idea-input" placeholder="Ej: Mi proyecto de mentoría consciente...">
+        </div>
+
+        <div id="layers-hook"></div>
+
+        <button class="btn-analisis" onclick="runFullAudit()">ANALÍSIS</button>
+
+        <div id="results-area">
+            <div class="total-badge" id="score-num">00/99</div>
+            <div class="scale-result" id="scale-txt"></div>
+            <div id="detailed-report"></div>
+            
+            <div class="cta-final">
+                <h2 style="margin-top:0; font-weight: 900;">¿TU MATRIZ DETECTÓ PUNTOS CRÍTICOS?</h2>
+                <p>Descargá la actualización completa y madurá tu Huevo de Oro hoy mismo.</p>
+                <a href="https://ricaspalabras.shop/products/ebook" class="btn-buy">SOLUCIONAR CON EL EBOOK + WORKBOOK</a>
+            </div>
+        </div>
+
+        <div class="final-quote">
+            "La abundancia es una consecuencia natural del orden interno".
+        </div>
+
+        <script>
+            const layersData = [
+                { id: 1, name: "Motor", q: "¿Qué tanto te mueve desde el corazón solar?" },
+                { id: 2, name: "Talento", q: "¿Tenés la base técnica o el compromiso de aprender?" },
+                { id: 3, name: "Demanda", q: "¿El mundo realmente necesita esto hoy?" },
+                { id: 4, name: "Validación", q: "¿Hay alguien dispuesto a pagar por esto?" },
+                { id: 5, name: "Enfoque", q: "¿Soluciona un problema específico y real?" },
+                { id: 6, name: "Vehículo", q: "¿El formato de entrega es claro y probado?" },
+                { id: 7, name: "Viabilidad", q: "¿Es posible ejecutarlo con tus recursos hoy?" },
+                { id: 8, name: "Sostenibilidad", q: "¿Es un proyecto sano para vos a largo plazo?" },
+                { id: 9, name: "Escalabilidad", q: "¿Puede crecer sin exigir más de tu presencia?" }
+            ];
+
+            function getLayerAnalysis(id, val) {
+                const analyses = {
+                    1: { low: "Motor apagado. Energía de 'Fuerza'.", high: "Motor Radiante. Fuente de energía solar.", qLow: "¿Qué parte harías gratis?", qHigh: "¿Cómo protegerás este fuego?" },
+                    2: { low: "Brecha técnica alta. Faltan herramientas.", high: "Maestría detectada. Caja de herramientas sólida.", qLow: "¿En qué debés capacitarte hoy?", qHigh: "¿Cómo pondrás este don al servicio?" },
+                    3: { low: "Idea aislada. Falta empatía con el entorno.", high: "Demanda validada. El mundo pide esto.", qLow: "¿Quién se queja de este problema?", qHigh: "¿Cómo gestionarás el flujo de demanda?" },
+                    4: { low: "Intercambio bloqueado. Sin valor percibido.", high: "Validación real. Intercambio fluyendo.", qLow: "¿Por qué valor pagarían hoy?", qHigh: "¿Cómo honrarás esta confianza?" },
+                    5: { low: "Dispersión total. Foco debilitado.", high: "Precisión láser. El problema es claro.", qLow: "¿Podés resumirlo en 5 palabras?", qHigh: "¿Cómo evitarás nuevas distracciones?" },
+                    6: { low: "Sin envase funcional. Idea gaseosa.", high: "Modelo ganador. Vehículo fluido.", qLow: "¿Cuál es el formato más simple?", qHigh: "¿Este modelo te da libertad?" },
+                    7: { low: "Inviable hoy. Supervivencia activada.", high: "Totalmente posible. ATE alineado.", qLow: "¿Qué versión semilla lanzarás hoy?", qHigh: "¿Cuál es el primer paso de mañana?" },
+                    8: { low: "Riesgo biológico. El proyecto te desgasta.", high: "Sistema regenerativo. Sano y fértil.", qLow: "¿Cómo te verás en 3 años?", qHigh: "¿Cómo celebrarás tu equilibrio?" },
+                    9: { low: "Límite biológico. Depende solo de vos.", high: "Potencial infinito. Bosque en potencia.", qLow: "¿Qué proceso podés automatizar?", qHigh: "¿Qué tan grande permitís soñar?" }
+                };
+                const item = analyses[id];
+                return val > 5 
+                    ? { txt: item.high, q: item.qHigh, tag: "Fortaleza", color: "#4CAF50" } 
+                    : { txt: item.low, q: item.qLow, tag: "Punto Crítico", color: "#FF5252" };
+            }
+
+            const hook = document.getElementById('layers-hook');
             layersData.forEach(l => {
-                const score = parseInt(document.getElementById(`val-${l.id}`).innerText);
-                total += score;
-                const analysis = getLayerAnalysis(l.id, score);
-                report.innerHTML += `
-                    <div class="layer-analysis-card">
-                        <div class="pro-con-tag" style="background:${analysis.color}">${analysis.tag}</div>
-                        <h4 style="margin:0; color:#EDFFA7;">CAPA ${l.id}: ${l.name.toUpperCase()} (${score}/11)</h4>
-                        <p style="margin:10px 0;">${analysis.txt}</p>
-                        <p style="font-style:italic; font-weight:700; color:#EDFFA7;">💡 PREGUNTA: ${analysis.q}</p>
+                hook.innerHTML += `
+                    <div class="layer-card">
+                        <div class="layer-label">
+                            <span>${l.id}. ${l.name}</span>
+                            <span class="score-display" id="val-${l.id}">5</span>
+                        </div>
+                        <p style="font-weight:700; margin: 15px 0; font-size:1.1rem; color:#000;">${l.q}</p>
+                        <input type="range" min="0" max="11" value="5" oninput="document.getElementById('val-${l.id}').innerText=this.value">
                     </div>
                 `;
             });
 
-            document.getElementById('score-num').innerText = `${total}/99`;
-            
-            // ESCALA DE 9 RESULTADOS DINÁMICOS
-            let msg = "";
-            if(total <= 10) msg = "⚠️ Caos Inicial: El sistema requiere orden urgente.";
-            else if(total <= 25) msg = "🥚 Huevo Cósmico: Potencial latente, falta estructura.";
-            else if(total <= 40) msg = "🌱 Germinando: La idea tiene raíz pero falta ATE.";
-            else if(total <= 50) msg = "📈 En Construcción: Estás en el umbral del orden.";
-            else if(total <= 65) msg = "⚡ Maduración Técnica: El sistema empieza a circular.";
-            else if(total <= 75) msg = "✨ Camino a la Brillantez: Coherencia en movimiento.";
-            else if(total <= 85) msg = "🔥 Umbral de Abundancia: Tu Matriz está casi lista.";
-            else if(total <= 95) msg = "💎 Coherencia Superior: El Huevo está listo para nacer.";
-            else msg = "🏆 HUEVO DE ORO ABSOLUTO: Unidad de Abundancia Total.";
+            function runFullAudit() {
+                let total = 0;
+                const report = document.getElementById('detailed-report');
+                const idea = document.getElementById('idea-input').value || "Tu Huevo de Oro";
+                report.innerHTML = `<h3 style="text-align:center; color:#EDFFA7; font-weight: 900; margin-bottom: 30px;">ANÁLISIS DE: ${idea.toUpperCase()}</h3>`;
+                
+                layersData.forEach(l => {
+                    const score = parseInt(document.getElementById(`val-${l.id}`).innerText);
+                    total += score;
+                    const analysis = getLayerAnalysis(l.id, score);
+                    report.innerHTML += `
+                        <div class="layer-analysis-card">
+                            <div class="pro-con-tag" style="background:${analysis.color}">${analysis.tag}</div>
+                            <h4 style="margin:0; color:#EDFFA7; font-weight: 800;">CAPA ${l.id}: ${l.name.toUpperCase()} (${score}/11)</h4>
+                            <p style="margin:10px 0;">${analysis.txt}</p>
+                            <p style="font-style:italic; font-weight:700; color:#EDFFA7;">💡 PREGUNTA: ${analysis.q}</p>
+                        </div>
+                    `;
+                });
 
-            document.getElementById('scale-txt').innerText = msg;
-            document.getElementById('results-area').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('results-area').offsetTop - 50, behavior: 'smooth' });
-        }
+                document.getElementById('score-num').innerText = `${total}/99`;
+                
+                let msg = "";
+                if(total <= 10) msg = "⚠️ Caos Inicial: El sistema requiere orden urgente.";
+                else if(total <= 25) msg = "🥚 Huevo Cósmico: Potencial latente, falta estructura.";
+                else if(total <= 40) msg = "🌱 Germinando: La idea tiene raíz pero falta ATE.";
+                else if(total <= 50) msg = "📈 En Construcción: Estás en el umbral del orden.";
+                else if(total <= 65) msg = "⚡ Maduración Técnica: El sistema empieza a circular.";
+                else if(total <= 75) msg = "✨ Camino a la Brillantez: Coherencia en movimiento.";
+                else if(total <= 85) msg = "🔥 Umbral de Abundancia: Tu Matriz está casi lista.";
+                else if(total <= 95) msg = "💎 Coherencia Superior: El Huevo está listo para nacer.";
+                else msg = "🏆 HUEVO DE ORO ABSOLUTO: Unidad de Abundancia Total.";
+
+                document.getElementById('scale-txt').innerText = msg;
+                document.getElementById('results-area').style.display = 'block';
+                window.scrollTo({ top: document.getElementById('results-area').offsetTop - 50, behavior: 'smooth' });
+            }
+        </script>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h4 class="text-2xl font-bold mb-4 text-white">Ricas Palabras 360</h4>
+            <p class="mb-6">ricaspalabras360@gmail.com | Buenos Aires, Argentina</p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm">
+                <a href="ordenador-abundancia.html" class="hover:text-emerald-400">Ordenador de Abundancia</a>
+                <a href="validar-ideas.html" class="hover:text-blue-400">Validar Ideas</a>
+                <a href="obras-literarias.html" class="hover:text-white">Obras Literarias</a>
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="hover:text-white">Tienda</a>
+            </div>
+            <p class="mt-8 text-xs opacity-50">&copy; 2024 Ricas Palabras 360. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        const links = mobileMenu.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
     </script>
-</div>
+</body>
+</html>
