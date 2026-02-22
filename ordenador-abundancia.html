@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* ESTILOS GENERALES Y TEXTO */
+        #ate-wrapper-soberano {
+            font-family: 'Montserrat', sans-serif, Arial;
+            background-color: #EDFFA7;
+            padding: 20px;
+            color: #2E2A39;
+            width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        .texto-introductorio {
+            background-color: #EDFFA7;
+            padding: 10px 0 30px 0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .instrucciones-caja {
+            background: #ffffff;
+            padding: 20px;
+            border: 3px solid #000;
+            border-radius: 20px;
+            box-shadow: 6px 6px 0px #000;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instrucciones-caja p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* LISTA DE EJEMPLOS */
+        .ejemplos-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ejemplo-item {
+            background: #F9F9F9;
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .ejemplo-item strong { margin-right: 8px; text-transform: uppercase; }
+
+        /* SELECTOR DE PLANOS */
+        .header-box {
+            text-align: center;
+            background: #F4F6B3;
+            padding: 15px;
+            border: 2px solid #000;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .selector-planos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn-plano {
+            padding: 10px 12px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            transition: 0.2s;
+            outline: none;
+            display: inline-block;
+        }
+
+        .btn-plano:active {
+            transform: translateY(2px);
+        }
+
+        /* Colores específicos de los botones */
+        .fis { background: #0044CC !important; color: #fff !important; }
+        .men { background: #00aba9 !important; color: #fff !important; }
+        .emo { background: #60a917 !important; color: #fff !important; }
+        .sen { background: #e3a21a !important; color: #000 !important; }
+        .esp { background: #4B0082 !important; color: #fff !important; }
+        .ene { background: #d80073 !important; color: #fff !important; }
+        .lim { background: #ffffff !important; color: #000 !important; }
+
+        /* TABLA AJUSTADA PARA QUE ENTRE TODO */
+        .contenedor-tabla {
+            width: 100% !important;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 10px;
+            overflow-x: hidden;
+            margin-bottom: 20px;
+        }
+
+        .tabla-ate {
+            width: 100% !important;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .tabla-ate th {
+            background: #000;
+            color: #EDFFA7;
+            padding: 8px 2px;
+            font-size: 0.7rem;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .tabla-ate td {
+            border: 1px solid #000 !important;
+            height: 55px;
+            padding: 0;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .col-hora {
+            background: #F0F0F0 !important;
+            font-weight: 900;
+            text-align: center;
+            width: 50px;
+            font-size: 0.75rem;
+            cursor: default !important;
+        }
+
+        .celda-input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            text-align: center;
+            resize: none;
+            font-size: 0.75rem;
+            padding: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-weight: 700;
+            outline: none;
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .footer-btns { text-align: center; margin-top: 20px; }
+        .btn-grande {
+            padding: 12px 24px;
+            background: #000;
+            color: #EDFFA7;
+            font-weight: 900;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            margin: 5px;
+            font-size: 0.85rem;
+        }
+
+        @media screen and (max-width: 600px) {
+            .contenedor-tabla { overflow-x: auto; }
+            .tabla-ate { min-width: 500px; }
+        }
+
+        @media print {
+            .texto-introductorio, .instrucciones-caja, .selector-planos, .footer-btns { display: none !important; }
+            #ate-wrapper-soberano { background: white; padding: 0; }
+            .contenedor-tabla { border: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="ate-wrapper-soberano">
+    <div class="texto-introductorio">
+        <p><strong>GESTIÓN del TIEMPO:</strong> Esta tabla es el complemento perfecto para el libro "El Ordenador de tu Abundancia" porque transforma la teoría de la arquitectura interna en una herramienta de ejecución técnica diaria.</p>
+    </div>
+
+    <div class="instrucciones-caja">
+        <p>Aprieta el botón del plano al que quieras llevar tu ATE, luego escribe en la tabla.</p>
+        <div class="ejemplos-lista">
+            <div class="ejemplo-item" style="border-left: 6px solid #0044CC;"><strong style="color:#0044CC;">Físico:</strong> Sol, grounding, hidratación.</div>
+            <div class="ejemplo-item" style="border-left: 6px solid #4B0082;"><strong style="color:#4B0082;">Espiritual:</strong> Paz, gratitud, conexión.</div>
+            <div class="ejemplo-item" style="border-left: 6px solid #00aba9;"><strong style="color:#00aba9;">Mental:</strong> Lectura, clasificar pensamientos.</div>
+            <div class="ejemplo-item" style="border-left: 6px solid #60a917;"><strong style="color:#60a917;">Emocional:</strong> Transformar reacciones. Alegría.</div>
+            <div class="ejemplo-item" style="border-left: 6px solid #e3a21a;"><strong style="color:#e3a21a;">Sensible:</strong> Abrazos, Amor Corazón Solar.</div>
+            <div class="ejemplo-item" style="border-left: 6px solid #d80073;"><strong style="color:#d80073;">Energético:</strong> Música, Vibrar Positivo.</div>
+        </div>
+    </div>
+
+    <div class="header-box">
+        <h2 style="margin: 0; letter-spacing: 1px; font-size: 1.2rem;">ARQUITECTO DE MI ABUNDANCIA</h2>
+        <p style="margin: 5px 0 0 0; font-weight: 700; font-size: 0.9rem;">GESTIÓN SOBERANA ATE</p>
+    </div>
+
+    <div class="selector-planos">
+        <button type="button" class="btn-plano fis" onclick="window.definirColor('#0044CC','#ffffff')">Físico</button>
+        <button type="button" class="btn-plano men" onclick="window.definirColor('#00aba9','#ffffff')">Mental</button>
+        <button type="button" class="btn-plano emo" onclick="window.definirColor('#60a917','#ffffff')">Emocional</button>
+        <button type="button" class="btn-plano sen" onclick="window.definirColor('#e3a21a','#000000')">Sensible</button>
+        <button type="button" class="btn-plano esp" onclick="window.definirColor('#4B0082','#ffffff')">Espiritual</button>
+        <button type="button" class="btn-plano ene" onclick="window.definirColor('#d80073','#ffffff')">Energético</button>
+        <button type="button" class="btn-plano lim" onclick="window.definirColor('#ffffff','#000000')">Limpiar</button>
+    </div>
+
+    <div class="contenedor-tabla">
+        <table id="miTablaAte" class="tabla-ate">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">HORA</th>
+                    <th>LU</th><th>MA</th><th>MI</th><th>JU</th><th>VI</th><th>SA</th><th>DO</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTabla">
+                <!-- La tabla se genera dinámicamente aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer-btns">
+        <button type="button" class="btn-grande" onclick="window.print()">🖨️ IMPRIMIR</button>
+        <button type="button" class="btn-grande" onclick="window.exportarExcel()">📊 EXCEL</button>
+    </div>
+</div>
+
+<script>
+    // 1. Configuración Global
+    window.ATE_CONFIG = {
+        bg: "#ffffff",
+        tx: "#000000"
+    };
+
+    // 2. Definición de Funciones en Window para Shopify
+    window.definirColor = function(bgColor, txtColor) {
+        window.ATE_CONFIG.bg = bgColor;
+        window.ATE_CONFIG.tx = txtColor;
+    };
+
+    window.pintarCelda = function(elemento) {
+        if (!elemento) return;
+        var td = (elemento.tagName === 'TD') ? elemento : elemento.parentElement;
+        var area = td.querySelector('textarea');
+        
+        td.style.backgroundColor = window.ATE_CONFIG.bg;
+        if (area) area.style.color = window.ATE_CONFIG.tx;
+    };
+
+    window.exportarExcel = function() {
+        var tabla = document.getElementById("miTablaAte");
+        var html = '<html><head><meta charset="UTF-8"></head><body><table border="1">';
+        for (var i = 0; i < tabla.rows.length; i++) {
+            html += '<tr>';
+            for (var j = 0; j < tabla.rows[i].cells.length; j++) {
+                var cell = tabla.rows[i].cells[j];
+                var bg = cell.style.backgroundColor || "#ffffff";
+                var area = cell.querySelector('textarea');
+                var val = area ? area.value : cell.innerText;
+                html += '<td style="background-color:' + bg + ';">' + val + '</td>';
+            }
+            html += '</tr>';
+        }
+        html += '</table></body></html>';
+        var blob = new Blob([html], { type: 'application/vnd.ms-excel' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'Planificador_ATE.xls';
+        a.click();
+    };
+
+    // 3. Generación de la Tabla (Reemplaza document.write)
+    (function() {
+        var cuerpo = document.getElementById('cuerpoTabla');
+        var horas = ["06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"];
+        
+        horas.forEach(function(h) {
+            var tr = document.createElement('tr');
+            
+            // Celda de hora
+            var tdHora = document.createElement('td');
+            tdHora.className = 'col-hora';
+            tdHora.textContent = h;
+            tr.appendChild(tdHora);
+            
+            // Celdas de días
+            for (var i = 0; i < 7; i++) {
+                var td = document.createElement('td');
+                td.setAttribute('onclick', 'window.pintarCelda(this)');
+                
+                var area = document.createElement('textarea');
+                area.className = 'celda-input';
+                area.placeholder = '...';
+                area.setAttribute('onfocus', 'window.pintarCelda(this.parentElement)');
+                
+                td.appendChild(area);
+                tr.appendChild(td);
+            }
+            cuerpo.appendChild(tr);
+        });
+    })();
+</script>
+
+</body>
+</html>
