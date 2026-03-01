@@ -1,33 +1,49 @@
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Ordenador de tu Abundancia - Ricas Palabras</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Lora:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <title>El Ordenador de tu Abundancia | Gonzai - Ricas Palabras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dorado: #d4af37;
-            --verde-oscuro: #1a3a3a;
-            --crema: #fdfaf0;
+            --oro: #c5a059;
+            --oro-brillante: #e5c17e;
+            --verde-profundo: #0d1f1f;
+            --verde-suave: #1a3a3a;
+            --crema-lujo: #f9f7f2;
             --blanco: #ffffff;
+            --sombra: rgba(0,0,0,0.2);
         }
+
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Lora', serif;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--verde-oscuro);
+            color: var(--verde-profundo);
             background-color: var(--blanco);
-            line-height: 1.6;
+            line-height: 1.8;
+            overflow-x: hidden;
         }
+
+        /* TIPOGRAFÍA */
         h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
         }
+
+        .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
+
+        /* HERO SECTION */
         .hero {
-            background: linear-gradient(rgba(26, 58, 58, 0.8), rgba(26, 58, 58, 0.8)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
-            height: 80vh;
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(13, 31, 31, 0.85), rgba(13, 31, 31, 0.85)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -36,85 +52,201 @@
             color: var(--blanco);
             padding: 20px;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; color: var(--dorado); }
-        .hero p { font-size: 1.5rem; font-style: italic; max-width: 800px; }
-        
-        .section { padding: 60px 20px; max-width: 1000px; margin: auto; text-align: center; }
-        .btn-compra {
-            background-color: var(--dorado);
-            color: var(--blanco);
-            padding: 20px 40px;
+
+        .hero-content { max-width: 900px; z-index: 2; }
+
+        .hero h1 { 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            margin: 0; 
+            color: var(--oro);
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero p { 
+            font-size: clamp(1.1rem, 3vw, 1.6rem); 
+            margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* BOTONES */
+        .cta-container { margin-top: 40px; }
+
+        .btn-lujo {
+            background: linear-gradient(135deg, var(--oro), var(--oro-brillante));
+            color: var(--verde-profundo);
+            padding: 18px 45px;
             text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 900;
+            border-radius: 4px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
             display: inline-block;
-            margin-top: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
-        .btn-compra:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+
+        .btn-lujo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(197, 160, 89, 0.4);
+            filter: brightness(1.1);
         }
+
+        /* SECCIONES */
+        .section { padding: 100px 20px; max-width: 1100px; margin: auto; }
         
-        .bonus-container {
+        .grid-concept {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
+
+        .text-block { text-align: left; }
+        .text-block h2 { font-size: 2.5rem; margin-bottom: 25px; position: relative; }
+        .text-block h2::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -10px;
+            width: 60px; height: 3px; background: var(--oro);
+        }
+
+        .highlight-oro { color: var(--oro); font-weight: 700; }
+
+        /* BONUS CARDS */
+        .bonus-section {
+            background-color: var(--crema-lujo);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
         .bonus-card {
-            background: var(--crema);
-            padding: 30px;
-            border-radius: 15px;
-            border-bottom: 5px solid var(--dorado);
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 2px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        .highlight { color: var(--dorado); font-weight: bold; }
-        footer { background: var(--verde-oscuro); color: var(--blanco); padding: 40px 20px; text-align: center; }
+
+        .bonus-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+
+        .bonus-card span {
+            font-size: 0.8rem;
+            font-weight: 900;
+            color: var(--oro);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .bonus-card h3 { font-size: 1.5rem; margin-bottom: 15px; margin-top: 0; }
+
+        /* FOOTER */
+        footer {
+            background: var(--verde-profundo);
+            color: rgba(255,255,255,0.7);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        footer strong { color: var(--blanco); display: block; font-size: 1.2rem; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .grid-concept { grid-template-columns: 1fr; text-align: center; }
+            .text-block { text-align: center; }
+            .text-block h2::after { left: 50%; transform: translateX(-50%); }
+            .hero h1 { font-size: 2.8rem; }
+        }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <h1>EL ORDENADOR DE TU ABUNDANCIA</h1>
-        <p>"Actualizá tu sistema interno. Creá tu Huevo de Oro."</p>
-        <a href="https://ricaspalabras.shop" class="btn-compra">DESCARGAR CON 50% OFF</a>
-    </section>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-content">
+            <p class="serif-italic">Presentamos la obra técnica de Gonzai</p>
+            <h1>EL ORDENADOR DE TU ABUNDANCIA</h1>
+            <p>INSTALÁ TU NUEVO SISTEMA OPERATIVO INTERNO</p>
+            <div class="cta-container">
+                <a href="https://ricaspalabras.shop" class="btn-lujo">Descargar con 50% de Descuento</a>
+            </div>
+        </div>
+    </header>
 
+    <!-- CONCEPTO SECTION -->
     <section class="section">
-        <h2>¿Tu sistema interno está saturado?</h2>
-        <p>No es falta de talento, es falta de <span class="highlight">Arquitectura</span>. Vivimos en una era de exceso de información que fragmenta tu <strong>ATE (Atención, Tiempo y Energía)</strong> [4, 5].</p>
-        <p>Este libro es la instalación de un nuevo <strong>Sistema Operativo</strong> para tu vida y tus proyectos. Pasá del caos del Huevo Cósmico a la unidad de tu propio <strong>Huevo de Oro</strong> [6, 7].</p>
-    </section>
-
-    <section class="section" style="background-color: var(--crema);">
-        <h2>🎁 Lanzamiento: 3 Bonus Exclusivos Incluidos</h2>
-        <div class="bonus-container">
-            <div class="bonus-card">
-                <h3>PLANIFICADOR ATE</h3>
-                <p>Tu tablero de control para la gestión soberana del tiempo [8].</p>
+        <div class="grid-concept">
+            <div class="text-block">
+                <h2>¿Tu sistema está saturado?</h2>
+                <p>No es falta de capacidad, es falta de <span class="highlight-oro">Arquitectura Técnica</span>. El ruido del mundo fragmenta tu ATE: <br><strong>Atención, Tiempo y Energía.</strong></p>
+                <p>En este libro aprenderás a dejar atrás el caos del <em>Huevo Cósmico</em> —donde todo está disperso— para consolidar tu <strong>Huevo de Oro</strong>: una estructura soberana de unidad y enfoque.</p>
             </div>
-            <div class="bonus-card">
-                <h3>ESCÁNER TÉCNICO</h3>
-                <p>Auditoría de las 9 capas para validar tus ideas antes de invertir [9].</p>
-            </div>
-            <div class="bonus-card">
-                <h3>MANUAL DE IA</h3>
-                <p>Usá la Inteligencia Artificial como tu Espejo de Síntesis y ahorrá energía [9].</p>
+            <div style="background: var(--crema-lujo); padding: 40px; border-radius: 8px; border-left: 8px solid var(--oro);">
+                <p class="serif-italic" style="font-size: 1.4rem; line-height: 1.4;">"La abundancia no se busca, se permite. Y solo se permite cuando hay un orden interno capaz de sostenerla."</p>
+                <p><strong>— Gonzai</strong></p>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <h3>"La abundancia es una consecuencia natural del orden interno"</h3>
-        <p>Convertite en el <strong>Arquitecto de tu propia Matriz Interna</strong> [10, 11].</p>
-        <a href="https://ricaspalabras.shop" class="btn-compra">¡EMPEZAR MI ACTUALIZACIÓN AHORA!</a>
+    <!-- BONUS SECTION -->
+    <section class="bonus-section">
+        <div style="max-width: 1100px; margin: auto;">
+            <h2 style="font-size: 2.5rem;">Herramientas de Implementación</h2>
+            <p style="max-width: 700px; margin: auto;">Con la compra del libro, recibís acceso inmediato a tres módulos técnicos para pasar de la teoría a la soberanía real.</p>
+            
+            <div class="bonus-grid">
+                <!-- Bonus 1 -->
+                <div class="bonus-card">
+                    <span>Módulo Técnico 01</span>
+                    <h3>Planificador ATE</h3>
+                    <p>Tu tablero de comando para la gestión soberana del tiempo. Blindá tu energía.</p>
+                </div>
+                <!-- Bonus 2 -->
+                <div class="bonus-card">
+                    <span>Módulo Técnico 02</span>
+                    <h3>Escáner de 9 Capas</h3>
+                    <p>Auditoría interna para validar tus proyectos antes de invertir un solo recurso.</p>
+                </div>
+                <!-- Bonus 3 -->
+                <div class="bonus-card">
+                    <span>Módulo Técnico 03</span>
+                    <h3>Espejo de Síntesis (IA)</h3>
+                    <p>Manual para usar la Inteligencia Artificial como una extensión de tu propia conciencia.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- CIERRE SECTION -->
+    <section class="section" style="text-align: center;">
+        <h2 style="font-size: 2.8rem;">Convertite en el Arquitecto</h2>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 30px auto;">Actualizá tu matriz interna. Salí del bucle de la escasez instalando un orden superior.</p>
+        <div class="cta-container">
+            <a href="https://ricaspalabras.shop" class="btn-lujo">¡EMPEZAR ACTUALIZACIÓN AHORA!</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.6;">Oferta de lanzamiento por tiempo limitado.</p>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-        <p><strong>Gonzai</strong> - Una obra de Ricas Palabras</p>
-        <p>Integrando sabiduría, tecnología y conexión humana [12].</p>
+        <div style="max-width: 1100px; margin: auto;">
+            <strong>RICAS PALABRAS</strong>
+            <p>Integrando sabiduría ancestral, tecnología de vanguardia y conexión humana.</p>
+            <div style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">
+                &copy; 2024 El Ordenador de tu Abundancia - Obra de Gonzai. Todos los derechos reservados.
+            </div>
+        </div>
     </footer>
 
 </body>
