@@ -1,4 +1,3 @@
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -95,13 +94,14 @@
         }
 
         /* SECCIONES */
-        .section { padding: 100px 20px; max-width: 1100px; margin: auto; }
+        .section { padding: 80px 20px; max-width: 1100px; margin: auto; }
         
         .grid-concept {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            margin-bottom: 60px;
         }
 
         .text-block { text-align: left; }
@@ -114,6 +114,24 @@
         }
 
         .highlight-oro { color: var(--oro); font-weight: 700; }
+
+        /* IMÁGENES ESTRATÉGICAS */
+        .img-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .img-floating {
+            max-width: 450px;
+            margin: 20px auto;
+        }
 
         /* BONUS CARDS */
         .bonus-section {
@@ -137,6 +155,9 @@
             transition: 0.3s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .bonus-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
@@ -151,6 +172,14 @@
         }
 
         .bonus-card h3 { font-size: 1.5rem; margin-bottom: 15px; margin-top: 0; }
+
+        .bonus-img {
+            width: 100%;
+            max-width: 200px;
+            margin-top: 20px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
 
         /* FOOTER */
         footer {
@@ -167,6 +196,7 @@
             .text-block { text-align: center; }
             .text-block h2::after { left: 50%; transform: translateX(-50%); }
             .hero h1 { font-size: 2.8rem; }
+            .hero { height: auto; padding: 100px 20px; }
         }
     </style>
 </head>
@@ -178,6 +208,11 @@
             <p class="serif-italic">Presentamos la obra técnica de Gonzai</p>
             <h1>EL ORDENADOR DE TU ABUNDANCIA</h1>
             <p>INSTALÁ TU NUEVO SISTEMA OPERATIVO INTERNO</p>
+            
+            <div class="img-floating" style="max-width: 300px;">
+                <img src="tapa ebook.jpg" alt="Tapa Ebook El Ordenador de tu Abundancia" style="width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));">
+            </div>
+
             <div class="cta-container">
                 <a href="https://ricaspalabras.shop" class="btn-lujo">Descargar con 50% de Descuento</a>
             </div>
@@ -190,11 +225,22 @@
             <div class="text-block">
                 <h2>¿Tu sistema está saturado?</h2>
                 <p>No es falta de capacidad, es falta de <span class="highlight-oro">Arquitectura Técnica</span>. El ruido del mundo fragmenta tu ATE: <br><strong>Atención, Tiempo y Energía.</strong></p>
-                <p>En este libro aprenderás a dejar atrás el caos del <em>Huevo Cósmico</em> —donde todo está disperso— para consolidar tu <strong>Huevo de Oro</strong>: una estructura soberana de unidad y enfoque.</p>
+                <p>En este libro aprenderás a dejar atrás el caos del <em>Huevo Cósmico</em> para consolidar tu <strong>Huevo de Oro</strong>: una estructura soberana de unidad y enfoque.</p>
+                <p>La escasez es simplemente un error de software en tu matriz de pensamiento.</p>
             </div>
-            <div style="background: var(--crema-lujo); padding: 40px; border-radius: 8px; border-left: 8px solid var(--oro);">
-                <p class="serif-italic" style="font-size: 1.4rem; line-height: 1.4;">"La abundancia no se busca, se permite. Y solo se permite cuando hay un orden interno capaz de sostenerla."</p>
-                <p><strong>— Gonzai</strong></p>
+            <div class="img-container">
+                <img src="foto pagina1.jpg" alt="Representación del Huevo de Oro y Sistema Interno">
+            </div>
+        </div>
+
+        <div class="grid-concept" style="margin-top: 80px; direction: rtl;">
+            <div class="text-block" style="direction: ltr;">
+                <h2>Un camino evolutivo</h2>
+                <p>Este no es solo un libro, es el primer paso de una transformación integral. <strong>Ordenar</strong> es el requisito previo para poder <strong>Crear</strong> y finalmente <strong>Sostener</strong> el flujo de la vida.</p>
+                <p class="serif-italic" style="background: var(--crema-lujo); padding: 20px; border-left: 4px solid var(--oro);">"La verdadera abundancia es saber quién sos, para saber cómo hacer evolucionar conscientemente lo que ya tenés."</p>
+            </div>
+            <div class="img-container" style="direction: ltr;">
+                <img src="trilogia.jpg" alt="La Trilogía: Ordenar, Crear, Sostener">
             </div>
         </div>
     </section>
@@ -202,27 +248,30 @@
     <!-- BONUS SECTION -->
     <section class="bonus-section">
         <div style="max-width: 1100px; margin: auto;">
-            <h2 style="font-size: 2.5rem;">Herramientas de Implementación</h2>
-            <p style="max-width: 700px; margin: auto;">Con la compra del libro, recibís acceso inmediato a tres módulos técnicos para pasar de la teoría a la soberanía real.</p>
+            <h2 style="font-size: 2.5rem;">Herramientas de Ejecución Técnica</h2>
+            <p style="max-width: 700px; margin: auto; font-size: 1.1rem;">Transformá la teoría en una práctica diaria. Con tu sistema actualizado, recibís acceso a los tableros de comando reales.</p>
             
             <div class="bonus-grid">
                 <!-- Bonus 1 -->
                 <div class="bonus-card">
                     <span>Módulo Técnico 01</span>
                     <h3>Planificador ATE</h3>
-                    <p>Tu tablero de comando para la gestión soberana del tiempo. Blindá tu energía.</p>
+                    <p>Gestioná tu Atención, Tiempo y Energía en los 6 planos del ser. Recuperá el mando de tu conciencia.</p>
+                    <img src="WhatsApp Image 2026-02-22 at 00.02.49.jpeg" alt="Gestión del Tiempo ATE" class="bonus-img">
                 </div>
                 <!-- Bonus 2 -->
                 <div class="bonus-card">
                     <span>Módulo Técnico 02</span>
-                    <h3>Escáner de 9 Capas</h3>
-                    <p>Auditoría interna para validar tus proyectos antes de invertir un solo recurso.</p>
+                    <h3>HÁBITOS CONSCIENTES</h3>
+                    <p>Ubicación espacio-temporal para construir tu nueva realidad a través de acciones precisas en cada plano.</p>
+                    <img src="WhatsApp Image 2026-02-22 at 00.02.49 (1).jpeg" alt="Planificador de Hábitos ATE" class="bonus-img">
                 </div>
                 <!-- Bonus 3 -->
                 <div class="bonus-card">
                     <span>Módulo Técnico 03</span>
-                    <h3>Espejo de Síntesis (IA)</h3>
-                    <p>Manual para usar la Inteligencia Artificial como una extensión de tu propia conciencia.</p>
+                    <h3>Espejo de Síntesis</h3>
+                    <p>Manual para usar la Inteligencia Artificial como una extensión de tu propia conciencia y acelerar tu evolución.</p>
+                    <div style="margin-top:20px; color: var(--oro); font-weight: bold;">[ ACCESO EXCLUSIVO ]</div>
                 </div>
             </div>
         </div>
@@ -231,11 +280,14 @@
     <!-- CIERRE SECTION -->
     <section class="section" style="text-align: center;">
         <h2 style="font-size: 2.8rem;">Convertite en el Arquitecto</h2>
-        <p style="font-size: 1.2rem; max-width: 800px; margin: 30px auto;">Actualizá tu matriz interna. Salí del bucle de la escasez instalando un orden superior.</p>
+        <div class="img-floating" style="max-width: 250px; margin-bottom: 40px;">
+            <img src="tapa ebook.jpg" alt="Ebook El Ordenador de tu Abundancia">
+        </div>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">Actualizá tu matriz interna. Salí del bucle de la escasez instalando un orden superior hoy mismo.</p>
         <div class="cta-container">
             <a href="https://ricaspalabras.shop" class="btn-lujo">¡EMPEZAR ACTUALIZACIÓN AHORA!</a>
         </div>
-        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.6;">Oferta de lanzamiento por tiempo limitado.</p>
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.6;">Oferta de lanzamiento por tiempo limitado. Entrega digital inmediata.</p>
     </section>
 
     <!-- FOOTER -->
