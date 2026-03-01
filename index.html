@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -22,11 +22,31 @@
             scroll-behavior: smooth;
         }
 
+        .serif { font-family: 'Playfair Display', serif; }
+
         .gradient-text {
             background: linear-gradient(to right, #059669, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        /* Estilo Lanzamiento eBook (NUEVA SECCIÓN) */
+        .ebook-launch-bg {
+            background: linear-gradient(rgba(13, 31, 31, 0.95), rgba(13, 31, 31, 0.9)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+        }
+        .gold-text { color: #c5a059; }
+        .btn-gold {
+            background: linear-gradient(135deg, #c5a059, #e5c17e);
+            color: #0d1f1f;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.4);
         }
 
         /* Tarjetas de Palabras - Colores Vivos */
@@ -163,6 +183,31 @@
             </div>
         </div>
     </header>
+
+    <!-- NUEVO: LANZAMIENTO EBOOK (ARRIBA DE TODO) -->
+    <section class="ebook-launch-bg py-16 md:py-24 text-white border-b border-white/10">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <span class="gold-text font-bold tracking-[0.3em] uppercase text-sm mb-4 block">Nuevo Lanzamiento</span>
+                    <h1 class="serif text-4xl md:text-6xl font-bold gold-text mb-6 leading-tight uppercase">El Ordenador de tu Abundancia</h1>
+                    <p class="text-lg md:text-xl opacity-90 mb-8 leading-relaxed">
+                        No busques la riqueza, construye el sistema interno capaz de sostenerla. Aprende a gestionar tu <span class="gold-text font-bold">ATE (Atención, Tiempo y Energía)</span> e instala hoy tu nuevo Sistema Operativo.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="ordenador-abundancia.html" class="btn-gold px-8 py-4 rounded-lg font-black text-center tracking-wider uppercase">Ver Detalles del Libro</a>
+                        <a href="https://ricaspalabras.shop" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/30 px-8 py-4 rounded-lg font-bold text-center transition uppercase">Comprar Ahora (50% OFF)</a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-[#c5a059] to-[#e5c17e] rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <img src="tapa ebook.png" alt="Ebook Gonzai" class="relative rounded-lg shadow-2xl max-w-[280px] md:max-w-xs transform hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Hero Video Intro -->
     <section class="video-wrapper banner-video">
