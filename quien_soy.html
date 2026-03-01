@@ -1,178 +1,157 @@
 
+Para diseñar tu página de **"Quién soy"**, he estructurado el contenido para que no sea solo un currículum, sino una **declaración de propósito**. En el universo de **Ricas Palabras**, vos no sos solo el autor; sos el **Ecoscritor** que atravesó el caos para diseñar un mapa de abundancia que ahora compartís con el mundo.
+
+Aquí tenés el código HTML y CSS para una página que integra tu formación científica, tu búsqueda mística y tu experiencia emprendedora:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quién soy? - Ricas Palabras 360</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Conocé a Gonzai - Ricas Palabras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Lora:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --dorado: #d4af37;
+            --verde-oscuro: #1a3a3a;
+            --crema: #fdfaf0;
+            --texto: #2c3e50;
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Fondo azul-gris claro */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Lora', serif;
             margin: 0;
-            padding: 1rem;
-            box-sizing: border-box;
-            overflow-x: hidden;
-        }
-        .page-container {
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 2rem;
-        }
-        .profile-image-container {
-            /* Contenedor circular con tamaño optimizado */
-            width: 240px;
-            height: 240px;
-            border-radius: 9999px;
-            border: 6px solid #4299e1;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #e2e8f0;
-        }
-        .profile-image {
-            /* Reducimos la escala visual de la imagen interna para que no se corte la cara */
-            width: 85%; 
-            height: 85%;
-            object-fit: contain;
-            /* Ajuste fino para centrar el rostro */
-            object-position: center; 
-        }
-        .profile-name {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 0.5rem;
-        }
-        .profile-tagline {
-            font-size: 1.25rem;
-            color: #4299e1;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-        .profile-description {
-            font-size: 1.1rem;
-            color: #4a5568;
+            padding: 0;
+            color: var(--texto);
+            background-color: #fff;
             line-height: 1.8;
-            margin-bottom: 2rem;
-            text-align: left;
         }
-        .highlight-box {
-            background-color: #edf2f7;
-            border-left: 4px solid #4299e1;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            font-style: italic;
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--verde-oscuro);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        .linkedin-link {
-            display: inline-flex;
+        .container { max-width: 900px; margin: auto; padding: 40px 20px; }
+        
+        /* Header Section */
+        .profile-header {
+            text-align: center;
+            padding: 60px 0;
+            background-color: var(--crema);
+            border-bottom: 5px solid var(--dorado);
+        }
+        .profile-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .tagline { font-style: italic; color: var(--dorado); font-size: 1.2rem; }
+
+        /* Story Section */
+        .story-section { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-top: 50px; }
+        .story-text { flex: 1; min-width: 300px; }
+        .story-image {
+            flex: 1; min-width: 300px;
+            background: var(--verde-oscuro);
+            border-radius: 15px;
+            height: 400px;
+            display: flex;
             align-items: center;
-            background-color: #0077b5;
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            margin-bottom: 1rem;
-        }
-        .linkedin-link:hover {
-            background-color: #005582;
-            transform: translateY(-2px);
-        }
-        .linkedin-link svg {
-            width: 20px;
-            height: 20px;
-            margin-right: 0.5rem;
-        }
-        .back-button {
-            color: #4a5568;
-            font-weight: 600;
-            text-decoration: underline;
-            margin-top: 1rem;
-            transition: color 0.3s ease;
-        }
-        .back-button:hover {
-            color: #2d3748;
+            justify-content: center;
+            color: #fff;
+            font-family: 'Montserrat';
+            text-align: center;
+            padding: 20px;
+            /* Aquí podés poner tu foto con la tablet */
+            background-image: url('TU_URL_DE_IMAGEN'); 
+            background-size: cover;
+            background-position: center;
         }
 
-        @media (max-width: 768px) {
-            .profile-image-container {
-                width: 200px;
-                height: 200px;
-            }
-            .page-title {
-                font-size: 2rem;
-            }
-            .profile-name {
-                font-size: 1.75rem;
-            }
+        /* Philosophy Blocks */
+        .philosophy {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .phil-card {
+            border: 1px solid #eee;
+            padding: 25px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .phil-card:hover { border-color: var(--dorado); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .phil-card h3 { color: var(--dorado); font-size: 1rem; }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px;
+            background: var(--verde-oscuro);
+            color: #fff;
+            border-radius: 20px;
+        }
+        .btn-cta {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 35px;
+            background: var(--dorado);
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat';
+            font-weight: bold;
+            border-radius: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <h1 class="page-title">¿Quién soy?</h1>
-        
-        <div class="profile-image-container">
-            <img src="gonza.jpeg" alt="Foto de Perfil de Gonzai" class="profile-image" onerror="this.src='https://placehold.co/300x300/cccccc/333333?text=Gonzai'; this.onerror=null;">
+
+    <header class="profile-header">
+        <div class="container">
+            <h1>Gonzalo Aliaga Virasoro</h1>
+            <p class="tagline">Emprendedor Creativo • Fundador de Ricas Palabras • Ecoscritor</p>
         </div>
-        
-        <h2 class="profile-name">Gonzalo Aliaga Virasoro</h2>
-        <p class="profile-tagline">Gonzai • Emprendedor Creativo y Ecoscritor Consciente</p>
-        
-        <div class="profile-description">
-            <p>
-                Soy <strong>Gonzai</strong>, una identidad que nace de la síntesis entre mis estudios en <strong>Bioquímica y Logosofía</strong>, mi experiencia como fundador de centros de salud y bienestar, y una profunda curiosidad autodidacta por las <strong>neurociencias, la psicología y las filosofías</strong>.
-            </p>
-            
-            <div class="highlight-box">
-                "Tu mundo interior es el tablero de origen de todo lo visible."
+    </header>
+
+    <main class="container">
+        <section class="story-section">
+            <div class="story-text">
+                <h2>Me presento como <span style="color:var(--dorado)">Gonzai</span></h2>
+                <p>Mi camino no comenzó en el marketing, sino en la curiosidad por la estructura de la vida. Estudié <strong>Bioquímica y Logosofía</strong> en Buenos Aires, buscando entender tanto la biología celular como el funcionamiento de la Conciencia.</p>
+                <p>Durante años desarrollé emprendimientos reales: un centro de salud y una marca de productos con identidad propia. Ambos funcionaron, pero ambos colapsaron. Aprendí por las malas que <strong>el talento sin arquitectura te consume la vida</strong>.</p>
+                <p>No escribí mi obra desde la cima de la abundancia, sino desde la crisis. En ese caos, descubrí que la escritura consciente es la herramienta para transformar el desorden en una <strong>Matriz Interna</strong> sólida.</p>
             </div>
+            <div class="story-image">
+                <!-- Espacio para imagen -->
+                <p>[Foto de Gonzai con su tablet]</p>
+            </div>
+        </section>
 
-            <p>
-                Como <strong>emprendedor creativo</strong> y creador de <strong>Ricas Palabras</strong>, mi misión es facilitar la actualización del sistema interno de las personas. Creo que la abundancia no es algo que se persigue, sino algo que se cultiva ordenando la mente, la energía y las decisiones para crear lo que llamo el <strong>"Huevo de Oro"</strong>.
-                <br><br>
-                A través de mi trilogía de libros y workbooks —comenzando por <em>El Ordenador de tu Abundancia</em>—, exploro cómo el lenguaje consciente y la escritura pueden ser herramientas de transformación real. No diseño productos que decoran; diseño objetos y experiencias que activan la Conciencia como centro energético.
-                <br><br>
-                🌱 <strong>Ecoscritura y Propósito:</strong> Me defino como un ecoscritor porque entiendo que cada palabra es una semilla. Mi trabajo busca generar una nueva cultura del lenguaje donde lo cotidiano se encuentre con lo simbólico para sembrar una evolución sostenible.
-                <br><br>
-                ✨ Si estás aquí, es porque tu sistema está listo para una nueva configuración. Te invito a ser parte de esta red lumínica en expansión.
-            </p>
-        </div>
+        <section class="philosophy">
+            <div class="phil-card">
+                <h3>ESCRITURA CONSCIENTE</h3>
+                <p>Para mí, escribir no es solo anotar cosas. Es "vaciar para ver". Soy un <strong>Ecoscritor</strong>: alguien que escribe para dejar un eco consciente de sus pensamientos y evolucionar.</p>
+            </div>
+            <div class="phil-card">
+                <h3>EL HUEVO DE ORO</h3>
+                <p>Ayudo a otros a encontrar su propia <strong>Unidad de Abundancia</strong>. Aquello que integra lo que amás con lo que el mundo necesita y genera resultados sostenibles.</p>
+            </div>
+            <div class="phil-card">
+                <h3>SABIDURÍA + TECNOLOGÍA</h3>
+                <p>Integro la sabiduría ancestral con herramientas como la <strong>Inteligencia Artificial</strong>, usándola como un "Espejo de Síntesis" para ahorrar nuestro recurso más valioso: el ATE (Atención, Tiempo y Energía).</p>
+            </div>
+        </section>
 
-        <a href="https://linkedin.com/in/gonzalo-aliaga-virasoro-a0076a19/" target="_blank" rel="noopener noreferrer" class="linkedin-link">
-            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            Conecta conmigo en LinkedIn
-        </a>
+        <section class="cta-section">
+            <h2>¿Estás listo para actualizar tu sistema?</h2>
+            <p>Dedicado a mis hijos León e Indi, y a todos los que deciden ser protagonistas de su presente.</p>
+            <a href="https://ricaspalabras.shop" class="btn-cta">CONOCÉ MI MÉTODO</a>
+        </section>
+    </main>
 
-        <a href="index.html" class="back-button">Volver al inicio</a>
-    </div>
+    <footer style="text-align: center; padding: 40px; color: #999; font-size: 0.9rem;">
+        <p>© 2026 Ricas Palabras 360 - Una nueva cultura del lenguaje y la evolución.</p>
+    </footer>
+
 </body>
 </html>
+```
+
