@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -23,42 +23,43 @@
         }
 
         .gradient-text {
-            background: linear-gradient(to right, #10b981, #3b82f6);
+            background: linear-gradient(to right, #059669, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* Keyword Cards */
+        /* Tarjetas de Palabras - Colores Vivos */
         .keyword-card {
             padding: 1rem;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             text-align: center;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             aspect-ratio: 1 / 1;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             text-decoration: none;
+            border: 2px solid transparent;
         }
         
         .keyword-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: scale(1.08) rotate(1deg);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255,255,255,0.5);
         }
 
         .keyword-text {
             font-size: 0.875rem;
-            font-weight: 700;
+            font-weight: 800;
             color: #1f2937;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         @media (min-width: 768px) {
-            .keyword-text { font-size: 1.125rem; }
+            .keyword-text { font-size: 1.25rem; }
             .keyword-card { aspect-ratio: 3 / 2; }
         }
 
@@ -70,16 +71,11 @@
             overflow: hidden;
         }
 
-        .hero-video {
-            padding-bottom: 56.25%; /* 16:9 */
-        }
-
-        .banner-video {
-            padding-bottom: 40%; /* Cinematic */
-        }
+        .hero-video { padding-bottom: 56.25%; }
+        .banner-video { padding-bottom: 40%; }
 
         @media (max-width: 768px) {
-            .banner-video { padding-bottom: 100%; /* Square for mobile portrait */ }
+            .banner-video { padding-bottom: 75%; }
         }
 
         .video-wrapper video {
@@ -91,47 +87,53 @@
             object-fit: cover;
         }
 
+        /* Colores específicos vivos para las tarjetas */
+        .bg-amor { background-color: #ff4d6d; }
+        .bg-alegria { background-color: #ffbe0b; }
+        .bg-energia { background-color: #3aefaf; }
+        .bg-fuerza { background-color: #3a86ff; }
+        .bg-conectar { background-color: #fb5607; }
+        .bg-accionar { background-color: #ff006e; }
+        .bg-crear { background-color: #8338ec; }
+        .bg-evolucionar { background-color: #06d6a0; }
+
         .instagram-feed-container {
             width: 100%;
-            min-height: 400px;
-            background: #f1f5f9;
+            min-height: 450px;
+            background: #f8fafc;
             border-radius: 1rem;
-            overflow: hidden;
         }
     </style>
 </head>
 <body class="text-gray-900">
 
     <!-- Header -->
-    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tight">
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tighter">
                 Ricas <span class="gradient-text">Palabras 360</span>
             </a>
             
-            <!-- Desktop Nav -->
             <div class="hidden lg:flex items-center space-x-6">
-                <a href="ordenador-abundancia.html" class="text-emerald-600 font-semibold hover:text-emerald-700 text-sm">Abundancia</a>
-                <a href="planificadorATE.html" class="text-emerald-600 font-semibold hover:text-emerald-700 text-sm">Planificador ATE</a>
-                <a href="validar-ideas.html" class="text-blue-600 font-semibold hover:text-blue-700 text-sm">Validar Ideas</a>
-                <a href="obras-literarias.html" class="text-gray-600 hover:text-blue-600 text-sm transition">Obras</a>
-                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="text-gray-600 hover:text-blue-600 text-sm transition">Tienda</a>
-                <a href="quien_soy.html" class="text-gray-600 hover:text-blue-600 text-sm transition">Gonzai</a>
-                <a href="#contacto" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">Contacto</a>
+                <a href="ordenador-abundancia.html" class="text-emerald-600 font-bold hover:text-emerald-700 text-sm">Abundancia</a>
+                <a href="planificadorATE.html" class="text-emerald-600 font-bold hover:text-emerald-700 text-sm">Planificador ATE</a>
+                <a href="validar-ideas.html" class="text-blue-600 font-bold hover:text-blue-700 text-sm">Validar Ideas</a>
+                <a href="obras-literarias.html" class="text-gray-600 hover:text-blue-600 text-sm font-semibold transition">Obras</a>
+                <a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="text-gray-600 hover:text-blue-600 text-sm font-semibold transition">Tienda</a>
+                <a href="quien_soy.html" class="text-gray-600 hover:text-blue-600 text-sm font-semibold transition">Gonzai</a>
+                <a href="#contacto" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-700 transition">Contacto</a>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-600 focus:outline-none">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
 
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl">
-            <div class="flex flex-col p-4 space-y-4">
-                <a href="ordenador-abundancia.html" class="text-emerald-600 font-bold py-2 border-b">Ordenador de Abundancia</a>
-                <a href="planificadorATE.html" class="text-emerald-600 font-bold py-2 border-b">Planificador ATE</a>
-                <a href="validar-ideas.html" class="text-blue-600 font-bold py-2 border-b">Validar Ideas</a>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-2xl">
+            <div class="flex flex-col p-6 space-y-4 font-bold">
+                <a href="ordenador-abundancia.html" class="text-emerald-600 py-2 border-b">Abundancia</a>
+                <a href="planificadorATE.html" class="text-emerald-600 py-2 border-b">Planificador ATE</a>
+                <a href="validar-ideas.html" class="text-blue-600 py-2 border-b">Validar Ideas</a>
                 <a href="obras-literarias.html" class="text-gray-700 py-2 border-b">Obras Literarias</a>
                 <a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="text-gray-700 py-2 border-b">Tienda</a>
                 <a href="quien_soy.html" class="text-gray-700 py-2 border-b">Conocé a Gonzai</a>
@@ -140,28 +142,25 @@
         </div>
     </header>
 
-    <!-- Hero Video Banner -->
+    <!-- Hero Video Intro -->
     <section class="video-wrapper banner-video">
-        <video autoplay loop muted playsinline poster="https://placehold.co/1200x600?text=Ricas+Palabras+360">
+        <video autoplay loop muted playsinline poster="https://placehold.co/1200x600/333/fff?text=Ricas+Palabras+360">
             <source src="/Creación_de_Video_Introductorio.mp4" type="video/mp4">
         </video>
-        <div class="absolute inset-0 bg-black/20 flex items-center justify-center pointer-events-none">
-             <h1 class="text-white text-3xl md:text-5xl font-bold text-center drop-shadow-lg px-4">Bienvenido a la Evolución</h1>
-        </div>
     </section>
 
-    <!-- Main Section -->
-    <section class="py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
+    <!-- Frase e Inspiración -->
+    <section class="py-12 md:py-20 bg-white">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-2xl md:text-4xl font-serif italic text-gray-800 mb-4 max-w-3xl mx-auto leading-tight">
+            <h2 class="text-3xl md:text-5xl font-serif italic text-gray-800 mb-6 leading-tight">
                 "Cada producto es un mensaje. Cada palabra, una puerta."
             </h2>
-            <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-                Integrando sabiduría, tecnología y conexión humana para la transformación personal.
+            <p class="text-xl text-gray-500 mb-12 max-w-2xl mx-auto font-medium">
+                Integrando sabiduría, tecnología y conexión humana para la transformación.
             </p>
             
-            <!-- Hero Video (Llamavida) -->
-            <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-white mb-8">
+            <!-- Video Llama Vida -->
+            <div class="max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-2xl mb-10 group">
                 <div class="video-wrapper hero-video">
                     <video autoplay loop muted playsinline>
                         <source src="/llamavida.mp4" type="video/mp4">
@@ -169,112 +168,133 @@
                 </div>
             </div>
 
-            <!-- CTA VIDA -->
-            <a href="vida.html" class="inline-flex flex-col items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-10 py-6 rounded-2xl shadow-xl transform hover:scale-105 transition duration-300">
-                <span class="text-xs uppercase tracking-widest font-bold opacity-70">Haz clic aquí</span>
-                <span class="text-3xl font-black">VIDA</span>
+            <!-- Botón VIDA -->
+            <a href="vida.html" class="inline-flex flex-col items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-12 py-8 rounded-3xl shadow-2xl transform hover:scale-110 transition duration-300">
+                <span class="text-sm uppercase tracking-widest font-black opacity-60 mb-1">Clickeá</span>
+                <span class="text-4xl font-black">VIDA</span>
             </a>
         </div>
     </section>
 
-    <!-- About & Grid -->
-    <section id="que-es" class="py-16 bg-white">
-        <div class="container mx-auto px-6 max-w-5xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Qué es Ricas Palabras?</h2>
-                <p class="text-gray-700 text-lg leading-relaxed text-left md:text-center">
-                    Somos un ecosistema vivo donde las palabras se convierten en catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras para potenciar tu crecimiento personal y colectivo.
-                </p>
-            </div>
+    <!-- Qué es Ricas Palabras -->
+    <section id="que-es" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-8 text-gray-900">¿Qué es Ricas Palabras?</h2>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-12 text-justify md:text-center">
+                Ricas Palabras 360 es una invitación a conectar con frases que inspiran, transformadas en objetos con propósito y experiencias que despiertan bienestar, conciencia y evolución. Somos un ecosistema vivo donde las palabras se convierten en catalizadores de cambio. Fusionamos sabiduría ancestral con herramientas innovadoras (narrativa, juegos, escritura, conciencia y comunidad) para potenciar tu crecimiento personal y colectivo. Nuestra propuesta única de valor integra productos físicos y editoriales, contenido digital transformador y experiencias vivenciales profundas, creando un camino 360° hacia el autoconocimiento y la acción positiva, generando una nueva cultura del lenguaje y la evolución.
+            </p>
 
-            <h3 class="text-2xl font-bold mb-8 text-center text-gray-800">Explora nuestras Cartas:</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                <a href="amor.html" class="keyword-card bg-red-100 hover:bg-red-200"><span class="keyword-text">AMOR</span></a>
-                <a href="alegria.html" class="keyword-card bg-yellow-100 hover:bg-yellow-200"><span class="keyword-text">ALEGRIA</span></a>
-                <a href="energia.html" class="keyword-card bg-green-100 hover:bg-green-200"><span class="keyword-text">ENERGIA</span></a>
-                <a href="fuerza.html" class="keyword-card bg-blue-100 hover:bg-blue-200"><span class="keyword-text">FUERZA</span></a>
-                <a href="conectar.html" class="keyword-card bg-pink-100 hover:bg-pink-200"><span class="keyword-text">CONECTAR</span></a>
-                <a href="accionar.html" class="keyword-card bg-orange-100 hover:bg-orange-200"><span class="keyword-text">ACCIONAR</span></a>
-                <a href="crear.html" class="keyword-card bg-purple-100 hover:bg-purple-200"><span class="keyword-text">CREAR</span></a>
-                <a href="evolucionar.html" class="keyword-card bg-indigo-100 hover:bg-indigo-200"><span class="keyword-text">EVOLUCIONAR</span></a>
+            <h3 class="text-2xl md:text-3xl font-bold mb-10 text-gray-800">Clickeá y Descubrí cada carta en las Palabras:</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <a href="amor.html" class="keyword-card bg-amor"><span class="keyword-text">AMOR</span></a>
+                <a href="alegria.html" class="keyword-card bg-alegria"><span class="keyword-text">ALEGRIA</span></a>
+                <a href="energia.html" class="keyword-card bg-energia"><span class="keyword-text">ENERGIA</span></a>
+                <a href="fuerza.html" class="keyword-card bg-fuerza"><span class="keyword-text">FUERZA</span></a>
+                <a href="conectar.html" class="keyword-card bg-conectar"><span class="keyword-text">CONECTAR</span></a>
+                <a href="accionar.html" class="keyword-card bg-accionar"><span class="keyword-text">ACCIONAR</span></a>
+                <a href="crear.html" class="keyword-card bg-crear"><span class="keyword-text">CREAR</span></a>
+                <a href="evolucionar.html" class="keyword-card bg-evolucionar"><span class="keyword-text">EVOLUCIONAR</span></a>
             </div>
             
-            <div class="text-center mt-12">
-                <a href="descubrir_palabras.html" class="inline-block bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition">Ver más palabras</a>
+            <div class="mt-14">
+                <a href="descubrir_palabras.html" class="inline-block bg-emerald-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-emerald-700 shadow-lg transition">Descubrí más palabras</a>
             </div>
         </div>
     </section>
 
-    <!-- Product Showcase -->
-    <section class="py-16 bg-gray-50">
+    <!-- Objetos que Inspiran -->
+    <section class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6">Objetos en Movimiento</h2>
-            <p class="text-gray-600 mb-10">Herramientas diseñadas con intención para acompañar tu propósito diario.</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Nuestros Objetos en Movimiento</h2>
+            <p class="text-lg text-gray-600 mb-12">Cada uno de nuestros productos es una extensión de la palabra que lleva. Diseñados con intención y amor.</p>
             
-            <div class="rounded-2xl overflow-hidden shadow-xl aspect-video bg-black mb-10">
+            <div class="rounded-3xl overflow-hidden shadow-2xl aspect-video bg-black mb-12 border-4 border-gray-100">
                 <video controls class="w-full h-full" poster="/Nuevo Logo ml.png">
                     <source src="/RP360C.mp4" type="video/mp4">
                 </video>
             </div>
 
-            <a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 shadow-lg transition transform hover:-translate-y-1">
-                DESCUBRIR TIENDA
+            <a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="bg-emerald-500 text-white px-12 py-5 rounded-2xl font-black text-xl hover:bg-emerald-600 shadow-xl transition transform hover:scale-105">
+                DESCUBRIR PRODUCTOS
             </a>
         </div>
     </section>
 
-    <!-- Obras Section -->
+    <!-- Sección Remeras -->
+    <section id="proyecto-remeras" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Remeras con Propósito</h2>
+            <p class="text-lg text-gray-700 mb-10 leading-relaxed">
+                Lleva el mensaje de Ricas Palabras contigo. Nuestras remeras son más que una prenda, son una declaración de intenciones y un recordatorio visible de tu poder.
+            </p>
+            
+            <div class="rounded-3xl overflow-hidden shadow-2xl aspect-video bg-black mb-10 border-4 border-white">
+                <video controls class="w-full h-full" poster="paz.png">
+                    <source src="REMERAS RP.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 shadow-lg transition">
+                VER REMERAS
+            </a>
+        </div>
+    </section>
+
+    <!-- Obras Literarias -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12">Obras Literarias Destacadas</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Card 1 -->
-                <a href="ecoscritores.html" class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition p-2 border border-gray-100">
-                    <img src="portada-ecoscritores.png" onerror="this.src='https://placehold.co/600x400?text=Ecoscritores'" class="rounded-xl w-full h-56 object-cover mb-4">
-                    <h3 class="font-bold text-xl mb-2">Ecoscritores</h3>
-                    <p class="text-gray-500 text-sm px-4 pb-4">Autodescubrimiento a través de la escritura consciente.</p>
+                <!-- Ecoscritores -->
+                <a href="ecoscritores.html" class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all p-3 border border-gray-100">
+                    <img src="portada-ecoscritores.png" onerror="this.src='https://placehold.co/600x400?text=Ecoscritores'" class="rounded-2xl w-full h-64 object-cover mb-4">
+                    <h3 class="font-extrabold text-xl mb-2 text-gray-800">Ecoscritores</h3>
+                    <p class="text-gray-500 text-sm px-4 pb-4">Escritura consciente como herramienta de despertar personal.</p>
                 </a>
-                <!-- Card 2 -->
-                <a href="iz-el-lapiz-feliz.html" class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition p-2 border border-gray-100">
-                    <img src="portada-iz.png" onerror="this.src='https://placehold.co/600x400?text=Iz'" class="rounded-xl w-full h-56 object-cover mb-4">
-                    <h3 class="font-bold text-xl mb-2">Iz, el lápiz feliz</h3>
-                    <p class="text-gray-500 text-sm px-4 pb-4">Creatividad y felicidad en un cuento interactivo.</p>
+                <!-- Iz -->
+                <a href="iz-el-lapiz-feliz.html" class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all p-3 border border-gray-100">
+                    <img src="portada-iz.png" onerror="this.src='https://placehold.co/600x400?text=Iz'" class="rounded-2xl w-full h-64 object-cover mb-4">
+                    <h3 class="font-extrabold text-xl mb-2 text-gray-800">Iz, el lápiz feliz</h3>
+                    <p class="text-gray-500 text-sm px-4 pb-4">Cuento interactivo para dar vida a tus ideas más creativas.</p>
                 </a>
-                <!-- Card 3 -->
-                <a href="poder_y_escritura_consciente.html" class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition p-2 border border-gray-100">
-                    <img src="portada-poderpalabras.png" onerror="this.src='https://placehold.co/600x400?text=Escritura'" class="rounded-xl w-full h-56 object-cover mb-4">
-                    <h3 class="font-bold text-xl mb-2">Poder de la Escritura</h3>
-                    <p class="text-gray-500 text-sm px-4 pb-4">Cómo el lenguaje moldea tu realidad diaria.</p>
+                <!-- Escritura -->
+                <a href="poder_y_escritura_consciente.html" class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all p-3 border border-gray-100">
+                    <img src="portada-poderpalabras.png" onerror="this.src='https://placehold.co/600x400?text=Escritura'" class="rounded-2xl w-full h-64 object-cover mb-4">
+                    <h3 class="font-extrabold text-xl mb-2 text-gray-800">El Poder de la Escritura</h3>
+                    <p class="text-gray-500 text-sm px-4 pb-4">Descubre cómo el lenguaje moldea cada parte de tu realidad.</p>
                 </a>
+            </div>
+            <div class="mt-12">
+                <a href="obras-literarias.html" class="text-blue-600 font-bold hover:underline text-lg">Ver todas las obras &rarr;</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Principal -->
-    <section class="py-20 bg-blue-600 text-white text-center">
+    <!-- CTA Inversores -->
+    <section class="py-20 bg-gradient-to-r from-blue-700 to-emerald-700 text-white text-center">
         <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Sé Parte de la Evolución</h2>
-            <p class="text-xl opacity-90 mb-10">Buscamos socios, colaboradores e inversores que resuenen con nuestra misión global.</p>
-            <a href="mailto:ricaspalabras360@gmail.com?subject=QUIERO SER PARTE!" class="bg-white text-blue-600 px-12 py-4 rounded-full font-bold hover:bg-gray-100 transition shadow-2xl">
-                ¡QUIERO UNIRME!
+            <h2 class="text-3xl md:text-5xl font-black mb-6">Sé Parte de la Evolución</h2>
+            <p class="text-xl opacity-90 mb-10 leading-relaxed">Buscamos socios, inversores y co-creadores visionarios que resuenen con nuestra misión de generar una nueva cultura del lenguaje.</p>
+            <a href="mailto:ricaspalabras360@gmail.com?subject=QUIERO SER PARTE!" class="bg-white text-blue-700 px-14 py-5 rounded-2xl font-black text-xl hover:bg-gray-100 transition shadow-2xl">
+                ¡QUIERO SER PARTE!
             </a>
         </div>
     </section>
 
-    <!-- Instagram Feeds -->
-    <section class="py-16 bg-gray-50 border-t border-gray-200">
-        <div class="container mx-auto px-6 max-w-5xl text-center">
-            <h2 class="text-2xl font-bold mb-8">Nuestra Comunidad en Instagram</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <a href="https://www.instagram.com/ricas_palabras/" target="_blank" class="text-blue-600 font-bold hover:underline mb-4 block text-lg">@ricas_palabras</a>
-                    <div class="instagram-feed-container">
+    <!-- Instagram -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-10">Comunidad Ricas Palabras</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="space-y-4">
+                    <a href="https://www.instagram.com/ricas_palabras/" target="_blank" class="text-pink-600 font-black hover:underline text-xl block">@ricas_palabras</a>
+                    <div class="instagram-feed-container shadow-inner border border-gray-100">
                         <div class="embedsocial-hashtag" data-ref="8566c850de76136614c013a71789acfb2ffe7f29"></div>
                     </div>
                 </div>
-                <div>
-                    <a href="https://www.instagram.com/ricaspalabras/" target="_blank" class="text-blue-600 font-bold hover:underline mb-4 block text-lg">@ricaspalabras</a>
-                    <div class="instagram-feed-container">
+                <div class="space-y-4">
+                    <a href="https://www.instagram.com/ricaspalabras/" target="_blank" class="text-pink-600 font-black hover:underline text-xl block">@ricaspalabras</a>
+                    <div class="instagram-feed-container shadow-inner border border-gray-100">
                         <div class="embedsocial-hashtag" data-ref="25ff703f39f0f3b170195b2e2fcc16f80c334f2c"></div>
                     </div>
                 </div>
@@ -283,28 +303,29 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contacto" class="bg-gray-900 text-gray-400 py-16">
+    <footer id="contacto" class="bg-gray-950 text-gray-400 py-16">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-gray-800 pb-12">
                 <div>
-                    <h4 class="text-white text-xl font-bold mb-4">Ricas Palabras 360</h4>
-                    <p class="text-sm">Conectando crecimiento, evolución y transformación global a través del lenguaje consciente.</p>
+                    <h4 class="text-white text-2xl font-black mb-4 tracking-tighter">Ricas Palabras 360</h4>
+                    <p class="text-sm leading-relaxed">Conectando crecimiento, evolución y transformación global a través del poder de las palabras.</p>
                 </div>
                 <div>
-                    <h5 class="text-white font-bold mb-4">Enlaces</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="obras-literarias.html" class="hover:text-white transition">Obras Literarias</a></li>
-                        <li><a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="hover:text-white transition">Tienda Online</a></li>
-                        <li><a href="quien_soy.html" class="hover:text-white transition">Sobre Gonzai</a></li>
+                    <h5 class="text-white font-bold mb-6">Navegación</h5>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li><a href="obras-literarias.html" class="hover:text-emerald-400 transition">Obras Literarias</a></li>
+                        <li><a href="https://ricaspalabras.mitiendanube.com" target="_blank" class="hover:text-emerald-400 transition">Tienda Oficial</a></li>
+                        <li><a href="quien_soy.html" class="hover:text-emerald-400 transition">Sobre Gonzai</a></li>
+                        <li><a href="http://www.ricaspalabras.com.ar" target="_blank" class="hover:text-emerald-400 transition">Web Principal</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="text-white font-bold mb-4">Contacto</h5>
-                    <p class="text-sm mb-2">Escríbenos a:</p>
-                    <a href="mailto:ricaspalabras360@gmail.com" class="text-emerald-400 hover:text-emerald-300 font-medium">ricaspalabras360@gmail.com</a>
+                    <h5 class="text-white font-bold mb-6">Contacto Directo</h5>
+                    <a href="mailto:ricaspalabras360@gmail.com" class="text-emerald-400 hover:text-emerald-300 font-bold text-lg">ricaspalabras360@gmail.com</a>
+                    <p class="text-xs mt-4 opacity-50">Enviános tu propuesta o consulta.</p>
                 </div>
             </div>
-            <div class="text-center text-xs opacity-50">
+            <div class="text-center text-[10px] uppercase tracking-widest opacity-40">
                 &copy; 2024 Ricas Palabras 360. Todos los derechos reservados.
             </div>
         </div>
@@ -312,7 +333,6 @@
 
     <!-- Scripts -->
     <script>
-        // Mobile Menu Logic
         const btn = document.getElementById('mobile-menu-button');
         const menu = document.getElementById('mobile-menu');
 
@@ -320,12 +340,11 @@
             menu.classList.toggle('hidden');
         });
 
-        // Close menu when clicking a link
         menu.addEventListener('click', (e) => {
             if(e.target.tagName === 'A') menu.classList.add('hidden');
         });
 
-        // EmbedSocial Script
+        // EmbedSocial
         (function(d, s, id) { 
             var js; 
             if (d.getElementById(id)) return; 
