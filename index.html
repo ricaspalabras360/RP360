@@ -71,7 +71,6 @@
             overflow: hidden;
         }
 
-        .hero-video { padding-bottom: 56.25%; }
         .banner-video { padding-bottom: 40%; }
 
         @media (max-width: 768px) {
@@ -82,6 +81,29 @@
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Llama Vida Cuadrada */
+        .llama-vida-container {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .llama-vida-container {
+                width: 320px;
+                height: 320px;
+            }
+        }
+
+        .llama-vida-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -150,28 +172,26 @@
     </section>
 
     <!-- Frase e Inspiración -->
-    <section class="py-8 md:py-12 bg-white">
+    <section class="py-12 md:py-16 bg-white">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-2xl md:text-3xl font-serif italic text-gray-800 mb-4 leading-tight">
                 "Cada producto es un mensaje. Cada palabra, una puerta."
             </h2>
-            <p class="text-base text-gray-500 mb-6 max-w-2xl mx-auto font-medium">
+            <p class="text-base text-gray-500 mb-8 max-w-2xl mx-auto font-medium">
                 Integrando sabiduría, tecnología y conexión humana para la transformación.
             </p>
             
-            <!-- Video Llama Vida (Medidas reducidas para que la imagen sea pequeña) -->
-            <div class="max-w-xs md:max-w-sm mx-auto rounded-2xl overflow-hidden shadow-lg mb-6">
-                <div class="video-wrapper hero-video">
-                    <video autoplay loop muted playsinline>
-                        <source src="/llamavida.mp4" type="video/mp4">
-                    </video>
-                </div>
+            <!-- Video Llama Vida (Formato cuadrado ajustado) -->
+            <div class="llama-vida-container mb-8">
+                <video autoplay loop muted playsinline>
+                    <source src="/llamavida.mp4" type="video/mp4">
+                </video>
             </div>
 
-            <!-- Botón VIDA (Medida ajustada) -->
-            <a href="vida.html" class="inline-flex flex-col items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-6 py-4 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
-                <span class="text-[9px] uppercase tracking-widest font-black opacity-60 mb-1">Clickeá</span>
-                <span class="text-xl font-black">VIDA</span>
+            <!-- Botón VIDA -->
+            <a href="vida.html" class="inline-flex flex-col items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-10 py-5 rounded-2xl shadow-xl transform hover:scale-105 transition duration-300">
+                <span class="text-[10px] uppercase tracking-widest font-black opacity-60 mb-1">Clickeá</span>
+                <span class="text-2xl font-black">VIDA</span>
             </a>
         </div>
     </section>
