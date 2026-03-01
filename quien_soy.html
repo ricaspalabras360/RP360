@@ -42,9 +42,9 @@
             margin-bottom: 2rem;
         }
         .profile-image-container {
-            /* Contenedor para controlar mejor el recorte */
-            width: 280px;
-            height: 280px;
+            /* Contenedor circular con tamaño optimizado */
+            width: 240px;
+            height: 240px;
             border-radius: 9999px;
             border: 6px solid #4299e1;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
@@ -56,11 +56,12 @@
             background-color: #e2e8f0;
         }
         .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Ajustado para dar aire por arriba y que no se corte la pera */
-            object-position: center 20%; 
+            /* Reducimos la escala visual de la imagen interna para que no se corte la cara */
+            width: 85%; 
+            height: 85%;
+            object-fit: contain;
+            /* Ajuste fino para centrar el rostro */
+            object-position: center; 
         }
         .profile-name {
             font-size: 2.25rem;
@@ -123,8 +124,8 @@
 
         @media (max-width: 768px) {
             .profile-image-container {
-                width: 220px;
-                height: 220px;
+                width: 200px;
+                height: 200px;
             }
             .page-title {
                 font-size: 2rem;
@@ -144,11 +145,11 @@
         </div>
         
         <h2 class="profile-name">Gonzalo Aliaga Virasoro</h2>
-        <p class="profile-tagline">Gonzai • Escritor y Ecoscritor Consciente</p>
+        <p class="profile-tagline">Gonzai • Emprendedor Creativo y Ecoscritor Consciente</p>
         
         <div class="profile-description">
             <p>
-                Soy <strong>Gonzai</strong>, una identidad que nace de la síntesis entre mi recorrido como bioquímico, mi estudio en logosofía y mi pasión por el diseño de arquitecturas internas. 
+                Soy <strong>Gonzai</strong>, una identidad que nace de la síntesis entre mis estudios en <strong>Bioquímica y Logosofía</strong>, mi experiencia como fundador de centros de salud y bienestar, y una profunda curiosidad autodidacta por las <strong>neurociencias, la psicología y las filosofías</strong>.
             </p>
             
             <div class="highlight-box">
@@ -156,7 +157,7 @@
             </div>
 
             <p>
-                Como creador de <strong>Ricas Palabras</strong>, mi misión es facilitar la actualización del sistema interno de las personas. Creo que la abundancia no es algo que se persigue, sino algo que se cultiva ordenando la mente, la energía y las decisiones para crear lo que llamo el <strong>"Huevo de Oro"</strong>.
+                Como <strong>emprendedor creativo</strong> y creador de <strong>Ricas Palabras</strong>, mi misión es facilitar la actualización del sistema interno de las personas. Creo que la abundancia no es algo que se persigue, sino algo que se cultiva ordenando la mente, la energía y las decisiones para crear lo que llamo el <strong>"Huevo de Oro"</strong>.
                 <br><br>
                 A través de mi trilogía de libros y workbooks —comenzando por <em>El Ordenador de tu Abundancia</em>—, exploro cómo el lenguaje consciente y la escritura pueden ser herramientas de transformación real. No diseño productos que decoran; diseño objetos y experiencias que activan la Conciencia como centro energético.
                 <br><br>
