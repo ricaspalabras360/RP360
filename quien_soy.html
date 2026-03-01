@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conocé a Gonzai - Ricas Palabras</title>
+    <title>Gonzai - Ricas Palabras 360</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Lora:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -28,7 +28,6 @@
         }
         .container { max-width: 900px; margin: auto; padding: 40px 20px; }
         
-        /* Header Section */
         .profile-header {
             text-align: center;
             padding: 60px 0;
@@ -38,62 +37,50 @@
         .profile-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .tagline { font-style: italic; color: var(--dorado); font-size: 1.2rem; }
 
-        /* Story Section */
         .story-section { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-top: 50px; }
         .story-text { flex: 1; min-width: 300px; }
         .story-image {
             flex: 1; min-width: 300px;
             background: var(--verde-oscuro);
             border-radius: 15px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-family: 'Montserrat';
-            text-align: center;
-            padding: 20px;
-            /* Aquí podés poner tu foto con la tablet */
-            background-image: url('TU_URL_DE_IMAGEN'); 
+            height: 450px;
+            background-image: url('gonza.jpeg'); 
             background-size: cover;
             background-position: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* Philosophy Blocks */
-        .philosophy {
-            margin-top: 60px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .highlight-box {
+            background-color: var(--crema);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid var(--dorado);
         }
-        .phil-card {
-            border: 1px solid #eee;
-            padding: 25px;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-        .phil-card:hover { border-color: var(--dorado); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .phil-card h3 { color: var(--dorado); font-size: 1rem; }
 
         .cta-section {
             text-align: center;
-            margin-top: 80px;
-            padding: 40px;
+            margin-top: 60px;
+            padding: 60px 40px;
             background: var(--verde-oscuro);
             color: #fff;
             border-radius: 20px;
         }
+        .cta-section h2 { color: var(--dorado); }
         .btn-cta {
             display: inline-block;
-            margin-top: 20px;
-            padding: 15px 35px;
+            margin-top: 30px;
+            padding: 18px 40px;
             background: var(--dorado);
             color: #fff;
             text-decoration: none;
             font-family: 'Montserrat';
             font-weight: bold;
             border-radius: 50px;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
+        .btn-cta:hover { background: #b8952d; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -108,44 +95,29 @@
     <main class="container">
         <section class="story-section">
             <div class="story-text">
-                <h2>Me presento como <span style="color:var(--dorado)">Gonzai</span></h2>
-                <p>Mi camino no comenzó en el marketing, sino en la curiosidad por la estructura de la vida. Estudié <strong>Bioquímica y Logosofía</strong> en Buenos Aires, buscando entender tanto la biología celular como el funcionamiento de la Conciencia.</p>
-                <p>Durante años desarrollé emprendimientos reales: un centro de salud y una marca de productos con identidad propia. Ambos funcionaron, pero ambos colapsaron. Aprendí por las malas que <strong>el talento sin arquitectura te consume la vida</strong>.</p>
-                <p>No escribí mi obra desde la cima de la abundancia, sino desde la crisis. En ese caos, descubrí que la escritura consciente es la herramienta para transformar el desorden en una <strong>Matriz Interna</strong> sólida.</p>
+                <h2>El Corazón de <span style="color:var(--dorado)">Ricas Palabras</span></h2>
+                <p>Soy <strong>Gonzai</strong>, y mi misión es generar una nueva cultura del lenguaje y la evolución [1, 2]. <strong>Ricas Palabras 360</strong> es nuestra propuesta única de valor que integra productos físicos, contenido digital transformador y experiencias vivenciales profundas para crear un camino hacia el autoconocimiento y la acción positiva [2].</p>
+                
+                <p>Tras años de estudio en <strong>Bioquímica y Logosofía</strong>, comprendí que la abundancia no es un golpe de suerte, sino la consecuencia natural de un sistema interno ordenado [1, 3, 4].</p>
             </div>
-            <div class="story-image">
-                <!-- Espacio para imagen -->
-                <p>gonza.jpeg</p>
-            </div>
+            <div class="story-image"></div>
         </section>
 
-        <section class="philosophy">
-            <div class="phil-card">
-                <h3>ESCRITURA CONSCIENTE</h3>
-                <p>Para mí, escribir no es solo anotar cosas. Es "vaciar para ver". Soy un <strong>Ecoscritor</strong>: alguien que escribe para dejar un eco consciente de sus pensamientos y evolucionar.</p>
-            </div>
-            <div class="phil-card">
-                <h3>EL HUEVO DE ORO</h3>
-                <p>Ayudo a otros a encontrar su propia <strong>Unidad de Abundancia</strong>. Aquello que integra lo que amás con lo que el mundo necesita y genera resultados sostenibles.</p>
-            </div>
-            <div class="phil-card">
-                <h3>SABIDURÍA + TECNOLOGÍA</h3>
-                <p>Integro la sabiduría ancestral con herramientas como la <strong>Inteligencia Artificial</strong>, usándola como un "Espejo de Síntesis" para ahorrar nuestro recurso más valioso: el ATE (Atención, Tiempo y Energía).</p>
-            </div>
-        </section>
+        <div class="highlight-box">
+            <h3>La Creación de un Nuevo Mapa</h3>
+            <p>De mi propia necesidad de reconstrucción tras crisis profundas, nació <strong>"El Ordenador de tu Abundancia"</strong> [5, 6]. Este no es solo un libro, es el primer paso de una trilogía diseñada para ayudarte a <strong>ordenar, crear y sostener</strong> tu propia realidad [7, 8]. Es la tecnología de diseño mental que necesitás para pasar de ser un espectador pasivo a ser el <strong>Arquitecto de tu propia Matriz Interna</strong> [3, 9].</p>
+        </div>
 
         <section class="cta-section">
-            <h2>¿Estás listo para actualizar tu sistema?</h2>
-            <p>Dedicado a mis hijos León e Indi, y a todos los que deciden ser protagonistas de su presente.</p>
-            <a href="https://ricaspalabras.shop" class="btn-cta">CONOCÉ MI MÉTODO</a>
+            <h2>¿Listo para tu actualización interna?</h2>
+            <p>Recuperá la soberanía de tu sistema y gestá tu propio <strong>Huevo de Oro</strong> [9, 10].</p>
+            <a href="https://ricaspalabras.shop" class="btn-cta">DESCUBRÍ MI SISTEMA ATE</a>
         </section>
     </main>
 
     <footer style="text-align: center; padding: 40px; color: #999; font-size: 0.9rem;">
-        <p>© 2026 Ricas Palabras 360 - Una nueva cultura del lenguaje y la evolución.</p>
+        <p>© 2026 Ricas Palabras 360 - Dedicado a todos los Ecoscritores [11, 12].</p>
     </footer>
 
 </body>
 </html>
-```
-
