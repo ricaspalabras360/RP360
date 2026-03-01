@@ -1,4 +1,5 @@
 
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -35,132 +36,142 @@
             align-items: center;
         }
         .page-title {
-            font-size: 2.5rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #1a202c; /* gray-900 */
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a202c;
             margin-bottom: 2rem;
+        }
+        .profile-image-container {
+            /* Contenedor para controlar mejor el recorte */
+            width: 280px;
+            height: 280px;
+            border-radius: 9999px;
+            border: 6px solid #4299e1;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e2e8f0;
         }
         .profile-image {
-            border-radius: 9999px; /* fully rounded */
-            /* Se agranda el tamaño para que entre la cabeza completa */
-            width: 220px; 
-            height: 220px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            /* Se ajusta la posición para priorizar la parte superior de la imagen */
-            object-position: center 15%; 
-            margin-bottom: 1.5rem;
-            border: 5px solid #4299e1; /* blue-500 border */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            /* Ajustado para dar aire por arriba y que no se corte la pera */
+            object-position: center 20%; 
         }
         .profile-name {
-            font-size: 2rem; /* text-3xl */
-            font-weight: 700; /* font-bold */
-            color: #2d3748; /* gray-800 */
-            margin-bottom: 1rem;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        .profile-tagline {
+            font-size: 1.25rem;
+            color: #4299e1;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
         .profile-description {
-            font-size: 1.125rem; /* text-lg */
-            color: #4a5568; /* gray-700 */
-            line-height: 1.7;
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
             margin-bottom: 2rem;
-            text-align: left; /* Align text to left for readability */
+            text-align: left;
+        }
+        .highlight-box {
+            background-color: #edf2f7;
+            border-left: 4px solid #4299e1;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
         }
         .linkedin-link {
-            display: inline-flex; /* Use flex to align icon and text */
+            display: inline-flex;
             align-items: center;
-            background-color: #0077b5; /* LinkedIn blue */
+            background-color: #0077b5;
             color: white;
             font-weight: 600;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             text-decoration: none;
-            transition: background-color 0.3s ease;
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
         }
         .linkedin-link:hover {
-            background-color: #005582; /* Darker blue on hover */
+            background-color: #005582;
+            transform: translateY(-2px);
         }
         .linkedin-link svg {
-            width: 24px; /* Icon size */
-            height: 24px;
+            width: 20px;
+            height: 20px;
             margin-right: 0.5rem;
         }
         .back-button {
-            background-color: #4299e1; /* Blue-500 */
-            color: white;
+            color: #4a5568;
             font-weight: 600;
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            margin-top: 2rem;
-            display: inline-block;
+            text-decoration: underline;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
         }
         .back-button:hover {
-            background-color: #3182ce; /* Blue-600 */
+            color: #2d3748;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .profile-image {
-                width: 180px;
-                height: 180px;
-            }
-            .page-container {
-                padding: 1.5rem;
+            .profile-image-container {
+                width: 220px;
+                height: 220px;
             }
             .page-title {
                 font-size: 2rem;
-                margin-bottom: 1.5rem;
             }
             .profile-name {
                 font-size: 1.75rem;
-            }
-            .profile-description {
-                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="page-container">
-        <h1 class="page-title"> ¿Quién soy?</h1>
+        <h1 class="page-title">¿Quién soy?</h1>
         
-        <img src="gonza.jpeg" alt="Foto de Perfil de Gonzalo Aliaga Virasoro" class="profile-image" onerror="this.src='https://placehold.co/220x220/cccccc/333333?text=Foto+de+Gonzalo'; this.onerror=null;">
+        <div class="profile-image-container">
+            <img src="gonza.jpeg" alt="Foto de Perfil de Gonzai" class="profile-image" onerror="this.src='https://placehold.co/300x300/cccccc/333333?text=Gonzai'; this.onerror=null;">
+        </div>
         
         <h2 class="profile-name">Gonzalo Aliaga Virasoro</h2>
+        <p class="profile-tagline">Gonzai • Escritor y Ecoscritor Consciente</p>
         
         <div class="profile-description">
             <p>
-                Soy Gonza, aunque en este nuevo capítulo también empiezo a presentarme como <strong>Gonzai</strong>: un nombre nacido en el proceso creativo, que representa una etapa más consciente. 
+                Soy <strong>Gonzai</strong>, una identidad que nace de la síntesis entre mi recorrido como bioquímico, mi estudio en logosofía y mi pasión por el diseño de arquitecturas internas. 
+            </p>
+            
+            <div class="highlight-box">
+                "Tu mundo interior es el tablero de origen de todo lo visible."
+            </div>
+
+            <p>
+                Como creador de <strong>Ricas Palabras</strong>, mi misión es facilitar la actualización del sistema interno de las personas. Creo que la abundancia no es algo que se persigue, sino algo que se cultiva ordenando la mente, la energía y las decisiones para crear lo que llamo el <strong>"Huevo de Oro"</strong>.
                 <br><br>
-                Soy el creador de Ricas Palabras, y desde hace más de una década exploro el poder del lenguaje como herramienta de transformación. Diseño productos, escribo textos y genero experiencias que acompañan procesos personales y colectivos. 
+                A través de mi trilogía de libros y workbooks —comenzando por <em>El Ordenador de tu Abundancia</em>—, exploro cómo el lenguaje consciente y la escritura pueden ser herramientas de transformación real. No diseño productos que decoran; diseño objetos y experiencias que activan la Conciencia como centro energético.
                 <br><br>
-                Nací en la mezcla: entre diseño y espiritualidad, entre humor y profundidad, entre lo cotidiano y lo simbólico. Y en ese cruce encontré mi misión: que las palabras no solo digan… que despierten. 
+                🌱 <strong>Ecoscritura y Propósito:</strong> Me defino como un ecoscritor porque entiendo que cada palabra es una semilla. Mi trabajo busca generar una nueva cultura del lenguaje donde lo cotidiano se encuentre con lo simbólico para sembrar una evolución sostenible.
                 <br><br>
-                🌱 Ricas Palabras nació como un experimento amoroso: tomar frases que tocan y ponerlas en movimiento. 
-                <br>
-                Un lápiz. Una libreta. Un mensaje inesperado. 
-                <br>
-                Productos que no decoran: activan. 
-                <br>
-                Hoy este proyecto es el germen de una futura comunidad: un espacio en expansión donde las palabras, los libros, los talleres y las experiencias se entrelazan para sembrar transformación. 
-                <br><br>
-                ✨ Si llegaste hasta acá, no es casualidad. 
-                <br>
-                Estás invitad@ a leer, a sentir, a crear... 
-                <br>
-                Y a formar parte de este viaje en donde cada palabra, como una semilla, guarda un universo. 
+                ✨ Si estás aquí, es porque tu sistema está listo para una nueva configuración. Te invito a ser parte de esta red lumínica en expansión.
             </p>
         </div>
 
         <a href="https://linkedin.com/in/gonzalo-aliaga-virasoro-a0076a19/" target="_blank" rel="noopener noreferrer" class="linkedin-link">
-            <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            Ver Perfil Completo en LinkedIn
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            Conecta conmigo en LinkedIn
         </a>
 
-        <a href="index.html" class="back-button">Volver a la Página Principal</a>
+        <a href="index.html" class="back-button">Volver al inicio</a>
     </div>
 </body>
 </html>
