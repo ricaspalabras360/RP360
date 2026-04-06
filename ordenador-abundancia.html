@@ -19,7 +19,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
 
-  /* HERO */
   .hero { min-height: 100vh; background: var(--dark); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 24px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,0.12) 0%, transparent 70%); }
   .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
@@ -29,7 +28,6 @@
   .hero-cta { opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
   .hero-sub { margin-top: 20px; font-size: 12px; color: rgba(250,246,239,0.45); letter-spacing: 1px; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
 
-  /* BUTTONS */
   .btn-primary { display: inline-block; background: var(--gold); color: var(--dark); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 1px; padding: 18px 48px; text-decoration: none; transition: all 0.3s; }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
   .btn-primary-dark { display: inline-block; background: var(--gold); color: var(--dark); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 1px; padding: 20px 56px; text-decoration: none; width: 100%; transition: all 0.3s; text-align: center; }
@@ -38,10 +36,8 @@
   .btn-inline:hover { background: var(--gold-light); transform: translateY(-2px); }
   .btn-center { text-align: center; }
 
-  /* SECTION LABEL */
   .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: block; }
 
-  /* CHECKLIST — unificado, reemplaza "¿Te suena esto?" */
   .checklist { padding: 80px 24px; background: white; text-align: center; }
   .checklist-inner { max-width: 700px; margin: 0 auto; }
   .checklist h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 400; color: var(--dark); margin-bottom: 12px; line-height: 1.3; }
@@ -51,10 +47,8 @@
   .check-list li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
   .checklist-note { font-style: italic; color: var(--accent); font-size: 1rem; padding: 20px 24px; border-left: 3px solid var(--gold); text-align: left; background: var(--cream); }
 
-  /* DIVIDER */
   .divider { width: 60px; height: 1px; background: var(--gold); margin: 0 auto; }
 
-  /* HISTORIA */
   .story { padding: 100px 24px; background: var(--dark); color: var(--cream); }
   .story-inner { max-width: 680px; margin: 0 auto; }
   .story h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.3; margin-bottom: 32px; color: var(--gold-light); }
@@ -62,12 +56,10 @@
   .story strong { color: var(--cream); font-weight: 500; }
   .story-quote { border-left: 3px solid var(--gold); padding: 20px 28px; margin: 40px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--gold-light); line-height: 1.5; }
 
-  /* KEYWORDS BANNER */
   .keywords-banner { padding: 56px 24px; background: var(--mid); text-align: center; }
   .keywords-banner p { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--cream); max-width: 740px; margin: 0 auto; line-height: 1.7; font-style: italic; }
   .keywords-banner em { color: var(--gold-light); font-style: normal; }
 
-  /* HUEVO DE ORO / IKIGAI */
   .ikigai { padding: 100px 24px; background: #f5f0e8; text-align: center; }
   .ikigai-inner { max-width: 720px; margin: 0 auto; }
   .ikigai h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; color: var(--dark); margin-bottom: 16px; line-height: 1.3; }
@@ -77,7 +69,6 @@
   .ikigai-list li::before { content: '→'; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
   .ikigai-note { font-style: italic; color: var(--accent); font-size: 1.1rem; margin-bottom: 0; }
 
-  /* QUÉ RESUELVE */
   .solves { padding: 100px 24px; max-width: 900px; margin: 0 auto; }
   .solves h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; text-align: center; margin-bottom: 16px; color: var(--dark); }
   .solves > p { text-align: center; color: var(--accent); margin-bottom: 64px; font-size: 1.05rem; }
@@ -87,26 +78,16 @@
   .solve-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 12px; color: var(--dark); }
   .solve-card p { font-size: 0.95rem; color: var(--accent); line-height: 1.6; }
 
-  /* QUÉ INCLUYE */
   .includes { padding: 100px 24px; background: var(--mid); color: var(--cream); }
   .includes-inner { max-width: 760px; margin: 0 auto; text-align: center; }
   .includes h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; color: var(--gold-light); margin-bottom: 16px; }
   .includes-sub { color: rgba(250,246,239,0.7); margin-bottom: 56px; }
   .include-item { display: flex; align-items: flex-start; gap: 24px; text-align: left; padding: 28px 0; border-bottom: 1px solid rgba(201,168,76,0.2); }
   .include-item:last-child { border-bottom: none; }
-  .include-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--gold-bright);  /* FIX: número dorado luminoso */
-    flex-shrink: 0;
-    line-height: 1;
-    width: 48px;
-    text-shadow: 0 0 20px rgba(240,200,74,0.4);
-  }
+  .include-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold-bright); flex-shrink: 0; line-height: 1; width: 48px; text-shadow: 0 0 20px rgba(240,200,74,0.4); }
   .include-text h3 { font-size: 1rem; font-weight: 500; color: var(--cream); margin-bottom: 6px; letter-spacing: 0.5px; }
   .include-text p { font-size: 0.9rem; color: rgba(250,246,239,0.65); line-height: 1.6; }
 
-  /* TESTIMONIOS */
   .testimonials { padding: 100px 24px; max-width: 820px; margin: 0 auto; text-align: center; }
   .testimonials h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 400; margin-bottom: 56px; color: var(--dark); }
   .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
@@ -116,11 +97,9 @@
   .testi-name { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
   .testi-note { font-size: 0.9rem; color: var(--accent); font-style: italic; margin-top: 16px; }
 
-  /* CTA MEDIO */
   .mid-cta { padding: 64px 24px; background: var(--cream); text-align: center; border-top: 1px solid rgba(201,168,76,0.15); border-bottom: 1px solid rgba(201,168,76,0.15); }
   .mid-cta p { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: var(--dark); max-width: 600px; margin: 0 auto 32px; line-height: 1.5; }
 
-  /* PRECIO */
   .pricing { padding: 100px 24px; background: var(--dark); text-align: center; }
   .pricing-inner { max-width: 560px; margin: 0 auto; }
   .pricing h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; color: var(--cream); margin-bottom: 16px; }
@@ -132,9 +111,8 @@
   .price-includes { list-style: none; text-align: left; margin-bottom: 40px; display: flex; flex-direction: column; gap: 12px; }
   .price-includes li { font-size: 0.95rem; color: rgba(250,246,239,0.85); display: flex; align-items: flex-start; gap: 12px; }
   .price-includes li::before { content: '✓'; color: var(--gold-bright); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-  .pricing-note { margin-top: 24px; font-size: 14px; color: rgba(250,246,239,0.75); line-height: 1.8; } /* FIX: más visible */
+  .pricing-note { margin-top: 24px; font-size: 14px; color: rgba(250,246,239,0.75); line-height: 1.8; }
 
-  /* FAQ */
   .faq { padding: 100px 24px; max-width: 720px; margin: 0 auto; }
   .faq h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 400; color: var(--dark); margin-bottom: 48px; text-align: center; }
   .faq-item { border-bottom: 1px solid rgba(201,168,76,0.2); padding: 28px 0; }
@@ -143,27 +121,53 @@
   .faq-q::after { content: '+'; color: var(--gold); font-size: 1.4rem; flex-shrink: 0; line-height: 1.2; font-family: 'DM Sans', sans-serif; font-weight: 300; }
   .faq-a { font-size: 1rem; color: var(--accent); line-height: 1.7; }
 
-  /* AUTOR */
   .author { padding: 100px 24px; max-width: 700px; margin: 0 auto; display: flex; gap: 48px; align-items: flex-start; }
   .author-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--gold); }
   .author-content .label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
   .author-content h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 16px; color: var(--dark); }
   .author-content p { color: var(--accent); font-size: 0.95rem; line-height: 1.7; }
 
-  /* FINAL CTA */
+  /* MENTORÍA */
+  .mentoria { padding: 100px 24px; background: var(--dark); }
+  .mentoria-inner { max-width: 800px; margin: 0 auto; }
+  .mentoria-header { text-align: center; margin-bottom: 64px; }
+  .mentoria-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; color: var(--gold-light); margin-bottom: 16px; line-height: 1.3; }
+  .mentoria-header p { color: rgba(250,246,239,0.7); max-width: 560px; margin: 0 auto; font-size: 1.05rem; }
+  .mentoria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 56px; }
+  .mentoria-card { border: 1px solid rgba(201,168,76,0.25); padding: 36px 32px; position: relative; }
+  .mentoria-card.featured { border-color: var(--gold); }
+  .mentoria-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--dark); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 4px 16px; white-space: nowrap; }
+  .mentoria-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+  .mentoria-card .price { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold-light); margin-bottom: 4px; line-height: 1; }
+  .mentoria-card .price-note { font-size: 12px; color: rgba(250,246,239,0.45); letter-spacing: 1px; margin-bottom: 24px; }
+  .mentoria-card .price-save { font-size: 13px; color: var(--gold); margin-bottom: 24px; }
+  .mentoria-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .mentoria-card ul li { font-size: 0.9rem; color: rgba(250,246,239,0.75); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+  .mentoria-card ul li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+  .mentoria-sessions { margin-bottom: 48px; }
+  .mentoria-sessions h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--gold-light); margin-bottom: 32px; text-align: center; }
+  .session-item { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(201,168,76,0.15); }
+  .session-item:last-child { border-bottom: none; }
+  .session-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold-bright); flex-shrink: 0; line-height: 1; width: 36px; text-shadow: 0 0 20px rgba(240,200,74,0.4); }
+  .session-body h4 { font-size: 0.95rem; font-weight: 500; color: var(--cream); margin-bottom: 4px; letter-spacing: 0.5px; }
+  .session-body p { font-size: 0.9rem; color: rgba(250,246,239,0.6); line-height: 1.5; }
+  .mentoria-cta { text-align: center; }
+  .mentoria-cta p { color: rgba(250,246,239,0.6); font-size: 0.95rem; margin-top: 20px; }
+  .mentoria-cta a.link { color: var(--gold); text-decoration: none; }
+  .mentoria-gratuita { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); padding: 24px 32px; margin-bottom: 40px; text-align: center; }
+  .mentoria-gratuita p { color: rgba(250,246,239,0.75); font-size: 0.95rem; line-height: 1.6; }
+  .mentoria-gratuita strong { color: var(--gold-light); font-weight: 500; }
+
   .final-cta { padding: 120px 24px; background: var(--cream); text-align: center; border-top: 1px solid rgba(201,168,76,0.2); }
   .final-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; color: var(--dark); max-width: 680px; margin: 0 auto 24px; line-height: 1.2; }
   .final-cta h2 em { font-style: italic; color: var(--gold); }
   .final-cta p { color: var(--accent); max-width: 480px; margin: 0 auto 48px; }
 
-  /* FOOTER */
   footer { background: var(--dark); padding: 40px 24px; text-align: center; }
   footer p { font-size: 12px; color: rgba(250,246,239,0.3); letter-spacing: 1px; }
 
-  /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* RESPONSIVE */
   @media (max-width: 640px) {
     body { font-size: 18px; }
     .author { flex-direction: column; align-items: center; text-align: center; }
@@ -173,7 +177,7 @@
     .hero p { font-size: 1.15rem; }
     .hero-tag, .hero-sub { font-size: 13px; }
     .story h2, .ikigai h2, .solves h2, .testimonials h2,
-    .pricing h2, .final-cta h2, .faq h2, .checklist h2 { font-size: 1.85rem; line-height: 1.25; }
+    .pricing h2, .final-cta h2, .faq h2, .checklist h2, .mentoria-header h2 { font-size: 1.85rem; line-height: 1.25; }
     .check-list li, .ikigai-list li { font-size: 1.1rem; padding: 16px 14px; gap: 12px; }
     .checklist-note, .ikigai-note { font-size: 1.1rem; }
     .section-label { font-size: 13px; }
@@ -206,6 +210,12 @@
     .checklist { padding: 64px 20px; }
     .ikigai { padding: 64px 20px; }
     .keywords-banner p { font-size: 1.15rem; }
+    .mentoria { padding: 64px 20px; }
+    .mentoria-card { padding: 32px 20px; }
+    .mentoria-card .price { font-size: 1.8rem; }
+    .mentoria-grid { grid-template-columns: 1fr; }
+    .session-num { font-size: 1.5rem; width: 30px; }
+    .mentoria-gratuita { padding: 20px; }
   }
 </style>
 </head>
@@ -214,16 +224,14 @@
 <!-- HERO -->
 <section class="hero">
   <span class="hero-tag">Ricas Palabras · Ebook + Workbook</span>
-  <img src="https://ricaspalabras.shop/cdn/shop/files/tapa_ebook.png" alt="El Ordenador de tu Abundancia" style="width:200px;margin-bottom:40px;box-shadow:0 24px 60px rgba(0,0,0,0.5);opacity:0;animation:fadeUp 0.8s 0.2s forwards;">
+  <img style="width: 200px; margin-bottom: 40px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); opacity: 0; animation: fadeUp 0.8s 0.2s forwards;" alt="El Ordenador de tu Abundancia" src="https://ricaspalabras.shop/cdn/shop/files/tapa_ebook.png">
   <h1>¿Sentís que algo en tu vida<br>necesita <em>cambiar</em>,<br>pero no sabés por dónde empezar?</h1>
   <p>No importa si tenés mil ideas o ninguna. Si tenés energía o estás agotado. Si querés emprender o simplemente vivir mejor. Este libro es para ese momento en que algo tiene que cambiar — y lo sabés.</p>
-  <div class="hero-cta">
-    <a href="https://ricaspalabras.shop/products/ebook" class="btn-primary">QUIERO EMPEZAR AHORA</a>
-  </div>
+  <div class="hero-cta"><a class="btn-primary" href="https://ricaspalabras.shop/products/ebook">QUIERO EMPEZAR AHORA</a></div>
   <p class="hero-sub">Descarga inmediata · Disponible en todo el mundo hispanohablante</p>
 </section>
 
-<!-- CHECKLIST — unifica "¿te suena esto?" + "este libro es para vos si" -->
+<!-- CHECKLIST -->
 <section class="checklist">
   <div class="checklist-inner">
     <span class="section-label">¿Te suena alguna de estas situaciones?</span>
@@ -252,9 +260,7 @@
     <h2>Este libro nació de una crisis. No de un método teórico.</h2>
     <p>Empecé sin saber qué quería. Luego tuve muchas ideas, algunas se convirtieron en proyectos que funcionaron... y otras que colapsaron. En cada etapa, el problema era el mismo: <strong>no tenía un sistema.</strong></p>
     <p>No me faltaba capacidad ni voluntad. Me faltaba una arquitectura interna que ordenara mis pensamientos, mi tiempo y mi energía — para que lo que construía tuviera raíz y pudiera sostenerse.</p>
-    <div class="story-quote">
-      "El caos no es el enemigo de la creación.<br>Es su estado inicial, su materia prima."
-    </div>
+    <div class="story-quote">"El caos no es el enemigo de la creación.<br>Es su estado inicial, su materia prima."</div>
     <p>Cuando encontré ese orden, algo cambió. De forma real y sostenida. Nació Ricas Palabras. Y nació el concepto que te va a ayudar a responder quién sos, y en quién te querés transformar: <strong>el Huevo de Oro.</strong></p>
   </div>
 </section>
@@ -264,7 +270,7 @@
   <p>Una <em>actualización</em> profunda de tu sistema interno es el primer paso real hacia el <em>éxito</em> con sentido — donde la <em>abundancia</em> no es solo económica, sino expresión de <em>plenitud</em>. Ese es el camino de <em>evolución</em> que este libro propone.</p>
 </section>
 
-<!-- HUEVO DE ORO / IKIGAI — columna única, tipografía uniforme -->
+<!-- HUEVO DE ORO / IKIGAI -->
 <section class="ikigai">
   <div class="ikigai-inner">
     <span class="section-label">El concepto central del libro</span>
@@ -277,9 +283,7 @@
       <li>Se gesta. Se cuida. Se escala. Y empieza siempre con un primer orden interno.</li>
     </ul>
     <p class="ikigai-note">Este libro es el primer paso para descubrir y construir tu propio Huevo de Oro.</p>
-    <div class="btn-center">
-      <a href="https://ricaspalabras.shop/products/ebook" class="btn-inline">QUIERO DESCUBRIR MI HUEVO DE ORO</a>
-    </div>
+    <div class="btn-center"><a class="btn-inline" href="https://ricaspalabras.shop/products/ebook">QUIERO DESCUBRIR MI HUEVO DE ORO</a></div>
   </div>
 </section>
 
@@ -288,33 +292,27 @@
   <h2>Lo que vas a lograr con este libro</h2>
   <p>No es teoría. Es un proceso con ejercicios prácticos que podés hacer con papel y lapicera.</p>
   <div class="solves-grid">
-    <div class="solve-card">
-      <span class="icon">🧠</span>
+    <div class="solve-card"><span class="icon">🧠</span>
       <h3>Ordenar el ruido mental</h3>
       <p>Vas a pasar de la cabeza saturada a tener claridad sobre qué ideas valen la pena y cuáles te están drenando.</p>
     </div>
-    <div class="solve-card">
-      <span class="icon">⚡</span>
+    <div class="solve-card"><span class="icon">⚡</span>
       <h3>Recuperar tu energía y tu tiempo</h3>
       <p>Vas a identificar dónde se pierde tu ATE (Atención, Tiempo, Energía) y cómo redirigirla hacia lo que realmente importa.</p>
     </div>
-    <div class="solve-card">
-      <span class="icon">🥚</span>
+    <div class="solve-card"><span class="icon">🥚</span>
       <h3>Encontrar tu Huevo de Oro</h3>
       <p>Tu idea central: lo que amás, lo que sabés hacer y lo que el mercado necesita — integrado en un concepto generador de ingresos viable y escalable.</p>
     </div>
-    <div class="solve-card">
-      <span class="icon">🏗️</span>
+    <div class="solve-card"><span class="icon">🏗️</span>
       <h3>Construir una base real</h3>
       <p>No otro curso que queda en el cajón. Un sistema vivo que se sostiene porque nace de quién sos y de quién querés Ser, Hacer y Tener.</p>
     </div>
-    <div class="solve-card">
-      <span class="icon">✍️</span>
+    <div class="solve-card"><span class="icon">✍️</span>
       <h3>Empezar a escribir tu realidad</h3>
       <p>La escritura consciente como herramienta de orden, diseño y creación — no solo como descarga emocional.</p>
     </div>
-    <div class="solve-card">
-      <span class="icon">🤖</span>
+    <div class="solve-card"><span class="icon">🤖</span>
       <h3>Usar la IA como aliada</h3>
       <p>Prompts específicos para usar la Inteligencia Artificial como espejo de síntesis y acelerador de tu proceso creativo.</p>
     </div>
@@ -326,50 +324,44 @@
   <div class="includes-inner">
     <h2>Todo lo que recibís</h2>
     <p class="includes-sub">Descarga inmediata. Sin suscripciones. Sin letra chica.</p>
-    <div class="include-item">
-      <span class="include-num">01</span>
+    <div class="include-item"><span class="include-num">01</span>
       <div class="include-text">
         <h3>EBOOK + WORKBOOK: El Ordenador de tu Abundancia</h3>
         <p>El libro completo con los conceptos, el sistema y los ejercicios prácticos para construir tu Matriz Interna y descubrir tu Huevo de Oro.</p>
       </div>
     </div>
-    <div class="include-item">
-      <span class="include-num">02</span>
+    <div class="include-item"><span class="include-num">02</span>
       <div class="include-text">
         <h3>BONO 1 · Planificador Semanal ATE</h3>
         <p>Tu tablero de control para gestionar tu Atención, Tiempo y Energía de forma soberana. Diseñá tu semana protegiendo lo que más importa.</p>
       </div>
     </div>
-    <div class="include-item">
-      <span class="include-num">03</span>
+    <div class="include-item"><span class="include-num">03</span>
       <div class="include-text">
         <h3>BONO 2 · Escáner de las 9 Capas</h3>
         <p>Herramienta interactiva para auditar la maduración técnica de tu idea y ver con claridad qué tan madura está y qué le falta para ser viable.</p>
       </div>
     </div>
-    <div class="include-item">
-      <span class="include-num">04</span>
+    <div class="include-item"><span class="include-num">04</span>
       <div class="include-text">
         <h3>BONO 3 · Manual de Prompts para IA</h3>
         <p>Los comandos exactos para usar la Inteligencia Artificial como tu espejo de síntesis. Identificá patrones y ahorrá tiempo y energía.</p>
       </div>
     </div>
-    <div class="include-item">
-      <span class="include-num">05</span>
+    <div class="include-item"><span class="include-num">05</span>
       <div class="include-text">
         <h3>BONO 4 · Canal de Ecoscritores</h3>
         <p>Acceso a la comunidad de práctica. Actualizaciones, contenido exclusivo y acompañamiento directo del autor mientras recorrés el proceso.</p>
       </div>
     </div>
-    <div class="include-item">
-      <span class="include-num">06</span>
+    <div class="include-item"><span class="include-num">06</span>
       <div class="include-text">
         <h3>BONO 5 · Sesión Q&A gratuita con Gonzai ✦ Valor USD 100</h3>
         <p>Una sesión en vivo para resolver todas tus dudas al terminar el libro. Las próximas mentorías individuales tendrán un costo de USD 100 — por tiempo de lanzamiento, esta sesión está incluida sin cargo adicional.</p>
       </div>
     </div>
-    <div class="btn-center" style="padding-top: 48px;">
-      <a href="https://ricaspalabras.shop/products/ebook" class="btn-inline" style="background: var(--gold); color: var(--dark);">COMPRAR AHORA POR USD 9,90</a>
+    <div style="padding-top: 48px;" class="btn-center">
+      <a style="background: var(--gold); color: var(--dark);" class="btn-inline" href="https://ricaspalabras.shop/products/ebook">COMPRAR AHORA POR USD 9,90</a>
     </div>
   </div>
 </section>
@@ -409,7 +401,7 @@
 <!-- CTA MEDIO -->
 <section class="mid-cta">
   <p>"Si algo de lo que leíste resonó, no lo dejes para mañana.<br>El primer paso siempre es el más difícil — y el más importante."</p>
-  <a href="https://ricaspalabras.shop/products/ebook" class="btn-primary">QUIERO EMPEZAR POR USD 9,90</a>
+  <a class="btn-primary" href="https://ricaspalabras.shop/products/ebook">QUIERO EMPEZAR POR USD 9,90</a>
 </section>
 
 <!-- PRECIO -->
@@ -429,12 +421,9 @@
         <li><strong>Bono 4: Acceso al Canal de Ecoscritores</strong> — comunidad con contenido exclusivo del autor</li>
         <li><strong>Bono 5: Sesión Q&A gratuita con Gonzai</strong> — valor USD 100 · incluida por tiempo de lanzamiento</li>
       </ul>
-      <a href="https://ricaspalabras.shop/products/ebook" class="btn-primary-dark">COMPRAR AHORA POR USD 9,90</a>
+      <a class="btn-primary-dark" href="https://ricaspalabras.shop/products/ebook">COMPRAR AHORA POR USD 9,90</a>
     </div>
-    <p class="pricing-note">
-      🇦🇷 Argentina: $14.990 ARS vía Mercado Pago<br>
-      🌎 Resto del mundo: USD 9,90 · EUR 9,90 vía transferencia
-    </p>
+    <p class="pricing-note">🇦🇷 Argentina: $14.990 ARS vía Mercado Pago<br>🌎 Resto del mundo: USD 9,90 · EUR 9,90 vía transferencia</p>
   </div>
 </section>
 
@@ -465,7 +454,7 @@
 
 <!-- AUTOR -->
 <section class="author">
-  <img src="https://ricaspalabras.shop/cdn/shop/files/gonzai_foto.jpg" alt="Gonzai" class="author-img">
+  <img class="author-img" alt="Gonzai" src="https://ricaspalabras.shop/cdn/shop/files/gonzai_foto.jpg">
   <div class="author-content">
     <span class="label">Quién escribe</span>
     <h2>Gonzai</h2>
@@ -473,14 +462,92 @@
   </div>
 </section>
 
+<!-- MENTORÍA 1 A 1 -->
+<section class="mentoria">
+  <div class="mentoria-inner">
+    <div class="mentoria-header">
+      <span class="section-label">Acompañamiento personalizado</span>
+      <h2>Mentoría 1 a 1 con Gonzai</h2>
+      <p>Para quien quiere recorrer el proceso del Huevo de Oro con acompañamiento directo — desde ordenar las ideas hasta tener algo concreto para ofrecer.</p>
+    </div>
+
+    <div class="mentoria-gratuita">
+      <p><strong>La primera sesión de exploración es sin cargo.</strong> Es para conocernos, entender dónde estás y ver si hay match entre lo que necesitás y lo que puedo acompañarte. Sin compromiso.</p>
+    </div>
+
+    <div class="mentoria-grid">
+      <div class="mentoria-card">
+        <h3>Sesión suelta</h3>
+        <p class="price">USD 100</p>
+        <p class="price-note">60 minutos · pago único</p>
+        <ul>
+          <li>Para trabajar un punto específico</li>
+          <li>Ordenar ideas, revisar un proyecto</li>
+          <li>Desbloquear una decisión concreta</li>
+          <li>Online o presencial en Buenos Aires</li>
+        </ul>
+      </div>
+      <div class="mentoria-card featured">
+        <div class="mentoria-badge">RECOMENDADO</div>
+        <h3>Pack de 4 sesiones</h3>
+        <p class="price">USD 300</p>
+        <p class="price-note">4 sesiones de 60 min · pago adelantado</p>
+        <p class="price-save">Ahorrás USD 100 vs sesiones sueltas</p>
+        <ul>
+          <li>Proceso completo de 4 semanas</li>
+          <li>Una sesión por semana</li>
+          <li>Del caos a tu Huevo de Oro</li>
+          <li>Extensible semana a semana si necesitás más</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mentoria-sessions">
+      <h3>Lo que trabajamos en el pack</h3>
+      <div class="session-item">
+        <span class="session-num">1</span>
+        <div class="session-body">
+          <h4>ORDENAR</h4>
+          <p>Vaciamos el ruido mental. Organizamos tus ideas, proyectos y prioridades con el sistema ATE. Salís con claridad sobre dónde estás y qué necesita tu atención primero.</p>
+        </div>
+      </div>
+      <div class="session-item">
+        <span class="session-num">2</span>
+        <div class="session-body">
+          <h4>DESCUBRIR</h4>
+          <p>Construimos tu Huevo de Oro. Identificamos qué amás hacer, en qué sos bueno y qué puede tener valor real en el mercado. Salís con tu idea central definida.</p>
+        </div>
+      </div>
+      <div class="session-item">
+        <span class="session-num">3</span>
+        <div class="session-body">
+          <h4>CREAR</h4>
+          <p>Diseñamos tu primer producto o servicio. Formato, precio, a quién va dirigido y cómo comunicarlo. Salís con algo concreto para ofrecer.</p>
+        </div>
+      </div>
+      <div class="session-item">
+        <span class="session-num">4</span>
+        <div class="session-body">
+          <h4>LANZAR</h4>
+          <p>Armamos tu página o punto de venta básico para que puedas empezar a vender. Salís con todo listo para dar el primer paso real.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentoria-cta">
+      <a class="btn-primary" href="mailto:info.ricaspalabras@gmail.com">QUIERO UNA SESIÓN GRATUITA DE EXPLORACIÓN</a>
+      <p style="margin-top: 16px;">O escribí por DM a <a class="link" href="https://instagram.com/gonzai.ricaspalabras" target="_blank">@gonzai.ricaspalabras</a></p>
+    </div>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="final-cta">
   <h2>El orden no es el enemigo de tu creatividad.<br>Es lo que la <em>libera.</em></h2>
   <p>Si sabés que hay algo dentro tuyo que siente que puede tener otra calidad de vida — este es el primer paso.</p>
-  <a href="https://ricaspalabras.shop/products/ebook" class="btn-primary">DESCARGÁ EL EBOOK AHORA</a>
+  <a class="btn-primary" href="https://ricaspalabras.shop/products/ebook">DESCARGÁ EL EBOOK AHORA</a>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2026 RICAS PALABRAS · ricaspalabras.shop</p>
 </footer>
