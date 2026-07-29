@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gonzai - Ricas Palabras 360</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Lora:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Lora:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --dorado: #d4af37;
@@ -27,7 +27,7 @@
             letter-spacing: 2px;
         }
         .container { max-width: 900px; margin: auto; padding: 40px 20px; }
-        
+
         .profile-header {
             text-align: center;
             padding: 60px 0;
@@ -44,7 +44,7 @@
             background: var(--verde-oscuro);
             border-radius: 15px;
             height: 450px;
-            background-image: url('gonza.jpeg'); 
+            background-image: url('gonza.jpeg');
             background-size: cover;
             background-position: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -56,6 +56,70 @@
             border-radius: 15px;
             margin: 40px 0;
             border-left: 5px solid var(--dorado);
+        }
+
+        /* --- Nueva sección: trayectoria concreta --- */
+        .trayectoria {
+            margin: 50px 0;
+        }
+        .trayectoria h2 { text-align: center; margin-bottom: 10px; }
+        .trayectoria-sub {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            margin-bottom: 35px;
+        }
+        .logros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .logro-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-top: 3px solid var(--dorado);
+            border-radius: 10px;
+            padding: 22px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .logro-card .numero {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--verde-oscuro);
+            display: block;
+        }
+        .logro-card .detalle {
+            font-family: 'Lora', serif;
+            font-size: 0.92rem;
+            color: #555;
+            margin-top: 6px;
+            line-height: 1.5;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        /* --- Nueva sección: para empresas y colegios --- */
+        .b2b-box {
+            background: var(--verde-oscuro);
+            color: #eee;
+            padding: 35px 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+        }
+        .b2b-box h3 { color: var(--dorado); margin-top: 0; }
+        .b2b-box p { color: #ddd; }
+        .btn-b2b {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 14px 30px;
+            background: var(--dorado);
+            color: var(--verde-oscuro);
+            text-decoration: none;
+            font-family: 'Montserrat';
+            font-weight: bold;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
 
         .cta-section {
@@ -88,7 +152,7 @@
     <header class="profile-header">
         <div class="container">
             <h1>Gonzalo Aliaga Virasoro</h1>
-            <p class="tagline">Emprendedor Creativo • Fundador de Ricas Palabras • Ecoscritor</p>
+            <p class="tagline">Emprendedor Creativo · Fundador de Ricas Palabras · Ecoscritor</p>
         </div>
     </header>
 
@@ -96,29 +160,60 @@
         <section class="story-section">
             <div class="story-text">
                 <h2>El Corazón de <span style="color:var(--dorado)">Ricas Palabras</span></h2>
-                <p>Soy <strong>Gonzai</strong>, y mi misión es generar y aportar a una nueva cultura del lenguaje para el Despertar y la Evolución de la Conciencia. <strong>Ricas Palabras 360</strong> es nuestra propuesta única de valor que integra productos físicos, contenido digital transformador y experiencias vivenciales profundas para crear un camino hacia el autoconocimiento y la acción positiva.</p>
-                
-                <p>Mi camino no comenzó en el marketing, sino en la curiosidad por la estructura de la vida. Estudié <strong>Bioquímica y Logosofía</strong> en Buenos Aires, buscando entender tanto la biología celular como el funcionamiento de la Conciencia.</p>
-                <p>Durante años desarrollé emprendimientos reales: un centro de salud y una marca de productos con identidad propia.
-                <p>Descubrí que la escritura consciente es la herramienta para transformar crear la <strong>Matriz Interna</strong> del Ser.</p>
+                <p>Soy <strong>Gonzai</strong>, y mi misión es aportar una nueva cultura del lenguaje para el desarrollo personal y la evolución consciente. <strong>Ricas Palabras 360</strong> integra productos físicos, contenido digital y experiencias que acompañan un camino de autoconocimiento y acción positiva.</p>
+
+                <p>Mi camino no comenzó en el marketing, sino en la curiosidad por la estructura de la vida. Estudié <strong>Bioquímica y Logosofía</strong> en Buenos Aires, buscando entender tanto la biología celular como el funcionamiento de la conciencia.</p>
+                <p>Durante más de 20 años desarrollé emprendimientos reales: un centro de bienestar, marcas de diseño y decoración, y hoy Ricas Palabras — un ecosistema propio de libros, productos artesanales y contenido.</p>
+                <p>Descubrí que la escritura consciente es una herramienta poderosa para ordenar la propia vida y transmitir eso mismo a otros.</p>
             </div>
             <div class="story-image"></div>
         </section>
 
+        <!-- TRAYECTORIA CONCRETA -->
+        <section class="trayectoria">
+            <h2>Lo que ya construí</h2>
+            <p class="trayectoria-sub">Porque las palabras convencen más cuando están respaldadas por hechos.</p>
+            <div class="logros-grid">
+                <div class="logro-card">
+                    <span class="numero">50.000+</span>
+                    <div class="detalle">unidades distribuidas en canales mayoristas y comercios especializados a lo largo de mis emprendimientos.</div>
+                </div>
+                <div class="logro-card">
+                    <span class="numero">32 días</span>
+                    <div class="detalle">de contenido diario sin interrupciones para la Edición Mundial 2026, con storytelling propio y colaboración con Club House Publishers.</div>
+                </div>
+                <div class="logro-card">
+                    <span class="numero">50.ª Feria</span>
+                    <div class="detalle">Internacional del Libro de Buenos Aires — promoción y venta editorial, con entrevista para NET TV.</div>
+                </div>
+                <div class="logro-card">
+                    <span class="numero">+20 años</span>
+                    <div class="detalle">de experiencia creando y posicionando marcas, productos y proyectos propios desde cero.</div>
+                </div>
+            </div>
+        </section>
+
         <div class="highlight-box">
             <h3>La Creación de un Nuevo Mapa</h3>
-            <p>De mi propia necesidad de reconstrucción, nació <strong>"El Ordenador de tu Abundancia"</strong>. Este no es solo un manual operativo para actulizar tu sistema interno, es el primer paso de una trilogía diseñada para ayudarte a <strong>ordenar, crear y sostener</strong> tu propia realidad. Es la tecnología de diseño mental que necesitás para ser el <strong>Arquitecto de tu propia Existencia</strong>.</p>
+            <p>De mi propia necesidad de reconstrucción, nació <strong>"El Ordenador de tu Abundancia"</strong>. No es solo un manual para ordenar tu sistema interno — es el primer paso de una trilogía pensada para ayudarte a <strong>ordenar, crear y sostener</strong> tu propia realidad.</p>
+        </div>
+
+        <!-- PARA EMPRESAS Y COLEGIOS -->
+        <div class="b2b-box">
+            <h3>¿Sos empresa, colegio o club?</h3>
+            <p>Armo combos de libros curados + objetos grabados a fuego + charlas breves sobre escritura consciente, pensados para regalar en cantidad — desde 20 hasta 100+ unidades, con precio diferencial por volumen.</p>
+            <a href="https://wa.me/5491165918300?text=Hola%20Gonzai!%20Quiero%20info%20sobre%20los%20combos%20para%20empresas%2Fcolegios" class="btn-b2b">Consultar combos por WhatsApp</a>
         </div>
 
         <section class="cta-section">
             <h2>¿Listo para tu actualización interna?</h2>
-            <p>Recuperá la soberanía de tu sistema y gestá tu propio <strong>Huevo de Oro</strong> .</p>
-            <a href="https://ricaspalabras.shop" class="btn-cta">DESCUBRÍ EL SISTEMA ATE (ATENCIÓN TIEMPO ENERGÍA) </a>
+            <p>Recuperá la soberanía de tu sistema y gestá tu propio <strong>Huevo de Oro</strong>.</p>
+            <a href="https://ricaspalabras.com.ar/ordenador-abundancia" class="btn-cta">Descubrí el Sistema ATE (Atención, Tiempo, Energía)</a>
         </section>
     </main>
 
     <footer style="text-align: center; padding: 40px; color: #999; font-size: 0.9rem;">
-        <p>© 2026 Ricas Palabras 360 - Dedicado a todos los Ecoscritores .</p>
+        <p>© 2026 Ricas Palabras 360 · Dedicado a todos los Ecoscritores.</p>
     </footer>
 
 </body>
