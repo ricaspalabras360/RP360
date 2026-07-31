@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -7,13 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #090d16; color: #f3f4f6; }
         .serif { font-family: 'Playfair Display', serif; }
         .gold-text { color: #c5a059; }
         .gold-gradient {
-            background: linear-gradient(135deg, #c5a059, #e5c17e);
+            background: linear-gradient(135deg, #c5a059, #f0c84a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -30,15 +31,20 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease, transform 0.2s ease;
         }
         .card-bg:hover {
             border-color: rgba(197, 160, 89, 0.4);
+        }
+        .step-checkbox:checked + label {
+            text-decoration: line-through;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
 
-    <header class="p-6 border-b border-white/10 backdrop-blur-md sticky top-0 z-50 bg-black/40">
+    <header class="p-6 border-b border-white/10 backdrop-blur-md sticky top-0 z-50 bg-black/60">
         <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="text-xl font-extrabold tracking-tighter">
                 Ricas <span class="gold-text">Palabras 360</span>
@@ -53,44 +59,51 @@
 
         <!-- Banner de Confirmación -->
         <div class="text-center mb-12">
-            <div class="inline-flex p-4 bg-emerald-500/10 text-emerald-400 rounded-full mb-4 border border-emerald-500/30">
+            <div class="inline-flex p-4 bg-emerald-500/10 text-emerald-400 rounded-full mb-4 border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
             <span class="gold-text font-bold tracking-[0.2em] uppercase text-xs block mb-2">¡Transacción Exitosa!</span>
             <h1 class="serif text-3xl md:text-5xl font-bold gold-gradient mb-4">¡Bienvenido al mundo de los Ecoscritores!</h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
-                Tu actualización de software interno ya está lista para descargar. Has tomado una decisión soberana para reconfigurar tu **Atención, Tiempo y Energía (ATE)**.
+            <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                Tu actualización de software interno ya está lista para descargar. Has tomado una decisión soberana para reconfigurar tu <strong>Atención, Tiempo y Energía (ATE)</strong>.
             </p>
         </div>
 
         <!-- BOTÓN PRINCIPAL DE ACCESO A DRIVE -->
-        <div class="card-bg p-8 rounded-3xl text-center mb-16 border-2 border-[#c5a059]/40 relative overflow-hidden group shadow-2xl">
+        <div class="card-bg p-8 md:p-10 rounded-3xl text-center mb-16 border-2 border-[#c5a059]/40 relative overflow-hidden group shadow-2xl">
             <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
-            <span class="bg-amber-400/20 text-amber-300 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">
+            <span class="bg-amber-400/20 text-amber-300 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block border border-amber-400/30">
                 Acceso Total e Inmediato
             </span>
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Carpeta de Archivos & Kit Completo</h2>
-            <p class="text-gray-300 text-sm max-w-xl mx-auto mb-6">
+            <p class="text-gray-300 text-sm max-w-xl mx-auto mb-8">
                 Descargá todo el material en un solo clic desde Google Drive: eBook, Workbook, Auditorías, Audios, Prompts de IA y Guías.
             </p>
             
-            <!-- REEMPLAZAR ESTE ENLACE POR TU LINK DE CARPETA COMPARTIDA DE DRIVE -->
-            <a href="https://drive.google.com" target="_blank" class="btn-gold inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-black text-lg uppercase tracking-wider shadow-lg transform hover:scale-105 transition">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-                Abrir Carpeta de Google Drive
-            </a>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <!-- ENLACE DE CARPETA COMPARTIDA DE DRIVE -->
+                <a href="https://drive.google.com" target="_blank" class="btn-gold w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-base md:text-lg uppercase tracking-wider shadow-lg transform hover:scale-105 transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                    Abrir Carpeta de Google Drive
+                </a>
+                
+                <button onclick="copyToClipboard('https://drive.google.com', 'Enlace de Google Drive copiado')" class="w-full sm:w-auto px-6 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-2xl text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    Copiar Link
+                </button>
+            </div>
         </div>
 
         <!-- Carta de Gonzai -->
         <div class="card-bg p-8 md:p-12 rounded-3xl mb-16 relative">
             <div class="border-l-4 border-[#c5a059] pl-6 space-y-4">
-                <p class="text-lg font-serif italic text-amber-200/90">
+                <p class="text-lg md:text-xl font-serif italic text-amber-200/90 leading-relaxed">
                     "Al adquirir esta obra, has elegido convertirte en el Arquitecto de tu propia realidad y comenzar el diseño de tu Matriz Interna. A partir de hoy, la abundancia dejará de ser algo que persigues para convertirse en la consecuencia natural de tu orden interno."
                 </p>
-                <p class="text-sm text-right text-gray-400 font-bold">— Gonzai de Ricas Palabras</p>
+                <p class="text-sm text-right text-gray-400 font-bold">— Gonzai de Ricas Palabras 360</p>
             </div>
         </div>
 
@@ -104,53 +117,70 @@
                 <div class="card-bg p-6 rounded-2xl md:col-span-2 border-l-4 border-amber-500">
                     <span class="text-xs font-bold uppercase tracking-widest text-amber-400 block mb-1">Componente Central</span>
                     <h3 class="text-xl font-bold text-white mb-2">Ebook + Workbook Completo "El Ordenador de tu Abundancia"</h3>
-                    <p class="text-gray-400 text-sm mb-4">El manual y la guía de ejercicios práctica para actualizar tu Usuario Administrador e instalar tu nuevo Sistema Operativo ATE.</p>
-                    <span class="inline-block text-xs bg-white/10 text-gray-300 px-3 py-1 rounded-md">Formato: PDF (Descarga Inmediata)</span>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">El manual y la guía de ejercicios práctica para actualizar tu Usuario Administrador e instalar tu nuevo Sistema Operativo ATE.</p>
+                    <span class="inline-block text-xs bg-white/10 text-gray-300 px-3 py-1 rounded-md font-mono">Formato: PDF (Descarga Inmediata)</span>
                 </div>
 
                 <!-- Bono 1 -->
-                <div class="card-bg p-6 rounded-2xl">
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #1</span>
-                    <h3 class="text-lg font-bold text-white mb-2">Planificador Semanal ATE</h3>
-                    <p class="text-gray-400 text-sm mb-3">Tu tablero de control para organizar tus bloques de tiempo y equilibrar los 6 Planos del Ser (Físico, Mental, Emocional, Sensible, Espiritual y Energético).</p>
-                    <span class="inline-block text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-md">Herramienta de Hábito</span>
+                <div class="card-bg p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #1</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Planificador Semanal ATE</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Tu tablero de control para organizar tus bloques de tiempo y equilibrar los 6 Planos del Ser (Físico, Mental, Emocional, Sensible, Espiritual y Energético).</p>
+                    </div>
+                    <div>
+                        <span class="inline-block text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-md font-mono">Herramienta de Hábito</span>
+                    </div>
                 </div>
 
                 <!-- Bono 2 -->
-                <div class="card-bg p-6 rounded-2xl">
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #2</span>
-                    <h3 class="text-lg font-bold text-white mb-2">Escáner Técnico de las 9 Capas</h3>
-                    <p class="text-gray-400 text-sm mb-3">Herramienta interactiva para auditar la maduración de tus ideas, detectar puntos críticos y dirigir tu energía donde genera valor real.</p>
-                    <span class="inline-block text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-md">Auditoría Interactiva</span>
+                <div class="card-bg p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #2</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Escáner Técnico de las 9 Capas</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Herramienta interactiva para auditar la maduración de tus ideas, detectar puntos críticos y dirigir tu energía donde genera valor real.</p>
+                    </div>
+                    <div>
+                        <span class="inline-block text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-md font-mono">Auditoría Interactiva</span>
+                    </div>
                 </div>
 
                 <!-- Bono 3 -->
-                <div class="card-bg p-6 rounded-2xl">
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #3</span>
-                    <h3 class="text-lg font-bold text-white mb-2">Comandos de Soberanía (Manual de Prompts IA)</h3>
-                    <p class="text-gray-400 text-sm mb-3">Manual de prompts + video explicativo para utilizar la IA como software de apoyo en tu Escritura Consciente sin perder tu voz.</p>
-                    <span class="inline-block text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-md">PDF + Video Explicativo</span>
+                <div class="card-bg p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #3</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Comandos de Soberanía (Manual de Prompts IA)</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Manual de prompts + video explicativo para utilizar la IA como software de apoyo en tu Escritura Consciente sin perder tu voz.</p>
+                    </div>
+                    <div>
+                        <span class="inline-block text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-md font-mono">PDF + Video Explicativo</span>
+                    </div>
                 </div>
 
                 <!-- Bono 4 -->
-                <div class="card-bg p-6 rounded-2xl">
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #4</span>
-                    <h3 class="text-lg font-bold text-white mb-2">Acceso al Canal de Ecoscritores</h3>
-                    <p class="text-gray-400 text-sm mb-3">Comunidad exclusiva con contenido continuo, reflexiones de valor y acompañamiento en tu proceso de transformación.</p>
-                    <a href="https://www.instagram.com/ricas_palabras" target="_blank" class="inline-flex items-center gap-1 text-xs text-amber-400 font-bold hover:underline">
-                        Sumarme al Canal &rarr;
-                    </a>
+                <div class="card-bg p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bono #4</span>
+                        <h3 class="text-lg font-bold text-white mb-2">Acceso al Canal de Ecoscritores</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Comunidad exclusiva con contenido continuo, reflexiones de valor y acompañamiento en tu proceso de transformación.</p>
+                    </div>
+                    <div>
+                        <a href="https://www.instagram.com/ricas_palabras" target="_blank" class="inline-flex items-center gap-1 text-xs text-amber-400 font-bold hover:underline">
+                            Sumarme al Canal de Telegram &rarr;
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Bono 5 (Destacado) -->
-                <div class="card-bg p-6 rounded-2xl md:col-span-2 border border-amber-500/50 bg-amber-500/5">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="card-bg p-6 md:p-8 rounded-2xl md:col-span-2 border border-amber-500/50 bg-amber-500/5">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                         <div>
                             <span class="text-xs font-bold uppercase tracking-widest text-amber-400 block mb-1">Bono #5 Exclusivo de Lanzamiento</span>
-                            <h3 class="text-xl font-bold text-white">Sesión Q&A Gratuita en Vivo con Gonzai</h3>
-                            <p class="text-gray-300 text-sm mt-1">Sesión grupal de preguntas y respuestas para resolver dudas de tu ATE y acelerar tus resultados. <strong class="text-amber-300">(Valorada en USD 100 — Incluida Gratis)</strong></p>
+                            <h3 class="text-xl font-bold text-white mb-1">Sesión Q&A Gratuita en Vivo con Gonzai</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">Sesión grupal de preguntas y respuestas para resolver dudas de tu ATE y acelerar tus resultados. <strong class="text-amber-300">(Valorada en USD 100 — Incluida Gratis)</strong></p>
                         </div>
-                        <a href="https://wa.me/5491165918300?text=Hola%20Gonzai!%20Ya%20tengo%20mi%20eBook%20El%20Ordenador%20de%20tu%20Abundancia%20y%20quiero%20agendar%20mi%20sesi%C3%B3n%20Q%26A" target="_blank" class="btn-gold whitespace-nowrap px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider">
+                        <a href="https://wa.me/5491165918300?text=Hola%20Gonzai!%20Ya%20tengo%20mi%20eBook%20El%20Ordenador%20de%20tu%20Abundancia%20y%20quiero%20agendar%20mi%20sesi%C3%B3n%20Q%26A" target="_blank" class="btn-gold whitespace-nowrap px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                             Agendar por WhatsApp
                         </a>
                     </div>
@@ -161,44 +191,61 @@
 
         <!-- RUTA DE LECTURA Y RECOMENDACIÓN (1 A 10) -->
         <div class="card-bg p-8 rounded-3xl mb-16">
-            <h2 class="serif text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <span class="w-8 h-8 rounded-full bg-amber-500 text-black text-sm font-black flex items-center justify-center">i</span>
-                Ruta Recomendada de Aprendizaje
-            </h2>
-            <p class="text-gray-400 text-sm mb-6">Para aprovechar al máximo todo tu kit sin saturarte, te recomendamos seguir este orden:</p>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="serif text-2xl font-bold text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-amber-500 text-black text-sm font-black flex items-center justify-center">i</span>
+                        Ruta Recomendada de Aprendizaje
+                    </h2>
+                    <p class="text-gray-400 text-sm mt-1">Hacé clic en cada paso para marcar tu avance conforme completás la lectura:</p>
+                </div>
+                <div id="progress-counter" class="text-xs font-mono font-bold bg-amber-500/10 text-amber-300 border border-amber-500/30 px-4 py-2 rounded-xl text-center">
+                    0 / 10 Completados
+                </div>
+            </div>
             
-            <ol class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-medium">
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">01.</span> <span>Video explicativo de bienvenida.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">02.</span> <span>Podcast informativo introductorio.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">03.</span> <span>Lectura completa de "El Ordenador de tu Abundancia".</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">04.</span> <span>Workbook práctico con tu cuaderno personal.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">05.</span> <span>Bono 1: Configurar Planificador Semanal ATE.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">06.</span> <span>Bono 2: Realizar Escáner de las 9 Capas.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">07.</span> <span>Video "IA como complemento a la Escritura Consciente".</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">08.</span> <span>PDF "Comandos de Prompts para el Usuario Admin".</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">09.</span> <span>PDF "Beneficios del Ecoscritor".</span>
-                </li>
-                <li class="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5">
-                    <span class="gold-text font-black">10.</span> <span>Participar de la Sesión Q&A con Gonzai.</span>
-                </li>
-            </ol>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm font-medium">
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step1" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step1" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">01.</span> Video explicativo de bienvenida.</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step2" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step2" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">02.</span> Podcast informativo introductorio.</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step3" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step3" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">03.</span> Lectura de "El Ordenador de tu Abundancia".</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step4" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step4" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">04.</span> Workbook práctico con cuaderno personal.</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step5" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step5" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">05.</span> Bono 1: Configurar Planificador Semanal ATE.</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step6" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step6" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">06.</span> Bono 2: Realizar Escáner de las 9 Capas.</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step7" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step7" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">07.</span> Video "IA en la Escritura Consciente".</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step8" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step8" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">08.</span> PDF "Comandos de Prompts para Usuario Admin".</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step9" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step9" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">09.</span> PDF "Beneficios del Ecoscritor".</label>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-amber-500/30 transition">
+                    <input type="checkbox" id="step10" class="step-checkbox accent-amber-500 w-4 h-4 rounded cursor-pointer" onchange="updateProgress()">
+                    <label for="step10" class="cursor-pointer text-gray-200 select-none"><span class="gold-text font-black mr-2">10.</span> Participar de la Sesión Q&A con Gonzai.</label>
+                </div>
+            </div>
         </div>
 
         <!-- DUDAS Y SOPORTE -->
@@ -206,20 +253,82 @@
             <h3 class="text-lg font-bold text-white mb-2">¿Necesitás ayuda con tu descarga o acceso?</h3>
             <p class="text-gray-400 text-sm mb-6">Estamos a un mensaje de distancia para asistirte en todo lo que necesites.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="mailto:info.ricaspalabras@gmail.com" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition">
+                <button onclick="copyToClipboard('info.ricaspalabras@gmail.com', 'Email de soporte copiado')" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
                     ✉️ info.ricaspalabras@gmail.com
-                </a>
-                <a href="https://wa.me/5491165918300?text=Hola!%20Acabo%20de%20comprar%20el%20eBook%20y%20tengo%20una%20consulta" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition">
-                    💬 Contactar por WhatsApp
+                </button>
+                <a href="https://wa.me/5491165918300?text=Hola!%20Acabo%20de%20comprar%20el%20eBook%20y%20tengo%20una%20consulta" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                    💬 Contactar por WhatsApp (+54 9 11 65918300)
                 </a>
             </div>
         </div>
 
     </main>
 
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-amber-500 text-slate-950 px-6 py-3 rounded-2xl font-bold text-xs shadow-2xl transition-all opacity-0 translate-y-10 pointer-events-none z-50 flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span id="toast-text">Notificación</span>
+    </div>
+
     <footer class="p-8 border-t border-white/10 text-center text-xs text-gray-500">
         &copy; 2026 Ricas Palabras 360. Todos los derechos reservados.
     </footer>
 
+    <script>
+        // Copy text helper with toast alert
+        function copyToClipboard(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast(message);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            toastText.textContent = msg;
+            toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Checklist Progress Handler
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.step-checkbox');
+            let count = 0;
+            const state = {};
+
+            checkboxes.forEach((cb, idx) => {
+                state[cb.id] = cb.checked;
+                if (cb.checked) count++;
+            });
+
+            document.getElementById('progress-counter').textContent = `${count} / ${checkboxes.length} Completados`;
+            localStorage.setItem('rp_roadmap_progress', JSON.stringify(state));
+        }
+
+        // Restore checklist state on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedState = localStorage.getItem('rp_roadmap_progress');
+            if (savedState) {
+                try {
+                    const state = JSON.parse(savedState);
+                    Object.keys(state).forEach(id => {
+                        const cb = document.getElementById(id);
+                        if (cb) cb.checked = state[id];
+                    });
+                    updateProgress();
+                } catch(e) { console.error('Error parsing saved progress', e); }
+            }
+        });
+    </script>
 </body>
 </html>
